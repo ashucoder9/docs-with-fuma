@@ -1,0 +1,174 @@
+---
+title: Run a Subnet Node
+sidebarTitle: Subnet Nodes
+---
+Introduction[​](#introduction "Direct link to heading")
+-------------------------------------------------------
+
+This article describes how to run a node that tracks a Subnet. It requires building AvalancheGo, adding Virtual Machine binaries as plugins to your local data directory, and running AvalancheGo to track these binaries.
+
+This tutorial specifically covers tracking a Subnet built with Avalanche's [Subnet-EVM](https://github.com/ava-labs/subnet-evm), the default [Virtual Machine](/learn/virtual-machines) run by Subnets on Avalanche.
+
+Build AvalancheGo[​](#build-avalanchego "Direct link to heading")
+-----------------------------------------------------------------
+
+It is recommended that you first complete [this comprehensive guide](/nodes/run-a-node/manually) which demonstrates how to build and run a basic Avalanche node. Below are the high level details.
+
+<Accordion title="System Requirements">
+*   CPU: Equivalent of 8 AWS vCPU
+*   RAM: 16 GiB
+*   Storage: 1 TiB SSD
+*   OS: Ubuntu 20.04 or MacOS >= 12
+
+Note that as network usage increases, hardware requirements may change.
+</Accordion>
+
+
+<Accordion title="To build from source:">
+  
+
+
+
+1.  Install [gcc](https://gcc.gnu.org/)
+    
+2.  Install [go](https://go.dev/)
+    
+3.  Set the [$GOPATH](https://github.com/golang/go/wiki/SettingGOPATH)
+    
+4.  Create a directory in your `$GOPATH`
+    
+
+```
+mkdir -p $GOPATH/src/github.com/ava-labs
+
+```
+
+
+5.  Clone AvalancheGo
+
+In the `$GOPATH`, clone [AvalancheGo](https://github.com/ava-labs/avalanchego), the consensus engine and node implementation that is the core of the Avalanche Network.
+
+```
+cd $GOPATH/src/github.com/ava-labs
+git clone https://github.com/ava-labs/avalanchego.git
+
+```
+
+
+6.  Run the Build Script
+
+From the `avalanchego` directory, run the build script
+
+```
+cd $GOPATH/src/github.com/ava-labs/avalanchego
+./scripts/build.sh
+
+```
+</Accordion>
+
+
+
+
+Manage the Subnet Binaries[​](#manage-the-subnet-binaries "Direct link to heading")
+-----------------------------------------------------------------------------------
+
+_After building AvalancheGo successfully,_
+
+### 1\. Clone [Subnet-EVM](https://github.com/ava-labs/subnet-evm)[​](#1-clone-subnet-evm "Direct link to heading")
+
+```
+cd $GOPATH/src/github.com/ava-labs
+git clone https://github.com/ava-labs/subnet-evm.git
+
+```
+
+
+### 2\. Build the Binary and Save as a Plugin[​](#2-build-the-binary-and-save-as-a-plugin "Direct link to heading")
+
+In the Subnet-EVM directory, run the build script, and save it in the “plugins” folder of your `.avalanchego` data directory. Name the plugin after the `VMID` of the Subnet you wish to track. The `VMID` of the WAGMI Subnet is the value beginning with “srEX...”.
+
+```
+cd $GOPATH/src/github.com/ava-labs/subnet-evm
+./scripts/build.sh ~/.avalanchego/plugins/srEXiWaHuhNyGwPUi444Tu47ZEDwxTWrbQiuD7FmgSAQ6X7Dy
+
+```
+<Accordion title="Where can I find Subnet parameters like VMID?">
+  VMID, Subnet ID, ChainID, and all other parameters can be found in the "Chain Info" section of the Subnet Explorer.
+
+*   [Avalanche Mainnet](https://subnets.avax.network/c-chain)
+*   [Fuji Testnet](https://subnets-test.avax.network/wagmi)
+</Accordion>
+
+
+
+
+
+
+### 3\. Specify the Plugin with a Config.json[​](#3-specify-the-plugin-with-a-configjson "Direct link to heading")
+
+Create a file named `config.json` and add a `track-subnets` field that is populated with the `SubnetID` you wish to track. The `SubnetID` of the WAGMI Subnet is the value beginning with “28nr...”.
+
+```
+cd ~/.avalanchego
+echo '{"track-subnets": "28nrH5T2BMvNrWecFcV3mfccjs6axM1TVyqe79MCv2Mhs8kxiY"}' > config.json
+
+```
+
+
+Run the Node[​](#run-the-node "Direct link to heading")
+-------------------------------------------------------
+
+Run AvalancheGo with the `—config-file` flag to start your node and ensure it tracks the Subnets included in the configuration file.
+
+```
+cd $GOPATH/src/github.com/ava-labs/avalanchego
+./build/avalanchego --config-file ~/.avalanchego/config.json --network-id=fuji
+
+```
+
+
+Note: The above command includes the `--network-id=fuji` command because the WAGMI Subnet is deployed on Fuji Testnet.
+<Accordion title="Run via the command line instead">
+  If you would prefer to track Subnets using a command line flag, you can instead use the `--track-subnets` flag.
+
+For example:
+
+```
+./build/avalanchego --track-subnets 28nrH5T2BMvNrWecFcV3mfccjs6axM1TVyqe79MCv2Mhs8kxiY --network-id=fuji
+
+```
+</Accordion>
+
+
+
+
+
+
+You should now see terminal filled with logs and information to suggest the node is properly running and has began bootstrapping to the network.
+
+Bootstrapping and RPC Details[​](#bootstrapping-and-rpc-details "Direct link to heading")
+-----------------------------------------------------------------------------------------
+
+It may take a few hours for the node to fully [bootstrap](/nodes/run-a-node/manually#bootstrapping) to the Avalanche Primary Network and tracked Subnets.
+
+When finished bootstrapping, the endpoint will be:
+
+```
+localhost:9650/ext/bc/<BlockchainID>/rpc
+
+```
+
+
+if run locally, or
+
+```
+XXX.XX.XX.XXX:9650/ext/bc/<BlockchainID>/rpc
+
+```
+
+
+if run on a cloud provider. The “X”s should be replaced with the public IP of your EC2 instance.
+
+For more information on the requests available at these endpoints, please see the [Subnet-EVM API Reference](/api-reference/subnet-evm-api) documentation.
+
+Because each node is also tracking the Primary Network, those [RPC endpoints](/nodes/run-a-node/manually#rpc) are available as well.
