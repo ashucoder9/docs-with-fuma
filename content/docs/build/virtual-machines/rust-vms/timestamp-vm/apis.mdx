@@ -24,9 +24,7 @@ We can think of the static APIs in TimestampVM as functions which call the VM an
 pub trait Rpc {
     #[rpc(name = "ping", alias("timestampvm.ping"))]
     fn ping(&self) -> BoxFuture<Result<crate::api::PingResponse>>;
-}
-```
-
+}```
 ## Chain APIs
 
 In contrast to the static API, the chain API of TimestampVM is much more rich in the sense that we have functions with read from and write to an instance of TimestampVM. In this case, we have four functions defined in the chain API:

@@ -28,9 +28,7 @@ Start the import by issuing
 
 ```
 avalanche subnet import public
-
 ```
-
 
 The tool prompts for the network from which to import. The invariant assumption here is that the network is a public network, either the Fuji testnet or Mainnet. In other words, importing from a local network isn't supported.
 
@@ -39,25 +37,19 @@ Use the arrow keys to navigate: ↓ ↑ → ←
 ? Choose a network to import from:
   ▸ Fuji
     Mainnet
-
 ```
-
 
 As stated earlier, this is from Fuji, so select it. As a next step, Avalanche-CLI asks for the path of the genesis file on disk:
 
 ```
 ✗ Provide the path to the genesis file: /tmp/subnet_evm.genesis.json
-
 ```
-
 
 The wizard checks if the file at the provided path exists, refer to the checkmark at the beginning of the line:
 
 ```
 ✔ Provide the path to the genesis file: /tmp/subnetevm_genesis.json
-
 ```
-
 
 Subsequently, the wizard asks if nodes have already been deployed for this Subnet.
 
@@ -66,9 +58,7 @@ Use the arrow keys to navigate: ↓ ↑ → ←
 ? Have nodes already been deployed to this subnet?:
     Yes
   ▸ No
-
 ```
-
 
 ### Nodes are Already Validating This Subnet[​](#nodes-are-already-validating-this-subnet "Direct link to heading")
 
@@ -81,9 +71,7 @@ If the query succeeded, the wizard jumps to prompt for the Subnet ID.
 ```
 Please provide an API URL of such a node so we can query its VM version (e.g. http://111.22.33.44:5555): http://154.42.240.119:9650
 What is the ID of the subnet?: 28nrH5T2BMvNrWecFcV3mfccjs6axM1TVyqe79MCv2Mhs8kxiY
-
 ```
-
 
 The rest of the wizard is identical to the next section, except that there is no prompt for the VM version anymore.
 
@@ -99,9 +87,7 @@ From the [Testnet Subnet Explorer](https://subnets-test.avax.network/WAGMI) you 
 
 ```
 ✔ What is the ID of the subnet?: 28nrH5T2BMvNrWecFcV3mfccjs6axM1TVyqe79MCv2Mhs8kxiY
-
 ```
-
 
 Notice the checkmark at line start, it signals that there is ID format validation.
 
@@ -114,9 +100,7 @@ Use the arrow keys to navigate: ↓ ↑ → ←
 ? What's this VM's type?:
   ▸ Subnet-EVM
     Custom
-
 ```
-
 
 Avalanche-CLI needs to know the VM type, to hit its repository and select what VM versions are available. This works automatically for Ava Labs VMs (like Subnet-EVM).
 
@@ -135,9 +119,7 @@ Use the arrow keys to navigate: ↓ ↑ → ←
     v0.4.4
     v0.4.4-rc.0
 ↓   v0.4.3
-
 ```
-
 
 There is only so much the tool can help here, the Subnet manager/administrator should know what they want to use Avalanche-CLI for, how, and why they're importing the Subnet.
 
@@ -148,9 +130,7 @@ If you selected to query an actual Subnet validator, not the public APIs, in the
 ```
 ✔ v0.4.5
 Subnet WAGMI imported successfully
-
 ```
-
 
 The choice finalizes the wizard, which hopefully signals that the import succeeded. If something went wrong, the error messages provide cause information. This means you can now use Avalanche-CLI to handle the imported Subnet in the accustomed way. For example, you could deploy the WAGMI Subnet locally.
 

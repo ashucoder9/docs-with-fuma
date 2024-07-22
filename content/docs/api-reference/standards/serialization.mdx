@@ -17,9 +17,7 @@ Packing:
     0x01
 Results in:
     [0x01]
-
 ```
-
 
 Short[​](#short "Direct link to heading")
 -----------------------------------------
@@ -33,9 +31,7 @@ Packing:
     0x0102
 Results in:
     [0x01, 0x02]
-
 ```
-
 
 Integer[​](#integer "Direct link to heading")
 ---------------------------------------------
@@ -49,9 +45,7 @@ Packing:
     0x01020304
 Results in:
     [0x01, 0x02, 0x03, 0x04]
-
 ```
-
 
 Long Integers[​](#long-integers "Direct link to heading")
 ---------------------------------------------------------
@@ -65,9 +59,7 @@ Packing:
     0x0102030405060708
 Results in:
     [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08]
-
 ```
-
 
 IP Addresses[​](#ip-addresses "Direct link to heading")
 -------------------------------------------------------
@@ -85,9 +77,7 @@ Results in:
         0x00, 0x00, 0xff, 0xff, 0x7f, 0x00, 0x00, 0x01,
         0x25, 0xb2,
     ]
-
 ```
-
 
 IPv6 example:
 
@@ -100,9 +90,7 @@ Results in:
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
         0x30, 0x39,
     ]
-
 ```
-
 
 Fixed-Length Array[​](#fixed-length-array "Direct link to heading")
 -------------------------------------------------------------------
@@ -116,9 +104,7 @@ Packing:
     [0x01, 0x02]
 Results in:
     [0x01, 0x02]
-
 ```
-
 
 Integer array example:
 
@@ -127,9 +113,7 @@ Packing:
     [0x03040506]
 Results in:
     [0x03, 0x04, 0x05, 0x06]
-
 ```
-
 
 Variable Length Array[​](#variable-length-array "Direct link to heading")
 -------------------------------------------------------------------------
@@ -143,9 +127,7 @@ Packing:
     [0x01, 0x02]
 Results in:
     [0x00, 0x00, 0x00, 0x02, 0x01, 0x02]
-
 ```
-
 
 Int array example:
 
@@ -154,9 +136,7 @@ Packing:
     [0x03040506]
 Results in:
     [0x00, 0x00, 0x00, 0x01, 0x03, 0x04, 0x05, 0x06]
-
 ```
-
 
 String[​](#string "Direct link to heading")
 -------------------------------------------

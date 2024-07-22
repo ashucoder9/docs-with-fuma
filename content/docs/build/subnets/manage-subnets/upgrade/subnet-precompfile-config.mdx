@@ -26,18 +26,14 @@ To generate a valid `upgrade.json` file, run:
 
 ```
 avalanche subnet upgrade generate testSubnet
-
 ```
-
 
 If you didn't create `testSubnet` yet, you would see this result:
 
 ```
 avalanche subnet upgrade generate testSubnet
 The provided subnet name "testSubnet" does not exist
-
 ```
-
 
 Again, it makes no sense to try the upgrade command if the Subnet doesn't exist. If that's the case, please go ahead and [create](/build/subnets/build-first-subnet) the Subnet first.
 
@@ -59,9 +55,7 @@ Use the arrow keys to navigate: ↓ ↑ → ←
 ? Press [Enter] to continue, or abort by choosing 'no':
   ▸ Yes
     No
-
 ```
-
 
 Go ahead and select `Yes` if you understand everything and you agree.
 
@@ -77,9 +71,7 @@ Use the arrow keys to navigate: ↓ ↑ → ←
     Manage Fee Settings
     Native Minting
     Transaction Allow List
-
 ```
-
 
 Refer to [Precompiles](/build/subnets/manage-subnets/upgrade/customize-subnet#precompiles) for a description of available precompiles and how to configure them.
 
@@ -97,26 +89,20 @@ Use the arrow keys to navigate: ↓ ↑ → ←
     In 1 week
     In 2 weeks
     Custom
-
 ```
-
 
 This is actually common to all precompiles: they require an activation timestamp. If you think about it, it makes sense: you want a synchronized activation of your precompile. So think for a moment about when you want to set the activation timestamp to. You can select one of the suggested times in the future, or you can pick a custom one. After picking `Custom`, it shows the following prompt:
 
 ```
 ✔ Custom
 ✗ Enter the block activation UTC datetime in 'YYYY-MM-DD HH:MM:SS' format:
-
 ```
-
 
 The format is `YYYY-MM-DD HH:MM:SS`, therefore `2023-03-31 14:00:00` would be a valid timestamp. Notice that the timestamp is in UTC. Please make sure you have converted the time from your timezone to UTC. Also notice the `✗` at the beginning of the line. The CLI tool does input validation, so if you provide a valid timestamp, the `x` disappears:
 
 ```
 ✔ Enter the block activation UTC datetime in 'YYYY-MM-DD HH:MM:SS' format: 2023-03-31 14:00:00
-
 ```
-
 
 The timestamp must be in the **future**, so make sure you use such a timestamp should you be running this tutorial after `2023-03-31 14:00:00` ;-) .
 
@@ -128,9 +114,7 @@ Use the arrow keys to navigate: ↓ ↑ → ←
 ? Add 'adminAddresses'?:
   ▸ Yes
     No
-
 ```
-
 
 This will enable the addresses added in this section to add other admins and/or add enabled addresses for transaction issuance. The addresses provided in this tutorial are fake.
 
@@ -148,9 +132,7 @@ Use the arrow keys to navigate: ↓ ↑ → ←
     Preview
     More Info
 ↓   Done
-
 ```
-
 
 The prompting runs with a pattern used throughout the tool:
 
@@ -166,9 +148,7 @@ Go ahead and add your first address:
 ```
 ✔ Add
 ✔ Add an address: 0xaaaabbbbccccddddeeeeffff1111222233334444
-
 ```
-
 
 Add another one:
 
@@ -177,9 +157,7 @@ Add another one:
 Add an address: 0xaaaabbbbccccddddeeeeffff1111222233334444
 ✔ Add
 ✔ Add an address: 0x1111222233334444aaaabbbbccccddddeeeeffff
-
 ```
-
 
 Select `Preview` this time to confirm the list is correct:
 
@@ -194,9 +172,7 @@ Use the arrow keys to navigate: ↓ ↑ → ←
     Preview
     More Info
 ↓   Done
-
 ```
-
 
 If it looks good, select `Done` to continue:
 
@@ -206,18 +182,14 @@ Use the arrow keys to navigate: ↓ ↑ → ←
 ? Add 'enabledAddresses'?:
   ▸ Yes
     No
-
 ```
-
 
 Add one such enabled address, these are addresses which can issue transactions:
 
 ```
 ✔ Add
 ✔ Add an address: 0x55554444333322221111eeeeaaaabbbbccccdddd█
-
 ```
-
 
 After you added this address, and selected `Done`, the tool asks if you want to add another precompile:
 
@@ -227,9 +199,7 @@ Use the arrow keys to navigate: ↓ ↑ → ←
 ? Should we configure another precompile?:
   ▸ No
     Yes
-
 ```
-
 
 If you needed to add another one, you would select `Yes` here. The wizard would guide you through the other available precompiles, excluding already configured ones.
 
@@ -265,9 +235,7 @@ Therefore, to apply your generated or imported upgrade configuration:
 
 ```
 avalanche subnet upgrade apply testSubnet
-
 ```
-
 
 A number of checks run. For example, if you created the Subnet but didn't deploy it locally:
 
@@ -289,9 +257,7 @@ Flags:
 
 Global Flags:
       --log-level string   log level for the application (default "ERROR")
-
 ```
-
 
 Go ahead and [deploy](/build/subnets/deploy-a-subnet/local-network) first your Subnet if that's your case.
 
@@ -302,9 +268,7 @@ avalanche subnet upgrade apply testSubnet
 Use the arrow keys to navigate: ↓ ↑ → ←
 ? What deployment would you like to upgrade:
   ▸ Existing local deployment
-
 ```
-
 
 Select `Existing local deployment`. This installs the upgrade file on all nodes of your local network running in the background.
 
@@ -328,9 +292,7 @@ The next upgrade will go into effect 2023-03-31 09:00:00
 +-------+------------+-----------------------------------------------------------------------------------+
 | node5 | testSubnet | http://0.0.0.0:9658/ext/bc/2YTRV2roEhgvwJz7D7vr33hUZscpaZgcYgUTjeMK9KH99NFnsH/rpc |
 +-------+------------+-----------------------------------------------------------------------------------+
-
 ```
-
 
 There is only so much the tool can do here for you. It installed the upgrade bytes _as-is_ as you configured respectively provided them to the tool. You should verify yourself that the upgrades were actually installed correctly, for example issuing some transactions - mind the timestamp!.
 
@@ -347,9 +309,7 @@ Use the arrow keys to navigate: ↓ ↑ → ←
 ? What deployment would you like to upgrade:
     Existing local deployment
   ▸ Fuji
-
 ```
-
 
 If not, you would not find the `Fuji` entry here.
 
@@ -365,9 +325,7 @@ If you are _not_ using default paths, you can configure the path by providing th
 
 ```
 avalanche subnet upgrade apply testSubnet --avalanchego-chain-config-dir /path/to/your/chains
-
 ```
-
 
 Make sure to identify correctly where your chain config dir is, or the node might fail to find it.
 
@@ -379,9 +337,7 @@ avalanche subnet upgrade apply testSubnet
 The chain config dir avalanchego uses is set at /home/fabio/.avalanchego/chains
 Trying to install the upgrade files at the provided /home/fabio/.avalanchego/chains path
 Successfully installed upgrade file
-
 ```
-
 
 If however the node is _not_ running on this same machine where you are executing Avalanche-CLI, there is no point in running this command for a Fuji node. In this case, you might rather export the file and install it at the right location.
 
@@ -418,9 +374,7 @@ To install the upgrade file on your validator:
    * Make sure you understand https://docs.avax.network/nodes/configure/chain-configs/chain-config-flags.md#subnet-chain-configs  *
    * before applying upgrades manually.                                                                             *
    ******************************************************************************************************************
-
 ```
-
 
 The instructions also show the content of your current upgrade file, so you can just select that if you wish. Or actually export the file.
 
@@ -432,9 +386,7 @@ If you have generated the upgrade file, you can export it:
 ```
 avalanche subnet upgrade export testSubnet
 ✔ Provide a path where we should export the file to: /tmp/testSubnet-upgrade.json
-
 ```
-
 
 Just provide a valid path to the prompt, and the tool exports the file there.
 
@@ -443,9 +395,7 @@ avalanche subnet upgrade export testSubnet
 Provide a path where we should export the file to: /tmp/testSubnet-upgrade.json
 Writing the upgrade bytes file to "/tmp/testSubnet-upgrade.json"...
 File written successfully.
-
 ```
-
 
 You can now take that file and copy it to validator nodes, see preceding instructions.
 
@@ -459,9 +409,7 @@ You can import the file:
 ```
 avalanche subnet upgrade import testSubnet
 Provide the path to the upgrade file to import: /tmp/testSubnet-upgrade.json
-
 ```
-
 
 An existing file with the same path and filename would be overwritten.
 

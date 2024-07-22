@@ -72,9 +72,7 @@ The `vm.Factory` interface is implemented to create new VM instances from which 
 ```js
 // Returning a new VM instance from VM's factory
 func (f *Factory) New(*snow.Context) (interface{}, error) { return &vm.VM{}, nil }
-
 ```
-
 
 ### Initializing a VM to Create a Blockchain[​](#initializing-a-vm-to-create-a-blockchain "Direct link to heading")
 
@@ -93,9 +91,7 @@ if err := vm.Initialize(
     fxs,
     sender,
 );
-
 ```
-
 
 You can refer to the [implementation](https://github.com/ava-labs/timestampvm/blob/main/timestampvm/vm.go#L75) of `vm.initialize` in the TimestampVM repository.
 
@@ -168,9 +164,7 @@ type Parser interface {
 	// bytes.
 	ParseBlock([]byte) (snowman.Block, error)
 }
-
 ```
-
 
 ### `common.VM`[​](#commonvm "Direct link to heading")
 
@@ -263,9 +257,7 @@ type VM interface {
 	// information about their accounts.
 	CreateHandlers() (map[string]*HTTPHandler, error)
 }
-
 ```
-
 
 ### `snowman.Block`[​](#snowmanblock "Direct link to heading")
 
@@ -308,9 +300,7 @@ type Block interface {
     // Height returns the height of this block in the chain.
     Height() uint64
 }
-
 ```
-
 
 ### `choices.Decidable`[​](#choicesdecidable "Direct link to heading")
 

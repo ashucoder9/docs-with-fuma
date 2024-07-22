@@ -42,9 +42,7 @@ Start the Devnet creation command. It will ask for all needed params:
 
 ```
 avalanche node create <clusterName>
-
 ```
-
 
 Choose Devnet for the network:
 
@@ -52,9 +50,7 @@ Choose Devnet for the network:
 ? Choose a network for the operation:
     Fuji
   ▸ Devnet
-
 ```
-
 
 Then you will be asked on the cloud provider to use. Use AWS:
 
@@ -62,17 +58,13 @@ Then you will be asked on the cloud provider to use. Use AWS:
 ? Which cloud service would you like to launch your Avalanche Node(s) in?:
   ▸ Amazon Web Services
     Google Cloud Platform
-
 ```
-
 
 Then, specify a network of 5 nodes (it can be from 2 onwards):
 
 ```
 ✗ How many nodes do you want to set up?: 5
-
 ```
-
 
 Then select the AWS region `us-east-1`:
 
@@ -83,9 +75,7 @@ Then select the AWS region `us-east-1`:
     us-west-1
     us-west-2
     Choose custom region (list of regions available at https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html)
-
 ```
-
 
 Give authorization to access AWS resources on behalf of the user:
 
@@ -93,9 +83,7 @@ Give authorization to access AWS resources on behalf of the user:
 ? I authorize Avalanche-CLI to access my AWS account:
   ▸ Yes
     No
-
 ```
-
 
 Now, the nodes will be created.
 
@@ -113,9 +101,7 @@ New EC2 instance(s) successfully created in AWS!
 ...
 
 AvalancheGo and Avalanche-CLI installed and node(s) are bootstrapping!
-
 ```
-
 
 You can check the Devnet setup with the `node status` command:
 
@@ -142,9 +128,7 @@ STATUS FOR CLUSTER: <clusterName>
 +---------------------+------------------------------------------+----------------+---------+---------------+-----------------+---------+
 | i-0ed9f7d7e049fe42b | NodeID-Phcq9zSLxfCzxsgNqzQwMYe1wxr9rFCuf | 100.25.120.218 | Devnet  | v1.10.16      | BOOTSTRAPPED    | OK      |
 +---------------------+------------------------------------------+----------------+---------+---------------+-----------------+---------+
-
 ```
-
 
 ### Deploying the Subnet into the Devnet[​](#deploying-the-subnet-into-the-devnet "Direct link to heading")
 
@@ -157,9 +141,7 @@ Checking if node(s) are healthy ...
 Getting avalanchego version of node(s)
 Error: failed to find the blockchain ID for this subnet, has it been deployed/created on this network?
 exit status 1
-
 ```
-
 
 So, next step is to deploy `<subnetName>` into `<clusterName>`. So as to create the Subnet and Blockchain transactions needed for posterior syncing and validation of the Subnet.
 
@@ -191,9 +173,7 @@ Now creating blockchain...
 | P-Chain TXID       |                                                    |
 +--------------------+----------------------------------------------------+
 Subnet successfully deployed into devnet!
-
 ```
-
 
 You can now check the updated status:
 
@@ -220,9 +200,7 @@ STATUS FOR CLUSTER: <clusterName>
 +---------------------+------------------------------------------+----------------+---------+---------------+-----------------+---------+------------------+
 | i-03697de53219c71b0 | NodeID-EZ3Xt1tm3WyUzMSKmVzg4ahcdnQ1dZGBT | 3.227.214.222  | Devnet  | v1.10.16      | BOOTSTRAPPED    | OK      | NOT_BOOTSTRAPPED |
 +---------------------+------------------------------------------+----------------+---------+---------------+-----------------+---------+------------------+
-
 ```
-
 
 ### Syncing the Subnet[​](#syncing-the-subnet "Direct link to heading")
 
@@ -241,9 +219,7 @@ Checking compatibility of node(s) avalanche go version with Subnet EVM RPC of su
 Node(s) successfully started syncing with Subnet!
 Check node subnet syncing status with avalanche node status <clusterName> --subnet <subnetName>
 
-
 ```
-
 
 Let's check the updated status:
 
@@ -271,9 +247,7 @@ STATUS FOR CLUSTER: <clusterName>
 +---------------------+------------------------------------------+----------------+---------+---------------+-----------------+---------+----------------+
 | i-03697de53219c71b0 | NodeID-EZ3Xt1tm3WyUzMSKmVzg4ahcdnQ1dZGBT | 3.227.214.222  | Devnet  | v1.10.16      | BOOTSTRAPPED    | OK      | SYNCED         |
 +---------------------+------------------------------------------+----------------+---------+---------------+-----------------+---------+----------------+
-
 ```
-
 
 ### Validating the Subnet[​](#validating-the-subnet "Direct link to heading")
 
@@ -293,9 +267,7 @@ Avalanche node id for host aws_node_i-05fc163dc2eefafef is NodeID-4TyRp3MxHQXzfr
 Avalanche node id for host aws_node_i-03697de53219c71b0 is NodeID-EZ3Xt1tm3WyUzMSKmVzg4ahcdnQ1dZGBT
 ...
 All nodes in cluster <clusterName> are successfully added as Subnet validators!
-
 ```
-
 
 And the final status is:
 
@@ -323,9 +295,7 @@ STATUS FOR CLUSTER: <clusterName>
 +---------------------+------------------------------------------+----------------+---------+---------------+-----------------+---------+----------------+
 | i-03697de53219c71b0 | NodeID-EZ3Xt1tm3WyUzMSKmVzg4ahcdnQ1dZGBT | 3.227.214.222  | Devnet  | v1.10.16      | BOOTSTRAPPED    | OK      | VALIDATING     |
 +---------------------+------------------------------------------+----------------+---------+---------------+-----------------+---------+----------------+
-
 ```
-
 
 Single Command[​](#single-command "Direct link to heading")
 -----------------------------------------------------------
@@ -364,9 +334,7 @@ Waiting for node(s) in cluster <clusterName> to be validating subnet <subnetName
 Nodes Validating <subnetName> after 23 seconds
 
 Devnet <clusterName> has been created and is validating subnet <subnetName>!
-
 ```
-
 
 ### Create a Devnet, Create a Custom VM based Subnet, and Deploy It[​](#create-a-devnet-create-a-custom-vm-based-subnet-and-deploy-it "Direct link to heading")
 

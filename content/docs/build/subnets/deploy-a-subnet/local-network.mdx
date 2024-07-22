@@ -4,14 +4,12 @@ sidebarTitle: On a Local Network
 description: This how-to guide focuses on taking an already created Subnet configuration and deploying it to a local Avalanche network.
 ---
 
-Prerequisites[​](#prerequisites "Direct link to heading")
----------------------------------------------------------
+## Prerequisites
 
-*   [Avalanche-CLI installed](/tooling/guides/install-avalanche-cli)
-*   You have [created a Subnet configuration](/build/subnets/build-first-subnet#create-your-subnet-configuration)
+* [Avalanche-CLI installed](/tooling/guides/install-avalanche-cli)
+* You have [created a Subnet configuration](/build/subnets/build-first-subnet#create-your-subnet-configuration)
 
-Deploying Subnets Locally[​](#deploying-subnets-locally "Direct link to heading")
----------------------------------------------------------------------------------
+## Deploying Subnets Locally
 
 In the following commands, make sure to substitute the name of your Subnet configuration for `<subnetName>`.
 
@@ -27,7 +25,7 @@ The command may take a couple minutes to run.
 
 Note: If you run `bash` on your shell and are running Avalanche-CLI on ARM64 on Mac, you will require Rosetta 2 to be able to deploy Subnets locally. You can download Rosetta 2 using `softwareupdate --install-rosetta` .
 
-### Results[​](#results "Direct link to heading")
+### Results
 
 If all works as expected, the command output should look something like this:
 
@@ -66,30 +64,18 @@ Funded address:   0x8db97C7cEcE249c2b98bDC0226Cc4C2A57BF52FC with 1000000 (10^18
 Network name:     mySubnet
 Chain ID:         54325
 Currency Symbol:  TUTORIAL
-
 ```
-
 
 You can use the deployment details to connect to and interact with your Subnet.
 
 To manage the newly deployed local Avalanche network, see [the `avalanche network` command tree](/tooling/avalanche-cli#network).
 
-### Deploying Multiple Subnets[​](#deploying-multiple-subnets "Direct link to heading")
+### Deploying Multiple Subnets
 
 You may deploy multiple Subnets concurrently, but you can't deploy the same Subnet multiple times without resetting all deployed Subnet state.
 
-Redeploying the Subnet[​](#redeploying-the-subnet "Direct link to heading")
----------------------------------------------------------------------------
+### Redeploying the Subnet
 
-To redeploy the Subnet, you first need to wipe the Subnet state. This permanently deletes all data from all locally deployed Subnets. To do so, run
+To redeploy the Subnet, you first need to wipe the Subnet state. This permanently deletes all data from all locally deployed Subnets. To do so, run: ```avalanche network clean```
 
-```
-avalanche network clean
-```
-
-You are now free to redeploy your Subnet with
-
-```
-avalanche subnet deploy <subnetName> --local
-
-```
+You are now free to redeploy your Subnet with: ```avalanche subnet deploy <subnetName> --local```

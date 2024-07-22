@@ -29,9 +29,7 @@ message Message {
     // ... (other message types)
   }
 }
-
 ```
-
 
 ### Compression[​](#compression "Direct link to heading")
 
@@ -49,9 +47,7 @@ message Ping {
   uint32 uptime = 1;
   repeated SubnetUptime subnet_uptimes = 2;
 }
-
 ```
-
 
 *   `uptime`: Uptime percentage on the primary network \[0, 100\].
 *   `subnet_uptimes`: Uptime percentages on Subnets.
@@ -65,9 +61,7 @@ message Pong {
   uint32 uptime = 1; // Deprecated: uptime is now sent in Ping
   repeated SubnetUptime subnet_uptimes = 2; // Deprecated: uptime is now sent in Ping
 }
-
 ```
-
 
 ### Version[​](#version "Direct link to heading")
 
@@ -84,9 +78,7 @@ message Version {
   bytes sig = 7;
   repeated bytes tracked_subnets = 8;
 }
-
 ```
-
 
 *   `network_id`: Network identifier (e.g., local, testnet, Mainnet).
 *   `my_time`: Unix timestamp when the `Version` message was created.
@@ -105,9 +97,7 @@ The `PeerList` message contains network-level metadata for a set of validators.
 message PeerList {
   repeated ClaimedIpPort claimed_ip_ports = 1;
 }
-
 ```
-
 
 *   `claimed_ip_ports`: List of claimed IP and port pairs.
 
@@ -120,9 +110,7 @@ message PeerListAck {
   reserved 1; // deprecated; used to be tx_ids
   repeated PeerAck peer_acks = 2;
 }
-
 ```
-
 
 *   `peer_acks`: List of acknowledged peers.
 
@@ -139,9 +127,7 @@ message GetStateSummaryFrontier {
   uint32 request_id = 2;
   uint64 deadline = 3;
 }
-
 ```
-
 
 *   `chain_id`: Chain being requested from.
 *   `request_id`: Unique identifier for this request.
@@ -157,9 +143,7 @@ message StateSummaryFrontier {
   uint32 request_id = 2;
   bytes summary = 3;
 }
-
 ```
-
 
 *   `chain_id`: Chain being responded from.
 *   `request_id`: Request ID of the original `GetStateSummaryFrontier` request.
@@ -176,9 +160,7 @@ message GetAcceptedStateSummary {
   uint64 deadline = 3;
   repeated uint64 heights = 4;
 }
-
 ```
-
 
 *   `chain_id`: Chain being requested from.
 *   `request_id`: Unique identifier for this request.
@@ -195,9 +177,7 @@ message AcceptedStateSummary {
   uint32 request_id = 2;
   repeated bytes summary_ids = 3;
 }
-
 ```
-
 
 *   `chain_id`: Chain being responded from.
 *   `request_id`: Request ID of the original `GetAcceptedStateSummary` request.
@@ -217,9 +197,7 @@ message GetAcceptedFrontier {
   uint64 deadline = 3;
   EngineType engine_type = 4;
 }
-
 ```
-
 
 *   `chain_id`: Chain being requested from.
 *   `request_id`: Unique identifier for this request.
@@ -237,9 +215,7 @@ message AcceptedFrontier {
   uint32 request_id = 2;
   bytes container_id = 3;
 }
-
 ```
-
 
 *   `chain_id`: Chain being responded from.
 *   `request_id`: Request ID of the original `GetAcceptedFrontier` request.
@@ -257,9 +233,7 @@ message GetAccepted {
   repeated bytes container_ids = 4;
   EngineType engine_type = 5;
 }
-
 ```
-
 
 *   `chain_id`: Chain being requested from.
 *   `request_id`: Unique identifier for this message.
@@ -281,9 +255,7 @@ message Accepted {
   uint32 request_id = 2;
   repeated bytes container_ids = 3;
 }
-
 ```
-
 
 *   `chain_id`: Chain being responded from.
 *   `request_id`: Request ID of the original `GetAccepted` request.
@@ -301,9 +273,7 @@ message GetAncestors {
   bytes container_id = 4;
   EngineType engine_type = 5;
 }
-
 ```
-
 
 *   `chain_id`: Chain being requested from.
 *   `request_id`: Unique identifier for this request.
@@ -322,9 +292,7 @@ message Ancestors {
   uint32 request_id = 2;
   repeated bytes containers = 3;
 }
-
 ```
-
 
 *   `chain_id`: Chain being responded from.
 *   `request_id`: Request ID of the original `GetAncestors` request.
@@ -345,9 +313,7 @@ message Get {
   bytes container_id = 4;
   EngineType engine_type = 5;
 }
-
 ```
-
 
 *   `chain_id`: Chain being requested from.
 *   `request_id`: Unique identifier for this request.
@@ -366,9 +332,7 @@ message Put {
   bytes container = 3;
   EngineType engine_type = 4;
 }
-
 ```
-
 
 *   `chain_id`: Chain being responded from.
 *   `request_id`: Request ID of the original `Get` request.
@@ -388,9 +352,7 @@ message PushQuery {
   EngineType engine_type = 5;
   uint64 requested_height = 6;
 }
-
 ```
-
 
 *   `chain_id`: Chain being requested from.
 *   `request_id`: Unique identifier for this request.
@@ -412,9 +374,7 @@ message PullQuery {
   EngineType engine_type = 5;
   uint64 requested_height = 6;
 }
-
 ```
-
 
 *   `chain_id`: Chain being requested from.
 *   `request_id`: Unique identifier for this request.
@@ -435,9 +395,7 @@ message Chits {
   bytes accepted_id = 4;
   bytes preferred_id_at_height = 5;
 }
-
 ```
-
 
 *   `chain_id`: Chain being responded from.
 *   `request_id`: Request ID of the original `PushQuery`/`PullQuery` request.
@@ -459,9 +417,7 @@ message AppRequest {
   uint64 deadline = 3;
   bytes app_bytes = 4;
 }
-
 ```
-
 
 *   `chain_id`: Chain being requested from.
 *   `request_id`: Unique identifier for this request.
@@ -478,9 +434,7 @@ message AppResponse {
   uint32 request_id = 2;
   bytes app_bytes = 3;
 }
-
 ```
-
 
 *   `chain_id`: Chain being responded from.
 *   `request_id`: Request ID of the original `AppRequest`.
@@ -495,9 +449,7 @@ message AppGossip {
   bytes chain_id = 1;
   bytes app_bytes = 2;
 }
-
 ```
-
 
 *   `chain_id`: Chain the message is for.
 *   `app_bytes`: Message body.

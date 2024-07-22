@@ -73,9 +73,7 @@ The default genesis Subnet-EVM provided below has some well defined parameters:
   "gasUsed": "0x0",
   "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000"
 }
-
 ```
-
 
 ### Chain Config[​](#chain-config "Direct link to heading")
 
@@ -167,9 +165,7 @@ The `alloc` field expects key-value pairs. Keys of each entry must be a valid `a
       "balance": "0x295BE96E64066972000000"
     }
   }
-
 ```
-
 
 To specify a different genesis allocation, populate the `alloc` field in the genesis JSON as follows:
 
@@ -182,9 +178,7 @@ To specify a different genesis allocation, populate the `alloc` field in the gen
       "balance": "0xa796504b1cb5a7c0000"
     }
   },
-
 ```
-
 
 The keys in the allocation are [hex](https://en.wikipedia.org/wiki/Hexadecimal) addresses **without the canonical `0x` prefix**. The balances are denominated in Wei ([10^18 Wei = 1 Whole Unit of Native Token](https://eth-converter.com/)) and expressed as hex strings **with the canonical `0x` prefix**. You can use [this converter](https://www.rapidtables.com/convert/number/hex-to-decimal.html) to translate between decimal and hex numbers.
 
@@ -193,9 +187,7 @@ The above example yields the following genesis allocations (denominated in whole
 ```
 0x8db97C7cEcE249c2b98bDC0226Cc4C2A57BF52FC: 100000000 (0x52B7D2DCC80CD2E4000000=100000000000000000000000000 Wei)
 0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B: 49463 (0xa796504b1cb5a7c0000=49463000000000000000000 Wei)
-
 ```
-
 
 ### Setting a Custom Fee Recipient[​](#setting-a-custom-fee-recipient "Direct link to heading")
 
@@ -209,9 +201,7 @@ To enable this feature, you'll need to add the following to your genesis file (u
     "allowFeeRecipients": true
   }
 }
-
 ```
-
 
 #### Fee Recipient Address[​](#fee-recipient-address "Direct link to heading")
 
@@ -221,9 +211,7 @@ With `allowFeeRecipients` enabled, your validators can specify their addresses t
 {
   "feeRecipient": "<YOUR 0x-ADDRESS>"
 }
-
 ```
-
 
 <Callout type="warning">
     If `allowFeeRecipients` feature is enabled on the Subnet, but a validator doesn't specify a "feeRecipient", the fees will be burned in blocks it produces.
@@ -253,9 +241,7 @@ The `AllowList` interface is used by precompiles to check if a given address is 
     "enabledAddresses": [<list of addresses>],
   }
 }
-
 ```
-
 
 `AllowList` configuration affects only the related precompile. For instance, the admin address in `feeManagerConfig` does not affect admin addresses in other activated precompiles.
 
@@ -288,9 +274,7 @@ interface IAllowList {
   // Read the status of [addr].
   function readAllowList(address addr) external view returns (uint256 role);
 }
-
 ```
-
 
 `readAllowList(addr)` will return a uint256 with a value of 0, 1, or 2, corresponding to the roles `None`, `Enabled`, and `Admin` respectively.
 
@@ -309,9 +293,7 @@ If you'd like to restrict who has the ability to deploy contracts on your Subnet
     "adminAddresses": ["0x8db97C7cEcE249c2b98bDC0226Cc4C2A57BF52FC"]
   }
 }
-
 ```
-
 
 In this example, `0x8db97C7cEcE249c2b98bDC0226Cc4C2A57BF52FC` is named as the `Admin` of the `ContractDeployerAllowList`. This enables it to add other `Admin` or to add `Enabled` addresses. Both `Admin` and `Enabled` can deploy contracts. To provide a great UX with factory contracts, the `tx.Origin` is checked for being a valid deployer instead of the caller of `CREATE`. This means that factory contracts will still be able to create new contracts as long as the sender of the original transaction is an allow listed deployer.
 
@@ -340,9 +322,7 @@ It's possible to enable this precompile with an initial configuration to activat
     "enabledAddresses": ["0x8db97C7cEcE249c2b98bDC0226Cc4C2A57BF52FC"]
   }
 }
-
 ```
-
 
 This will allow only `0x8db97C7cEcE249c2b98bDC0226Cc4C2A57BF52FC` to deploy contracts. For further information about precompile initial configurations see [Initial Precompile Configurations](#initial-precompile-configurations).
 
@@ -359,9 +339,7 @@ Similar to restricting contract deployers, this precompile restricts which addre
     }
   }
 }
-
 ```
-
 
 In this example, `0x8db97C7cEcE249c2b98bDC0226Cc4C2A57BF52FC` is named as the `Admin` of the `TransactionAllowList`. This enables them to add other `Admins` or to add `Allowed`. `Admins`, `Manager` and `Enabled` can submit transactions to the chain.
 
@@ -391,9 +369,7 @@ It's possible to enable this precompile with an initial configuration to activat
     "enabledAddresses": ["0x8db97C7cEcE249c2b98bDC0226Cc4C2A57BF52FC"]
   }
 }
-
 ```
-
 
 This will allow only `0x8db97C7cEcE249c2b98bDC0226Cc4C2A57BF52FC` to submit transactions. For further information about precompile initial configurations see [Initial Precompile Configurations](#initial-precompile-configurations).
 
@@ -410,9 +386,7 @@ You can mint native(gas) coins with a precompiled contract. In order to activate
     }
   }
 }
-
 ```
-
 
 `adminAddresses` denotes admin accounts who can add other `Admin`, `Manager` or `Enabled` accounts. `Admin`, `Manager` and `Enabled` are both eligible to mint native coins for other addresses. `ContractNativeMinter` uses same methods as in `ContractDeployerAllowList`.
 
@@ -435,9 +409,7 @@ interface INativeMinter is IAllowList {
   // Mint [amount] number of native coins and send to [addr]
   function mintNativeCoin(address addr, uint256 amount) external;
 }
-
 ```
-
 
 `mintNativeCoin` takes an address and amount of native coins to be minted. The amount denotes the amount in minimum denomination of native coins (10^18). For example, if you want to mint 1 native coin (in AVAX), you need to pass 1 \* 10^18 as the amount. A `NativeCoinMinted` event is emitted with the sender, recipient and amount when a native coin is minted.
 
@@ -463,9 +435,7 @@ It's possible to enable this precompile with an initial configuration to activat
     }
   }
 }
-
 ```
-
 
 In the amount field you can specify either decimal or hex string. This will mint 1000000000000000000 (equivalent of 1 Native Coin denominated as 10^18) to both addresses. Note that these are both in string format. "0xde0b6b3a7640000" hex is equivalent to 1000000000000000000. For further information about precompile initial configurations see [Initial Precompile Configurations](#initial-precompile-configurations).
 
@@ -482,9 +452,7 @@ You can configure the parameters of the dynamic fee algorithm on chain using the
     }
   }
 }
-
 ```
-
 
 The precompile implements the `FeeManager` interface which includes the same `AllowList` interface used by ContractNativeMinter, TxAllowList, etc. For an example of the `AllowList` interface, see the [TxAllowList](#allowlist-interface) above.
 
@@ -545,9 +513,7 @@ interface IFeeManager is IAllowList {
     view
     returns (uint256 blockNumber);
 }
-
 ```
-
 
 FeeConfigManager precompile uses `IAllowList` interface directly, meaning that it uses the same `AllowList` interface functions like `readAllowList` and `setAdmin`, `setManager`, `setEnabled`, `setNone`. For more information see [AllowList Solidity interface](#allowlist-interface).
 
@@ -580,9 +546,7 @@ It's possible to enable this precompile with an initial configuration to activat
     }
   }
 }
-
 ```
-
 
 This will set the fee config to the values specified in the `initialFeeConfig` field. For further information about precompile initial configurations see [Initial Precompile Configurations](#initial-precompile-configurations).
 
@@ -599,9 +563,7 @@ Fee reward mechanism can be configured with this stateful precompile contract ca
     }
   }
 }
-
 ```
-
 
 `adminAddresses` denotes admin accounts who can add other `Admin` or `Enabled` accounts. `Admin`, `Manager` and `Enabled` are both eligible to change the current fee mechanism.
 
@@ -643,9 +605,7 @@ interface IRewardManager is IAllowList {
   // areFeeRecipientsAllowed returns true if fee recipients are allowed
   function areFeeRecipientsAllowed() external view returns (bool isAllowed);
 }
-
 ```
-
 
 `RewardManager` precompile uses `IAllowList` interface directly, meaning that it uses the same `AllowList` interface functions like `readAllowList` and `setAdmin`, `setEnabled`, `setNone`. For more information see [AllowList Solidity interface](#allowlist-interface).
 
@@ -687,9 +647,7 @@ In order to allow custom fee recipients, you need to specify the `allowFeeRecipi
     }
   }
 }
-
 ```
-
 
 In order to set an address to receive all transaction rewards, you need to specify the `rewardAddress` field in the `initialRewardConfig`:
 
@@ -702,9 +660,7 @@ In order to set an address to receive all transaction rewards, you need to speci
     }
   }
 }
-
 ```
-
 
 In order to disable rewards and start burning fees, you need to leave all fields in the `initialRewardConfig` empty:
 
@@ -715,9 +671,7 @@ In order to disable rewards and start burning fees, you need to leave all fields
     "initialRewardConfig": {}
   }
 }
-
 ```
-
 
 However this is different than the default behavior of the precompile. If you don't specify the `initialRewardConfig` field, the precompile will inherit the `feeRecipients` mechanism activated at genesis. Meaning that if `allowFeeRecipients` is set to true in the genesis file, the precompile will be enabled with the `allowFeeRecipients` mechanism. Otherwise it will keep burning fees. Example configuration for this case:
 
@@ -728,9 +682,7 @@ However this is different than the default behavior of the precompile. If you do
     "adminAddresses": ["0x8db97C7cEcE249c2b98bDC0226Cc4C2A57BF52FC"]
   }
 }
-
 ```
-
 
 If `allowFeeRecipients` and `rewardAddress` are both specified in the `initialRewardConfig` field then an error will be returned and precompile won't be activated. For further information about precompile initial configurations see [Initial Precompile Configurations](#initial-precompile-configurations).
 
@@ -745,9 +697,7 @@ Warp Precompile enabled cross-subnet communication between other Subnets and pri
     "quorumNumerator": (uint)
   }
 }
-
 ```
-
 
 `blockTimestamp` must be set to a timestamp after Durango date. `quorumNumerator` is the stake percentage of validators that must sign a Warp message for it to be considered valid. It must be set to a value between 33 and 100. The default value is 67. The `warpConfig` precompile can be later disabled by setting `disable` to `true` in the upgrade.json file.
 
@@ -792,9 +742,7 @@ The content of the `upgrade.json` should be formatted according to the following
     }
   ]
 }
-
 ```
-
 
 <Callout type="warning">
     An invalid `blockTimestamp` in an upgrade file results the update failing. The `blockTimestamp` value should be set to a valid Unix timestamp value which is in the _future_ relative to the _head of the chain_. If the node encounters a `blockTimestamp` which is in the past, it will fail on startup.
@@ -815,9 +763,7 @@ To disable a precompile, the following format should be used:
     }
   ]
 }
-
 ```
-
 
 Each item in `precompileUpgrades` must specify exactly one precompile to enable or disable and the block timestamps must be in increasing order. Once an upgrade has been activated (a block after the specified timestamp has been accepted), it must always be present in `upgrade.json` exactly as it was configured at the time of activation (otherwise the node will refuse to start).
 
@@ -858,9 +804,7 @@ If aborting an upgrade becomes necessary, you can remove the precompile upgrade 
     }
   ]
 }
-
 ```
-
 
 This example enables the `feeManagerConfig` at the first block with timestamp >= `1668950000`, enables `txAllowListConfig` at the first block with timestamp >= `1668960000`, and disables `feeManagerConfig` at the first block with timestamp >= `1668970000`.
 
@@ -877,9 +821,7 @@ Constantinople: 0 Petersburg: 0 Istanbul: 0, Muir Glacier: 0, Subnet EVM: 0, Fee
 “:100000000,\“baseFeeChangeDenominator\“:48,\“minBlockGasCost\“:0,\“maxBlockGasCost\
 “:10000000,\“blockGasCostStep\“:500000}, AllowFeeRecipients: false, NetworkUpgrades: {\
 “subnetEVMTimestamp\“:0}, PrecompileUpgrade: {}, UpgradeConfig: {\"precompileUpgrades\":[{\"feeManagerConfig\":{\"adminAddresses\":[\"0x8db97c7cece249c2b98bdc0226cc4c2a57bf52fc\"],\"enabledAddresses\":null,\"blockTimestamp\":1668950000}},{\"txAllowListConfig\":{\"adminAddresses\":[\"0x8db97c7cece249c2b98bdc0226cc4c2a57bf52fc\"],\"enabledAddresses\":null,\"blockTimestamp\":1668960000}},{\"feeManagerConfig\":{\"adminAddresses\":null,\"enabledAddresses\":null,\"blockTimestamp\":1668970000,\"disable\":true}}]}, Engine: Dummy Consensus Engine}"”
-
 ```
-
 
 Notice that `precompileUpgrades` entry correctly reflects the changes. You can also check the activated precompiles at a timestamp with the [`eth_getActivePrecompilesAt`](/api-reference/subnet-evm-api#eth_getactiveprecompilesat) RPC method. The [`eth_getChainConfig`](/api-reference/subnet-evm-api#eth_getchainconfig) RPC method will also return the configured upgrades in the response.
 
@@ -900,9 +842,7 @@ Precompiles can be managed by some privileged addresses to change their configur
     }
   ]
 }
-
 ```
-
 
 In this example, only the address `0x8db97C7cEcE249c2b98bDC0226Cc4C2A57BF52FC` is allowed to change the fee structure of the network. The admin address has to call the precompile in order to activate its effect; that is it needs to send a transaction with a new fee config to perform the update. This is a very powerful feature, but it also gives a large amount of power to the admin address. If the address `0x8db97C7cEcE249c2b98bDC0226Cc4C2A57BF52FC` is compromised, the network is compromised.
 
@@ -928,9 +868,7 @@ With the initial configurations, precompiles can immediately activate their effe
     }
   ]
 }
-
 ```
-
 
 Notice that there is no `adminAddresses` field in the configuration. This means that there will be no admin addresses to manage the fee structure with this precompile. The precompile will simply update the fee configuration to the specified fee config when it activates on the `blockTimestamp` `1668950000`.
 
@@ -965,9 +903,7 @@ Operators can use "priority regossip" to more aggressively "regossip" transactio
 {
   "priority-regossip-addresses": ["<YOUR 0x-ADDRESS>"]
 }
-
 ```
-
 
 By default, up to 32 transactions from priority addresses (max 16 per address) are regossipped to validators per second. You can override these defaults with the following config:
 
@@ -978,9 +914,7 @@ By default, up to 32 transactions from priority addresses (max 16 per address) a
   "priority-regossip-addresses": ["<YOUR 0x-ADDRESS>"],
   "priority-regossip-txs-per-address": 16
 }
-
 ```
-
 
 ### Fee Recipient[​](#fee-recipient "Direct link to heading")
 
@@ -992,9 +926,7 @@ With `allowFeeRecipients` enabled, validators can specify their addresses to col
 {
   "feeRecipient": "<YOUR 0x-ADDRESS>"
 }
-
 ```
-
 
 <Callout type="warning">
     If `allowFeeRecipients` or `RewardManager` precompile is enabled on the Subnet, but a validator doesn't specify a "feeRecipient", the fees will be burned in blocks it produces.
@@ -1056,9 +988,7 @@ The `upgrades.json` file shown below describes a network upgrade that will make 
     }
   ]
 }
-
 ```
-
 
 Network Upgrades: Rescheduling Mandatory Network Upgrades[​](#network-upgrades-rescheduling-mandatory-network-upgrades "Direct link to heading")
 ------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1072,9 +1002,7 @@ A typical case when a network misses any mandatory activation would result in a 
     "{networkUpgrade2}": timestamp2,
   }
 }
-
 ```
-
 
 The `timestamp` should be a Unix timestamp in seconds.
 
@@ -1086,9 +1014,7 @@ For instance, if you missed the Durango activation in Fuji (February 13th, 2024,
     "durangoTimestamp": 1712419200
   }
 }
-
 ```
-
 
 This reschedules the Durango activation to 2024-11-06 16:00:00 UTC (one month later than the actual activation). After preparing the upgrade.json, you need to update the chain directory with the new upgrade.json and restart your nodes. You should see logs similar to the following:
 
@@ -1099,9 +1025,7 @@ INFO [03-22|14:04:48.288] <fPypUHjNvJqBKXBx2LEoJ9u5b8rRxMtEhb4v2QEDQejEiTtMG Cha
 INFO [03-22|14:04:48.288] <fPypUHjNvJqBKXBx2LEoJ9u5b8rRxMtEhb4v2QEDQejEiTtMG Chain> github.com/ava-labs/subnet-evm/core/blockchain.go:335:  - SubnetEVM Timestamp:           @0          (https://github.com/ava-labs/avalanchego/releases/tag/v1.10.0)
 INFO [03-22|14:04:48.288] <fPypUHjNvJqBKXBx2LEoJ9u5b8rRxMtEhb4v2QEDQejEiTtMG Chain> github.com/ava-labs/subnet-evm/core/blockchain.go:335:  - Durango Timestamp:            @1712419200 (https://github.com/ava-labs/avalanchego/releases/tag/v1.11.0)
 ...
-
 ```
-
 
 This means your node is lock and loaded for the new Durango activation. After the new timestamp is reached, your node will activate Durango and start processing transactions with the new Durango features.
 

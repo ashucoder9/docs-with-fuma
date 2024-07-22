@@ -58,25 +58,19 @@ Go to the [releases page](https://github.com/ava-labs/subnet-evm/releases) of th
 
 ```
 wget https://github.com/ava-labs/subnet-evm/releases/download/v0.2.9/subnet-evm_0.2.9_linux_amd64.tar.gz
-
 ```
-
 
 This will download the archive to the machine. Unpack it like this (use the correct filename, of course):
 
 ```
 tar xvf subnet-evm_0.2.9_linux_amd64.tar.gz
-
 ```
-
 
 This will unpack and place the contents of the archive in the current directory, file `subnet-evm` is the plugin binary. You need to stop the node now (if the node is running as a service, use `sudo systemctl stop avalanchego` command). You need to place that file into the plugins directory where the AvalancheGo binary is located. If the node is installed using the install script, the path will be `~/avalanche-node/plugins` Instead of the `subnet-evm` filename, VM binary needs to be named as the VM ID of the chain on the Subnet. For example, for the [WAGMI Subnet](https://subnets-test.avax.network/wagmi) that VM ID is `srEXiWaHuhNyGwPUi444Tu47ZEDwxTWrbQiuD7FmgSAQ6X7Dy`. So, the command to copy the new plugin binary would look like:
 
 ```
 cp subnet-evm ~/avalanche-node/plugins/srEXiWaHuhNyGwPUi444Tu47ZEDwxTWrbQiuD7FmgSAQ6X7Dy
-
 ```
-
 
 <Callout type="warning">
     Make sure you use the correct VM ID, otherwise, your VM will not get updated and your Subnet may halt.
@@ -103,9 +97,7 @@ After you do that, you can start the node back up (if running as service do `sud
   },
   "id": 1
 }
-
 ```
-
 
 Note that entry next to the VM ID we upgraded correctly says `v0.2.9`. You have successfully upgraded the VM!
 

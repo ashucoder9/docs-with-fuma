@@ -76,9 +76,7 @@ type RemoveSubnetValidatorTx struct {
 	// Proves that the issuer has the right to remove the node from the subnet.
 	SubnetAuth verify.Verifiable `serialize:"true" json:"subnetAuthorization"`
 }
-
 ```
-
 
 #### TransformSubnetTx[​](#transformsubnettx "Direct link to heading")
 
@@ -157,9 +155,7 @@ type TransformSubnetTx struct {
 	// Authorizes this transformation
 	SubnetAuth verify.Verifiable `serialize:"true" json:"subnetAuthorization"`
 }
-
 ```
-
 
 #### AddPermissionlessValidatorTx[​](#addpermissionlessvalidatortx "Direct link to heading")
 
@@ -182,9 +178,7 @@ type AddPermissionlessValidatorTx struct {
 	// take 30% of rewards from delegators
 	DelegationShares uint32 `serialize:"true" json:"shares"`
 }
-
 ```
-
 
 #### AddPermissionlessDelegatorTx[​](#addpermissionlessdelegatortx "Direct link to heading")
 
@@ -201,9 +195,7 @@ type AddPermissionlessDelegatorTx struct {
 	// Where to send staking rewards when done validating
 	RewardsOwner fx.Owner `serialize:"true" json:"rewardsOwner"`
 }
-
 ```
-
 
 #### New TypeIDs[​](#new-typeids "Direct link to heading")
 

@@ -31,9 +31,7 @@ For example, to interact with the C-Chain's Ethereum APIs via websocket on local
 
 ```
 ws://127.0.0.1:9650/ext/bc/C/ws
-
 ```
-
 
 
 <Callout title="Tip">
@@ -90,9 +88,7 @@ eth_getAssetBalance({
     blk: BlkNrOrHash,
     assetID: string,
 }) -> {balance: int}
-
 ```
-
 
 *   `address` owner of the asset
 *   `blk` is the block number or hash at which to retrieve the balance
@@ -111,9 +107,7 @@ curl -X POST --data '{
     ],
     "id": 1
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/C/rpc
-
 ```
-
 
 **Example Response:**
 
@@ -123,9 +117,7 @@ curl -X POST --data '{
   "id": 1,
   "result": "0x1388"
 }
-
 ```
-
 
 #### `eth_baseFee`[​](#eth_basefee "Direct link to heading")
 
@@ -144,9 +136,7 @@ curl -X POST --data '{
     "method" :"eth_baseFee",
     "params" :[]
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/C/rpc
-
 ```
-
 
 **Example Response:**
 
@@ -156,9 +146,7 @@ curl -X POST --data '{
   "id": 1,
   "result": "0x34630b8a00"
 }
-
 ```
-
 
 #### `eth_maxPriorityFeePerGas`[​](#eth_maxpriorityfeepergas "Direct link to heading")
 
@@ -168,9 +156,7 @@ Get the priority fee needed to be included in a block.
 
 ```
 eth_maxPriorityFeePerGas() -> {}
-
 ```
-
 
 `result` is hex value of the priority fee needed to be included in a block.
 
@@ -183,9 +169,7 @@ curl -X POST --data '{
     "method" :"eth_maxPriorityFeePerGas",
     "params" :[]
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/C/rpc
-
 ```
-
 
 **Example Response:**
 
@@ -195,9 +179,7 @@ curl -X POST --data '{
   "id": 1,
   "result": "0x2540be400"
 }
-
 ```
-
 
 For more information on dynamic fees see the [C-Chain section of the transaction fee documentation](/api-reference/standards/guides/transaction-fees#c-chain-fees).
 
@@ -209,9 +191,7 @@ For more information on dynamic fees see the [C-Chain section of the transaction
 
 ```
 eth_getChainConfig({}) -> {chainConfig: json}
-
 ```
-
 
 **Example Call:**
 
@@ -222,9 +202,7 @@ curl -X POST --data '{
     "method" :"eth_getChainConfig",
     "params" :[]
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/C/rpc
-
 ```
-
 
 **Example Response:**
 
@@ -253,9 +231,7 @@ curl -X POST --data '{
     "apricotPhase5BlockTimestamp": 0
   }
 }
-
 ```
-
 
 Avalanche Specific APIs[​](#avalanche-specific-apis "Direct link to heading")
 -----------------------------------------------------------------------------
@@ -266,9 +242,7 @@ To interact with other instances of the EVM AVAX endpoints:
 
 ```
 /ext/bc/blockchainID/avax
-
 ```
-
 
 ### `avax.export`[​](#avaxexport "Direct link to heading")
 
@@ -290,9 +264,7 @@ avax.export({
     username: string,
     password:string,
 }) -> {txID: string}
-
 ```
-
 
 *   `to` is the X-Chain or P-Chain address the asset is sent to.
 *   `amount` is the amount of the asset to send.
@@ -316,9 +288,7 @@ curl -X POST --data '{
         "password":"myPassword"
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/C/avax
-
 ```
-
 
 **Example Response:**
 
@@ -330,9 +300,7 @@ curl -X POST --data '{
   },
   "id": 1
 }
-
 ```
-
 
 ### `avax.exportAVAX`[​](#avaxexportavax "Direct link to heading")
 
@@ -354,9 +322,7 @@ avax.exportAVAX({
     username: string,
     password:string,
 }) -> {txID: string}
-
 ```
-
 
 **Request:**
 
@@ -386,9 +352,7 @@ curl -X POST --data '{
         "password":"myPassword"
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/C/avax
-
 ```
-
 
 **Example Response:**
 
@@ -400,9 +364,7 @@ curl -X POST --data '{
   },
   "id": 1
 }
-
 ```
-
 
 ### `avax.exportKey`[​](#avaxexportkey "Direct link to heading")
 
@@ -420,9 +382,7 @@ avax.exportKey({
     password:string,
     address:string
 }) -> {privateKey: string}
-
 ```
-
 
 **Request:**
 
@@ -447,9 +407,7 @@ curl -X POST --data '{
         "address": "0xc876DF0F099b3eb32cBB78820d39F5813f73E18C"
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/C/avax
-
 ```
-
 
 **Example Response:**
 
@@ -462,9 +420,7 @@ curl -X POST --data '{
   },
   "id": 1
 }
-
 ```
-
 
 ### `avax.getAtomicTx`[​](#avaxgetatomictx "Direct link to heading")
 
@@ -481,9 +437,7 @@ avax.getAtomicTx({
     encoding: string,
     blockHeight: string
 }
-
 ```
-
 
 **Request:**
 
@@ -508,9 +462,7 @@ curl -X POST --data '{
         "encoding": "hex"
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/C/avax
-
 ```
-
 
 **Example Response:**
 
@@ -524,9 +476,7 @@ curl -X POST --data '{
   },
   "id": 1
 }
-
 ```
-
 
 ### `avax.getAtomicTxStatus`[​](#avaxgetatomictxstatus "Direct link to heading")
 
@@ -539,9 +489,7 @@ avax.getAtomicTxStatus({txID: string}) -> {
   status: string,
   blockHeight: string // returned when status is Accepted
 }
-
 ```
-
 
 `status` is one of:
 
@@ -561,9 +509,7 @@ curl -X POST --data '{
         "txID":"2QouvFWUbjuySRxeX5xMbNCuAaKWfbk5FeEa2JmoF85RKLk2dD"
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/C/avax
-
 ```
-
 
 **Example Response:**
 
@@ -576,9 +522,7 @@ curl -X POST --data '{
     "blockHeight": "1"
   }
 }
-
 ```
-
 
 ### `avax.getUTXOs`[​](#avaxgetutxos "Direct link to heading")
 
@@ -607,9 +551,7 @@ avax.getUTXOs(
         utxo: string
     }
 }
-
 ```
-
 
 *   `utxos` is a list of UTXOs such that each UTXO references at least one address in `addresses`.
 *   At most `limit` UTXOs are returned. If `limit` is omitted or greater than 1024, it is set to 1024.
@@ -638,9 +580,7 @@ curl -X POST --data '{
         "encoding": "hex"
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/C/avax
-
 ```
-
 
 This gives response:
 
@@ -662,9 +602,7 @@ This gives response:
   },
   "id": 1
 }
-
 ```
-
 
 ### `avax.import`[​](#avaximport "Direct link to heading")
 
@@ -684,9 +622,7 @@ avax.import({
     username: string,
     password:string,
 }) -> {txID: string}
-
 ```
-
 
 **Request:**
 
@@ -714,9 +650,7 @@ curl -X POST --data '{
         "password":"myPassword"
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/C/avax
-
 ```
-
 
 **Example Response:**
 
@@ -728,9 +662,7 @@ curl -X POST --data '{
   },
   "id": 1
 }
-
 ```
-
 
 ### `avax.importAVAX`[​](#avaximportavax "Direct link to heading")
 
@@ -751,9 +683,7 @@ avax.importAVAX({
     username: string,
     password:string,
 }) -> {txID: string}
-
 ```
-
 
 **Request:**
 
@@ -781,9 +711,7 @@ curl -X POST --data '{
         "password":"myPassword"
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/C/avax
-
 ```
-
 
 **Example Response:**
 
@@ -795,9 +723,7 @@ curl -X POST --data '{
   },
   "id": 1
 }
-
 ```
-
 
 ### `avax.importKey`[​](#avaximportkey "Direct link to heading")
 
@@ -814,9 +740,7 @@ avax.importKey({
     password:string,
     privateKey:string
 }) -> {address: string}
-
 ```
-
 
 **Request:**
 
@@ -839,9 +763,7 @@ curl -X POST --data '{
         "privateKey":"PrivateKey-2o2uPgTSf3aR5nW6yLHjBEAiatAFKEhApvYzsjvAJKRXVWCYkE"
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/C/avax
-
 ```
-
 
 **Example Response:**
 
@@ -853,9 +775,7 @@ curl -X POST --data '{
   },
   "id": 1
 }
-
 ```
-
 
 ### `avax.issueTx`[​](#avaxissuetx "Direct link to heading")
 
@@ -870,9 +790,7 @@ avax.issueTx({
 }) -> {
     txID: string
 }
-
 ```
-
 
 **Example Call:**
 
@@ -887,9 +805,7 @@ curl -X POST --data '{
 
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/C/avax
-
 ```
-
 
 **Example Response:**
 
@@ -901,9 +817,7 @@ curl -X POST --data '{
     "txID": "NUPLwbt2hsYxpQg4H2o451hmTWQ4JZx2zMzM4SinwtHgAdX1JLPHXvWSXEnpecStLj"
   }
 }
-
 ```
-
 
 Admin API[​](#admin-api "Direct link to heading")
 -------------------------------------------------
@@ -920,9 +834,7 @@ Sets the log level of the C-Chain.
 
 ```
 admin.setLogLevel({level:string}) -> {}
-
 ```
-
 
 *   `level` is the log level to be set.
 
@@ -937,9 +849,7 @@ curl -X POST --data '{
         "level":"info"
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/C/admin
-
 ```
-
 
 **Example Response:**
 
@@ -949,9 +859,7 @@ curl -X POST --data '{
   "id": 1,
   "result": {}
 }
-
 ```
-
 
 ### `admin.startCPUProfiler`[​](#adminstartcpuprofiler "Direct link to heading")
 
@@ -961,9 +869,7 @@ Starts a CPU profile.
 
 ```
 admin.startCPUProfiler() -> {}
-
 ```
-
 
 **Example Call:**
 
@@ -974,9 +880,7 @@ curl -X POST --data '{
     "method" :"admin.startCPUProfiler",
     "params": {}
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/C/admin
-
 ```
-
 
 **Example Response:**
 
@@ -986,9 +890,7 @@ curl -X POST --data '{
   "id": 1,
   "result": {}
 }
-
 ```
-
 
 ### `admin.stopCPUProfiler`[​](#adminstopcpuprofiler "Direct link to heading")
 
@@ -998,9 +900,7 @@ Stops and writes a CPU profile.
 
 ```
 admin.stopCPUProfiler() -> {}
-
 ```
-
 
 **Example Call:**
 
@@ -1011,9 +911,7 @@ curl -X POST --data '{
     "method" :"admin.stopCPUProfiler",
     "params": {}
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/C/admin
-
 ```
-
 
 **Example Response:**
 
@@ -1023,9 +921,7 @@ curl -X POST --data '{
   "id": 1,
   "result": {}
 }
-
 ```
-
 
 ### `admin.memoryProfile`[​](#adminmemoryprofile "Direct link to heading")
 
@@ -1035,9 +931,7 @@ Runs and writes a memory profile.
 
 ```
 admin.memoryProfile() -> {}
-
 ```
-
 
 **Example Call:**
 
@@ -1048,9 +942,7 @@ curl -X POST --data '{
     "method" :"admin.memoryProfile",
     "params": {}
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/C/admin
-
 ```
-
 
 **Example Response:**
 
@@ -1060,9 +952,7 @@ curl -X POST --data '{
   "id": 1,
   "result": {}
 }
-
 ```
-
 
 ### `admin.lockProfile`[​](#adminlockprofile "Direct link to heading")
 
@@ -1072,9 +962,7 @@ Runs a mutex profile writing to the `coreth_performance_c` directory.
 
 ```
 admin.lockProfile() -> {}
-
 ```
-
 
 **Example Call:**
 
@@ -1085,9 +973,7 @@ curl -X POST --data '{
     "method" :"admin.lockProfile",
     "params": {}
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/C/admin
-
 ```
-
 
 **Example Response:**
 

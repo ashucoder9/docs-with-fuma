@@ -91,9 +91,7 @@ type UnsignedTransaction interface {
 	TypedData() *tdata.TypedData
 	Activity() *Activity
 }
-
 ```
-
 
 #### BaseTx[​](#basetx "Direct link to heading")
 
@@ -123,9 +121,7 @@ type TransferTx struct {
 	// Units are transferred to [To].
 	Units uint64 `serialize:"true" json:"units"`
 }
-
 ```
-
 
 `TransferTx` embeds `BaseTx` to avoid re-implementing common operations with other transactions, but implements its own [`Execute`](https://github.com/ava-labs/blobvm/blob/master/chain/transfer_tx.go#L26) to support token transfers.
 
@@ -153,9 +149,7 @@ func (t *TransferTx) Execute(c *TransactionContext) error {
 	}
 	return nil
 }
-
 ```
-
 
 #### SetTx[​](#settx "Direct link to heading")
 
@@ -167,9 +161,7 @@ type SetTx struct {
 
 	Value []byte `serialize:"true" json:"value"`
 }
-
 ```
-
 
 `SetTx` implements its own [`FeeUnits`](https://github.com/ava-labs/blobvm/blob/master/chain/set_tx.go#L48) method to compensate the network according to the size of the blob being stored.
 
@@ -179,9 +171,7 @@ func (s *SetTx) FeeUnits(g *Genesis) uint64 {
 	// value-based interaction (even if it is small or a delete).
 	return s.BaseTx.FeeUnits(g) + valueUnits(g, uint64(len(s.Value)))
 }
-
 ```
-
 
 `SetTx`'s [`Execute`](https://github.com/ava-labs/blobvm/blob/master/chain/set_tx.go#L21) method performs a few safety checks to validate that the blob meets the size constraints enforced by genesis and doesn't overwrite an existing key before writing it to the blockchain.
 
@@ -212,9 +202,7 @@ func (s *SetTx) Execute(t *TransactionContext) error {
 		Created: t.BlockTime,
 	})
 }
-
 ```
-
 
 #### Signed Transaction[​](#signed-transaction "Direct link to heading")
 
@@ -231,9 +219,7 @@ type Transaction struct {
 	size       uint64
 	sender     common.Address
 }
-
 ```
-
 
 The `Transaction` type wraps any unsigned transaction. When a `Transaction` is executed, it calls the `Execute` method of the underlying embedded `UnsignedTx` and performs the following sanity checks:
 
@@ -286,9 +272,7 @@ func (t *Transaction) Execute(g *Genesis, db database.Database, blk *StatelessBl
 	}
 	return nil
 }
-
 ```
-
 
 ##### Example[​](#example "Direct link to heading")
 
@@ -305,25 +289,19 @@ utx := &chain.SetTx{
 utx.SetBlockID(lastAcceptedID)
 utx.SetMagic(genesis.Magic)
 utx.SetPrice(price + blockCost/utx.FeeUnits(genesis))
-
 ```
-
 
 *   Calculate the [digest hash](https://github.com/ava-labs/blobvm/blob/master/chain/tx.go#L41) for the transaction.
 
 ```
 digest, err := chain.DigestHash(utx)
-
 ```
-
 
 *   [Sign](https://github.com/ava-labs/blobvm/blob/master/chain/crypto.go#L17) the digest hash with the issuer's private key.
 
 ```
 signature, err := chain.Sign(digest, privateKey)
-
 ```
-
 
 *   Create and initialize the new signed transaction.
 
@@ -332,17 +310,13 @@ tx := chain.NewTx(utx, sig)
 if err := tx.Init(g); err != nil {
     return ids.Empty, 0, err
 }
-
 ```
-
 
 *   Issue the request with the client
 
 ```
 txID, err = cli.IssueRawTx(ctx, tx.Bytes())
-
 ```
-
 
 ### Mempool[​](#mempool "Direct link to heading")
 
@@ -354,9 +328,7 @@ The mempool is implemented as a min-max [heap](https://en.wikipedia.org/wiki/Hea
 
 ```
 vm.mempool = mempool.New(vm.genesis, vm.config.MempoolSize)
-
 ```
-
 
 Whenever a transaction is submitted to VM, it first gets initialized, verified, and executed locally. If the transaction looks valid, then it's added to the [mempool](https://github.com/ava-labs/blobvm/blob/master/vm/vm.go#L431).
 
@@ -428,9 +400,7 @@ func (n *PushNetwork) GossipNewTxs(newTxs []*chain.Transaction) error {
 
 	return n.sendTxs(txs)
 }
-
 ```
-
 
 Recently gossiped transactions are maintained in a cache to avoid DDoSing a node from repeated gossip failures.
 
@@ -453,9 +423,7 @@ func (vm *VM) AppGossip(nodeID ids.NodeID, msg []byte) error {
 
 	return nil
 }
-
 ```
-
 
 ### Block[​](#block "Direct link to heading")
 
@@ -477,9 +445,7 @@ type StatefulBlock struct {
 	AccessProof common.Hash    `serialize:"true" json:"accessProof"`
 	Txs         []*Transaction `serialize:"true" json:"txs"`
 }
-
 ```
-
 
 #### StatelessBlock[​](#statelessblock "Direct link to heading")
 
@@ -496,9 +462,7 @@ type StatelessBlock struct {
 	children          []*StatelessBlock
 	onAcceptDB        *versiondb.Database
 }
-
 ```
-
 
 Let's have a look at the fields of StatelessBlock:
 
@@ -525,9 +489,7 @@ func NewBlock(vm VM, parent snowman.Block, tmstp int64, context *Context) *State
         st: choices.Processing,
     }
 }
-
 ```
-
 
 Some `StatelessBlock` fields like the block ID, byte representation, and timestamp aren't populated immediately. These are set during the `StatelessBlock`'s [`init`](https://github.com/ava-labs/blobvm/blob/master/chain/block.go#L112) method, which initializes these fields once the block has been populated with transactions.
 
@@ -553,9 +515,7 @@ func (b *StatelessBlock) init() error {
 	}
 	return nil
 }
-
 ```
-
 
 To build the block, the VM will try to remove as many of the highest-paying transactions from the mempool to include them in the new block until the maximum block fee set by genesis is reached.
 
@@ -577,9 +537,7 @@ if len(b.Txs) == 0 {
 if b.Timestamp().Unix() >= time.Now().Add(futureBound).Unix() {
   return nil, nil, ErrTimestampTooLate
 }
-
 ```
-
 
 *   The sum of the gas units consumed by the transactions in the block must not exceed the gas limit defined by genesis.
 
@@ -591,9 +549,7 @@ for _, tx := range b.Txs {
     return nil, nil, ErrBlockTooBig
   }
 }
-
 ```
-
 
 *   The parent block of the proposed block must exist and have an earlier timestamp.
 
@@ -606,9 +562,7 @@ if err != nil {
 if b.Timestamp().Unix() < parent.Timestamp().Unix() {
   return nil, nil, ErrTimestampTooEarly
 }
-
 ```
-
 
 *   The target block price and minimum gas price must meet the minimum enforced by the VM.
 
@@ -623,9 +577,7 @@ if b.Cost != context.NextCost {
 if b.Price != context.NextPrice {
   return nil, nil, ErrInvalidPrice
 }
-
 ```
-
 
 After the results of consensus are complete, the block is either accepted by committing the block to the database or rejected by returning the block's transactions into the mempool.
 
@@ -651,9 +603,7 @@ func (b *StatelessBlock) Reject() error {
 	b.vm.Rejected(b)
 	return nil
 }
-
 ```
-
 
 ### API[​](#api "Direct link to heading")
 
@@ -669,9 +619,7 @@ func (vm *VM) CreateHandlers() (map[string]*common.HTTPHandler, error) {
     apis[PublicEndpoint] = public
     return apis, nil
 }
-
 ```
-
 
 One API that's exposed is [`IssueRawTx`](https://github.com/ava-labs/blobvm/blob/master/vm/public_service.go#L63) to allow users to issue transactions to the BlobVM. It accepts an `IssueRawTxArgs` that contains the transaction the user wants to issue and forwards it to the VM.
 
@@ -697,9 +645,7 @@ func (svc *PublicService) IssueRawTx(_ *http.Request, args *IssueRawTxArgs, repl
 	}
 	return fmt.Errorf("%v", errs)
 }
-
 ```
-
 
 ### Virtual Machine[​](#virtual-machine "Direct link to heading")
 
@@ -829,9 +775,7 @@ func (vm *VM) Initialize(
 		log.Info("initialized blobvm from genesis", "block", gBlkID)
 	}
 	vm.AirdropData = nil
-
 ```
-
 
 After initializing its own state, BlobVM also starts asynchronous workers to build blocks and gossip transactions to the rest of the network.
 
@@ -840,9 +784,7 @@ After initializing its own state, BlobVM also starts asynchronous workers to bui
 	go vm.builder.Gossip()
 	return nil
 }
-
 ```
-
 
 ##### GetBlock[​](#getblock "Direct link to heading")
 
@@ -858,9 +800,7 @@ func (vm *VM) GetBlock(id ids.ID) (snowman.Block, error) {
 	}
 	return b, err
 }
-
 ```
-
 
 ##### ParseBlock[​](#parseblock "Direct link to heading")
 
@@ -888,9 +828,7 @@ func (vm *VM) ParseBlock(source []byte) (snowman.Block, error) {
 
 	return newBlk, nil
 }
-
 ```
-
 
 ##### BuildBlock[​](#buildblock "Direct link to heading")
 
@@ -913,9 +851,7 @@ func (vm *VM) BuildBlock() (snowman.Block, error) {
 	log.Debug("BuildBlock success", "blkID", blk.ID(), "txs", len(sblk.Txs))
 	return blk, nil
 }
-
 ```
-
 
 ##### SetPreference[​](#setpreference "Direct link to heading")
 
@@ -927,9 +863,7 @@ func (vm *VM) SetPreference(id ids.ID) error {
 	vm.preferred = id
 	return nil
 }
-
 ```
-
 
 ##### LastAccepted[​](#lastaccepted "Direct link to heading")
 
@@ -939,9 +873,7 @@ func (vm *VM) SetPreference(id ids.ID) error {
 func (vm *VM) LastAccepted() (ids.ID, error) {
 	return vm.lastAccepted.ID(), nil
 }
-
 ```
-
 
 ### CLI[​](#cli "Direct link to heading")
 
@@ -1026,17 +958,13 @@ func Upload(
 	color.Yellow("uploaded root=%v txID=%s cost=%d totalCost=%d", rk, txID, cost, totalCost)
 	return rk, nil
 }
-
 ```
-
 
 #### Example 1[​](#example-1 "Direct link to heading")
 
 ```
 blob-cli set-file ~/Downloads/computer.gif -> 6fe5a52f52b34fb1e07ba90bad47811c645176d0d49ef0c7a7b4b22013f676c8
-
 ```
-
 
 Given the root hash, a file can be looked up by deserializing all of its children chunk values and reconstructing the original file.
 
@@ -1087,17 +1015,13 @@ func Download(ctx context.Context, cli client.Client, root common.Hash, f io.Wri
 	color.Yellow("download complete root=%v size=%fMB", root, float64(amountDownloaded)/units.MiB)
 	return nil
 }
-
 ```
-
 
 #### Example 2[​](#example-2 "Direct link to heading")
 
 ```
 blob-cli resolve-file 6fe5a52f52b34fb1e07ba90bad47811c645176d0d49ef0c7a7b4b22013f676c8 computer_copy.gif
-
 ```
-
 
 Conclusion[​](#conclusion "Direct link to heading")
 ---------------------------------------------------

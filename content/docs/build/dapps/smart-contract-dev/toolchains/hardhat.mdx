@@ -33,9 +33,7 @@ Clone the [quickstart repository](https://github.com/ava-labs/avalanche-smart-co
 git clone https://github.com/ava-labs/avalanche-smart-contract-quickstart.git
 cd avalanche-smart-contract-quickstart
 yarn
-
 ```
-
 
 <Callout type="info">
 The repository cloning method used is HTTPS, but SSH can be used too:
@@ -141,9 +139,7 @@ export default {
     },
   },
 };
-
 ```
-
 
 This configures necessary network information to provide smooth interaction with Avalanche. There are also some pre-defined private keys for testing on a local test network.
 
@@ -183,9 +179,7 @@ task(
     }
   }
 );
-
 ```
-
 
 `npx hardhat accounts` prints the list of accounts. `npx hardhat balances` prints the list of AVAX account balances. As with other `yarn` scripts you can pass in a `--network` flag to hardhat tasks.
 
@@ -205,9 +199,7 @@ npx hardhat accounts --network local
 0x3C7daE394BBf8e9EE1359ad14C1C47003bD06293
 0x61e0B3CD93F36847Abbd5d40d6F00a8eC6f3cfFB
 0x0Fa8EA536Be85F32724D57A37758761B86416123
-
 ```
-
 
 ### Balances[​](#balances "Direct link to heading")
 
@@ -225,9 +217,7 @@ npx hardhat balances --network local
 0x3C7daE394BBf8e9EE1359ad14C1C47003bD06293 has balance 0
 0x61e0B3CD93F36847Abbd5d40d6F00a8eC6f3cfFB has balance 0
 0x0Fa8EA536Be85F32724D57A37758761B86416123 has balance 0
-
 ```
-
 
 Notice that the first account is already funded. This is because this address is pre-funded in the local network genesis file.
 
@@ -251,9 +241,7 @@ task(
   const balance = await contract.balanceOf("0x...");
   console.log(`Balance in wei: ${balance}`);
 });
-
 ```
-
 
 This will return the result in wei. If you want to know the exact amount of token with its token name then you need to divide it with its decimal. `erc20.abi.json` can be [found here](https://docs.avax.network/assets/files/erc20.abi-a562e36ad30a4d751911073568ea0546.json).
 
@@ -276,9 +264,7 @@ cd /path/to/avalanchego
 git fetch -p
 git checkout master
 ./scripts/build.sh
-
 ```
-
 
 (Note that you can also [download pre-compiled AvalancheGo binaries](https://github.com/ava-labs/avalanchego/releases) rather than building from source.)
 
@@ -294,9 +280,7 @@ $ avalanche-network-runner server \
 --log-level debug \
 --port=":8080" \
 --grpc-gateway-port=":8081"
-
 ```
-
 
 ### Start a New Avalanche Network with Five Nodes[​](#start-a-new-avalanche-network-with-five-nodes "Direct link to heading")
 
@@ -304,9 +288,7 @@ $ avalanche-network-runner server \
 # replace execPath with the path to AvalancheGo on your machine
 # e.g., ${HOME}/go/src/github.com/ava-labs/avalanchego/build/avalanchego
 $ AVALANCHEGO_EXEC_PATH="avalanchego"
-
 ```
-
 
 ```
 $ avalanche-network-runner control start \
@@ -314,9 +296,7 @@ $ avalanche-network-runner control start \
 --endpoint="0.0.0.0:8080" \
 --number-of-nodes=5 \
 --avalanchego-path ${AVALANCHEGO_EXEC_PATH}
-
 ```
-
 
 Now you're running a local Avalanche network with 5 nodes.
 
@@ -336,9 +316,7 @@ Exporting 1000 AVAX to each address on the C-Chain...
 Importing AVAX to the C-Chain...
 2dyXcQGiCk1ckCX4Fs8nLgL8GJgsM72f9Ga13rX5v9TAguVJYM
 ✨  Done in 5.03s.
-
 ```
-
 
 Confirm each of the accounts are funded with 1000 AVAX.
 
@@ -357,9 +335,7 @@ npx hardhat balances --network local
 0x61e0B3CD93F36847Abbd5d40d6F00a8eC6f3cfFB has balance 1000000000000000000
 0x0Fa8EA536Be85F32724D57A37758761B86416123 has balance 1000000000000000000
 ✨  Done in 0.72s.
-
 ```
-
 
 Send each of the accounts some AVAX from the first account.
 
@@ -369,9 +345,7 @@ yarn run v1.22.4
 npx hardhat run scripts/sendAvaWalletSigner.ts --network local
 Seeding addresses with AVAX
 ✨  Done in 1.33s.
-
 ```
-
 
 Confirm that the balances are updated
 
@@ -389,9 +363,7 @@ npx hardhat balances --network local
 0x3C7daE394BBf8e9EE1359ad14C1C47003bD06293 has balance 1000010000000000000000
 0x61e0B3CD93F36847Abbd5d40d6F00a8eC6f3cfFB has balance 1000010000000000000000
 0x0Fa8EA536Be85F32724D57A37758761B86416123 has balance 1000010000000000000000
-
 ```
-
 
 Note: If you see `Error HH108: Cannot connect to the network local. Please make sure your node is running, and check your internet connection and networks config`, ensure that you are using a valid Node Port. See which ports the Nodes are using by running the command:
 
@@ -400,9 +372,7 @@ $ cd /path/to/avalanche-network-runner
 $ avalanche-network-runner control uris \
 --log-level debug \
 --endpoint="0.0.0.0:8080"
-
 ```
-
 
 ### Compile Smart Contracts[​](#compile-smart-contracts "Direct link to heading")
 
@@ -410,9 +380,7 @@ In [`package.json`](https://github.com/ava-labs/avalanche-smart-contract-quickst
 
 ```rust
 "compile": "npx hardhat compile",
-
 ```
-
 
 Run `yarn compile` to make sure your project compiles.
 
@@ -426,9 +394,7 @@ npx hardhat compile
 Compiling 1 file with 0.6.4
 Compilation finished successfully
 ✨  Done in 2.13s.
-
 ```
-
 
 Deploy Smart Contracts[​](#deploy-smart-contracts "Direct link to heading")
 ---------------------------------------------------------------------------
@@ -439,17 +405,13 @@ Edit the deployment script in `scripts/deploy.ts`
 
 ```go
 "deploy": "npx hardhat run scripts/deploy.ts",
-
 ```
-
 
 You can choose which environment that you want to deploy to by passing in the `--network` flag with `local` (for example a local network created with Avalanche Network Runner), `fuji`, or `mainnet` for each respective environment. If you don't pass in `--network` then it will default to the hardhat network. For example, if you want to deploy to Mainnet:
 
 ```
 yarn deploy --network mainnet
-
 ```
-
 
 Deploy the contract to your local network
 
@@ -459,9 +421,7 @@ yarn run v1.22.4
 npx hardhat run scripts/deploy.ts --network local
 Coin deployed to: 0x17aB05351fC94a1a67Bf3f56DdbB941aE6
 ✨  Done in 1.28s.
-
 ```
-
 
 We now have a token deployed at `0x17aB05351fC94a1a67Bf3f56DdbB941aE6`.
 
@@ -478,9 +438,7 @@ npx hardhat console --network local
 Welcome to Node.js v16.2.0.
 Type ".help" for more information.
 >
-
 ```
-
 
 Get the contract instance with factory and contract address to interact with our contract:
 
@@ -489,9 +447,7 @@ Get the contract instance with factory and contract address to interact with our
 undefined
 > const coin = await Coin.attach('0x17aB05351fC94a1a67Bf3f56DdbB941aE6')
 undefined
-
 ```
-
 
 The first line retrieves contract factory with ABI & bytecode. The second line retrieves an instance of that contract factory with given contract address. Recall that our contract was already deployed to `0x17aB05351fC94a1a67Bf3f56DdbB941aE6` in the previous step.
 
@@ -513,9 +469,7 @@ undefined
   '0x61e0B3CD93F36847Abbd5d40d6F00a8eC6f3cfFB',
   '0x0Fa8EA536Be85F32724D57A37758761B86416123'
 ]
-
 ```
-
 
 This is exactly the same account list as in `yarn accounts`.
 
@@ -530,9 +484,7 @@ undefined
 BigNumber { _hex: '0x00', _isBigNumber: true }
 > value.toString()
 '0'
-
 ```
-
 
 `account[0]` has a balance because `account[0]` is the default account. The contract is deployed with this account. The constructor of [ERC20.sol](https://github.com/ava-labs/avalanche-smart-contract-quickstart/blob/main/contracts/ERC20.sol) mints `TOTAL_SUPPLY` of 123456789 token to the deployer of the contract.
 
@@ -564,9 +516,7 @@ undefined
   chainId: 43112,
   wait: [Function (anonymous)]
 }
-
 ```
-
 
 Note: Since this is a local network, we did not need to wait until transaction is accepted. However for other networks like `fuji` or `mainnet` you need to wait until transaction is accepted with: `await result.wait()`.
 
@@ -581,18 +531,14 @@ BigNumber { _hex: '0x075bccb1', _isBigNumber: true }
 BigNumber { _hex: '0x64', _isBigNumber: true }
 > value.toString()
 '100'
-
 ```
-
 
 As you might noticed there was no "sender" information in `await coin.transfer(accounts[1], 100)`; this is because `ethers` uses the first signer as the default signer. In our case this is `account[0]`. If we want to use another account we need to connect with it first.
 
 ```rust
 > let signer1 = await ethers.provider.getSigner(1)
 > let contractAsSigner1 = coin.connect(signer1)
-
 ```
-
 
 Now we can call the contract with `signer1`, which is `account[1]`.
 
@@ -620,9 +566,7 @@ Now we can call the contract with `signer1`, which is `account[1]`.
   chainId: 43112,
   wait: [Function (anonymous)]
 }
-
 ```
-
 
 Let's check balances now:
 
@@ -635,9 +579,7 @@ BigNumber { _hex: '0x075bccb6', _isBigNumber: true }
 BigNumber { _hex: '0x5f', _isBigNumber: true }
 > value.toString()
 '95'
-
 ```
-
 
 We've successfully transferred 5 tokes from `accounts[1]` to `accounts[0]`
 

@@ -165,9 +165,7 @@ Example:
 cchainconfig="$(echo -n '{"log-level":"trace"}' | base64)"
 chainconfig="$(echo -n "{\"C\":{\"Config\":\"${cchainconfig}\",\"Upgrade\":null}}" | base64)"
 avalanchego --chain-config-content "${chainconfig}"
-
 ```
-
 
 #### `--chain-aliases-file` (string)[​](#--chain-aliases-file-string "Direct link to heading")
 
@@ -177,9 +175,7 @@ Path to JSON file that defines aliases for Blockchain IDs. Defaults to `~/.avala
 {
   "q2aTwKuyzgs8pynF7UXBZCU7DejbZbZ6EUyHr3JQzYgwNPUPi": ["DFK"]
 }
-
 ```
-
 
 The above example aliases the Blockchain whose ID is `"q2aTwKuyzgs8pynF7UXBZCU7DejbZbZ6EUyHr3JQzYgwNPUPi"` to `"DFK"`. Chain aliases are added after adding primary network aliases and before any changes to the aliases via the admin API. This means that the first alias included for a Blockchain on a Subnet will be treated as the `"Primary Alias"` instead of the full blockchainID. The Primary Alias is used in all metrics and logs.
 
@@ -339,9 +335,7 @@ A LevelDB config file must be JSON and may have these keys. Any keys not given w
 	// The default value is 10s.
 	"metricUpdateFrequency": int
 }
-
 ```
-
 
 Genesis[​](#genesis "Direct link to heading")
 ---------------------------------------------
@@ -601,9 +595,7 @@ Example: Let's say we have a Subnet with ID `p4jUwqZsA2LuSftroCd3zb4ytH8W99oXKuK
     "alpha": 18
   }
 }
-
 ```
-
 
 
 <Callout title="Tip">
@@ -1125,9 +1117,7 @@ Path to JSON file that defines aliases for Virtual Machine IDs. Defaults to `~/.
     "timerpc"
   ]
 }
-
 ```
-
 
 The above example aliases the VM whose ID is `"tGas3T58KzdjLHhBDMnH2TvrddhqTji5iZAMZ3RXs2NLpSnhH"` to `"timestampvm"` and `"timerpc"`.
 

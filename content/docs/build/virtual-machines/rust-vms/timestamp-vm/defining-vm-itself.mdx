@@ -27,9 +27,7 @@ pub trait ChainVm: CommonVm + BatchedChainVm + Getter + Parser {
     /// Returns ID of last accepted block.
     async fn last_accepted(&self) -> Result<Id>;
 
-}
-```
-
+}```
 ## Defining TimestampVM
 
 Below is definition of VM struct which represents TimestampVM:
@@ -44,9 +42,7 @@ pub struct Vm<A> {
 
    /// A queue not yet proposed into a block.
    pub mempool: Arc<RwLock<VecDeque<Vec<u8>>>>,
-}
-```
-
+}```
 We see following three fields:
 - `state`: represents state of VM. Note different than earlier seen State structure.
 - `app_sender`: channel for receiving and sending requests by our VM
@@ -72,7 +68,5 @@ pub struct State {
   
   // Channel for messages to snowman consensus engine 
   pub bootstrapped : bool,
-}
-```
-
+}```
 Relationship between State and state - contains alongside other fields relevant to Snowman consensus algorithm.

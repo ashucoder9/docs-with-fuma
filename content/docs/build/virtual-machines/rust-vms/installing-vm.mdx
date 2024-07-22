@@ -11,9 +11,7 @@ Copy the binary into the plugins directory.
 
 ```
 cp -n <path to your binary> $GOPATH/src/github.com/ava-labs/avalanchego/build/plugins/
-
 ```
-
 
 Node Is Not Running[​](#node-is-not-running "Direct link to heading")
 ---------------------------------------------------------------------
@@ -32,9 +30,7 @@ curl -sX POST --data '{
     "method" :"admin.loadVMs",
     "params" :{}
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/admin
-
 ```
-
 
 Confirm the response of `loadVMs` contains the newly installed virtual machine `tGas3T58KzdjcJ32c6GpePhtqo9rrHJ1oR9wFBtCcMgaosthX`. You'll see this virtual machine as well as any others that weren't already installed previously in the response.
 
@@ -52,9 +48,7 @@ Confirm the response of `loadVMs` contains the newly installed virtual machine `
   },
   "id": 1
 }
-
 ```
-
 
 Now, this VM's static API can be accessed at endpoints `/ext/vm/timestampvm-rs` and `/ext/vm/timestamp-rs`. For more details about VM configs, see [here](/nodes/configure/configs--flags#virtual-machine-vm-configs).
 

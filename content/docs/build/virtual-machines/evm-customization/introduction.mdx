@@ -27,9 +27,7 @@ var PrecompiledContractsBerlin = map[common.Address]PrecompiledContract{
 	common.BytesToAddress([]byte{8}): &bn256PairingIstanbul{},
 	common.BytesToAddress([]byte{9}): &blake2F{},
 }
-
 ```
-
 
 These precompile addresses start from `0x0000000000000000000000000000000000000001` and increment by 1.
 
@@ -43,9 +41,7 @@ type PrecompiledContract interface {
 	RequiredGas(input []byte) uint64  // RequiredPrice calculates the contract gas use
 	Run(input []byte) ([]byte, error) // Run runs the precompiled contract
 }
-
 ```
-
 
 Here is an example of the [sha256 precompile](https://github.com/ava-labs/subnet-evm/blob/helloworld-official-tutorial-v2/core/vm/contracts.go#L237-L250) function.
 
@@ -64,9 +60,7 @@ func (c *sha256hash) Run(input []byte) ([]byte, error) {
 	h := sha256.Sum256(input)
 	return h[:], nil
 }
-
 ```
-
 
 The CALL opcode (CALL, STATICCALL, DELEGATECALL, and CALLCODE) allows us to invoke this precompile.
 
@@ -80,9 +74,7 @@ The function signature of CALL in the EVM is as follows:
  	gas uint64,
  	value *big.Int,
 )(ret []byte, leftOverGas uint64, err error)
-
 ```
-
 
 Precompiles are a shortcut to execute a function implemented by the EVM itself, rather than an actual contract. A precompile is associated with a fixed address defined in the EVM. There is no byte code associated with that address.
 
@@ -106,9 +98,7 @@ type StatefulPrecompiledContract interface {
 	readOnly bool)
 	(ret []byte, remainingGas uint64, err error)
 }
-
 ```
-
 
 A stateful precompile injects state access through the `PrecompileAccessibleState` interface to provide access to the EVM state including the ability to modify balances and read/write storage.
 
@@ -145,8 +135,6 @@ interface IAllowList {
   // Read the status of [addr].
   function readAllowList(address addr) external view returns (uint256 role);
 }
-
 ```
-
 
 You can find more information about the AllowList interface [here](/build/subnets/manage-subnets/upgrade/customize-subnet#allowlist-interface).

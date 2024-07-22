@@ -58,9 +58,7 @@ Note: it's important that this has the same name as the HardHat test file we cre
   "gasUsed": "0x0",
   "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000"
 }
-
 ```
-
 
 Adding this to our genesis enables our HelloWorld precompile at the very first block (timestamp 0), with `0x8db97C7cEcE249c2b98bDC0226Cc4C2A57BF52FC` as the admin address.
 
@@ -71,9 +69,7 @@ Adding this to our genesis enables our HelloWorld precompile at the very first b
     "adminAddresses": ["0x8db97C7cEcE249c2b98bDC0226Cc4C2A57BF52FC"]
   }
 }
-
 ```
-
 
 Declaring the HardHat E2E Test[​](#declaring-the-hardhat-e2e-test "Direct link to heading")
 -------------------------------------------------------------------------------------------
@@ -94,9 +90,7 @@ At the bottom of the file you will see the following code commented out:
     blockchainID := subnetsSuite.GetBlockchainID("{your_precompile}")
     runDefaultHardhatTests(ctx, blockchainID, "{your_precompile}")
 	*/
-
 ```
-
 
 `runDefaultHardhatTests` will run the default Hardhat test command and use the default genesis path. If you want to use a different test command and genesis path than the defaults, you can use the `utils.CreateSubnet` and `utils.RunTestCMD`. See how they were used with default params [here](https://github.com/ava-labs/subnet-evm/blob/helloworld-official-tutorial-v2/tests/utils/subnet.go#L113)
 
@@ -112,9 +106,7 @@ After modifying the `It` node, it should look like the following (you can copy a
     blockchainID := subnetsSuite.GetBlockchainID("hello_world")
     runDefaultHardhatTests(ctx, blockchainID, "hello_world")
   })
-
 ```
-
 
 Now that we've set up the new ginkgo test, we can run the ginkgo test that we want by using the `GINKGO_LABEL_FILTER`. This environment variable is passed as a flag to Ginkgo in `./scripts/run_ginkgo.sh` and restricts what tests will run to only the tests with a matching label.
 
@@ -130,25 +122,19 @@ You should have cloned [AvalancheGo](https://github.com/ava-labs/avalanchego) wi
 ```
 cd $GOPATH/src/github.com/ava-labs/avalanchego
 ./scripts/build.sh
-
 ```
-
 
 Once you've built AvalancheGo, you can confirm that it was successful by printing the version:
 
 ```
 ./build/avalanchego --version
-
 ```
-
 
 This should print something like the following (if you are running AvalancheGo v1.9.7):
 
 ```
 avalanchego/1.11.0 [database=v1.4.5, rpcchainvm=33, commit=c60f7d2dd10c87f57382885b59d6fb2c763eded7, go=1.21.7]
-
 ```
-
 
 This path will be used later as the environment variable `AVALANCHEGO_EXEC_PATH` in the network runner.
 
@@ -157,13 +143,11 @@ Please note that the RPCChainVM version of AvalancheGo and Subnet-EVM must match
 Once we've built AvalancheGo, we can navigate back to the repo and build the binary:
 
 <Tabs>
-  <Tab title="Subnet-EVM">
+  <Tab value="Subnet-EVM">
 ```
 cd $GOPATH/src/github.com/ava-labs/subnet-evm
 ./scripts/build.sh
-
 ```
-
 
 This will build the Subnet-EVM binary and place it in AvalancheGo's `build/plugins` directory by default at the file path:
 
@@ -173,9 +157,7 @@ To confirm that the Subnet-EVM binary is compatible with AvalancheGo, you can ru
 
 ```
 $GOPATH/src/github.com/ava-labs/avalanchego/build/plugins/srEXiWaHuhNyGwPUi444Tu47ZEDwxTWrbQiuD7FmgSAQ6X7Dy --version
-
 ```
-
 
 This should give similar output:
 
@@ -184,13 +166,11 @@ Subnet-EVM/v0.6.1 [AvalancheGo=v1.11.1, rpcchainvm=33]
 
 ```
   </Tab>
-  <Tab title="Precompile-EVM">
+  <Tab value="Precompile-EVM">
 
 ```
 cd $GOPATH/src/github.com/ava-labs/precompile-evm
-./scripts/build.sh
-```
-
+./scripts/build.sh```
 This will build the Precompile-EVM binary and place it in AvalancheGo's `build/plugins` directory by default at the file path:
 
 `$GOPATH/src/github.com/ava-labs/avalanchego/build/plugins/srEXiWaHuhNyGwPUi444Tu47ZEDwxTWrbQiuD7FmgSAQ6X7Dy`
@@ -198,9 +178,7 @@ This will build the Precompile-EVM binary and place it in AvalancheGo's `build/p
 To confirm that the Precompıle-EVM binary is compatible with AvalancheGo, you can run the same version command and confirm the RPCChainVM version matches:
 
 ```
-$GOPATH/src/github.com/ava-labs/avalanchego/build/plugins/srEXiWaHuhNyGwPUi444Tu47ZEDwxTWrbQiuD7FmgSAQ6X7Dy --version
-```
-
+$GOPATH/src/github.com/ava-labs/avalanchego/build/plugins/srEXiWaHuhNyGwPUi444Tu47ZEDwxTWrbQiuD7FmgSAQ6X7Dy --version```
 This should give similar output:
 
 ```
@@ -218,12 +196,12 @@ To run ONLY the HelloWorld precompile test, run the command:
  
 
 <Tabs>
-  <Tab title="Subnet-EVM">
+  <Tab value="Subnet-EVM">
 ```
 cd $GOPATH/src/github.com/ava-labs/subnet-evm
 ```
   </Tab>
-  <Tab title="Precompile-EVM">
+  <Tab value="Precompile-EVM">
 ```
 cd $GOPATH/src/github.com/ava-labs/precompile-evm
 ```
@@ -237,9 +215,7 @@ use `GINKGO_LABEL_FILTER` env var to filter the test:
 
 ```
 GINKGO_LABEL_FILTER=HelloWorld ./scripts/run_ginkgo.sh
-
 ```
-
 
 You will first see the node starting up in the `BeforeSuite` section of the precompile test:
 
@@ -269,9 +245,7 @@ INFO [01-27|10:33:51.002] Executing                                cmd="./script
 [streaming output] Using branch: hello-world-tutorial-walkthrough
 ...
 [BeforeSuite] PASSED [15.002 seconds]
-
 ```
-
 
 After the `BeforeSuite` completes successfully, it will skip all but the `HelloWorld` labeled precompile test:
 
@@ -308,9 +282,7 @@ Compilation finished successfully
   < Exit [It] hello world - /Users/avalabs/go/src/github.com/ava-labs/subnet-evm/tests/precompile/solidity/suites.go:64 @ 01/27/23 10:34:17.484 (11.48s)
 • [11.480 seconds]
 ------------------------------
-
 ```
-
 
 Finally, you will see the load test being skipped as well:
 
@@ -330,9 +302,7 @@ S [SKIPPED]
 Ran 0 of 1 Specs in 0.000 seconds
 SUCCESS! -- 0 Passed | 0 Failed | 0 Pending | 1 Skipped
 PASS
-
 ```
-
 
 Looks like the tests are passing!
 

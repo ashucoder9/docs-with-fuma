@@ -19,9 +19,7 @@ First download and install the Core browser extension from [here](https://chrome
 git clone https://github.com/ava-labs/avalanche-dapp-sdks.git
 cd avalanche-dapp-sdks
 yarn bootstrap
-
 ```
-
 
 <Callout type="info">
 The repository cloning method used is HTTPS, but SSH can be used too:
@@ -38,9 +36,7 @@ Then check out [this sample project under `packages/avalanche-connector-example`
 ```rust
 cd packages/avalanche-connector-example
 npm start
-
 ```
-
 
 If everything works as expected, you should be able to load \[http://localhost:3000/\] on your browser, click on the "Connect Avalanche" button on the page as below:
 
@@ -78,9 +74,7 @@ export const AVALANCHE_MAINNET_PARAMS = {
   rpcUrls: ["https://api.avax.network/ext/bc/C/rpc"],
   blockExplorerUrls: ["https://snowtrace.io/"],
 };
-
 ```
-
 
 Test network data:
 
@@ -96,9 +90,7 @@ export const AVALANCHE_TESTNET_PARAMS = {
   rpcUrls: ["https://api.avax-test.network/ext/bc/C/rpc"],
   blockExplorerUrls: ["https://testnet.snowtrace.io/"],
 };
-
 ```
-
 
 ### Adding the Network[​](#adding-the-network "Direct link to heading")
 
@@ -117,9 +109,7 @@ function addAvalancheNetwork() {
       });
   });
 }
-
 ```
-
 
 Where `injected` is initialized as a `web3-react/injected-connector` used to interface with MetaMask APIs. Usage for other popular web frameworks is similar. Replace `AVALANCHE_MAINNET_PARAMS` with `AVALANCHE_TESTNET_PARAMS` if you want to add the test network.
 

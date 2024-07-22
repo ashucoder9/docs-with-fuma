@@ -13,9 +13,7 @@ Copy the appropriate compiler into your current path. ~/bin/ is a common path in
 
 ```
 # cp linux-amd64/solc-linux-amd64-v0.8.9+commit.e5eed63a ~/bin
-
 ```
-
 
 Ensure solc can run.
 
@@ -23,9 +21,7 @@ Ensure solc can run.
 # solc --version
 solc, the solidity compiler commandline interface
 Version: 0.8.9+commit.e5eed63a.Linux.g++
-
 ```
-
 
 Clone Coreth and Build Abigen.
 
@@ -34,17 +30,13 @@ Clone Coreth and Build Abigen.
 # cd coreth/
 # go build -o abigen cmd/abigen/*.go
 # cp abigen ~/bin
-
 ```
-
 
 Compile a contract.
 
 ```
 # abigen --sol counter.sol --pkg main --out counter.go
-
 ```
-
 
 This will produce `counter.go` suitable to interact with contract.
 

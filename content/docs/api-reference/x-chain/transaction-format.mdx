@@ -31,9 +31,7 @@ A transferable output contains an `AssetID` and an [`Output`](/api-reference/x-c
 +----------+----------+-------------------------+
                       | 32 + size(output) bytes |
                       +-------------------------+
-
 ```
-
 
 ### Proto Transferable Output Specification[​](#proto-transferable-output-specification "Direct link to heading")
 
@@ -42,9 +40,7 @@ message TransferableOutput {
     bytes asset_id = 1; // 32 bytes
     Output output = 2;  // size(output)
 }
-
 ```
-
 
 ### Transferable Output Example[​](#transferable-output-example "Direct link to heading")
 
@@ -76,9 +72,7 @@ Let's make a transferable output:
     0xde, 0x35, 0x23, 0xa2, 0x4a, 0x46, 0x1c, 0x89,
     0x43, 0xab, 0x08, 0x59,
 ]
-
 ```
-
 
 Transferable Input[​](#transferable-input "Direct link to heading")
 -------------------------------------------------------------------
@@ -108,9 +102,7 @@ A transferable input contains a `TxID`, `UTXOIndex` `AssetID` and an `Input`.
 +------------+----------+------------------------+
                         | 68 + size(input) bytes |
                         +------------------------+
-
 ```
-
 
 ### Proto Transferable Input Specification[​](#proto-transferable-input-specification "Direct link to heading")
 
@@ -121,9 +113,7 @@ message TransferableInput {
     bytes asset_id = 3;    // 32 bytes
     Input input = 4;       // size(input)
 }
-
 ```
-
 
 ### Transferable Input Example[​](#transferable-input-example "Direct link to heading")
 
@@ -160,9 +150,7 @@ Let's make a transferable input:
     0x07, 0x5b, 0xcd, 0x15, 0x00, 0x00, 0x00, 0x02,
     0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x07
 ]
-
 ```
-
 
 Transferable Op[​](#transferable-op "Direct link to heading")
 -------------------------------------------------------------
@@ -190,9 +178,7 @@ A transferable operation contains an `AssetID`, `UTXOIDs`, and a `TransferOp`.
                            |   36 + 36 * len(utxo_ids)    |
                            |    + size(transfer_op) bytes |
                            +------------------------------+
-
 ```
-
 
 ### Proto Transferable Op Specification[​](#proto-transferable-op-specification "Direct link to heading")
 
@@ -206,9 +192,7 @@ message TransferableOp {
     repeated UTXOID utxo_ids = 2; // 4 + 36 * len(utxo_ids) bytes
     TransferOp transfer_op = 3;   // size(transfer_op)
 }
-
 ```
-
 
 ### Transferable Op Example[​](#transferable-op-example "Direct link to heading")
 
@@ -260,9 +244,7 @@ Let's make a transferable operation:
     0x35, 0x23, 0xa2, 0x4a, 0x46, 0x1c, 0x89, 0x43,
     0xab, 0x08, 0x59,
 ]
-
 ```
-
 
 Outputs[​](#outputs "Direct link to heading")
 ---------------------------------------------
@@ -297,9 +279,7 @@ A secp256k1 Mint output contains a `TypeID`, `Locktime`, `Threshold`, and `Addre
 +-----------+------------+--------------------------------+
                          | 20 + 20 * len(addresses) bytes |
                          +--------------------------------+
-
 ```
-
 
 ### Proto SECP256K1 Mint Output Specification[​](#proto-secp256k1-mint-output-specification "Direct link to heading")
 
@@ -310,9 +290,7 @@ message SECP256K1MintOutput {
     uint32 threshold = 3;         // 04 bytes
     repeated bytes addresses = 4; // 04 bytes + 20 bytes * len(addresses)
 }
-
 ```
-
 
 ### SECP256K1 Mint Output Example[​](#secp256k1-mint-output-example "Direct link to heading")
 
@@ -354,9 +332,7 @@ Let's make a SECP256K1 mint output with:
     0xde, 0x35, 0x23, 0xa2, 0x4a, 0x46, 0x1c, 0x89,
     0x43, 0xab, 0x08, 0x59,
 ]
-
 ```
-
 
 SECP256K1 Transfer Output[​](#secp256k1-transfer-output "Direct link to heading")
 ---------------------------------------------------------------------------------
@@ -389,9 +365,7 @@ A secp256k1 transfer output contains a `TypeID`, `Amount`, `Locktime`, `Threshol
 +-----------+------------+--------------------------------+
                          | 28 + 20 * len(addresses) bytes |
                          +--------------------------------+
-
 ```
-
 
 ### Proto SECP256K1 Transfer Output Specification[​](#proto-secp256k1-transfer-output-specification "Direct link to heading")
 
@@ -403,9 +377,7 @@ message SECP256K1TransferOutput {
     uint32 threshold = 4;         // 04 bytes
     repeated bytes addresses = 5; // 04 bytes + 20 bytes * len(addresses)
 }
-
 ```
-
 
 ### SECP256K1 Transfer Output Example[​](#secp256k1-transfer-output-example "Direct link to heading")
 
@@ -451,9 +423,7 @@ Let's make a secp256k1 transfer output with:
     0xde, 0x35, 0x23, 0xa2, 0x4a, 0x46, 0x1c, 0x89,
     0x43, 0xab, 0x08, 0x59,
 ]
-
 ```
-
 
 NFT Mint Output[​](#nft-mint-output "Direct link to heading")
 -------------------------------------------------------------
@@ -486,9 +456,7 @@ An NFT Mint output contains a `TypeID`, `GroupID`, `Locktime`, `Threshold`, and 
 +-----------+------------+--------------------------------+
                          | 24 + 20 * len(addresses) bytes |
                          +--------------------------------+
-
 ```
-
 
 ### Proto NFT Mint Output Specification[​](#proto-nft-mint-output-specification "Direct link to heading")
 
@@ -500,9 +468,7 @@ message NFTMintOutput {
     uint32 threshold = 4;         // 04 bytes
     repeated bytes addresses = 5; // 04 bytes + 20 bytes * len(addresses)
 }
-
 ```
-
 
 ### NFT Mint Output Example[​](#nft-mint-output-example "Direct link to heading")
 
@@ -548,9 +514,7 @@ Let's make an NFT mint output with:
     0xde, 0x35, 0x23, 0xa2, 0x4a, 0x46, 0x1c, 0x89,
     0x43, 0xab, 0x08, 0x59,
 ]
-
 ```
-
 
 NFT Transfer Output[​](#nft-transfer-output "Direct link to heading")
 ---------------------------------------------------------------------
@@ -587,9 +551,7 @@ An NFT transfer output contains a `TypeID`, `GroupID`, `Payload`, `Locktime`, `T
                          |             28 + len(payload) |
                          |  + 20 * len(addresses) bytes  |
                          +-------------------------------+
-
 ```
-
 
 ### Proto NFT Transfer Output Specification[​](#proto-nft-transfer-output-specification "Direct link to heading")
 
@@ -602,9 +564,7 @@ message NFTTransferOutput {
     uint32 threshold = 5;         // 04 bytes
     repeated bytes addresses = 6; // 04 bytes + 20 bytes * len(addresses)
 }
-
 ```
-
 
 ### NFT Transfer Output Example[​](#nft-transfer-output-example "Direct link to heading")
 
@@ -657,9 +617,7 @@ Let's make an NFT transfer output with:
     0xde, 0x35, 0x23, 0xa2, 0x4a, 0x46, 0x1c, 0x89,
     0x43, 0xab, 0x08, 0x59,
 ]
-
 ```
-
 
 Inputs[​](#inputs "Direct link to heading")
 -------------------------------------------
@@ -691,9 +649,7 @@ A secp256k1 transfer input contains an `Amount` and `AddressIndices`.
 +-----------------+-------+-------------------------------------+
                           | 16 + 4 * len(address_indices) bytes |
                           +-------------------------------------+
-
 ```
-
 
 ### Proto SECP256K1 Transfer Input Specification[​](#proto-secp256k1-transfer-input-specification "Direct link to heading")
 
@@ -703,9 +659,7 @@ message SECP256K1TransferInput {
     uint64 amount = 2;                   // 08 bytes
     repeated uint32 address_indices = 3; // 04 bytes + 04 bytes * len(address_indices)
 }
-
 ```
-
 
 ### SECP256K1 Transfer Input Example[​](#secp256k1-transfer-input-example "Direct link to heading")
 
@@ -734,9 +688,7 @@ Let's make a payment input with:
     // sig[1]
     0x00, 0x00, 0x00, 0x07,
 ]
-
 ```
-
 
 Operations[​](#operations "Direct link to heading")
 ---------------------------------------------------
@@ -773,9 +725,7 @@ A secp256k1 Mint operation contains a `TypeID`, `AddressIndices`, `MintOutput`, 
                                    |                + size(mint_output) |
                                    |      + size(transfer_output) bytes |
                                    +------------------------------------+
-
 ```
-
 
 ### Proto SECP256K1 Mint Operation Specification[​](#proto-secp256k1-mint-operation-specification "Direct link to heading")
 
@@ -786,9 +736,7 @@ message SECP256K1MintOperation {
     MintOutput mint_output = 3;          // size(mint_output
     TransferOutput transfer_output = 4;  // size(transfer_output)
 }
-
 ```
-
 
 ### SECP256K1 Mint Operation Example[​](#secp256k1-mint-operation-example "Direct link to heading")
 
@@ -838,9 +786,7 @@ Let's make a [secp256k1](/api-reference/standards/cryptography#secp256k1-address
     0xde, 0x35, 0x23, 0xa2, 0x4a, 0x46, 0x1c, 0x89,
     0x43, 0xab, 0x08, 0x59,
 ]
-
 ```
-
 
 NFT Mint Op[​](#nft-mint-op "Direct link to heading")
 -----------------------------------------------------
@@ -876,9 +822,7 @@ An NFT mint operation contains a `TypeID`, `AddressIndices`, `GroupID`, `Payload
                                |                     len(payload) + |
                                |                size(outputs) bytes |
                                +------------------------------------+
-
 ```
-
 
 ### Proto NFT Mint Op Specification[​](#proto-nft-mint-op-specification "Direct link to heading")
 
@@ -890,9 +834,7 @@ message NFTMintOp {
     bytes payload = 4;                   // 04 bytes + len(payload)
     repeated bytes outputs = 5;          // 04 bytes + size(outputs)
 }
-
 ```
-
 
 ### NFT Mint Op Example[​](#nft-mint-op-example "Direct link to heading")
 
@@ -954,9 +896,7 @@ Let's make an NFT mint operation with:
     0xde, 0x35, 0x23, 0xa2, 0x4a, 0x46, 0x1c, 0x89,
     0x43, 0xab, 0x08, 0x59,
 ]
-
 ```
-
 
 NFT Transfer Op[​](#nft-transfer-op "Direct link to heading")
 -------------------------------------------------------------
@@ -993,9 +933,7 @@ An NFT transfer operation contains a `TypeID`, `AddressIndices` and an untyped `
                                |        + 4 * len(address_indices)  |
                                |        + 20 * len(addresses) bytes |
                                +------------------------------------+
-
 ```
-
 
 ### Proto NFT Transfer Op Specification[​](#proto-nft-transfer-op-specification "Direct link to heading")
 
@@ -1009,9 +947,7 @@ message NFTTransferOp {
     uint32 threshold = 6;                // 04 bytes
     repeated bytes addresses = 7;        // 04 bytes + 20 bytes * len(addresses)
 }
-
 ```
-
 
 ### NFT Transfer Op Example[​](#nft-transfer-op-example "Direct link to heading")
 
@@ -1076,9 +1012,7 @@ Let's make an NFT transfer operation with:
     0xde, 0x35, 0x23, 0xa2, 0x4a, 0x46, 0x1c, 0x89,
     0x43, 0xab, 0x08, 0x59,
 ]
-
 ```
-
 
 Initial State[​](#initial-state "Direct link to heading")
 ---------------------------------------------------------
@@ -1102,9 +1036,7 @@ Initial state contains a `FxID` and an array of `Output`.
 +---------------+----------+-------------------------------+
                            |       8 + size(outputs) bytes |
                            +-------------------------------+
-
 ```
-
 
 ### Proto Initial State Specification[​](#proto-initial-state-specification "Direct link to heading")
 
@@ -1113,9 +1045,7 @@ message InitialState {
     uint32 fx_id = 1;                  // 04 bytes
     repeated Output outputs = 2;       // 04 + size(outputs) bytes
 }
-
 ```
-
 
 ### Initial State Example[​](#initial-state-example "Direct link to heading")
 
@@ -1148,9 +1078,7 @@ Let's make an initial state:
     0xde, 0x35, 0x23, 0xa2, 0x4a, 0x46, 0x1c, 0x89,
     0x43, 0xab, 0x08, 0x59,
 ]
-
 ```
-
 
 Credentials[​](#credentials "Direct link to heading")
 -----------------------------------------------------
@@ -1177,9 +1105,7 @@ A [secp256k1](/api-reference/standards/cryptography#secp256k1-addresses) credent
 +-----------------+------------+---------------------------------+
                                |  8 + 65 * len(signatures) bytes |
                                +---------------------------------+
-
 ```
-
 
 ### Proto SECP256K1 Credential Specification[​](#proto-secp256k1-credential-specification "Direct link to heading")
 
@@ -1188,9 +1114,7 @@ message SECP256K1Credential {
     uint32 typeID = 1;             // 4 bytes
     repeated bytes signatures = 2; // 4 bytes + 65 bytes * len(signatures)
 }
-
 ```
-
 
 ### SECP256K1 Credential Example[​](#secp256k1-credential-example "Direct link to heading")
 
@@ -1236,9 +1160,7 @@ Let's make a payment input with:
     0x78, 0x79, 0x7a, 0x7b, 0x7c, 0x7d, 0x7e, 0x7f,
     0x00,
 ]
-
 ```
-
 
 NFT Credential[​](#nft-credential "Direct link to heading")
 -----------------------------------------------------------
@@ -1282,9 +1204,7 @@ A base TX contains a `TypeID`, `NetworkID`, `BlockchainID`, `Outputs`, `Inputs`,
 +---------------+----------------------+-----------------------------------------+
                           | 52 + size(outputs) + size(inputs) + size(memo) bytes |
                           +------------------------------------------------------+
-
 ```
-
 
 ### Proto Base TX Specification[​](#proto-base-tx-specification "Direct link to heading")
 
@@ -1297,9 +1217,7 @@ message BaseTx {
     repeated Input inputs = 5;   // 04 bytes + size(ins)
     bytes memo = 6;              // 04 bytes + size(memo)
 }
-
 ```
-
 
 ### Base TX Example[​](#base-tx-example "Direct link to heading")
 
@@ -1374,9 +1292,7 @@ Let's make an base TX that uses the inputs and outputs from the previous example
     // Memo:
     0x00, 0x01, 0x02, 0x03,
 ]
-
 ```
-
 
 Unsigned CreateAssetTx[​](#unsigned-createassettx "Direct link to heading")
 ---------------------------------------------------------------------------
@@ -1408,9 +1324,7 @@ An unsigned create asset TX contains a `BaseTx`, `Name`, `Symbol`, `Denomination
                                   | size(base_tx) + size(initial_states) |
                                   |  + 9 + len(name) + len(symbol) bytes |
                                   +--------------------------------------+
-
 ```
-
 
 ### Proto Unsigned Create Asset TX Specification[​](#proto-unsigned-create-asset-tx-specification "Direct link to heading")
 
@@ -1422,9 +1336,7 @@ message CreateAssetTx {
     uint8 denomination = 4;                   // 1 bytes
     repeated InitialState initial_states = 5; // 4 bytes + size(initial_states)
 }
-
 ```
-
 
 ### Unsigned Create Asset TX Example[​](#unsigned-create-asset-tx-example "Direct link to heading")
 
@@ -1506,9 +1418,7 @@ Let's make an unsigned base TX that uses the inputs and outputs from the previou
     0xde, 0x35, 0x23, 0xa2, 0x4a, 0x46, 0x1c, 0x89,
     0x43, 0xab, 0x08, 0x59,
 ]
-
 ```
-
 
 Unsigned OperationTx[​](#unsigned-operationtx "Direct link to heading")
 -----------------------------------------------------------------------
@@ -1530,9 +1440,7 @@ An unsigned operation TX contains a `BaseTx`, and `Ops`. The `TypeID` for this t
 +---------+------------------+-------------------------------------+
                              | 4 + size(ops) + size(base_tx) bytes |
                              +-------------------------------------+
-
 ```
-
 
 ### Proto Unsigned Operation TX Specification[​](#proto-unsigned-operation-tx-specification "Direct link to heading")
 
@@ -1541,9 +1449,7 @@ message OperationTx {
     BaseTx base_tx = 1;          // size(base_tx)
     repeated TransferOp ops = 2; // 4 bytes + size(ops)
 }
-
 ```
-
 
 ### Unsigned Operation TX Example[​](#unsigned-operation-tx-example "Direct link to heading")
 
@@ -1617,9 +1523,7 @@ Let's make an unsigned operation TX that uses the inputs and outputs from the pr
     0x35, 0x23, 0xa2, 0x4a, 0x46, 0x1c, 0x89, 0x43,
     0xab, 0x08, 0x59,
 ]
-
 ```
-
 
 Unsigned ImportTx[​](#unsigned-importtx "Direct link to heading")
 -----------------------------------------------------------------
@@ -1644,9 +1548,7 @@ An unsigned import TX contains a `BaseTx`, `SourceChain` and `Ins`. \* The `Type
 +---------+----------------------+-----------------------------+
                         | 36 + size(ins) + size(base_tx) bytes |
                         +--------------------------------------+
-
 ```
-
 
 ### Proto Unsigned Import TX Specification[​](#proto-unsigned-import-tx-specification "Direct link to heading")
 
@@ -1656,9 +1558,7 @@ message ImportTx {
     bytes source_chain = 2;      // 32 bytes
     repeated TransferIn ins = 3; // 4 bytes + size(ins)
 }
-
 ```
-
 
 ### Unsigned Import TX Example[​](#unsigned-import-tx-example "Direct link to heading")
 
@@ -1735,9 +1635,7 @@ Let's make an unsigned import TX that uses the inputs from the previous examples
     0x07, 0x5b, 0xcd, 0x15, 0x00, 0x00, 0x00, 0x02,
     0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x07,
 ]
-
 ```
-
 
 Unsigned ExportTx[​](#unsigned-exporttx "Direct link to heading")
 -----------------------------------------------------------------
@@ -1761,9 +1659,7 @@ An unsigned export TX contains a `BaseTx`, `DestinationChain`, and `Outs`. The `
 +-------------------+---------------+--------------------------------------+
                           | 36 + size(outs) + size(base_tx) bytes |
                           +---------------------------------------+
-
 ```
-
 
 ### Proto Unsigned Export TX Specification[​](#proto-unsigned-export-tx-specification "Direct link to heading")
 
@@ -1773,9 +1669,7 @@ message ExportTx {
     bytes destination_chain = 2;   // 32 bytes
     repeated TransferOut outs = 3; // 4 bytes + size(outs)
 }
-
 ```
-
 
 ### Unsigned Export TX Example[​](#unsigned-export-tx-example "Direct link to heading")
 
@@ -1851,9 +1745,7 @@ Let's make an unsigned export TX that uses the outputs from the previous example
     0xe0, 0x60, 0x12, 0x8e, 0xde, 0x35, 0x23, 0xa2,
     0x4a, 0x46, 0x1c, 0x89, 0x43, 0xab, 0x08, 0x59,
 ]
-
 ```
-
 
 Signed Transaction[​](#signed-transaction "Direct link to heading")
 -------------------------------------------------------------------
@@ -1880,9 +1772,7 @@ A signed transaction contains a `CodecID`, `UnsignedTx`, and `Credentials`.
 +---------------------+--------------+------------------------------------------------+
                                      | 6 + size(unsigned_tx) + len(credentials) bytes |
                                      +------------------------------------------------+
-
 ```
-
 
 ### Proto Signed Transaction Specification[​](#proto-signed-transaction-specification "Direct link to heading")
 
@@ -1892,9 +1782,7 @@ message Tx {
     UnsignedTx unsigned_tx = 2;          // size(unsigned_tx)
     repeated Credential credentials = 3; // 4 bytes + size(credentials)
 }
-
 ```
-
 
 ### Signed Transaction Example[​](#signed-transaction-example "Direct link to heading")
 
@@ -1969,9 +1857,7 @@ Let's make a signed transaction that uses the unsigned transaction and credentia
     0x6f, 0x70, 0x71, 0x72, 0x73, 0x74, 0x75, 0x76,
     0x77, 0x78, 0x79, 0x7a, 0x7b, 0x7c, 0x7d, 0x7e,
     0x7f, 0x00,
-
 ```
-
 
 UTXO[​](#utxo "Direct link to heading")
 ---------------------------------------
@@ -2004,9 +1890,7 @@ A UTXO contains a `CodecID`, `TxID`, `UTXOIndex`, `AssetID`, and `Output`.
 +--------------+----------+-------------------------+
                           | 70 + size(output) bytes |
                           +-------------------------+
-
 ```
-
 
 ### Proto UTXO Specification[​](#proto-utxo-specification "Direct link to heading")
 
@@ -2018,9 +1902,7 @@ message Utxo {
     bytes asset_id = 4;      // 32 bytes
     Output output = 5;       // size(output)
 }
-
 ```
-
 
 ### UTXO Examples[​](#utxo-examples "Direct link to heading")
 
@@ -2064,9 +1946,7 @@ Let's make a UTXO with a SECP Mint Output:
     0xfe, 0x88, 0x4f, 0x68, 0x61, 0xe1, 0xb2, 0x9c,
     0x62, 0x76, 0xaa, 0x2a,
 ]
-
 ```
-
 
 Let's make a UTXO with a SECP Transfer Output from the signed transaction created above:
 
@@ -2111,9 +1991,7 @@ Let's make a UTXO with a SECP Transfer Output from the signed transaction create
     0x1c, 0x1d, 0x1e, 0x1f, 0x20, 0x21, 0x22, 0x23,
     0x24, 0x25, 0x26, 0x27,
 ]
-
 ```
-
 
 Let's make a UTXO with an NFT Mint Output:
 
@@ -2155,9 +2033,7 @@ Let's make a UTXO with an NFT Mint Output:
     0x0e, 0xbd, 0x09, 0xf1, 0xfe, 0x88, 0x4f, 0x68,
     0x61, 0xe1, 0xb2, 0x9c, 0x62, 0x76, 0xaa, 0x2a,
 ]
-
 ```
-
 
 Let's make a UTXO with an NFT Transfer Output:
 
@@ -2201,9 +2077,7 @@ Let's make a UTXO with an NFT Transfer Output:
     0xbd, 0x09, 0xf1, 0xfe, 0x88, 0x4f, 0x68, 0x61,
     0xe1, 0xb2, 0x9c, 0x62, 0x76, 0xaa, 0x2a,
 ]
-
 ```
-
 
 GenesisAsset[​](#genesisasset "Direct link to heading")
 -------------------------------------------------------
@@ -2268,9 +2142,7 @@ message GenesisAsset {
     uint8 denomination = 9;                    // 1 bytes
     repeated InitialState initial_states = 10; // 4 bytes + size(initial_states)
 }
-
 ```
-
 
 ### GenesisAsset Example[​](#genesisasset-example "Direct link to heading")
 

@@ -40,9 +40,7 @@ With the avalanche app running, execute:
 
 ```
 avalanche key list --mainnet --ledger 0,1,2,3,4,5
-
 ```
-
 
 To see p-chain addresses and balances for the first 6 indices in the ledger derived owner addresses.
 
@@ -62,9 +60,7 @@ To see p-chain addresses and balances for the first 6 indices in the ledger deri
 +        +---------+                         +-----------------------------------------------+---------+---------+
 |        | index 5 |                         | P-avax1jzvnd05vsfksrtatm2e3rzu6eux9a287493yf8 |       0 | Mainnet |
 +--------+---------+-------------------------+-----------------------------------------------+---------+---------+
-
 ```
-
 
 The address `P-avax10an3cucdfqru984pnvv6y0rspvvclz63e523m0` has 4.5 AVAX and is associated with index 2 of ledger A.
 
@@ -78,9 +74,7 @@ With the ledger B connected and the avalache app running, execute:
 
 ```
 avalanche key list --mainnet --ledger 0
-
 ```
-
 
 ```
 +--------+---------+-------------------------+-----------------------------------------------+---------+---------+
@@ -88,9 +82,7 @@ avalanche key list --mainnet --ledger 0
 +--------+---------+-------------------------+-----------------------------------------------+---------+---------+
 | ledger | index 0 | P-Chain (Bech32 format) | P-avax1r4aceznjkz8ch4pmpqrmkq4f3sl952mdrdt6xm |       0 | Mainnet |
 +--------+---------+-------------------------+-----------------------------------------------+---------+---------+
-
 ```
-
 
 Target address to be used is `P-avax1r4aceznjkz8ch4pmpqrmkq4f3sl952mdrdt6xm`, containing 0 funds.
 
@@ -114,9 +106,7 @@ Use the arrow keys to navigate: ↓ ↑ → ←
   ▸ Mainnet
     Fuji
     Local Network
-
 ```
-
 
 Next, the step of the transfer must be specified. Send in this case:
 
@@ -124,9 +114,7 @@ Next, the step of the transfer must be specified. Send in this case:
 ? Step of the transfer:
   ▸ Send
     Receive
-
 ```
-
 
 Next, the key source for the sender address. That is, the key that is going to sign the sending transactions. Select `Use ledger`:
 
@@ -134,9 +122,7 @@ Next, the key source for the sender address. That is, the key that is going to s
 ? Which key source should be used to  for the sender address?:
     Use stored key
   ▸ Use ledger
-
 ```
-
 
 Next, the ledger index is asked for. Input `2`:
 
@@ -144,17 +130,13 @@ Next, the amount to be sent is asked for:
 
 ```
 ✗ Amount to send (AVAX units): 4.496
-
 ```
-
 
 The, the target address is required:
 
 ```
 ✗ Receiver address: P-avax1r4aceznjkz8ch4pmpqrmkq4f3sl952mdrdt6xm
-
 ```
-
 
 After that, a confirmation message is printed. Read carefully and choose `Yes`:
 
@@ -167,9 +149,7 @@ Use the arrow keys to navigate: ↓ ↑ → ←
 ? Confirm transfer:
     No
   ▸ Yes
-
 ```
-
 
 After this, the first part is completed:
 
@@ -189,9 +169,7 @@ Use the arrow keys to navigate: ↓ ↑ → ←
   ▸ Mainnet
     Fuji
     Local Network
-
 ```
-
 
 Next, the step of the transfer must be specified. Receive in this case:
 
@@ -199,9 +177,7 @@ Next, the step of the transfer must be specified. Receive in this case:
 ? Step of the transfer:
     Send
   ▸ Receive
-
 ```
-
 
 Then, select Ledger as the key source that is going to sign the receiver operations.
 
@@ -209,9 +185,7 @@ Then, select Ledger as the key source that is going to sign the receiver operati
 ? Which key source should be used to  for the receiver address?:
     Use stored key
   ▸ Use ledger
-
 ```
-
 
 Next, the ledger index is asked for. Input `0`:
 
@@ -219,9 +193,7 @@ Next, the amount to receive is asked for:
 
 ```
 ✗ Amount to send (AVAX units): 4.496
-
 ```
-
 
 After that, a confirmation message is printed. Select `Yes`:
 
@@ -233,9 +205,7 @@ Use the arrow keys to navigate: ↓ ↑ → ←
 ? Confirm transfer:
     No
   ▸ Yes
-
 ```
-
 
 Finally, the second part of the operation is executed and the transfer is completed.
 
@@ -243,9 +213,7 @@ Finally, the second part of the operation is executed and the transfer is comple
 Issuing ImportTx P -> X
 Issuing ExportTx X -> P
 Issuing ImportTx X -> P
-
 ```
-
 
 ### Verifying Results of the Transfer Operation using `key list`[​](#verifying-results-of-the-transfer-operation-using-key-list "Direct link to heading")
 
@@ -253,9 +221,7 @@ First verify ledger A accounts. Connect ledger A and open the avalanche app:
 
 ```
 avalanche key list --mainnet --ledger 0,1,2,3,4,5
-
 ```
-
 
 With result:
 
@@ -275,17 +241,13 @@ With result:
 +        +---------+                         +-----------------------------------------------+---------+---------+
 |        | index 5 |                         | P-avax1jzvnd05vsfksrtatm2e3rzu6eux9a287493yf8 |       0 | Mainnet |
 +--------+---------+-------------------------+-----------------------------------------------+---------+---------+
-
 ```
-
 
 Next, verify ledger B accounts. Connect ledger B and open the avalanche app:
 
 ```
 avalanche key list --mainnet --ledger 0,1,2,3,4,5
-
 ```
-
 
 With result:
 
@@ -305,9 +267,7 @@ With result:
 +        +---------+                         +-----------------------------------------------+---------+---------+
 |        | index 5 |                         | P-avax17u5wm4tfex7xr27xlwejm28pyk84tj0jzp42zz |       0 | Mainnet |
 +--------+---------+-------------------------+-----------------------------------------------+---------+---------+
-
 ```
-
 
 ### Recovery Steps[​](#recovery-steps "Direct link to heading")
 
@@ -317,16 +277,12 @@ The CLI is going to capture errors and provide the user with a recovery message 
 
 ```
 ERROR: restart from this step by using the same command with extra arguments: --receive-recovery-step 1
-
 ```
-
 
 If this happen, the receiving operation should be started the same way, choosing the same options, but adding the extra suggested parameter:
 
 ```
 avalanche key transfer --receive-recovery-step 1
-
 ```
-
 
 Then, the CLI is going to resume where it left off.

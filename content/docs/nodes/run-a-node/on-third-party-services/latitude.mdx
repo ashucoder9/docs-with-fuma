@@ -46,9 +46,7 @@ curl -X POST --data '{
         "chain":"X"
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/info
-
 ```
-
 
 Once the node is finished bootstrapping, the response will be:
 
@@ -60,9 +58,7 @@ Once the node is finished bootstrapping, the response will be:
   },
   "id": 1
 }
-
 ```
-
 
 You can continue on, even if AvalancheGo isn't done bootstrapping. In order to make your node a validator, you'll need its node ID. To get it, run:
 
@@ -72,9 +68,7 @@ curl -X POST --data '{
   "id": 1,
   "method": "info.getNodeID"
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/info
-
 ```
-
 
 The response contains the node ID.
 
@@ -84,9 +78,7 @@ The response contains the node ID.
   "result": { "nodeID": "KhDnAoZDW8iRJ3F26iQgK5xXVFMPcaYeu" },
   "id": 1
 }
-
 ```
-
 
 In the above example the node ID is `NodeID-KhDnAoZDW8iRJ3F26iQgK5xXVFMPcaYeu`.
 
@@ -100,9 +92,7 @@ AvalancheGo is an ongoing project and there are regular version upgrades. Most u
 
 ```
 ./avalanchego-installer.sh
-
 ```
-
 
 Your machine is now running the newest AvalancheGo version. To see the status of the AvalancheGo service, run `sudo systemctl status avalanchego.`
 

@@ -20,7 +20,6 @@ To avoid posting the full TLS certificate to the Platform chain, the certificate
 This 20-byte identifier is represented by "NodeID-" followed by the data's [CB58](https://support.avalabs.org/en/articles/4587395-what-is-cb58) encoded string.
 
 ## Cryptography in the Avalanche Virtual Machine
--------------------------------------------------------------------------------------------------------------------------
 
 The Avalanche virtual machine uses elliptic curve cryptography, specifically `secp256k1`, for its signatures on the blockchain.
 
@@ -49,14 +48,12 @@ The following regular expression matches addresses on the X-Chain, P-Chain and C
 
 ```
 ^([XPC]|[a-km-zA-HJ-NP-Z1-9]{36,72})-[a-zA-Z]{1,83}1[qpzry9x8gf2tvdw0s3jn54khce6mua7l]{38}$
-
 ```
-
 
 Read more about Avalanche's [addressing scheme](https://support.avalabs.org/en/articles/4596397-what-is-an-address).
 
-<Accordion>
-<AccordionItem title="Bech32 and NetworkID Mapping">
+<Accordions>
+<Accordion title="Bech32 and NetworkID Mapping">
 For example the following Bech32 address, `X-avax19rknw8l0grnfunjrzwxlxync6zrlu33y2jxhrg`, is composed like so:
 
 1.  HRP: `avax`
@@ -87,8 +84,8 @@ Here's the mapping of `networkID` to bech32 HRP.
   1337: "custom",
   12345: "local"
 ```
-</AccordionItem>
 </Accordion>
+</Accordions>
 
 ### Secp256k1 Recoverable Signatures
 
@@ -130,7 +127,7 @@ sign(sha256(length(prefix) + prefix + length(message) + message))
 
 The prefix is simply the string `\x1AAvalanche Signed Message:\n`, where `0x1A` is the length of the prefix text and `length(message)` is an [integer](/api-reference/standards/serialization#integer) of the message size.
 
-### Gantt Pre-Image Specification[​](#gantt-pre-image-specification "Direct link to heading")
+### Gantt Pre-Image Specification
 
 ```
 +---------------+-----------+------------------------------+
@@ -142,11 +139,9 @@ The prefix is simply the string `\x1AAvalanche Signed Message:\n`, where `0x1A` 
 +---------------+-----------+------------------------------+
                             |       26 + 4 + size(message) |
                             +------------------------------+
-
 ```
 
-
-### Example[​](#example "Direct link to heading")
+### Example
 
 As an example we will sign the message "Through consensus to the stars"
 
@@ -159,12 +154,9 @@ As an example we will sign the message "Through consensus to the stars"
 0x00 0x00 0x00 0x1e
 // msg: Through consensus to the stars
 54 68 72 6f 75 67 68 20 63 6f 6e 73 65 6e 73 75 73 20 74 6f 20 74 68 65 20 73 74 61 72 73
-
 ```
 
-
 After hashing with `sha256` and signing the pre-image we return the value [cb58](https://support.avalabs.org/en/articles/4587395-what-is-cb58) encoded: `4Eb2zAHF4JjZFJmp4usSokTGqq9mEGwVMY2WZzzCmu657SNFZhndsiS8TvL32n3bexd8emUwiXs8XqKjhqzvoRFvghnvSN`. Here's an example using [Core web](https://core.app/tools/signing-tools/sign/).
-
 
 <Callout type="info">
 A full guide on how to sign messages with Core web can be found [here](https://support.avax.network/en/articles/7206948-core-web-how-do-i-use-the-signing-tools).
@@ -172,12 +164,10 @@ A full guide on how to sign messages with Core web can be found [here](https://s
 
 ![Sign message](/images/cryptography1.png)
 
-Cryptography in Ethereum Virtual Machine[​](#cryptography-in-ethereum-virtual-machine "Direct link to heading")
----------------------------------------------------------------------------------------------------------------
+## Cryptography in Ethereum Virtual Machine
 
 Avalanche nodes support the full Ethereum Virtual Machine (EVM) and precisely duplicate all of the cryptographic constructs used in Ethereum. This includes the Keccak hash function and the other mechanisms used for cryptographic security in the EVM.
 
-Cryptography in Other Virtual Machines[​](#cryptography-in-other-virtual-machines "Direct link to heading")
------------------------------------------------------------------------------------------------------------
+## Cryptography in Other Virtual Machines
 
 Since Avalanche is an extensible platform, we expect that people will add additional cryptographic primitives to the system over time.

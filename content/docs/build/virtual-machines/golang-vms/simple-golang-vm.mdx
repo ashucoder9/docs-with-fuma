@@ -39,9 +39,7 @@ func init() {
 		panic(err)
 	}
 }
-
 ```
-
 
 ### State[​](#state "Direct link to heading")
 
@@ -104,9 +102,7 @@ func (s *state) Commit() error {
 func (s *state) Close() error {
 	return s.baseDB.Close()
 }
-
 ```
-
 
 #### Block State[​](#block-state "Direct link to heading")
 
@@ -272,9 +268,7 @@ func (s *blockState) SetLastAccepted(lastAccepted ids.ID) error {
 	// persist lastAccepted ID to database with fixed lastAcceptedKey
 	return s.blockDB.Put(lastAcceptedKey, lastAccepted[:])
 }
-
 ```
-
 
 ### Block[​](#block "Direct link to heading")
 
@@ -302,9 +296,7 @@ type Block struct {
 	status choices.Status // block's status
 	vm     *VM            // the underlying VM reference, mostly used for state
 }
-
 ```
-
 
 The `serialize:"true"` tag indicates that the field should be included in the byte representation of the block used when persisting the block or sending it to other nodes.
 
@@ -351,9 +343,7 @@ func (b *Block) Verify() error {
 
 	return nil
 }
-
 ```
-
 
 #### Accept[​](#accept "Direct link to heading")
 
@@ -384,9 +374,7 @@ func (b *Block) Accept() error {
 	// Commit changes to database
 	return b.vm.state.Commit()
 }
-
 ```
-
 
 #### Reject[​](#reject "Direct link to heading")
 
@@ -407,9 +395,7 @@ func (b *Block) Reject() error {
 	// Commit changes to database
 	return b.vm.state.Commit()
 }
-
 ```
-
 
 #### Block Field Methods[​](#block-field-methods "Direct link to heading")
 
@@ -435,9 +421,7 @@ func (b *Block) Status() choices.Status { return b.status }
 
 // Bytes returns the byte repr. of this block
 func (b *Block) Bytes() []byte { return b.bytes }
-
 ```
-
 
 #### Helper Functions[​](#helper-functions "Direct link to heading")
 
@@ -455,9 +439,7 @@ func (b *Block) Initialize(bytes []byte, status choices.Status, vm *VM) {
 
 // SetStatus sets the status of this block
 func (b *Block) SetStatus(status choices.Status) { b.status = status }
-
 ```
-
 
 ### Virtual Machine[​](#virtual-machine "Direct link to heading")
 
@@ -501,9 +483,7 @@ type VM struct {
 	// hasn't yet been accepted/rejected
 	verifiedBlocks map[ids.ID]*Block
 }
-
 ```
-
 
 #### Initialize[​](#initialize "Direct link to heading")
 
@@ -559,9 +539,7 @@ func (vm *VM) Initialize(
 	// Build off the most recently accepted block
 	return vm.SetPreference(lastAccepted)
 }
-
 ```
-
 
 ##### `initGenesis`[​](#initgenesis "Direct link to heading")
 
@@ -619,9 +597,7 @@ func (vm *VM) initGenesis(genesisData []byte) error {
 	// Flush VM's database to underlying db
 	return vm.state.Commit()
 }
-
 ```
-
 
 #### CreateHandlers[​](#createhandlers "Direct link to heading")
 
@@ -652,9 +628,7 @@ func (vm *VM) CreateHandlers() (map[string]*common.HTTPHandler, error) {
 		},
 	}, nil
 }
-
 ```
-
 
 #### CreateStaticHandlers[​](#createstatichandlers "Direct link to heading")
 
@@ -681,9 +655,7 @@ func (vm *VM) CreateStaticHandlers() (map[string]*common.HTTPHandler, error) {
 		},
 	}, nil
 }
-
 ```
-
 
 #### BuildBock[​](#buildbock "Direct link to heading")
 
@@ -727,9 +699,7 @@ func (vm *VM) BuildBlock() (snowman.Block, error) {
 	}
 	return newBlock, nil
 }
-
 ```
-
 
 #### NotifyBlockReady[​](#notifyblockready "Direct link to heading")
 
@@ -747,9 +717,7 @@ func (vm *VM) NotifyBlockReady() {
 		vm.ctx.Log.Debug("dropping message to consensus engine")
 	}
 }
-
 ```
-
 
 #### GetBlock[​](#getblock "Direct link to heading")
 
@@ -769,9 +737,7 @@ func (vm *VM) getBlock(blkID ids.ID) (*Block, error) {
 
 	return vm.state.GetBlock(blkID)
 }
-
 ```
-
 
 #### `proposeBlock`[​](#proposeblock "Direct link to heading")
 
@@ -788,9 +754,7 @@ func (vm *VM) proposeBlock(data [dataLen]byte) {
     vm.mempool = append(vm.mempool, data)
     vm.NotifyBlockReady()
 }
-
 ```
-
 
 #### ParseBlock[​](#parseblock "Direct link to heading")
 
@@ -825,9 +789,7 @@ func (vm *VM) ParseBlock(bytes []byte) (snowman.Block, error) {
 	// Return the block
 	return block, nil
 }
-
 ```
-
 
 #### NewBlock[​](#newblock "Direct link to heading")
 
@@ -859,9 +821,7 @@ func (vm *VM) NewBlock(parentID ids.ID, height uint64, data [dataLen]byte, times
 	block.Initialize(blockBytes, choices.Processing, vm)
 	return block, nil
 }
-
 ```
-
 
 #### SetPreference[​](#setpreference "Direct link to heading")
 
@@ -875,9 +835,7 @@ func (vm *VM) SetPreference(id ids.ID) error {
 	vm.preferred = id
 	return nil
 }
-
 ```
-
 
 #### Other Functions[​](#other-functions "Direct link to heading")
 
@@ -927,9 +885,7 @@ func (vm *VM) AppRequestFailed(nodeID ids.ShortID, requestID uint32) error {
 
 // Health implements the common.VM interface
 func (vm *VM) HealthCheck() (interface{}, error) { return nil, nil }
-
 ```
-
 
 ### Factory[​](#factory "Direct link to heading")
 
@@ -945,9 +901,7 @@ type Factory struct{}
 
 // New ...
 func (f *Factory) New(*snow.Context) (interface{}, error) { return &VM{}, nil }
-
 ```
-
 
 ### Static API[​](#static-api "Direct link to heading")
 
@@ -960,9 +914,7 @@ A VM may have a static API, which allows clients to call methods that do not que
 ```
 // StaticService defines the static API for the timestamp vm
 type StaticService struct{}
-
 ```
-
 
 #### Encode[​](#encode "Direct link to heading")
 
@@ -1011,9 +963,7 @@ func (ss *StaticService) Encode(_ *http.Request, args *EncodeArgs, reply *Encode
     reply.Encoding = args.Encoding
     return nil
 }
-
 ```
-
 
 #### Decode[​](#decode "Direct link to heading")
 
@@ -1044,9 +994,7 @@ func (ss *StaticService) Decode(_ *http.Request, args *DecoderArgs, reply *Decod
     reply.Encoding = args.Encoding
     return nil
 }
-
 ```
-
 
 ### API[​](#api "Direct link to heading")
 
@@ -1059,9 +1007,7 @@ A VM may also have a non-static HTTP API, which allows clients to query and upda
 ```
 // Service is the API service for this VM
 type Service struct{ vm *VM }
-
 ```
-
 
 Note that this struct has a reference to the VM, so it can query and update state.
 
@@ -1081,9 +1027,7 @@ timestampvm.getBlock({id: string}) ->
         timestamp: int,
         parentID: string
     }
-
 ```
-
 
 *   `id` is the ID of the block being retrieved. If omitted from arguments, gets the latest block
 *   `data` is the base 58 (with checksum) representation of the block's 32 byte payload
@@ -1101,9 +1045,7 @@ curl -X POST --data '{
     },
     "id": 1
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/sw813hGSWH8pdU9uzaYy9fCtYFfY7AjDd2c9rm64SbApnvjmk
-
 ```
-
 
 ##### `getBlock` Example Response[​](#getblock-example-response "Direct link to heading")
 
@@ -1118,9 +1060,7 @@ curl -X POST --data '{
   },
   "id": 1
 }
-
 ```
-
 
 ##### `getBlock` Implementation[​](#getblock-implementation "Direct link to heading")
 
@@ -1176,9 +1116,7 @@ func (s *Service) GetBlock(_ *http.Request, args *GetBlockArgs, reply *GetBlockR
 
 	return err
 }
-
 ```
-
 
 #### `timestampvm.proposeBlock`[​](#timestampvmproposeblock "Direct link to heading")
 
@@ -1188,9 +1126,7 @@ Propose the next block on this blockchain.
 
 ```
 timestampvm.proposeBlock({data: string}) -> {success: bool}
-
 ```
-
 
 *   `data` is the base 58 (with checksum) representation of the proposed block's 32 byte payload.
 
@@ -1205,9 +1141,7 @@ curl -X POST --data '{
     },
     "id": 1
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/sw813hGSWH8pdU9uzaYy9fCtYFfY7AjDd2c9rm64SbApnvjmk
-
 ```
-
 
 ###### `proposeBlock` Example Response[​](#proposeblock-example-response "Direct link to heading")
 
@@ -1219,9 +1153,7 @@ curl -X POST --data '{
   },
   "id": 1
 }
-
 ```
-
 
 ##### `proposeBlock` Implementation[​](#proposeblock-implementation "Direct link to heading")
 
@@ -1255,9 +1187,7 @@ func (s *Service) ProposeBlock(_ *http.Request, args *ProposeBlockArgs, reply *P
 	reply.Success = true
 	return nil
 }
-
 ```
-
 
 ### Plugin[​](#plugin "Direct link to heading")
 
@@ -1280,9 +1210,7 @@ func main() {
         GRPCServer: plugin.DefaultGRPCServer,
     })
 }
-
 ```
-
 
 Now AvalancheGo's `rpcchainvm` can connect to this plugin and calls its methods.
 
@@ -1294,9 +1222,7 @@ The path to the executable, as well as its name, can be provided to the build sc
 
 ```
 ./scripts/build.sh ../avalanchego/build/plugins timestampvm
-
 ```
-
 
 If no argument is given, the path defaults to a binary named with default VM ID: `$GOPATH/src/github.com/ava-labs/avalanchego/build/plugins/tGas3T58KzdjLHhBDMnH2TvrddhqTji5iZAMZ3RXs2NLpSnhH`
 
@@ -1321,9 +1247,7 @@ It's possible to give an alias for these IDs. For example, we can alias `Timesta
     "timestamp"
   ]
 }
-
 ```
-
 
 ### Installing a VM[​](#installing-a-vm "Direct link to heading")
 
@@ -1335,9 +1259,7 @@ Copy the binary into the plugins directory.
 
 ```
 cp -n <path to your binary> $GOPATH/src/github.com/ava-labs/avalanchego/build/plugins/
-
 ```
-
 
 #### Node Is Not Running[​](#node-is-not-running "Direct link to heading")
 
@@ -1354,9 +1276,7 @@ curl -sX POST --data '{
     "method" :"admin.loadVMs",
     "params" :{}
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/admin
-
 ```
-
 
 Confirm the response of `loadVMs` contains the newly installed virtual machine `tGas3T58KzdjLHhBDMnH2TvrddhqTji5iZAMZ3RXs2NLpSnhH`. You'll see this virtual machine as well as any others that weren't already installed previously in the response.
 
@@ -1374,9 +1294,7 @@ Confirm the response of `loadVMs` contains the newly installed virtual machine `
   },
   "id": 1
 }
-
 ```
-
 
 Now, this VM's static API can be accessed at endpoints `/ext/vm/timestampvm` and `/ext/vm/timestamp`. For more details about VM configs, see [here](/nodes/configure/configs--flags#virtual-machine-vm-configs).
 

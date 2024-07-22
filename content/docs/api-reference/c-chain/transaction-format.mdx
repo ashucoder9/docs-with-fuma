@@ -42,9 +42,7 @@ An EVM Input contains an `address`, `amount`, `assetID`, and `nonce`.
 +----------+----------+-------------------------+
                       |                68 bytes |
                       +-------------------------+
-
 ```
-
 
 ### Proto EVM Input Specification[​](#proto-evm-input-specification "Direct link to heading")
 
@@ -55,9 +53,7 @@ message  {
     bytes assetID = 3; // 32 bytes
     uint64 nonce = 4;  // 08 bytes
 }
-
 ```
-
 
 ### EVM Input Example[​](#evm-input-example "Direct link to heading")
 
@@ -91,9 +87,7 @@ Let's make an EVM Input:
     // nonce:
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 ]
-
 ```
-
 
 Transferable Input[​](#transferable-input "Direct link to heading")
 -------------------------------------------------------------------
@@ -123,9 +117,7 @@ A transferable input contains a `TxID`, `UTXOIndex` `AssetID` and an `Input`.
 +------------+----------+------------------------+
                         | 68 + size(input) bytes |
                         +------------------------+
-
 ```
-
 
 ### Proto Transferable Input Specification[​](#proto-transferable-input-specification "Direct link to heading")
 
@@ -136,9 +128,7 @@ message TransferableInput {
     bytes asset_id = 3;    // 32 bytes
     Input input = 4;       // size(input)
 }
-
 ```
-
 
 ### Transferable Input Example[​](#transferable-input-example "Direct link to heading")
 
@@ -175,9 +165,7 @@ Let's make a transferable input:
     0x6a, 0x52, 0x88, 0x00, 0x00, 0x00, 0x00, 0x01,
     0x00, 0x00, 0x00, 0x00,
 ]
-
 ```
-
 
 SECP256K1 Transfer Input[​](#secp256k1-transfer-input "Direct link to heading")
 -------------------------------------------------------------------------------
@@ -204,9 +192,7 @@ A secp256k1 transfer input contains an `Amount` and `AddressIndices`.
 +-----------------+-------+-------------------------------------+
                           | 16 + 4 * len(address_indices) bytes |
                           +-------------------------------------+
-
 ```
-
 
 ### Proto SECP256K1 Transfer Input Specification[​](#proto-secp256k1-transfer-input-specification "Direct link to heading")
 
@@ -216,9 +202,7 @@ message SECP256K1TransferInput {
     uint64 amount = 2;                   // 08 bytes
     repeated uint32 address_indices = 3; // 04 bytes + 04 bytes * len(address_indices)
 }
-
 ```
-
 
 ### SECP256K1 Transfer Input Example[​](#secp256k1-transfer-input-example "Direct link to heading")
 
@@ -245,9 +229,7 @@ Let's make a payment input with:
     // sig[0]
     0x00, 0x00, 0x00, 0x00,
 ]
-
 ```
-
 
 Outputs[​](#outputs "Direct link to heading")
 ---------------------------------------------
@@ -281,9 +263,7 @@ An EVM Output contains an `address`, `amount`, and `assetID`.
 +----------+----------+-------------------------+
                       |                60 bytes |
                       +-------------------------+
-
 ```
-
 
 ### Proto EVM Output Specification[​](#proto-evm-output-specification "Direct link to heading")
 
@@ -293,9 +273,7 @@ message  {
     uint64 amount = 2; // 08 bytes
     bytes assetID = 3; // 32 bytes
 }
-
 ```
-
 
 ### EVM Output Example[​](#evm-output-example "Direct link to heading")
 
@@ -325,9 +303,7 @@ Let's make an EVM Output:
     0x29, 0x37, 0xf2, 0x8a, 0x68, 0x70, 0x4a, 0xf0,
     0x5d, 0xa0, 0xdc, 0x12, 0xba, 0x53, 0xf2, 0xdb,
 ]
-
 ```
-
 
 Transferable Output[​](#transferable-output "Direct link to heading")
 ---------------------------------------------------------------------
@@ -351,9 +327,7 @@ A transferable output contains an `AssetID` and an `Output` which is a `SECP256K
 +----------+----------+-------------------------+
                       | 32 + size(output) bytes |
                       +-------------------------+
-
 ```
-
 
 ### Proto Transferable Output Specification[​](#proto-transferable-output-specification "Direct link to heading")
 
@@ -362,9 +336,7 @@ message TransferableOutput {
     bytes asset_id = 1; // 32 bytes
     Output output = 2;  // size(output)
 }
-
 ```
-
 
 ### Transferable Output Example[​](#transferable-output-example "Direct link to heading")
 
@@ -397,9 +369,7 @@ Let's make a transferable output:
     0x13, 0x7a, 0x78, 0xf7, 0x6b, 0x36, 0x93, 0xf7,
     0xf2, 0xbc, 0x50, 0x79, 0x56, 0xda, 0xe5, 0x63,
 ]
-
 ```
-
 
 SECP256K1 Transfer Output[​](#secp256k1-transfer-output "Direct link to heading")
 ---------------------------------------------------------------------------------
@@ -432,9 +402,7 @@ A secp256k1 transfer output contains a `TypeID`, `Amount`, `Locktime`, `Threshol
 +-----------+------------+--------------------------------+
                          | 28 + 20 * len(addresses) bytes |
                          +--------------------------------+
-
 ```
-
 
 ### Proto SECP256K1 Transfer Output Specification[​](#proto-secp256k1-transfer-output-specification "Direct link to heading")
 
@@ -446,9 +414,7 @@ message SECP256K1TransferOutput {
     uint32 threshold = 4;         // 04 bytes
     repeated bytes addresses = 5; // 04 bytes + 20 bytes * len(addresses)
 }
-
 ```
-
 
 ### SECP256K1 Transfer Output Example[​](#secp256k1-transfer-output-example "Direct link to heading")
 
@@ -488,9 +454,7 @@ Let's make a secp256k1 transfer output with:
     0x6b, 0x36, 0x93, 0xf7, 0xf2, 0xbc, 0x50, 0x79,
     0x56, 0xda, 0xe5, 0x63,
 ]
-
 ```
-
 
 Atomic Transactions[​](#atomic-transactions "Direct link to heading")
 ---------------------------------------------------------------------
@@ -531,9 +495,7 @@ An ExportTx contains an `typeID`, `networkID`, `blockchainID`, `destinationChain
 +----------+----------+----------------------+-------------------------------------------------+
                                              | 80 + size(inputs) + size(exportedOutputs) bytes |
                                              +-------------------------------------------------+
-
 ```
-
 
 ### ExportTx Example[​](#exporttx-example "Direct link to heading")
 
@@ -603,9 +565,7 @@ Let's make an EVM Output:
     0x13, 0x7a, 0x78, 0xf7, 0x6b, 0x36, 0x93, 0xf7,
     0xf2, 0xbc, 0x50, 0x79, 0x56, 0xda, 0xe5, 0x63,
 ]
-
 ```
-
 
 ImportTx[​](#importtx "Direct link to heading")
 -----------------------------------------------
@@ -641,9 +601,7 @@ An ImportTx contains an `typeID`, `networkID`, `blockchainID`, `destinationChain
 +----------+----------+----------------------+-------------------------------------------------+
                                              |    80 + size(importedInputs) + size(outs) bytes |
                                              +-------------------------------------------------+
-
 ```
-
 
 ### ImportTx Example[​](#importtx-example "Direct link to heading")
 
@@ -713,9 +671,7 @@ Let's make an ImportTx:
     0x68, 0x70, 0x4a, 0xf0, 0x5d, 0xa0, 0xdc, 0x12,
     0xba, 0x53, 0xf2, 0xdb,
 ]
-
 ```
-
 
 Credentials[​](#credentials "Direct link to heading")
 -----------------------------------------------------
@@ -742,9 +698,7 @@ A [secp256k1](/api-reference/standards/cryptography#cryptography-in-the-avalanch
 +-----------------+------------+---------------------------------+
                                |  8 + 65 * len(signatures) bytes |
                                +---------------------------------+
-
 ```
-
 
 ### Proto SECP256K1 Credential Specification[​](#proto-secp256k1-credential-specification "Direct link to heading")
 
@@ -753,9 +707,7 @@ message SECP256K1Credential {
     uint32 typeID = 1;             // 4 bytes
     repeated bytes signatures = 2; // 4 bytes + 65 bytes * len(signatures)
 }
-
 ```
-
 
 ### SECP256K1 Credential Example[​](#secp256k1-credential-example "Direct link to heading")
 
@@ -789,9 +741,7 @@ Let's make a payment input with:
     0x59, 0x1a, 0xfb, 0xd1, 0xa7, 0x37, 0xf8, 0xa3,
     0x00, 0x10, 0x19, 0x9d, 0xbf,
 ]
-
 ```
-
 
 Signed Transaction[​](#signed-transaction "Direct link to heading")
 -------------------------------------------------------------------
@@ -818,9 +768,7 @@ A signed transaction contains a `CodecID`, `AtomicTx`, and `Credentials`.
 +---------------------+--------------+------------------------------------------------+
                                      |   6 + size(atomic_tx) + len(credentials) bytes |
                                      +------------------------------------------------+
-
 ```
-
 
 ### Proto Signed Transaction Specification[​](#proto-signed-transaction-specification "Direct link to heading")
 
@@ -830,9 +778,7 @@ message Tx {
     AtomicTx atomic_tx = 2;              // size(atomic_tx)
     repeated Credential credentials = 3; // 4 bytes + size(credentials)
 }
-
 ```
-
 
 ### Signed Transaction Example[​](#signed-transaction-example "Direct link to heading")
 
@@ -902,9 +848,7 @@ Let's make a signed transaction that uses the unsigned transaction and credentia
     0x9f, 0xeb, 0xeb, 0xe7, 0xd3, 0x52, 0xf0, 0xb4,
     0x59, 0x1a, 0xfb, 0xd1, 0xa7, 0x37, 0xf8, 0xa3,
     0x00,
-
 ```
-
 
 UTXO[​](#utxo "Direct link to heading")
 ---------------------------------------
@@ -937,9 +881,7 @@ A UTXO contains a `CodecID`, `TxID`, `UTXOIndex`, `AssetID`, and `Output`.
 +--------------+----------+-------------------------+
                           | 70 + size(output) bytes |
                           +-------------------------+
-
 ```
-
 
 ### Proto UTXO Specification[​](#proto-utxo-specification "Direct link to heading")
 
@@ -951,9 +893,7 @@ message Utxo {
     bytes asset_id = 4;      // 32 bytes
     Output output = 5;       // size(output)
 }
-
 ```
-
 
 ### UTXO Example[​](#utxo-example "Direct link to heading")
 

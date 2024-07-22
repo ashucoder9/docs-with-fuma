@@ -18,23 +18,17 @@ Pings the server.
 
 ```
 avalanche-network-runner ping [options] [flags]
-
 ```
-
 
 ### Example[​](#example "Direct link to heading")
 
 ```
 avalanche-network-runner ping
-
 ```
-
 
 ```
 curl --location --request POST 'http://localhost:8081/v1/ping'
-
 ```
-
 
 Server[​](#server "Direct link to heading")
 -------------------------------------------
@@ -43,9 +37,7 @@ Starts a network runner server.
 
 ```
 avalanche-network-runner server [options] [flags]
-
 ```
-
 
 ### Flags[​](#flags "Direct link to heading")
 
@@ -62,9 +54,7 @@ avalanche-network-runner server [options] [flags]
 
 ```
 avalanche-network-runner server
-
 ```
-
 
 Control[​](#control "Direct link to heading")
 ---------------------------------------------
@@ -73,9 +63,7 @@ Network runner control commands.
 
 ```
 avalanche-network-runner control [command]
-
 ```
-
 
 ### `add-node`[​](#add-node "Direct link to heading")
 
@@ -83,9 +71,7 @@ Adds a new node to the network.
 
 ```
 avalanche-network-runner control add-node node-name [options] [flags]
-
 ```
-
 
 #### Flags[​](#flags-1 "Direct link to heading")
 
@@ -100,9 +86,7 @@ avalanche-network-runner control add-node node-name [options] [flags]
 
 ```
 avalanche-network-runner control add-node node6
-
 ```
-
 
 ```
 curl --location 'http://localhost:8081/v1/control/addnode' \
@@ -110,9 +94,7 @@ curl --location 'http://localhost:8081/v1/control/addnode' \
 --data '{
   "name": "node6"
 }'
-
 ```
-
 
 ### `add-permissionless-delegator`[​](#add-permissionless-delegator "Direct link to heading")
 
@@ -120,17 +102,13 @@ Delegates to a permissionless validator in an Elastic Subnet.
 
 ```
 avalanche-network-runner control add-permissionless-delegator permissionlessValidatorSpecs [options] [flags]
-
 ```
-
 
 #### Example[​](#example-3 "Direct link to heading")
 
 ```
 avalanche-network-runner control add-permissionless-delegator '{"validatorSpec":[{"subnet_id":"p433wpuXyJiDhyazPYyZMJeaoPSW76CBZ2x7wrVPLgvokotXz","node_name":"node5","asset_id":"U8iRqJoiJm8xZHAacmvYyZVwqQx6uDNtQeP3CQ6fcgQk3JqnK","staked_token_amount":2000,"start_time":"2023-09-25 21:00:00","stake_duration":336}]}'
-
 ```
-
 
 ```
 curl --location 'http://localhost:8081/v1/control/addpermissionlessdelegator' \
@@ -148,9 +126,7 @@ curl --location 'http://localhost:8081/v1/control/addpermissionlessdelegator' \
     ]
     
 }'
-
 ```
-
 
 ### `add-permissionless-validator`[​](#add-permissionless-validator "Direct link to heading")
 
@@ -158,17 +134,13 @@ Adds a permissionless validator to Elastic Subnets.
 
 ```
 avalanche-network-runner control add-permissionless-validator permissionlessValidatorSpecs [options] [flags]
-
 ```
-
 
 #### Example[​](#example-4 "Direct link to heading")
 
 ```
 avalanche-network-runner control add-permissionless-validator '[{"subnet_id":"p433wpuXyJiDhyazPYyZMJeaoPSW76CBZ2x7wrVPLgvokotXz","node_name":"node5","staked_token_amount":2000,"asset_id":"U8iRqJoiJm8xZHAacmvYyZVwqQx6uDNtQeP3CQ6fcgQk3JqnK","start_time":"2023-09-25 21:00:00","stake_duration":336}]'
-
 ```
-
 
 ```
 curl --location 'http://localhost:8081/v1/control/addpermissionlessvalidator' \
@@ -184,9 +156,7 @@ curl --location 'http://localhost:8081/v1/control/addpermissionlessvalidator' \
       "stakeDuration": 336
     }
 ]}'
-
 ```
-
 
 ### `add-subnet-validators`[​](#add-subnet-validators "Direct link to heading")
 
@@ -194,25 +164,19 @@ Adds Subnet validators.
 
 ```
 avalanche-network-runner control add-subnet-validators validatorsSpec [options] [flags]
-
 ```
-
 
 #### Example[​](#example-5 "Direct link to heading")
 
 ```
 avalanche-network-runner control add-subnet-validators '[{"subnet_id": "p433wpuXyJiDhyazPYyZMJeaoPSW76CBZ2x7wrVPLgvokotXz", "node_names":["node1"]}]'
-
 ```
-
 
 ```
 curl --location 'http://localhost:8081/v1/control/addsubnetvalidators' \
 --header 'Content-Type: application/json' \
 --data '[{"subnetId": "p433wpuXyJiDhyazPYyZMJeaoPSW76CBZ2x7wrVPLgvokotXz", "nodeNames":["node1"]}]'
-
 ```
-
 
 ### `attach-peer`[​](#attach-peer "Direct link to heading")
 
@@ -220,17 +184,13 @@ Attaches a peer to the node.
 
 ```
 avalanche-network-runner control attach-peer node-name [options] [flags]
-
 ```
-
 
 #### Example[​](#example-6 "Direct link to heading")
 
 ```
 avalanche-network-runner control attach-peer node5
-
 ```
-
 
 ```
 curl --location 'http://localhost:8081/v1/control/attachpeer' \
@@ -238,9 +198,7 @@ curl --location 'http://localhost:8081/v1/control/attachpeer' \
 --data '{
     "nodeName":"node5"
 }'
-
 ```
-
 
 ### `create-blockchains`[​](#create-blockchains "Direct link to heading")
 
@@ -248,17 +206,13 @@ Creates blockchains.
 
 ```
 avalanche-network-runner control create-blockchains blockchain-specs [options] [flags]
-
 ```
-
 
 #### Example[​](#example-7 "Direct link to heading")
 
 ```
 avalanche-network-runner control create-blockchains '[{"vm_name":"subnetevm","genesis":"/path/to/genesis.json", "subnet_id": "p433wpuXyJiDhyazPYyZMJeaoPSW76CBZ2x7wrVPLgvokotXz"}]'
-
 ```
-
 
 ```
 curl --location 'http://localhost:8081/v1/control/createblockchains' \
@@ -272,9 +226,7 @@ curl --location 'http://localhost:8081/v1/control/createblockchains' \
     }
   ]
 }'
-
 ```
-
 
 ### `create-subnets`[​](#create-subnets "Direct link to heading")
 
@@ -282,17 +234,13 @@ Creates Subnets.
 
 ```
 avalanche-network-runner control create-subnets [options] [flags]
-
 ```
-
 
 #### Example[​](#example-8 "Direct link to heading")
 
 ```
 avalanche-network-runner control create-subnets '[{"participants": ["node1", "node2", "node3", "node4", "node5"]}]'
-
 ```
-
 
 ```
 curl --location 'http://localhost:8081/v1/control/createsubnets' \
@@ -307,9 +255,7 @@ curl --location 'http://localhost:8081/v1/control/createsubnets' \
         "node5"
     ]
 }'
-
 ```
-
 
 ### `elastic-subnets`[​](#elastic-subnets "Direct link to heading")
 
@@ -317,9 +263,7 @@ Transforms Subnets to Elastic Subnets.
 
 ```
 avalanche-network-runner control elastic-subnets elastic_subnets_specs [options] [flags]
-
 ```
-
 
 #### Example[​](#example-9 "Direct link to heading")
 
@@ -329,15 +273,11 @@ avalanche-network-runner control elastic-subnets '[{"subnet_id":"p433wpuXyJiDhya
 "max_consumption_rate": 120000, "min_validator_stake": 2000, "max_validator_stake": 3000000, "min_stake_duration": 336, 
 "max_stake_duration": 8760, "min_delegation_fee": 20000, "min_delegator_stake": 25, "max_validator_weight_factor": 5, 
 "uptime_requirement": 800000}]'
-
 ```
-
 
 ```
 curl -X POST -k http://localhost:8081/v1/control/transformelasticsubnets -d '{"elasticSubnetSpec": [{"subnetId":"p433wpuXyJiDhyazPYyZMJeaoPSW76CBZ2x7wrVPLgvokotXz","assetName":"Avalanche", "assetSymbol":"AVAX", "initialSupply": 240000000, "maxSupply": 720000000, "minConsumption_rate": 100000, "maxConsumption_rate": 120000, "minValidatorStake": 2000, "maxValidatorStake": 3000000, "minStakeDuration": 336, "maxStakeDuration": 8760, "minDelegationFee": 20000, "minDelegatorStake": 25, "maxValidatorWeightFactor": 5, "uptimeRequirement": 800000}]}'
-
 ```
-
 
 ### `get-snapshot-names`[​](#get-snapshot-names "Direct link to heading")
 
@@ -345,23 +285,17 @@ Lists available snapshots.
 
 ```
 avalanche-network-runner control get-snapshot-names [options] [flags]
-
 ```
-
 
 #### Example[​](#example-10 "Direct link to heading")
 
 ```
 avalanche-network-runner control get-snapshot-names
-
 ```
-
 
 ```
 curl --location --request POST 'http://localhost:8081/v1/control/getsnapshotnames' 
-
 ```
-
 
 ### `health`[​](#health "Direct link to heading")
 
@@ -369,23 +303,17 @@ Waits until local cluster is ready.
 
 ```
 avalanche-network-runner control health [options] [flags]
-
 ```
-
 
 #### Example[​](#example-11 "Direct link to heading")
 
 ```
 ./build/avalanche-network-runner control health
-
 ```
-
 
 ```
 curl --location --request POST 'http://localhost:8081/v1/control/health'
-
 ```
-
 
 ### `list-blockchains`[​](#list-blockchains "Direct link to heading")
 
@@ -393,23 +321,17 @@ Lists all blockchain ids of the network.
 
 ```
 avalanche-network-runner control list-blockchains [flags]
-
 ```
-
 
 #### Example[​](#example-12 "Direct link to heading")
 
 ```
 avalanche-network-runner control list-blockchains
-
 ```
-
 
 ```
 curl --location --request POST 'http://localhost:8081/v1/control/listblockchains'
-
 ```
-
 
 ### `list-rpcs`[​](#list-rpcs "Direct link to heading")
 
@@ -419,23 +341,17 @@ Lists RPCs for all blockchains in the network.
 
 ```
 avalanche-network-runner control list-rpcs [flags]
-
 ```
-
 
 #### Example[​](#example-13 "Direct link to heading")
 
 ```
 avalanche-network-runner control list-rpcs
-
 ```
-
 
 ```
 curl --location --request POST 'http://localhost:8081/v1/control/listrpcs'
-
 ```
-
 
 ### `list-subnets`[​](#list-subnets "Direct link to heading")
 
@@ -443,23 +359,17 @@ Lists all Subnet IDs of the network.
 
 ```
 avalanche-network-runner control list-subnets [flags]
-
 ```
-
 
 #### Example[​](#example-14 "Direct link to heading")
 
 ```
 avalanche-network-runner control list-subnets
-
 ```
-
 
 ```
 curl --location --request POST 'http://localhost:8081/v1/control/listsubnets'
-
 ```
-
 
 ### `load-snapshot`[​](#load-snapshot "Direct link to heading")
 
@@ -470,9 +380,7 @@ avalanche-network-runner control load-snapshot snapshot-name [flags]
 
 if the `AVALANCHEGO_EXEC_PATH` and `AVALANCHEGO_PLUGIN_PATH` env vars aren't set then you should pass them in as a flag
 avalanche-network-runner control load-snapshot snapshotName --avalanchego-path /path/to/avalanchego/binary --plugin-dir /path/to/avalanchego/plugins
-
 ```
-
 
 #### Flags[​](#flags-3 "Direct link to heading")
 
@@ -490,9 +398,7 @@ avalanche-network-runner control load-snapshot snapshotName --avalanchego-path /
 ```
 avalanche-network-runner control load-snapshot snapshot
 
-
 ```
-
 
 ```
 curl --location 'http://localhost:8081/v1/control/loadsnapshot' \
@@ -503,9 +409,7 @@ curl --location 'http://localhost:8081/v1/control/loadsnapshot' \
 
 if the `AVALANCHEGO_EXEC_PATH` and `AVALANCHEGO_PLUGIN_PATH` env vars aren't set then you should pass them in to the curl
 curl -X POST -k http://localhost:8081/v1/control/loadsnapshot -d '{"snapshotName":"node5","execPath":"/path/to/avalanchego/binary","pluginDir":"/path/to/avalanchego/plugins"}'
-
 ```
-
 
 ### `pause-node`[​](#pause-node "Direct link to heading")
 
@@ -513,17 +417,13 @@ Pauses a node.
 
 ```
 avalanche-network-runner control pause-node node-name [options] [flags]
-
 ```
-
 
 #### Example[​](#example-16 "Direct link to heading")
 
 ```
 avalanche-network-runner control pause-node node5
-
 ```
-
 
 ```
 curl --location 'http://localhost:8081/v1/control/pausenode' \
@@ -531,9 +431,7 @@ curl --location 'http://localhost:8081/v1/control/pausenode' \
 --data '{
   "name": "node5"
 }'
-
 ```
-
 
 ### `remove-node`[​](#remove-node "Direct link to heading")
 
@@ -541,17 +439,13 @@ Removes a node.
 
 ```
 avalanche-network-runner control remove-node node-name [options] [flags]
-
 ```
-
 
 #### Example[​](#example-17 "Direct link to heading")
 
 ```
 avalanche-network-runner control remove-node node5
-
 ```
-
 
 ```
 curl --location 'http://localhost:8081/v1/control/removenode' \
@@ -559,9 +453,7 @@ curl --location 'http://localhost:8081/v1/control/removenode' \
 --data '{
     "name":"node5"
 }'
-
 ```
-
 
 ### `remove-snapshot`[​](#remove-snapshot "Direct link to heading")
 
@@ -569,17 +461,13 @@ Removes a network snapshot.
 
 ```
 avalanche-network-runner control remove-snapshot snapshot-name [flags]
-
 ```
-
 
 #### Example[​](#example-18 "Direct link to heading")
 
 ```
 avalanche-network-runner control remove-snapshot node5
-
 ```
-
 
 ```
 curl --location 'http://localhost:8081/v1/control/removesnapshot' \
@@ -587,9 +475,7 @@ curl --location 'http://localhost:8081/v1/control/removesnapshot' \
 --data '{
     "snapshot_name":"node5"
 }'
-
 ```
-
 
 ### `remove-subnet-validator`[​](#remove-subnet-validator "Direct link to heading")
 
@@ -597,25 +483,19 @@ Removes a Subnet validator.
 
 ```
 avalanche-network-runner control remove-subnet-validator removeValidatorSpec [options] [flags]
-
 ```
-
 
 #### Example[​](#example-19 "Direct link to heading")
 
 ```
 avalanche-network-runner control remove-subnet-validator '[{"subnet_id": "p433wpuXyJiDhyazPYyZMJeaoPSW76CBZ2x7wrVPLgvokotXz", "node_names":["node1"]}]'
-
 ```
-
 
 ```
 curl --location 'http://localhost:8081/v1/control/removesubnetvalidator' \
 --header 'Content-Type: application/json' \
 --data '[{"subnetId": "p433wpuXyJiDhyazPYyZMJeaoPSW76CBZ2x7wrVPLgvokotXz", "nodeNames":["node1"]}]'
-
 ```
-
 
 ### `restart-node`[​](#restart-node "Direct link to heading")
 
@@ -623,9 +503,7 @@ Restarts a node.
 
 ```
 avalanche-network-runner control restart-node node-name [options] [flags]
-
 ```
-
 
 #### Flags[​](#flags-4 "Direct link to heading")
 
@@ -644,9 +522,7 @@ avalanche-network-runner control restart-node \
 --log-level debug \
 --endpoint="localhost:8080" \
 node1 
-
 ```
-
 
 ```
 curl --location 'http://localhost:8081/v1/control/restartnode' \
@@ -654,9 +530,7 @@ curl --location 'http://localhost:8081/v1/control/restartnode' \
 --data '{
   "name": "node5"
 }'
-
 ```
-
 
 ### `resume-node`[​](#resume-node "Direct link to heading")
 
@@ -664,17 +538,13 @@ Resumes a node.
 
 ```
 avalanche-network-runner control resume-node node-name [options] [flags]
-
 ```
-
 
 #### Example[​](#example-21 "Direct link to heading")
 
 ```
 avalanche-network-runner control resume-node node5
-
 ```
-
 
 ```
 curl --location 'http://localhost:8081/v1/control/resumenode' \
@@ -682,9 +552,7 @@ curl --location 'http://localhost:8081/v1/control/resumenode' \
 --data '{
   "name": "node5"
 }'
-
 ```
-
 
 ### `rpc_version`[​](#rpc_version "Direct link to heading")
 
@@ -692,23 +560,17 @@ Gets RPC server version.
 
 ```
 avalanche-network-runner control rpc_version [flags]
-
 ```
-
 
 #### Example[​](#example-22 "Direct link to heading")
 
 ```
 ./build/avalanche-network-runner control rpc_version
-
 ```
-
 
 ```
 curl --location --request POST 'http://localhost:8081/v1/control/rpcversion'
-
 ```
-
 
 ### `save-snapshot`[​](#save-snapshot "Direct link to heading")
 
@@ -716,17 +578,13 @@ Saves a network snapshot.
 
 ```
 avalanche-network-runner control save-snapshot snapshot-name [flags]
-
 ```
-
 
 #### Example[​](#example-23 "Direct link to heading")
 
 ```
 avalanche-network-runner control save-snapshot snapshotName
-
 ```
-
 
 ```
 curl --location 'http://localhost:8081/v1/control/savesnapshot' \
@@ -734,9 +592,7 @@ curl --location 'http://localhost:8081/v1/control/savesnapshot' \
 --data '{
     "snapshot_name":"node5"
 }'
-
 ```
-
 
 ### `send-outbound-message`[​](#send-outbound-message "Direct link to heading")
 
@@ -744,9 +600,7 @@ Sends an outbound message to an attached peer.
 
 ```
 avalanche-network-runner control send-outbound-message node-name [options] [flags]
-
 ```
-
 
 #### Flags[​](#flags-5 "Direct link to heading")
 
@@ -765,15 +619,11 @@ avalanche-network-runner control send-outbound-message \
 --peer-id "7Xhw2mDxuDS44j42TCB6U5579esbSt3Lg" \
 --message-op=16 \
 --message-bytes-b64="EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKgAAAAPpAqmoZkC/2xzQ42wMyYK4Pldl+tX2u+ar3M57WufXx0oXcgXfXCmSnQbbnZQfg9XqmF3jAgFemSUtFkaaZhDbX6Ke1DVpA9rCNkcTxg9X2EcsfdpKXgjYioitjqca7WA="
-
 ```
-
 
 ```
 curl -X POST -k http://localhost:8081/v1/control/sendoutboundmessage -d '{"nodeName":"node1","peerId":"7Xhw2mDxuDS44j42TCB6U5579esbSt3Lg","op":16,"bytes":"EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKgAAAAPpAqmoZkC/2xzQ42wMyYK4Pldl+tX2u+ar3M57WufXx0oXcgXfXCmSnQbbnZQfg9XqmF3jAgFemSUtFkaaZhDbX6Ke1DVpA9rCNkcTxg9X2EcsfdpKXgjYioitjqca7WA="}'
-
 ```
-
 
 ### `start`[​](#start "Direct link to heading")
 
@@ -781,9 +631,7 @@ Starts a network.
 
 ```
 avalanche-network-runner control start [options] [flags]
-
 ```
-
 
 #### Flags[​](#flags-6 "Direct link to heading")
 
@@ -809,9 +657,7 @@ avalanche-network-runner control start \
   --endpoint="localhost:8080" \
   --number-of-nodes=5 \
   --blockchain-specs '[{"vm_name": "subnetevm", "genesis": "./path/to/config.json"}]'
-
 ```
-
 
 ```
 curl --location 'http://localhost:8081/v1/control/start' \
@@ -825,9 +671,7 @@ curl --location 'http://localhost:8081/v1/control/start' \
     }
   ]
 }'
-
 ```
-
 
 ### `status`[​](#status "Direct link to heading")
 
@@ -835,23 +679,17 @@ Gets network status.
 
 ```
 avalanche-network-runner control status [options] [flags]
-
 ```
-
 
 #### Example[​](#example-26 "Direct link to heading")
 
 ```
 ./build/avalanche-network-runner control status
-
 ```
-
 
 ```
 curl --location --request POST 'http://localhost:8081/v1/control/status'
-
 ```
-
 
 ### `stop`[​](#stop "Direct link to heading")
 
@@ -859,23 +697,17 @@ Stops the network.
 
 ```
 avalanche-network-runner control stop [options] [flags]
-
 ```
-
 
 #### Example[​](#example-27 "Direct link to heading")
 
 ```
 avalanche-network-runner control stop
-
 ```
-
 
 ```
 curl --location --request POST 'http://localhost:8081/v1/control/stop'
-
 ```
-
 
 ### `stream-status`[​](#stream-status "Direct link to heading")
 
@@ -883,9 +715,7 @@ Gets a stream of network status.
 
 ```
 avalanche-network-runner control stream-status [options] [flags]
-
 ```
-
 
 #### Flags[​](#flags-7 "Direct link to heading")
 
@@ -895,15 +725,11 @@ avalanche-network-runner control stream-status [options] [flags]
 
 ```
 avalanche-network-runner control stream-status
-
 ```
-
 
 ```
 curl --location --request POST 'http://localhost:8081/v1/control/streamstatus'
-
 ```
-
 
 ### `uris`[​](#uris "Direct link to heading")
 
@@ -911,23 +737,17 @@ Lists network URIs.
 
 ```
 avalanche-network-runner control uris [options] [flags]
-
 ```
-
 
 #### Example[​](#example-29 "Direct link to heading")
 
 ```
 avalanche-network-runner control uris
-
 ```
-
 
 ```
 curl --location --request POST 'http://localhost:8081/v1/control/uris'
-
 ```
-
 
 ### `vmid`[​](#vmid "Direct link to heading")
 
@@ -935,17 +755,13 @@ Returns the VM ID associated to the given VM name.
 
 ```
 avalanche-network-runner control vmid vm-name [flags]
-
 ```
-
 
 #### Example[​](#example-30 "Direct link to heading")
 
 ```
 /build/avalanche-network-runner control vmid subnetevm
-
 ```
-
 
 ```
 curl --location 'http://localhost:8081/v1/control/vmid' \
@@ -953,9 +769,7 @@ curl --location 'http://localhost:8081/v1/control/vmid' \
 --data '{
     "vmName": "subnetevm"
 }'
-
 ```
-
 
 ### `wait-for-healthy`[​](#wait-for-healthy "Direct link to heading")
 
@@ -963,17 +777,13 @@ Waits until local cluster and custom VMs are ready.
 
 ```
 avalanche-network-runner control wait-for-healthy [options] [flags]
-
 ```
-
 
 #### Example[​](#example-31 "Direct link to heading")
 
 ```
 ./build/avalanche-network-runner control wait-for-healthy
-
 ```
-
 
 ```
 curl --location --request POST 'http://localhost:8081/v1/control/waitforhealthy'

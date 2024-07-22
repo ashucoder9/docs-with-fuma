@@ -39,17 +39,13 @@ shasum -a 256 "awm-relayer_0.2.13_darwin_arm64.tar.gz" 2>/dev/null
 # Extract the tarball and install the relayer binary
 tar -xzf awm-relayer_0.2.13_darwin_arm64.tar.gz
 sudo install awm-relayer /usr/local/bin
-
 ```
-
 
 _Note:_ If downloading the binaries through a browser on MacOS, the browser may mark the binary as quarantined since it has not been verified through the App Store. To remove the quarantine, run the following command:
 
 ```
 xattr -d com.apple.quarantine /usr/local/bin/awm-relayer
-
 ```
-
 
 ### Download Docker Image[​](#download-docker-image "Direct link to heading")
 
@@ -104,9 +100,7 @@ Build a Docker image by running the script:
 
 ```
 ./scripts/build_local_image.sh
-
 ```
-
 
 ### Running[​](#running "Direct link to heading")
 
@@ -114,9 +108,7 @@ The relayer binary accepts a path to a JSON configuration file as the sole argum
 
 ```
 ./build/awm-relayer --config-file path-to-config
-
 ```
-
 
 ### Configuration[​](#configuration "Direct link to heading")
 
@@ -308,17 +300,13 @@ Next, provide the path to the `subnet-evm` repository and the path to a writeabl
 
 ```
 ./scripts/e2e_test.sh --local --subnet-evm ~/subnet-evm --data-dir ~/tmp/e2e-test
-
 ```
-
 
 To run a specific E2E test, specify the environment variable `GINKGO_FOCUS`, which will then look for [test descriptions](https://github.com/ava-labs/awm-relayer/blob/main/tests/e2e_test.go#L68) that match the provided input. For example, to run the `Basic Relay` test:
 
 ```
 GINKGO_FOCUS="Basic" ./scripts/e2e_test.sh --local --subnet-evm ~/subnet-evm --data-dir ~/tmp/e2e-test
-
 ```
-
 
 The E2E tests use the `TeleporterMessenger` contract deployment transaction specified in the following files:
 

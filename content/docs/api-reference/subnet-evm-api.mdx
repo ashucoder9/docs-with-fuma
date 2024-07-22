@@ -15,9 +15,7 @@ Subnet-EVM comes with an API request for getting fee config at a specific block.
 
 ```
 eth_feeConfig([blk BlkNrOrHash]) -> {feeConfig: json}
-
 ```
-
 
 *   `blk` is the block number or hash at which to retrieve the fee config. Defaults to the latest block if omitted.
 
@@ -32,9 +30,7 @@ curl -X POST --data '{
     ],
     "id": 1
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/2ebCneCbwthjQ1rYT41nhd7M76Hc6YmosMAQrTFhBq8qeqh6tt/rpc
-
 ```
-
 
 **Example Response:**
 
@@ -56,9 +52,7 @@ curl -X POST --data '{
     "lastChangedAt": 0
   }
 }
-
 ```
-
 
 `eth_getChainConfig`[​](#eth_getchainconfig "Direct link to heading")
 ---------------------------------------------------------------------
@@ -69,9 +63,7 @@ This API exists on the C-Chain as well, but in addition to the normal Chain Conf
 
 ```
 eth_getChainConfig({}) -> {chainConfig: json}
-
 ```
-
 
 **Example Call:**
 
@@ -82,9 +74,7 @@ curl -X POST --data '{
     "method" :"eth_getChainConfig",
     "params" :[]
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/Nvqcm33CX2XABS62iZsAcVUkavfnzp1Sc5k413wn5Nrf7Qjt7/rpc
-
 ```
-
 
 **Example Response:**
 
@@ -147,9 +137,7 @@ curl -X POST --data '{
     }
   }
 }
-
 ```
-
 
 `eth_getActivePrecompilesAt`[​](#eth_getactiveprecompilesat "Direct link to heading")
 -------------------------------------------------------------------------------------
@@ -160,9 +148,7 @@ curl -X POST --data '{
 
 ```
 eth_getActivePrecompilesAt([timestamp uint]) -> {precompiles: []Precompile}
-
 ```
-
 
 *   `timestamp` specifies the timestamp to show the precompiles active at this time. If omitted it shows precompiles activated at the latest block timestamp.
 
@@ -175,9 +161,7 @@ curl -X POST --data '{
     "params": [],
     "id": 1
 }'  -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/Nvqcm33CX2XABS62iZsAcVUkavfnzp1Sc5k413wn5Nrf7Qjt7/rpc
-
 ```
-
 
 **Example Response:**
 

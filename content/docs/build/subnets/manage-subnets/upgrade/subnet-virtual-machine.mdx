@@ -14,9 +14,7 @@ Start the upgrade wizard with
 
 ```
 avalanche subnet upgrade vm <subnetName>
-
 ```
-
 
 where you replace `<subnetName>` with the name of the Subnet you'd like to upgrade.
 
@@ -28,9 +26,7 @@ After starting the Subnet Upgrade Wizard, you should see something like this:
 ? What deployment would you like to upgrade:
   ▸ Update config for future deployments
     Existing local deployment
-
 ```
-
 
 If you select the first option, Avalanche-CLI updates your Subnet's config and any future calls to `avalanche subnet deploy` use the new version you select. However, any existing local deployments continue to use the old version.
 
@@ -45,9 +41,7 @@ The next option asks you to select your new virtual machine.
   ▸ Update to latest version
     Update to a specific version
     Update to a custom binary
-
 ```
-
 
 If you're using the Subnet-EVM, you'll have the option to upgrade to the latest released version. You can also select a specific version or supply a custom binary. If your Subnet already uses a custom VM, you need to select another custom binary.
 
@@ -55,9 +49,7 @@ Once you select your VM, you should see something like:
 
 ```
 Upgrade complete. Ready to restart the network.
-
 ```
-
 
 ### Restart the Network[​](#restart-the-network "Direct link to heading")
 

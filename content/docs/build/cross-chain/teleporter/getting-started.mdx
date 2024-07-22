@@ -20,9 +20,7 @@ Create a new file called `MyExampleCrossChainMessenger.sol` in a new directory:
 ```
 mkdir teleporter/contracts/src/CrossChainApplications/MyExampleCrossChainMessenger/
 touch teleporter/contracts/src/CrossChainApplications/MyExampleCrossChainMessenger/MyExampleCrossChainMessenger.sol
-
 ```
-
 
 At the top of the file define the Solidity version to work with, and import the necessary types and interfaces.
 
@@ -31,9 +29,7 @@ pragma solidity 0.8.18;
 
 import {ITeleporterMessenger, TeleporterMessageInput, TeleporterFeeInfo} from "@teleporter/ITeleporterMessenger.sol";
 import {ReentrancyGuard} from "@openzeppelin/[email protected]/security/ReentrancyGuard.sol";
-
 ```
-
 
 Next, define the initial empty contract. The contract inherits from `ReentrancyGuard` to prevent reentrancy attacks.
 
@@ -43,9 +39,7 @@ contract MyExampleCrossChainMessenger is
 {
 
 }
-
 ```
-
 
 Finally, add the following struct and event declarations into the body of the contract, which will be integrated in later:
 
@@ -78,9 +72,7 @@ Finally, add the following struct and event declarations into the body of the co
         address indexed originSenderAddress,
         string message
     );
-
 ```
-
 
 Step 2: Integrating Teleporter Messenger[​](#step-2-integrating-teleporter-messenger "Direct link to heading")
 --------------------------------------------------------------------------------------------------------------
@@ -95,9 +87,7 @@ Create a state variable of `ITeleporterMessenger` type called `teleporterMesseng
     constructor(address teleporterMessengerAddress) {
         teleporterMessenger = ITeleporterMessenger(teleporterMessengerAddress);
     }
-
 ```
-
 
 Step 3: Send and Receive[​](#step-3-send-and-receive "Direct link to heading")
 ------------------------------------------------------------------------------
@@ -120,17 +110,13 @@ To start, create the function declaration for `sendMessage`, which will send str
     ) external returns (bytes32 messageID) {
 
     }
-
 ```
-
 
 `MyExampleCrossChainMessenger` also needs to implement `ITeleporterReceiver`. First, add the import of this interface:
 
 ```
 import {ITeleporterReceiver} from "@teleporter/ITeleporterReceiver.sol";
-
 ```
-
 
 Then declare that the contract will implement it:
 
@@ -140,9 +126,7 @@ Then declare that the contract will implement it:
 +     ReentrancyGuard,
 +     ITeleporterReceiver
   {
-
 ```
-
 
 And then finally add the method `receiveTeleporterMessage` that receives the cross-chain messages from Teleporter.
 
@@ -157,26 +141,20 @@ And then finally add the method `receiveTeleporterMessage` that receives the cro
     ) external {
 
     }
-
 ```
-
 
 Now it's time to implement the methods, starting with `sendMessage`. First, add the necessary imports.
 
 ```
 import {SafeERC20TransferFrom, SafeERC20} from "@teleporter/SafeERC20TransferFrom.sol";
 import {IERC20} from "@openzeppelin/[email protected]/token/ERC20/IERC20.sol";
-
 ```
-
 
 Next, add a `using` directive to the top of the contract body specifying `SafeERC20` as the `IERC20` implementation to use:
 
 ```
     using SafeERC20 for IERC20;
-
 ```
-
 
 Then add a check to the `sendMessage` function for whether `feeAmount` is greater than zero. If it is, transfer and approve the amount of IERC20 asset at `feeTokenAddress` to the Teleporter Messenger saved as a state variable.
 
@@ -194,9 +172,7 @@ Then add a check to the `sendMessage` function for whether `feeAmount` is greate
                 adjustedFeeAmount
             );
         }
-
 ```
-
 
 > Note: Relayer fees are an optional way to incentivize relayers to deliver a Teleporter message to its destination. They are not strictly necessary, and may be omitted if a relayer is willing to relay messages with no fee, such as with a self-hosted relayer.
 
@@ -227,9 +203,7 @@ Next, to the end of the `sendMessage` function, add the event to emit, as well a
                     message: abi.encode(message)
                 })
             );
-
 ```
-
 
 With the sending side complete, the next step is to implement `ITeleporterReceiver.receiveTeleporterMessage`. The receiver in this example will just receive the arbitrary string data, and check that the message is sent through Teleporter. To the `receiveTeleporterMessage` function, add:
 
@@ -238,9 +212,7 @@ With the sending side complete, the next step is to implement `ITeleporterReceiv
         require(msg.sender == address(teleporterMessenger), "Unauthorized.");
 
         // do something with message.
-
 ```
-
 
 The base of sending and receiving messages cross chain is complete. `MyExampleCrossChainMessenger` can now be expanded with functionality that saves the received messages, and allows users to query for the latest message received from a specified chain.
 
@@ -251,9 +223,7 @@ Start by adding a map to the body of the contract, in which the key is the `sour
 
 ```
     mapping(bytes32 sourceBlockchainID => Message message) private _messages;
-
 ```
-
 
 Next, update `receiveTeleporterMessage` to save the message into the mapping after it is received and verified that it's sent from Teleporter. At the end of that function, ABI decode the `message` bytes into a string, and emit the `ReceiveMessage` event.
 
@@ -269,9 +239,7 @@ Next, update `receiveTeleporterMessage` to save the message into the mapping aft
             originSenderAddress,
             messageString
         );
-
 ```
-
 
 Next, add a function to the contract called `getCurrentMessage` that allows users or contracts to easily query the contract for the latest message sent by a specified chain.
 
@@ -285,9 +253,7 @@ Next, add a function to the contract called `getCurrentMessage` that allows user
         Message memory messageInfo = _messages[sourceBlockchainID];
         return (messageInfo.sender, messageInfo.message);
     }
-
 ```
-
 
 Step 5: Upgrade Support[​](#step-5-upgrade-support "Direct link to heading")
 ----------------------------------------------------------------------------
@@ -301,9 +267,7 @@ To start, replace the import for `ITeleporterReceiver` with `TeleporterOwnerUpgr
 ```
 - import {ITeleporterReceiver} from "@teleporter/ITeleporterReceiver.sol";
 + import {TeleporterOwnerUpgradeable} from "@teleporter/upgrades/TeleporterOwnerUpgradeable.sol";
-
 ```
-
 
 Also, replace the contract declaration to inherit from `TeleporterOwnerUpgradeable` instead of `ITeleporterReceiver`:
 
@@ -313,9 +277,7 @@ contract MyExampleCrossChainMessenger is
 -    ITeleporterReceiver
 +    TeleporterOwnerUpgradeable
 {
-
 ```
-
 
 Next, update the constructor to invoke the `TeleporterOwnerUpgradeable` constructor.
 
@@ -327,25 +289,19 @@ Next, update the constructor to invoke the `TeleporterOwnerUpgradeable` construc
 +         address teleporterRegistryAddress,
 +         address teleporterManager
 +     ) TeleporterOwnerUpgradeable(teleporterRegistryAddress, teleporterManager) {}
-
 ```
-
 
 Then, remove the `teleporterMessenger` state variable:
 
 ```
 -     ITeleporterMessenger public immutable teleporterMessenger;
-
 ```
-
 
 And at the beginning of `sendMessage()` add a call to get the latest `ITeleporterMessenger` implementation from `TeleporterRegistry`:
 
 ```
         ITeleporterMessenger teleporterMessenger = teleporterRegistry.getLatestTeleporter();
-
 ```
-
 
 And finally, change `receiveTeleporterMessage` to `_receiveTeleporterMessage`, mark it as `internal override`, and change the data location of its `message` parameter to `memory`. It's also safe to remove the check against `teleporterMessenger` in `_receiveTeleporterMessage`, since that same check is handled in `TeleporterOwnerUpgradeable`'s `receiveTeleporterMessage` function.
 
@@ -360,9 +316,7 @@ And finally, change `receiveTeleporterMessage` to `_receiveTeleporterMessage`, m
 +     ) internal override {
 -          // Only the Teleporter receiver can deliver a message.
 -          require(msg.sender == address(teleporterMessenger), "Unauthorized.");
-
 ```
-
 
 `MyExampleCrossChainMessenger` is now a working cross-chain dApp built on top of Teleporter! Full example [here](https://github.com/ava-labs/teleporter/blob/main/contracts/src/CrossChainApplications/ExampleMessenger/ExampleCrossChainMessenger.sol).
 
@@ -385,18 +339,14 @@ package myexamplecrosschainmessenger
 import "math/big"
 
 var SendMessageRequiredGas = big.NewInt(300000)
-
 ```
-
 
 Next, modify `tests/utils/utils.go`, which is used by `tests/flows/example_messenger.go`, to use the ABI bindings for `MyExampleCrossChainMessenger` instead of `ExampleCrossChainMessenger`. First replace the import:
 
 ```
 -       examplecrosschainmessenger "github.com/ava-labs/teleporter/abi-bindings/go/CrossChainApplications/examples/ExampleMessenger/ExampleCrossChainMessenger"
 +       myexamplecrosschainmessenger "github.com/ava-labs/teleporter/abi-bindings/go/CrossChainApplications/MyExampleCrossChainMessenger/MyExampleCrossChainMessenger"
-
 ```
-
 
 Then, in that same `utils.go`, replace all instances of to `examplecrosschainmessenger` with `myexamplecrosschainmessenger` and all instances of `ExampleCrossChainMessenger` with `MyExampleCrossChainMessenger`.
 

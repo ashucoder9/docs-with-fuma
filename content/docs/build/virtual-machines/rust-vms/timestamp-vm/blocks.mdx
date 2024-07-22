@@ -41,9 +41,7 @@ type Block interface {
 	// be returned correctly. Otherwise, accepted blocks can return any value.
 	Timestamp() time.Time
 }
-
 ```
-
 
 Implementing the Block Data Structure[​](#implementing-the-block-data-structure "Direct link to heading")
 ---------------------------------------------------------------------------------------------------------
@@ -82,9 +80,7 @@ pub struct Block {
     #[serde(skip)]
     state: state::State,
 }
-
 ```
-
 
 Notice above that many of the fields of the `Block` struct store the information required to implement the `Snowman.Block` interface we saw previously. Tying the concept of Blocks back to the VM State, notice the last field `state` within the `Block` struct. This is where the `Block` struct stores a copy of the `State` struct from the previous section (and since each field of the `State` struct is wrapped in an `Arc` pointer, this implies that `Block` is really just storing a reference to both the `db` and `verified_blocks` data structures).
 
@@ -164,9 +160,7 @@ pub async fn verify(&mut self) -> io::Result<()> {
     self.state.add_verified(&self.clone()).await;
     Ok(())
 }
-
 ```
-
 
 ### `reject`[​](#reject "Direct link to heading")
 
@@ -185,9 +179,7 @@ pub async fn reject(&mut self) -> io::Result<()> {
     self.state.remove_verified(&self.id()).await;
     Ok(())
 }
-
 ```
-
 
 ### `accept`[​](#accept "Direct link to heading")
 

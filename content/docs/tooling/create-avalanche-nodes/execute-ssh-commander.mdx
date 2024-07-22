@@ -21,9 +21,7 @@ Note: An expected warning may be seen when executing the command on a given clus
 
 ```
 Warning: Permanently added 'IP' (ED25519) to the list of known hosts.
-
 ```
-
 
 Get SSH Connection Instructions for All Clusters[​](#get-ssh-connection-instructions-for-all-clusters "Direct link to heading")
 -------------------------------------------------------------------------------------------------------------------------------
@@ -38,9 +36,7 @@ Cluster "<clusterName>" (Devnet)
   [i-027417a4f2ca0a478] ssh -o IdentitiesOnly=yes -o StrictHostKeyChecking=no [email protected] -i /home/fm/.ssh/fm-us-east-1-avalanche-cli-us-east-1-kp.pem 
   [i-0360a867aa295d8a4] ssh -o IdentitiesOnly=yes -o StrictHostKeyChecking=no [email protected] -i /home/fm/.ssh/fm-us-east-1-avalanche-cli-us-east-1-kp.pem 
   [i-0759b102acfd5b585] ssh -o IdentitiesOnly=yes -o StrictHostKeyChecking=no [email protected] -i /home/fm/.ssh/fm-us-east-1-avalanche-cli-us-east-1-kp.pem 
-
 ```
-
 
 Get the AvalancheGo PID for All Nodes in `<clusterName>`[​](#get-the-avalanchego-pid-for-all-nodes-in-clustername "Direct link to heading")
 -------------------------------------------------------------------------------------------------------------------------------------------
@@ -61,9 +57,7 @@ avalanche node ssh <clusterName> pgrep avalanchego
 
 [i-0759b102acfd5b585] ssh -o IdentitiesOnly=yes -o StrictHostKeyChecking=no [email protected] -i /home/fm/.ssh/fm-us-east-1-avalanche-cli-us-east-1-kp.pem pgrep avalanchego
 14555
-
 ```
-
 
 note
 
@@ -144,9 +138,7 @@ avalanche node ssh <clusterName> cat /home/ubuntu/.avalanchego/configs/node.json
   "public-ip": "107.21.158.224",
   "track-subnets": "giY8tswWgZmcAWzPkoNrmjjrykited7GJ9799SsFzTiq5a1ML"
 }
-
 ```
-
 
 Executing Command on a Single Node[​](#executing-command-on-a-single-node "Direct link to heading")
 ---------------------------------------------------------------------------------------------------
@@ -159,9 +151,7 @@ avalanche node ssh i-0225fc39626b1edd3 <command>
 avalanche node ssh NodeID-9wdKQ3KJU3GqvgFTc4CUYvmefEFe8t6ka <command>
 [or]
 avalanche node ssh 54.159.59.123 <command>
-
 ```
-
 
 note
 
@@ -178,8 +168,6 @@ avalanche node ssh i-0225fc39626b1edd3
 avalanche node ssh NodeID-9wdKQ3KJU3GqvgFTc4CUYvmefEFe8t6ka
 [or]
 avalanche node ssh 54.159.59.123
-
 ```
-
 
 Please use `exit` shell command or Ctrl+D to end this session.

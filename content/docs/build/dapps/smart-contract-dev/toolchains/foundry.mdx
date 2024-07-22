@@ -35,9 +35,7 @@ Start a local five node Avalanche network:
 cd /path/to/avalanche-network-runner
 # start a five node staking network
 ./go run examples/local/fivenodenetwork/main.go
-
 ```
-
 
 A five node Avalanche network is running on your machine. Network will run until you Ctrl + C to exit.
 
@@ -54,9 +52,7 @@ Clone the [quickstart repository](https://github.com/ava-labs/avalanche-smart-co
 git clone https://github.com/ava-labs/avalanche-smart-contract-quickstart.git
 cd avalanche-smart-contract-quickstart
 yarn
-
 ```
-
 
 <Callout type="info">
 The repository cloning method used is HTTPS, but SSH can be used too:
@@ -105,9 +101,7 @@ contract NFT is ERC721 {
     return newItemId;
   }
 }
-
 ```
-
 
 Let's examine this implementation of an NFT as a Game Item. We start by importing to contracts from our node modules. We import OpenZeppelin's open source implementation of the [ERC721 standard](https://docs.openzeppelin.com/contracts/2.x/api/token/erc721) which our NFT contract will inherit from. Our constructor takes the `_name` and `_symbol` arguments for our NFT and passes them on to the constructor of the parent ERC721 implementation. Lastly we implement the `awardItem` function which allows anyone to mint an NFT to a player's wallet address. This function increments the `currentTokenId` and makes use of the `_mint` function of our parent contract.
 
@@ -120,9 +114,7 @@ It requires some initial project configuration in the form of a [foundry.toml](h
 
 ```
 forge init --no-git --no-commit --force
-
 ```
-
 
 The `foundry.toml` by default points to the folders it added. We will want to change this to make sure the `src` points to the `contracts` directory. Change your `foundry.toml` to look like the following:
 
@@ -138,9 +130,7 @@ remappings = [
 ]
 
 # See more config options https://github.com/foundry-rs/foundry/tree/master/config
-
 ```
-
 
 To compile the NFT contract run:
 
@@ -151,33 +141,25 @@ Set your environment variables by running:
 ```
 export RPC_URL=<YOUR-RPC-ENDPOINT>
 export PRIVATE_KEY=<YOUR-PRIVATE-KEY>
-
 ```
-
 
 Since we are deploying to Fuji testnet, our `RPC_URL` export should be:
 
 ```
 export RPC_URL=https://api.avax-test.network/ext/bc/C/rpc
-
 ```
-
 
 If you would like to verify you contracts during the deployment process (fastest and easiest way), get a [Snowtrace API Key](https://docs.snowtrace.io/getting-started/viewing-api-usage-statistics). Add this as an environment variable:
 
 ```
 export ETHERSCAN_API_KEY=<YOUR-SNOWTRACE-API-KEY>
-
 ```
-
 
 Once set, you can [deploy your NFT with Forge](https://book.getfoundry.sh/reference/forge/forge-create.html) by running the command below while adding the values for `_name` and `_symbol`, the relevant [constructor arguments](https://github.com/ava-labs/avalanche-smart-contract-quickstart/blob/3ad93abf50fba65e3aab68f23382bcace73968be/contracts/NFT.sol#L13) of the NFT contract. You can verify the contracts with Snowtrace by adding `--verify` before the `--constructor-args`:
 
 ```
 forge create NFT --rpc-url=$RPC_URL --private-key=$PRIVATE_KEY --verify --constructor-args GameItem ITM
-
 ```
-
 
 Upon successful deployment, you will see the deploying wallet's address, the contract's address as well as the transaction hash printed to your terminal.
 
@@ -189,9 +171,7 @@ No files changed, compilation skipped
 Deployer: 0x8db97c7cece249c2b98bdc0226cc4c2a57bf52fc
 Deployed to: 0x52c84043cd9c865236f11d9fc9f56aa003c1f922
 Transaction hash: 0xf35c40dbbdc9e4298698ad1cb9937195e5a5e74e557bab1970a5dfd42a32f533
-
 ```
-
 
 Upon successful verification, after your deployment you will see the contract verification status as `successfully verified`:
 
@@ -215,9 +195,7 @@ Contract verification status:
 Response: `OK`
 Details: `Pass - Verified`
 Contract successfully verified
-
 ```
-
 
 _Note: Please store your `Deployed to` address for use in the next sections._
 
@@ -232,9 +210,7 @@ For example, if we were to verify the NFT contract we just deployed in the previ
 
 ```
 forge verify-contract --chain-id 43113 --watch --constructor-args $(cast abi-encode "constructor(string,string)" "GameItem" "ITM") 0x8e982a4ef70430f8317b5652bd5c28f147fbf912 NFT
-
 ```
-
 
 Upon successful verification, you will see the contract verification status as `successfully verified`:
 
@@ -258,9 +234,7 @@ Contract verification status:
 Response: `OK`
 Details: `Pass - Verified`
 Contract successfully verified
-
 ```
-
 
 Using Cast to Interact with the Smart Contract[​](#using-cast-to-interact-with-the-smart-contract "Direct link to heading")
 ---------------------------------------------------------------------------------------------------------------------------
@@ -273,9 +247,7 @@ _Note: This section assumes that you have already set your RPC and private key e
 
 ```
 cast send --rpc-url=$RPC_URL  <NFT-CONTRACT-ADDRESS> "awardItem(address)" <NFT-RECIPIENT-ADDRESS> --private-key=$PRIVATE_KEY
-
 ```
-
 
 Upon success, the command line will display the [transaction data](https://testnet.snowtrace.io/tx/0x4651ae041a481a6eeb852e5300e9be48e66a1d2332733df22d8e75cf460b0c2c).
 
@@ -293,25 +265,19 @@ status                  1
 transactionHash         0x4651ae041a481a6eeb852e5300e9be48e66a1d2332733df22d8e75cf460b0c2c
 transactionIndex        0
 type                    2
-
 ```
-
 
 Well done! You just minted your first NFT from your contract. You can check the owner of `tokenId` 1 by running the `cast call` command below:
 
 ```
 cast call --rpc-url=$RPC_URL --private-key=$PRIVATE_KEY <NFT-CONTRACT-ADDRESS> "ownerOf(uint256)" 1
-
 ```
-
 
 The address you provided above should be returned as the owner.
 
 ```
 0x000000000000000000000000845095a03a6686e24b90fed55e11f4ec808b1ab3
-
 ```
-
 
 Mainnet Workflow[​](#mainnet-workflow "Direct link to heading")
 ---------------------------------------------------------------
@@ -321,9 +287,7 @@ The Fuji workflow above can be adapted to Mainnet with the following modificatio
 ```
 export RPC_URL=https://api.avax.network/ext/bc/C/rpc
 export PRIVATE_KEY=<YOUR-PRIVATE-KEY>
-
 ```
-
 
 Local Workflow[​](#local-workflow "Direct link to heading")
 -----------------------------------------------------------
@@ -334,26 +298,20 @@ In a new terminal navigate to your [Avalanche Network Runner](/tooling/avalanche
 
 ```
 cd /path/to/Avalanche-Network-Runner
-
 ```
-
 
 Next, deploy a new Avalanche Network with five nodes (a Cluster) locally.
 
 ```
 go run examples/local/fivenodenetwork/main.go
-
 ```
-
 
 Next, modify the environment variables in your Foundry project:
 
 ```
 export RPC_URL=http://localhost:9650/ext/bc/C/rpc
 export PRIVATE_KEY=56289e99c94b6912bfc12adc093c9b51124f0dc54ac7a766b2bc5ccf558d8027
-
 ```
-
 
 <Callout type="warning">
  The example PRIVATE\_KEY variable above provides a pre-funded account on Avalanche Network Runner and should be used for LOCAL DEVELOPMENT ONLY.

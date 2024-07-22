@@ -26,9 +26,7 @@ Open the terminal and install the following dependencies in a new folder.
 
 ```
 npm install ethers avalanche dotenv
-
 ```
-
 
 Setting up Environment and Project[​](#setting-up-environment-and-project "Direct link to heading")
 ---------------------------------------------------------------------------------------------------
@@ -37,9 +35,7 @@ To send a transaction we need to sign it using our private key. But private key 
 
 ```
 PRIVATEKEY=<YOUR_PRIVATE_KEY>
-
 ```
-
 
 Now make a new file `app.js` in the root folder, which will be our main and only file with the `sendAvax()` function. Follow the rest of the tutorial by understanding and pasting the provided snippets sequentially in the `app.js` file.
 
@@ -52,9 +48,7 @@ const Avalanche = require("avalanche").Avalanche;
 require("dotenv").config();
 
 const privateKey = process.env.PRIVATEKEY;
-
 ```
-
 
 Setting up HTTP Provider Connected with Fuji Network[​](#setting-up-http-provider-connected-with-fuji-network "Direct link to heading")
 ---------------------------------------------------------------------------------------------------------------------------------------
@@ -65,9 +59,7 @@ Using the HTTP provider, we will connect to one of the nodes on the Fuji network
 // For sending a signed transaction to the network
 const nodeURL = "https://api.avax-test.network/ext/bc/C/rpc";
 const HTTPSProvider = new ethers.providers.JsonRpcProvider(nodeURL);
-
 ```
-
 
 Setting up C-Chain APIs for Estimating Base and Priority Fees[​](#setting-up-c-chain-apis-for-estimating-base-and-priority-fees "Direct link to heading")
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -84,9 +76,7 @@ const avalanche = new Avalanche(
   chainId
 );
 const cchain = avalanche.CChain();
-
 ```
-
 
 Setting up Wallet[​](#setting-up-wallet "Direct link to heading")
 -----------------------------------------------------------------
@@ -97,9 +87,7 @@ A wallet is required for signing transactions with your private key and thus mak
 // For signing an unsigned transaction
 const wallet = new ethers.Wallet(privateKey);
 const address = wallet.address;
-
 ```
-
 
 Function for Estimating Max Fee and Max Priority Fee[​](#function-for-estimating-max-fee-and-max-priority-fee "Direct link to heading")
 ---------------------------------------------------------------------------------------------------------------------------------------
@@ -129,9 +117,7 @@ const calcFeeData = async (
     maxPriorityFeePerGas: maxPriorityFeePerGas.toString(),
   };
 };
-
 ```
-
 
 Actual API returns base fee and priority fee in units of `wei` which is one-billionth of a billionth of `AVAX` (1 AVAX = 10^18 wei).
 
@@ -195,9 +181,7 @@ const sendAvax = async (
     `View transaction with nonce ${nonce}: https://testnet.snowtrace.io/tx/${txHash}`
   );
 };
-
 ```
-
 
 This function calculates transaction hash from the signed transaction and logs on the console, the URL for transaction status on the Snowtrace explorer.
 
@@ -211,9 +195,7 @@ If you do not pass these arguments, then it will automatically estimate the max 
 ```rust
 // setting max fee as 100 and priority fee as 2
 sendAvax("0.01", "0x856EA4B78947c3A5CD2256F85B2B147fEBDb7124", 100, 2);
-
 ```
-
 
 **This function should not be used without a max fee per gas. As you will have to pay the estimated price, even if it is higher than your budget.**
 
@@ -230,9 +212,7 @@ You will get the following output on the successful submission of the signed tra
 
 ```
 View transaction with nonce 25: https://testnet.snowtrace.io/tx/0xd5b92b85beaf283fbaeeefb95c9a17a6b346a05b6f9687f2d6e421aa79243b35
-
 ```
-
 
 Reissuance of Stuck Transaction[​](#reissuance-of-stuck-transaction "Direct link to heading")
 ---------------------------------------------------------------------------------------------
@@ -245,9 +225,7 @@ sendAvax("0.01", "0x856EA4B78947c3A5CD2256F85B2B147fEBDb7124", 100, 10, 25);
 
 // cancelling transaction with nonce 25
 sendAvax("0", "0x856EA4B78947c3A5CD2256F85B2B147fEBDb7124", 100, 10, 25);
-
 ```
-
 
 Conclusion[​](#conclusion "Direct link to heading")
 ---------------------------------------------------

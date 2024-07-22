@@ -32,9 +32,7 @@ loading stored key "cli-teleporter-deployer" for teleporter deploys
   (evm address, genesis balance) = (0xE932784f56774879e03F3624fbeC6261154ec711, 600000000000000000000)
 using latest teleporter version (v1.0.0)
 ✓ Successfully created subnet configuration
-
 ```
-
 
 Notice that by default, Teleporter is enabled and a stored key is created to fund Teleporter related operations (that is deploy Teleporter smart contracts, fund Teleporter Relayer).
 
@@ -54,9 +52,7 @@ loading stored key "cli-teleporter-deployer" for teleporter deploys
   (evm address, genesis balance) = (0xE932784f56774879e03F3624fbeC6261154ec711, 600000000000000000000)
 using latest teleporter version (v1.0.0)
 ✓ Successfully created subnet configuration
-
 ```
-
 
 Deploy the Subnets to Local Network[​](#deploy-the-subnets-to-local-network "Direct link to heading")
 -----------------------------------------------------------------------------------------------------
@@ -105,9 +101,7 @@ Funded address:   0x0EF8151A3e6ad1d4e17C8ED4128b20EB5edc58B1 with 1000000 (10^18
 Network name:     <subnet1>
 Chain ID:         1
 Currency Symbol:  TOKEN1
-
 ```
-
 
 Notice some details here:
 
@@ -165,9 +159,7 @@ Funded address:   0x0EF815FFFF6ad1d4e17C8ED4128b20EB5edAABBB with 1000000 (10^18
 Network name:     <subnet2>
 Chain ID:         2
 Currency Symbol:  TOKEN2
-
 ```
-
 
 Verify Teleporter Is Successfully Set Up[​](#verify-teleporter-is-successfully-set-up "Direct link to heading")
 ---------------------------------------------------------------------------------------------------------------
@@ -180,9 +172,7 @@ avalanche teleporter msg C-Chain subnet1 "Hello World" --local
 Delivering message "this is a message" to source subnet "C-Chain"
 Waiting for message to be received at destination subnet subnet "subnet1"
 Message successfully Teleported!
-
 ```
-
 
 ```
 avalanche teleporter msg subnet2 subnet1 "Hello World" --local
@@ -190,9 +180,7 @@ avalanche teleporter msg subnet2 subnet1 "Hello World" --local
 Delivering message "this is a message" to source subnet "subnet2"
 Waiting for message to be received at destination subnet subnet "subnet1"
 Message successfully Teleported!
-
 ```
-
 
 You have Teleport-ed your first message in the Local Network!
 
@@ -253,9 +241,7 @@ avalanche subnet describe <subnet1>
 +--------------------------------+-------------------------------------------------------------------------------------+
 
 ...
-
 ```
-
 
 ### Obtaining C-Chain Information[​](#obtaining-c-chain-information "Direct link to heading")
 
@@ -294,9 +280,7 @@ avalanche primary describe --local
 +------------------------------+--------------------------------------------------------------------+
 | Teleporter Registry Address  | 0x17aB05351fC94a1a67Bf3f56DdbB941aE6c63E25                         |
 +------------------------------+--------------------------------------------------------------------+
-
 ```
-
 
 Controlling Relayer Execution[​](#controlling-relayer-execution "Direct link to heading")
 -----------------------------------------------------------------------------------------
@@ -309,9 +293,7 @@ To stop the Relayer:
 avalanche teleporter relayer stop --local
 
 ✓ Local AWM Relayer successfully stopped
-
 ```
-
 
 To start it again:
 

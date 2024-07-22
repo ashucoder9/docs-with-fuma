@@ -45,9 +45,7 @@ avm.buildGenesis({
     bytes: string,
     encoding: string,
 }
-
 ```
-
 
 Encoding specifies the encoding format to use for arbitrary bytes, that is the genesis bytes that are returned. Can only be `hex` when a value is provided.
 
@@ -101,9 +99,7 @@ Encoding specifies the encoding format to use for arbitrary bytes, that is the g
         ...                                // Can list more assets
     }
 }
-
 ```
-
 
 **Example Call:**
 
@@ -166,9 +162,7 @@ curl -X POST --data '{
         "encoding": "hex"
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/vm/avm
-
 ```
-
 
 **Example Response:**
 
@@ -181,9 +175,7 @@ curl -X POST --data '{
   },
   "id": 1
 }
-
 ```
-
 
 ### `avm.createAddress`[​](#avmcreateaddress "Direct link to heading")
 
@@ -202,9 +194,7 @@ avm.createAddress({
     username: string,
     password: string
 }) -> {address: string}
-
 ```
-
 
 **Example Call:**
 
@@ -218,9 +208,7 @@ curl -X POST --data '{
     },
     "id": 1
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/X
-
 ```
-
 
 **Example Response:**
 
@@ -232,9 +220,7 @@ curl -X POST --data '{
   },
   "id": 1
 }
-
 ```
-
 
 ### `avm.createFixedCapAsset`[​](#avmcreatefixedcapasset "Direct link to heading")
 <Callout type="warning">
@@ -266,9 +252,7 @@ avm.createFixedCapAsset({
     assetID: string,
     changeAddr: string
 }
-
 ```
-
 
 *   `name` is a human-readable name for the asset. Not necessarily unique.
 *   `symbol` is a shorthand symbol for the asset. Between 0 and 4 characters. Not necessarily unique. May be omitted.
@@ -305,9 +289,7 @@ curl -X POST --data '{
         "password":"myPassword"
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/X
-
 ```
-
 
 **Example Response:**
 
@@ -320,9 +302,7 @@ curl -X POST --data '{
     "changeAddr": "X-avax1turszjwn05lflpewurw96rfrd3h6x8flgs5uf8"
   }
 }
-
 ```
-
 
 ### `avm.createNFTAsset`[​](#avmcreatenftasset "Direct link to heading")
 
@@ -354,9 +334,7 @@ avm.createNFTAsset({
     assetID: string,
     changeAddr: string,
 }
-
 ```
-
 
 *   `name` is a human-readable name for the asset. Not necessarily unique.
 *   `symbol` is a shorthand symbol for the asset. Between 0 and 4 characters. Not necessarily unique. May be omitted.
@@ -391,9 +369,7 @@ curl -X POST --data '{
         "password":"myPassword"
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/X
-
 ```
-
 
 **Example Response:**
 
@@ -406,9 +382,7 @@ curl -X POST --data '{
   },
   "id": 1
 }
-
 ```
-
 
 ### `avm.createVariableCapAsset`[​](#avmcreatevariablecapasset "Direct link to heading")
 
@@ -441,9 +415,7 @@ avm.createVariableCapAsset({
     assetID: string,
     changeAddr: string,
 }
-
 ```
-
 
 *   `name` is a human-readable name for the asset. Not necessarily unique.
 *   `symbol` is a shorthand symbol for the asset. Between 0 and 4 characters. Not necessarily unique. May be omitted.
@@ -487,9 +459,7 @@ curl -X POST --data '{
         "password":"myPassword"
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/X
-
 ```
-
 
 **Example Response:**
 
@@ -502,9 +472,7 @@ curl -X POST --data '{
     "changeAddr": "X-avax1turszjwn05lflpewurw96rfrd3h6x8flgs5uf8"
   }
 }
-
 ```
-
 
 ### `avm.export`[​](#avmexport "Direct link to heading")
 
@@ -533,9 +501,7 @@ avm.export({
     txID: string,
     changeAddr: string,
 }
-
 ```
-
 
 *   `to` is the P-Chain or C-Chain address the asset is sent to.
     
@@ -573,9 +539,7 @@ curl -X POST --data '{
         "password":"myPassword"
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/X
-
 ```
-
 
 **Example Response:**
 
@@ -588,9 +552,7 @@ curl -X POST --data '{
   },
   "id": 1
 }
-
 ```
-
 
 ### `avm.exportKey`[​](#avmexportkey "Direct link to heading")
 
@@ -611,9 +573,7 @@ avm.exportKey({
     password: string,
     address: string
 }) -> {privateKey: string}
-
 ```
-
 
 *   `username` must control `address`.
 *   `privateKey` is the string representation of the private key that controls `address`.
@@ -631,9 +591,7 @@ curl -X POST --data '{
         "address":"X-avax18jma8ppw3nhx5r4ap8clazz0dps7rv5ukulre5"
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/X
-
 ```
-
 
 **Example Response:**
 
@@ -645,9 +603,7 @@ curl -X POST --data '{
     "privateKey": "PrivateKey-2w4XiXxPfQK4TypYqnohRL8DRNTz9cGiGmwQ1zmgEqD9c9KWLq"
   }
 }
-
 ```
-
 
 ### `avm.getAddressTxs`[​](#avmgetaddresstxs "Direct link to heading")
 <Callout type="warning">
@@ -678,9 +634,7 @@ avm.getAddressTxs({
     txIDs: []string,
     cursor: uint64,
 }
-
 ```
-
 
 **Request Parameters:**
 
@@ -706,9 +660,7 @@ curl -X POST --data '{
       "pageSize":20
   }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/X
-
 ```
-
 
 **Example Response:**
 
@@ -721,9 +673,7 @@ curl -X POST --data '{
   },
   "id": 1
 }
-
 ```
-
 
 ### `avm.getAllBalances`[​](#avmgetallbalances "Direct link to heading")
 <Callout type="warning">
@@ -741,9 +691,7 @@ avm.getAllBalances({address:string}) -> {
         balance: int
     }
 }
-
 ```
-
 
 **Example Call:**
 
@@ -756,9 +704,7 @@ curl -X POST --data '{
         "address":"X-avax1c79e0dd0susp7dc8udq34jgk2yvve7hapvdyht"
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/X
-
 ```
-
 
 **Example Response:**
 
@@ -779,9 +725,7 @@ curl -X POST --data '{
   },
   "id": 1
 }
-
 ```
-
 
 ### `avm.getAssetDescription`[​](#avmgetassetdescription "Direct link to heading")
 
@@ -796,9 +740,7 @@ avm.getAssetDescription({assetID: string}) -> {
     symbol: string,
     denomination: int
 }
-
 ```
-
 
 *   `assetID` is the id of the asset for which the information is requested.
 *   `name` is the asset's human-readable, not necessarily unique name.
@@ -828,9 +770,7 @@ curl -X POST --data '{
         "assetID" :"FvwEAhmxKfeiG8SnEvq42hc6whRyY3EFYAvebMqDNDGCgxN5Z"
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/X
-
 ```
-
 
 **Example Response:**
 
@@ -845,9 +785,7 @@ curl -X POST --data '{
     },
     "id": 1
 }`
-
 ```
-
 
 ### `avm.getBalance`[​](#avmgetbalance "Direct link to heading")
 <Callout type="warning">
@@ -864,9 +802,7 @@ avm.getBalance({
     address: string,
     assetID: string
 }) -> {balance: int}
-
 ```
-
 
 *   `address` owner of the asset
 *   `assetID` id of the asset for which the balance is requested
@@ -883,9 +819,7 @@ curl -X POST --data '{
       "assetID": "2pYGetDWyKdHxpFxh2LHeoLNCH6H5vxxCxHQtFnnFaYxLsqtHC"
   }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/X
-
 ```
-
 
 **Example Response:**
 
@@ -903,9 +837,7 @@ curl -X POST --data '{
     ]
   }
 }
-
 ```
-
 
 ### `avm.getBlock`[​](#avmgetblock "Direct link to heading")
 
@@ -921,9 +853,7 @@ avm.getBlock({
     block: string,
     encoding: string
 }
-
 ```
-
 
 **Request:**
 
@@ -949,9 +879,7 @@ curl -X POST --data '{
     },
     "id": 1
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/X
-
 ```
-
 
 **Example Response:**
 
@@ -964,9 +892,7 @@ curl -X POST --data '{
   },
   "id": 1
 }
-
 ```
-
 
 ### `avm.getBlockByHeight`[​](#avmgetblockbyheight "Direct link to heading")
 
@@ -982,9 +908,7 @@ avm.getBlockByHeight({
     block: string,
     encoding: string
 }
-
 ```
-
 
 **Request:**
 
@@ -1010,9 +934,7 @@ curl -X POST --data '{
     },
     "id": 1
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/X
-
 ```
-
 
 **Example Response:**
 
@@ -1025,9 +947,7 @@ curl -X POST --data '{
   },
   "id": 1
 }
-
 ```
-
 
 ### `avm.getHeight`[​](#avmgetheight "Direct link to heading")
 
@@ -1040,9 +960,7 @@ avm.getHeight() ->
 {
     height: uint64,
 }
-
 ```
-
 
 **Example Call:**
 
@@ -1053,9 +971,7 @@ curl -X POST --data '{
     "params": {},
     "id": 1
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/X
-
 ```
-
 
 **Example Response:**
 
@@ -1067,9 +983,7 @@ curl -X POST --data '{
   },
   "id": 1
 }
-
 ```
-
 
 ### `avm.getTx`[​](#avmgettx "Direct link to heading")
 
@@ -1085,9 +999,7 @@ avm.getTx({
     tx: string,
     encoding: string,
 }
-
 ```
-
 
 **Example Call:**
 
@@ -1101,9 +1013,7 @@ curl -X POST --data '{
         "encoding": "json"
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/X
-
 ```
-
 
 **Example Response:**
 
@@ -1159,9 +1069,7 @@ curl -X POST --data '{
   },
   "id": 1
 }
-
 ```
-
 
 Where:
 
@@ -1193,9 +1101,7 @@ Most outputs use the secp256k1 FX, look like this:
     "threshold": 1
   }
 }
-
 ```
-
 
 The above output can be consumed after Unix time `locktime` by a transaction that has signatures from `threshold` of the addresses in `addresses`.
 
@@ -1211,9 +1117,7 @@ Get the status of a transaction sent to the network.
 
 ```
 avm.getTxStatus({txID: string}) -> {status: string}
-
 ```
-
 
 `status` is one of:
 
@@ -1233,9 +1137,7 @@ curl -X POST --data '{
         "txID":"2QouvFWUbjuySRxeX5xMbNCuAaKWfbk5FeEa2JmoF85RKLk2dD"
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/X
-
 ```
-
 
 **Example Response:**
 
@@ -1247,9 +1149,7 @@ curl -X POST --data '{
     "status": "Accepted"
   }
 }
-
 ```
-
 
 ### `avm.getUTXOs`[​](#avmgetutxos "Direct link to heading")
 
@@ -1277,9 +1177,7 @@ avm.getUTXOs({
     sourceChain: string, //optional
     encoding: string
 }
-
 ```
-
 
 *   `utxos` is a list of UTXOs such that each UTXO references at least one address in `addresses`.
 *   At most `limit` UTXOs are returned. If `limit` is omitted or greater than 1024, it is set to 1024.
@@ -1304,9 +1202,7 @@ curl -X POST --data '{
         "encoding": "hex"
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/X
-
 ```
-
 
 This gives response:
 
@@ -1330,9 +1226,7 @@ This gives response:
   },
   "id": 1
 }
-
 ```
-
 
 Since `numFetched` is the same as `limit`, we can tell that there may be more UTXOs that were not fetched. We call the method again, this time with `startIndex`:
 
@@ -1351,9 +1245,7 @@ curl -X POST --data '{
         "encoding": "hex"
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/X
-
 ```
-
 
 This gives response:
 
@@ -1376,9 +1268,7 @@ This gives response:
   },
   "id": 1
 }
-
 ```
-
 
 Since `numFetched` is less than `limit`, we know that we are done fetching UTXOs and don't need to call this method again.
 
@@ -1396,9 +1286,7 @@ curl -X POST --data '{
         "encoding": "hex"
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/X
-
 ```
-
 
 This gives response:
 
@@ -1418,9 +1306,7 @@ This gives response:
   },
   "id": 1
 }
-
 ```
-
 
 ### `avm.import`[​](#avmimport "Direct link to heading")
 
@@ -1442,9 +1328,7 @@ avm.import({
     username: string,
     password: string,
 }) -> {txID: string}
-
 ```
-
 
 *   `to` is the address the AVAX is sent to. This must be the same as the `to` argument in the corresponding call to the P-Chain's `exportAVAX` or C-Chain's `export`.
 *   `sourceChain` is the ID or alias of the chain the AVAX is being imported from. To import funds from the C-Chain, use `"C"`.
@@ -1465,9 +1349,7 @@ curl -X POST --data '{
         "password":"myPassword"
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/X
-
 ```
-
 
 **Example Response:**
 
@@ -1479,9 +1361,7 @@ curl -X POST --data '{
   },
   "id": 1
 }
-
 ```
-
 
 ### `avm.importKey`[​](#avmimportkey "Direct link to heading")
 
@@ -1502,9 +1382,7 @@ avm.importKey({
     password: string,
     privateKey: string
 }) -> {address: string}
-
 ```
-
 
 *   Add `privateKey` to `username`‘s set of private keys. `address` is the address `username` now controls with the private key.
 
@@ -1521,9 +1399,7 @@ curl -X POST --data '{
         "privateKey":"PrivateKey-2w4XiXxPfQK4TypYqnohRL8DRNTz9cGiGmwQ1zmgEqD9c9KWLq"
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/X
-
 ```
-
 
 **Example Response:**
 
@@ -1535,9 +1411,7 @@ curl -X POST --data '{
     "address": "X-avax18jma8ppw3nhx5r4ap8clazz0dps7rv5ukulre5"
   }
 }
-
 ```
-
 
 ### `avm.issueTx`[​](#avmissuetx "Direct link to heading")
 
@@ -1552,9 +1426,7 @@ avm.issueTx({
 }) -> {
     txID: string
 }
-
 ```
-
 
 **Example Call:**
 
@@ -1568,9 +1440,7 @@ curl -X POST --data '{
         "encoding": "hex"
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/X
-
 ```
-
 
 **Example Response:**
 
@@ -1582,9 +1452,7 @@ curl -X POST --data '{
     "txID": "NUPLwbt2hsYxpQg4H2o451hmTWQ4JZx2zMzM4SinwtHgAdX1JLPHXvWSXEnpecStLj"
   }
 }
-
 ```
-
 
 ### `avm.listAddresses`[​](#avmlistaddresses "Direct link to heading")
 
@@ -1604,9 +1472,7 @@ avm.listAddresses({
     username: string,
     password: string
 }) -> {addresses: []string}
-
 ```
-
 
 **Example Call:**
 
@@ -1620,9 +1486,7 @@ curl -X POST --data '{
     },
     "id": 1
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/X
-
 ```
-
 
 **Example Response:**
 
@@ -1634,9 +1498,7 @@ curl -X POST --data '{
   },
   "id": 1
 }
-
 ```
-
 
 ### `avm.mint`[​](#avmmint "Direct link to heading")
 
@@ -1665,9 +1527,7 @@ avm.mint({
     txID: string,
     changeAddr: string,
 }
-
 ```
-
 
 *   `amount` units of `assetID` will be created and controlled by address `to`.
 *   `from` are the addresses that you want to use for this operation. If omitted, uses any of your addresses as needed.
@@ -1693,9 +1553,7 @@ curl -X POST --data '{
         "password":"myPassword"
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/X
-
 ```
-
 
 **Example Response:**
 
@@ -1708,9 +1566,7 @@ curl -X POST --data '{
     "changeAddr": "X-avax1turszjwn05lflpewurw96rfrd3h6x8flgs5uf8"
   }
 }
-
 ```
-
 
 ### `avm.mintNFT`[​](#avmmintnft "Direct link to heading")
 
@@ -1740,9 +1596,7 @@ avm.mintNFT({
     txID: string,
     changeAddr: string,
 }
-
 ```
-
 
 *   `assetID` is the assetID of the newly created NFT asset.
 *   `payload` is an arbitrary payload of up to 1024 bytes. Its encoding format is specified by the `encoding` argument.
@@ -1770,9 +1624,7 @@ curl -X POST --data '{
         "password":"myPassword"
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/X
-
 ```
-
 
 **Example Response:**
 
@@ -1785,9 +1637,7 @@ curl -X POST --data '{
     "changeAddr": "X-avax1turszjwn05lflpewurw96rfrd3h6x8flgs5uf8"
   }
 }
-
 ```
-
 
 ### `avm.send`[​](#avmsend "Direct link to heading")
 
@@ -1813,9 +1663,7 @@ avm.send({
     username: string,
     password: string
 }) -> {txID: string, changeAddr: string}
-
 ```
-
 
 *   Sends `amount` units of asset with ID `assetID` to address `to`. `amount` is denominated in the smallest increment of the asset. For AVAX this is 1 nAVAX (one billionth of 1 AVAX.)
 *   `to` is the X-Chain address the asset is sent to.
@@ -1842,9 +1690,7 @@ curl -X POST --data '{
         "password"  : "myPassword"
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/X
-
 ```
-
 
 **Example Response:**
 
@@ -1857,9 +1703,7 @@ curl -X POST --data '{
     "changeAddr": "X-avax1turszjwn05lflpewurw96rfrd3h6x8flgs5uf8"
   }
 }
-
 ```
-
 
 ### `avm.sendMultiple`[​](#avmsendmultiple "Direct link to heading")
 
@@ -1887,9 +1731,7 @@ avm.sendMultiple({
     username: string,
     password: string
 }) -> {txID: string, changeAddr: string}
-
 ```
-
 
 *   `outputs` is an array of object literals which each contain an `assetID`, `amount` and `to`.
 *   `memo` is an optional message, whose length can be up to 256 bytes.
@@ -1924,9 +1766,7 @@ curl -X POST --data '{
         "password"  : "myPassword"
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/X
-
 ```
-
 
 **Example Response:**
 
@@ -1939,9 +1779,7 @@ curl -X POST --data '{
     "changeAddr": "X-avax1turszjwn05lflpewurw96rfrd3h6x8flgs5uf8"
   }
 }
-
 ```
-
 
 ### `avm.sendNFT`[​](#avmsendnft "Direct link to heading")
 
@@ -1966,9 +1804,7 @@ avm.sendNFT({
     username: string,
     password: string
 }) -> {txID: string}
-
 ```
-
 
 *   `assetID` is the asset ID of the NFT being sent.
 *   `groupID` is the NFT group from which to send the NFT. NFT creation allows multiple groups under each NFT ID. You can issue multiple NFTs to each group.
@@ -1993,9 +1829,7 @@ curl -X POST --data '{
         "password"  : "myPassword"
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/X
-
 ```
-
 
 **Example Response:**
 
@@ -2008,9 +1842,7 @@ curl -X POST --data '{
   },
   "id": 1
 }
-
 ```
-
 
 ### `wallet.issueTx`[​](#walletissuetx "Direct link to heading")
 
@@ -2034,9 +1866,7 @@ wallet.issueTx({
 }) -> {
     txID: string
 }
-
 ```
-
 
 **Example Call:**
 
@@ -2050,9 +1880,7 @@ curl -X POST --data '{
         "encoding": "hex"
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/X/wallet
-
 ```
-
 
 **Example Response:**
 
@@ -2064,9 +1892,7 @@ curl -X POST --data '{
     "txID": "NUPLwbt2hsYxpQg4H2o451hmTWQ4JZx2zMzM4SinwtHgAdX1JLPHXvWSXEnpecStLj"
   }
 }
-
 ```
-
 
 ### `wallet.send`[​](#walletsend "Direct link to heading")
 
@@ -2098,9 +1924,7 @@ wallet.send({
     username: string,
     password: string
 }) -> {txID: string, changeAddr: string}
-
 ```
-
 
 *   Sends `amount` units of asset with ID `assetID` to address `to`. `amount` is denominated in the smallest increment of the asset. For AVAX this is 1 nAVAX (one billionth of 1 AVAX.)
 *   `to` is the X-Chain address the asset is sent to.
@@ -2127,9 +1951,7 @@ curl -X POST --data '{
         "password"  : "myPassword"
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/X/wallet
-
 ```
-
 
 **Example Response:**
 
@@ -2142,9 +1964,7 @@ curl -X POST --data '{
     "changeAddr": "X-avax1turszjwn05lflpewurw96rfrd3h6x8flgs5uf8"
   }
 }
-
 ```
-
 
 ### `wallet.sendMultiple`[​](#walletsendmultiple "Direct link to heading")
 
@@ -2177,9 +1997,7 @@ wallet.sendMultiple({
     username: string,
     password: string
 }) -> {txID: string, changeAddr: string}
-
 ```
-
 
 *   `outputs` is an array of object literals which each contain an `assetID`, `amount` and `to`.
 *   `from` are the addresses that you want to use for this operation. If omitted, uses any of your addresses as needed.
@@ -2214,9 +2032,7 @@ curl -X POST --data '{
         "password"  : "myPassword"
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/X/wallet
-
 ```
-
 
 **Example Response:**
 
@@ -2229,9 +2045,7 @@ curl -X POST --data '{
     "changeAddr": "X-avax1turszjwn05lflpewurw96rfrd3h6x8flgs5uf8"
   }
 }
-
 ```
-
 
 ### Events[​](#events "Direct link to heading")
 
@@ -2323,9 +2137,7 @@ func main() {
 
     waitGroup.Wait()
 }
-
 ```
-
 
 **Operations:**
 

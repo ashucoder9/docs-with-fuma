@@ -59,9 +59,7 @@ index.getContainerByID({
   encoding: string,
   index: string
 }
-
 ```
-
 
 **Request:**
 
@@ -90,9 +88,7 @@ curl --location --request POST 'localhost:9650/ext/index/X/tx' \
     },
     "id": 1
 }'
-
 ```
-
 
 **Example Response:**
 
@@ -108,9 +104,7 @@ curl --location --request POST 'localhost:9650/ext/index/X/tx' \
     "index": "0"
   }
 }
-
 ```
-
 
 ### `index.getContainerByIndex`[​](#indexgetcontainerbyindex "Direct link to heading")
 
@@ -129,9 +123,7 @@ index.getContainerByIndex({
   encoding: string,
   index: string
 }
-
 ```
-
 
 **Request:**
 
@@ -160,9 +152,7 @@ curl --location --request POST 'localhost:9650/ext/index/X/tx' \
     },
     "id": 1
 }'
-
 ```
-
 
 **Example Response:**
 
@@ -178,9 +168,7 @@ curl --location --request POST 'localhost:9650/ext/index/X/tx' \
     "index": "0"
   }
 }
-
 ```
-
 
 ### `index.getContainerRange`[​](#indexgetcontainerrange "Direct link to heading")
 
@@ -206,9 +194,7 @@ index.getContainerRange({
   encoding: string,
   index: string
 }
-
 ```
-
 
 **Request:**
 
@@ -239,9 +225,7 @@ curl --location --request POST 'localhost:9650/ext/index/X/tx' \
     },
     "id": 1
 }'
-
 ```
-
 
 **Example Response:**
 
@@ -259,9 +243,7 @@ curl --location --request POST 'localhost:9650/ext/index/X/tx' \
     }
   ]
 }
-
 ```
-
 
 ### `index.getIndex`[​](#indexgetindex "Direct link to heading")
 
@@ -276,9 +258,7 @@ index.getIndex({
 }) -> {
   index: string
 }
-
 ```
-
 
 **Request:**
 
@@ -303,9 +283,7 @@ curl --location --request POST 'localhost:9650/ext/index/X/tx' \
     },
     "id": 1
 }'
-
 ```
-
 
 **Example Response:**
 
@@ -317,9 +295,7 @@ curl --location --request POST 'localhost:9650/ext/index/X/tx' \
   },
   "id": 1
 }
-
 ```
-
 
 ### `index.getLastAccepted`[​](#indexgetlastaccepted "Direct link to heading")
 
@@ -337,9 +313,7 @@ index.getLastAccepted({
   encoding: string,
   index: string
 }
-
 ```
-
 
 **Request:**
 
@@ -365,9 +339,7 @@ curl --location --request POST 'localhost:9650/ext/index/X/tx' \
     },
     "id": 1
 }'
-
 ```
-
 
 **Example Response:**
 
@@ -383,9 +355,7 @@ curl --location --request POST 'localhost:9650/ext/index/X/tx' \
     "index": "0"
   }
 }
-
 ```
-
 
 ### `index.isAccepted`[​](#indexisaccepted "Direct link to heading")
 
@@ -400,9 +370,7 @@ index.isAccepted({
 }) -> {
   isAccepted: bool
 }
-
 ```
-
 
 **Request:**
 
@@ -427,9 +395,7 @@ curl --location --request POST 'localhost:9650/ext/index/X/tx' \
     },
     "id": 1
 }'
-
 ```
-
 
 **Example Response:**
 
@@ -441,9 +407,7 @@ curl --location --request POST 'localhost:9650/ext/index/X/tx' \
   },
   "id": 1
 }
-
 ```
-
 
 Example: Iterating Through X-Chain Transaction[​](#example-iterating-through-x-chain-transaction "Direct link to heading")
 --------------------------------------------------------------------------------------------------------------------------
@@ -472,9 +436,7 @@ curl --location --request POST 'https://indexer-demo.avax.network/ext/index/X/tx
    },
    "id": 1
 }'
-
 ```
-
 
 This returns the ID of the second transaction accepted in the X-Chain's history. To get the third transaction on the X-Chain, use `"index":2`, and so on.
 
@@ -492,9 +454,7 @@ The above API call gives the response below:
   },
   "id": 1
 }
-
 ```
-
 
 The ID of this transaction is `ZGYTSU8w3zUP6VFseGC798vA2Vnxnfj6fz1QPfA9N93bhjJvo`.
 
@@ -510,9 +470,7 @@ curl -X POST --data '{
         "encoding": "json"
     }
 }' -H 'content-type:application/json;' https://api.avax.network/ext/bc/X
-
 ```
-
 
 Response:
 

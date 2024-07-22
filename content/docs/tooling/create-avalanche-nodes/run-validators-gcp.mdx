@@ -28,9 +28,7 @@ To start Avalanche validators, run:
 
 ```
 avalanche node create <clusterName>
-
 ```
-
 
 The created nodes will be part of cluster `clusterName` and all avalanche node commands applied to cluster `clusterName` will apply to all nodes in the cluster.
 
@@ -55,9 +53,7 @@ Which Google Region do you want to set up your node(s) in?:
     us-central1
     us-west1
     Choose custom Google Region (list of Google Regions available at https://cloud.google.com/compute/docs/regions-zones/)
-
 ```
-
 
 The command will next ask whether you want to set up monitoring for your nodes. If you choose to set up monitoring, you can either set up monitoring on a separate GCP instance or on the same instance.
 
@@ -65,9 +61,7 @@ The command will next ask whether you want to set up monitoring for your nodes. 
   Do you want to set up a separate instance to host monitoring? (This enables you to monitor all your set up instances in one dashboard): 
   ▸ Yes
     No
-
 ```
-
 
 Setting up monitoring on a separate GCP instance enables you to have a unified Grafana dashboard for all nodes in a cluster, as seen below:
 

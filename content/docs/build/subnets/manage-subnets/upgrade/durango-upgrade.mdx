@@ -45,9 +45,7 @@ Generally you will generate an `event.go` file in addition to your existing prec
 
 ```
 event GreetingChanged(address indexed sender, string oldGreeting, string newGreeting)
-
 ```
-
 
 It will be emitted when the greeting is changed in the hello world precompile. You can find the hello world precompile [here](https://github.com/ava-labs/subnet-evm/tree/helloworld-official-tutorial-v2/precompile/contracts/helloworld). We also assume that hello world precompile is already deployed before Durango and we will be upgrading it for Durango.
 
@@ -79,9 +77,7 @@ func GetGreetingChangedEventGasCost(data GreetingChangedEventData) uint64 {
 	// CUSTOM CODE STARTS HERE
 	return gas
 }
-
 ```
-
 
 We have charged the base gas cost, topics gas cost and data gas cost for the old and new greeting. Topic gas cost includes 2 topics, one for the signature hash of the event and the other for the indexed sender argument. Data gas cost is calculated according to the data type and size. If you're not using any arbitrary size data in your events, you can define it as a constant.
 
@@ -95,9 +91,7 @@ You can use the `contract.IsDurangoActivated` function to check if the Durango n
 if contract.IsDurangoActivated(accessibleState) {
  ...
 }
-
 ```
-
 
 Note: this activation won't be needed if you plan to deploy your custom precompile after Durango.
 
@@ -119,9 +113,7 @@ topics, data, err := PackGreetingChangedEvent(caller, eventData)
 if err != nil {
   return nil, remainingGas, err
 }
-
 ```
-
 
 This will first charge gas for fetching the old greeting from the state fetch and then fetch it from the state. Then it will pack the event data with old and new greeting as non-indexed event data.
 
@@ -143,9 +135,7 @@ stateDB.AddLog(
   data,
   accessibleState.GetBlockContext().Number().Uint64(),
 )
-
 ```
-
 
 Manager Role[​](#manager-role "Direct link to heading")
 -------------------------------------------------------
@@ -163,9 +153,7 @@ If you have any precompile using AllowList, you can issue a call to `setManager`
     "enabledAddresses": [<list of addresses>],
   }
 }
-
 ```
-
 
 Non-Strict Mode[​](#non-strict-mode "Direct link to heading")
 -------------------------------------------------------------
@@ -184,9 +172,7 @@ func UnpackSetGreetingInput(input []byte) (string, error) {
 	unpacked := *abi.ConvertType(res[0], new(string)).(*string)
 	return unpacked, nil
 }
-
 ```
-
 
 In order to handle extra padded bytes, Subnet-EVM will start using non-strict mode with Durango in `Input Unpackers`. However since this change will be non-backward compatible you need to ensure that this will only be activated after the Durango network upgrade. You can use the `contract.IsDurangoActivated` function to check if the Durango network upgrade is activated. Now we will using this function to start using non-strict mode unpacking:
 
@@ -209,9 +195,7 @@ func UnpackSetGreetingInput(input []byte, useStrictMode bool) (string, error) {
 	unpacked := *abi.ConvertType(res[0], new(string)).(*string)
 	return unpacked, nil
 }
-
 ```
-
 
 To call this function in `setGreeting` we should use Durango activation as follows [here](https://github.com/ava-labs/subnet-evm/blob/helloworld-official-tutorial-v2/precompile/contracts/helloworld/contract.go#L159-L167):
 
@@ -225,9 +209,7 @@ inputStruct, err := UnpackSetGreetingInput(input, useStrictMode)
 if err != nil {
   return nil, remainingGas, err
 }
-
 ```
-
 
 This will ensure that non-strict mode unpacking is used after Durango activation.
 

@@ -41,9 +41,7 @@ Unsigned Message:
 +-----------------+----------+--------------------------+
                              |  40 + size(payload) bytes|
                              +--------------------------+
-
 ```
-
 
 *   `networkID` is the unique ID of an Avalanche Network (Mainnet/Testnet) and provides replay protection for BLS Signers across different Avalanche Networks
 *   `sourceChainID` is the hash of the transaction that created the blockchain on the Avalanche P-Chain. It serves as the unique identifier for the blockchain across the Avalanche Network so that each blockchain can only sign a message with its own id.
@@ -61,9 +59,7 @@ BitSetSignature:
 +-----------+----------+---------------------------+
                        | 104 + size(signers) bytes |
                        +---------------------------+
-
 ```
-
 
 *   `typeID` is the ID of this signature type, which is `0x00000000`
 *   `signers` encodes a bitset of which validators' signatures are included (a bitset is a byte array where each bit indicates membership of the element at that index in the set)
@@ -83,9 +79,7 @@ Signed Message:
 +------------------+------------------+-------------------------------------------------+
                                       |  size(unsigned_message) + size(signature) bytes |
                                       +-------------------------------------------------+
-
 ```
-
 
 Sending an Avalanche Warp Message[​](#sending-an-avalanche-warp-message "Direct link to heading")
 -------------------------------------------------------------------------------------------------

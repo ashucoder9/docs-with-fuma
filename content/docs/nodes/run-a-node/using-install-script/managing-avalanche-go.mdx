@@ -8,17 +8,13 @@ To stop AvalancheGo, run:
 
 ```
 sudo systemctl stop avalanchego
-
 ```
-
 
 To start it again, run:
 
 ```
 sudo systemctl start avalanchego
-
 ```
-
 
 Upgrade Your Node[​](#upgrade-your-node "Direct link to heading")
 -----------------------------------------------------------------
@@ -27,9 +23,7 @@ AvalancheGo is an ongoing project and there are regular version upgrades. Most u
 
 ```
 Jan 08 10:26:45 ip-172-31-16-229 avalanchego[6335]: INFO [01-08|10:26:45] avalanchego/network/peer.go#526: beacon 9CkG9MBNavnw7EVSRsuFr7ws9gascDQy3 attempting to connect with newer version avalanche/1.1.1. You may want to update your client
-
 ```
-
 
 It is recommended to always upgrade to the latest version, because new versions bring bug fixes, new features and upgrades.
 
@@ -37,9 +31,7 @@ To upgrade your node, just run the installer script again:
 
 ```
 ./avalanchego-installer.sh
-
 ```
-
 
 It will detect that you already have AvalancheGo installed:
 
@@ -50,9 +42,7 @@ Preparing environment...
 Found 64bit Intel/AMD architecture...
 Found AvalancheGo systemd service already installed, switching to upgrade mode.
 Stopping service...
-
 ```
-
 
 It will then upgrade your node to the latest version, and after it's done, start the node back up, and print out the information about the latest version:
 

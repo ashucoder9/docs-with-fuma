@@ -21,9 +21,7 @@ Run this command in your terminal to create the `avalanchego.service` file
 
 ```
 sudo nano /etc/systemd/system/avalanchego.service
-
 ```
-
 
 Paste the following configuration into the `avalanchego.service` file
 
@@ -57,9 +55,7 @@ ExecStart=/Your/Path/To/avalanchego/./avalanchego \
 
 [Install]
 WantedBy=multi-user.target
-
 ```
-
 
 Press **Ctrl + X** then **Y** then **Enter** to save and exit.
 
@@ -67,9 +63,7 @@ Now, run:
 
 ```
 sudo systemctl daemon-reload
-
 ```
-
 
 ### Mainnet Config[​](#mainnet-config "Direct link to heading")
 
@@ -77,9 +71,7 @@ Run this command in your terminal to create the `avalanchego.service` file
 
 ```
 sudo nano /etc/systemd/system/avalanchego.service
-
 ```
-
 
 Paste the following configuration into the `avalanchego.service` file
 
@@ -103,9 +95,7 @@ ExecStart=/Your/Path/To/avalanchego/./avalanchego \
 
 [Install]
 WantedBy=multi-user.target
-
 ```
-
 
 Press **Ctrl + X** then **Y** then **Enter** to save and exit.
 
@@ -113,9 +103,7 @@ Now, run:
 
 ```
 sudo systemctl daemon-reload
-
 ```
-
 
 Start the Node[​](#start-the-node "Direct link to heading")
 -----------------------------------------------------------
@@ -124,18 +112,14 @@ This command makes your node start automatically in case of a reboot, run it:
 
 ```
 sudo systemctl enable avalanchego
-
 ```
-
 
 To start the node, run:
 
 ```
 sudo systemctl start avalanchego
 sudo systemctl status avalanchego
-
 ```
-
 
 Output:
 
@@ -161,9 +145,7 @@ Aug 30 03:05:15 avalanche-node-01 avalanchego[2226]: [08-30|03:05:15.238] INFO >
 Aug 30 03:05:19 avalanche-node-01 avalanchego[2226]: [08-30|03:05:19.809] INFO >
 Aug 30 03:05:19 avalanche-node-01 avalanchego[2226]: [08-30|03:05:19.809] INFO >
 Aug 30 05:00:47 avalanche-node-01 avalanchego[2226]: [08-30|05:00:47.001] INFO
-
 ```
-
 
 To see the synchronization process, you can run the following command:
 

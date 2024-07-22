@@ -70,17 +70,13 @@ When you have means of remote login into the machine, you can copy the files ove
 
 ```
 scp -r ubuntu@PUBLICIP:/home/ubuntu/.avalanchego/staking ~/avalanche_backup
-
 ```
-
 
 This assumes the username on the machine is `ubuntu`, replace with correct username in both places if it is different. Also, replace `PUBLICIP` with the actual public IP of the machine. If `scp` doesn't automatically use your downloaded SSH key, you can point to it manually:
 
 ```
 scp -i /path/to/the/key.pem -r ubuntu@PUBLICIP:/home/ubuntu/.avalanchego/staking ~/avalanche_backup
-
 ```
-
 
 Once executed, this command will create `avalanche_backup` directory and place those three files in it. You need to store them somewhere safe.
 
@@ -92,9 +88,7 @@ First, we need to do the usual [installation](/nodes/run-a-node/using-install-sc
 
 ```
 sudo systemctl stop avalanchego
-
 ```
-
 
 We're ready to restore the node.
 
@@ -108,17 +102,13 @@ Again, the process is just the reverse operation. Using `scp` we need to copy th
 
 ```
 scp ~/avalanche_backup/{staker.*,signer.key} ubuntu@PUBLICIP:/home/ubuntu/.avalanchego/staking
-
 ```
-
 
 Or if you need to specify the path to the SSH key:
 
 ```
 scp -i /path/to/the/key.pem ~/avalanche_backup/{staker.*,signer.key} ubuntu@PUBLICIP:/home/ubuntu/.avalanchego/staking
-
 ```
-
 
 And again, replace `ubuntu` with correct username if different, and `PUBLICIP` with the actual public IP of the machine running the node, as well as the path to the SSH key if used.
 
@@ -128,9 +118,7 @@ Once the files have been replaced, log into the machine and start the node using
 
 ```
 sudo systemctl start avalanchego
-
 ```
-
 
 You can now check that the node is restored with the correct NodeID and NodePOP by issuing the [getNodeID](/api-reference/info-api#infogetnodeid) API call in the same console you ran the previous command:
 
@@ -140,9 +128,7 @@ curl -X POST --data '{
     "id"     :1,
     "method" :"info.getNodeID"
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/info
-
 ```
-
 
 You should see your original NodeID and NodePOP (BLS key and BLS signature). Restore process is done.
 
@@ -159,9 +145,7 @@ First, make sure to stop AvalancheGo, run:
 
 ```
 sudo systemctl stop avalanchego
-
 ```
-
 
 warning
 
@@ -171,9 +155,7 @@ Once the node is stopped, you can `zip` the database directory to reduce the siz
 
 ```
 zip -r avalanche_db_backup.zip .avalanchego/db
-
 ```
-
 
 _Note: It may take > 30 minutes to zip the node's DB._
 
@@ -181,17 +163,13 @@ Next, you can transfer the backup to another machine:
 
 ```
 scp -r ubuntu@PUBLICIP:/home/ubuntu/avalanche_db_backup.zip ~/avalanche_db_backup.zip
-
 ```
-
 
 This assumes the username on the machine is `ubuntu`, replace with correct username in both places if it is different. Also, replace `PUBLICIP` with the actual public IP of the machine. If `scp` doesn't automatically use your downloaded SSH key, you can point to it manually:
 
 ```
 scp -i /path/to/the/key.pem -r ubuntu@PUBLICIP:/home/ubuntu/avalanche_db_backup.zip ~/avalanche_db_backup.zip
-
 ```
-
 
 Once executed, this command will create `avalanche_db_backup.zip` directory in you home directory.
 
@@ -203,9 +181,7 @@ First, we need to do the usual [installation](/nodes/run-a-node/using-install-sc
 
 ```
 sudo systemctl stop avalanchego
-
 ```
-
 
 
 <Callout type="warning">
@@ -215,33 +191,25 @@ We're ready to restore the database. First, let's move the DB on the existing no
 
 ```
 mv .avalanchego/db .avalanchego/db-old
-
 ```
-
 
 Next, we'll unzip the backup we moved from another node (this will place the unzipped files in `~/.avalanchego/db` when the command is run in the home directory):
 
 ```
 unzip avalanche_db_backup.zip
-
 ```
-
 
 After the database has been restored on a new node, use this command to start the node:
 
 ```
 sudo systemctl start avalanchego
-
 ```
-
 
 Node should now be running from the database on the new instance. To check that everything is in order and that node is not bootstrapping from scratch (which would indicate a problem), use:
 
 ```
 sudo journalctl -u avalanchego -f
-
 ```
-
 
 The node should be catching up to the network and fetching a small number of blocks before resuming normal operation (all the ones produced from the time when the node was stopped before the backup).
 
@@ -249,9 +217,7 @@ Once the backup has been restored and is working as expected, the zip can be del
 
 ```
 rm avalanche_db_backup.zip
-
 ```
-
 
 ### Database Direct Copy[​](#database-direct-copy "Direct link to heading")
 
@@ -265,9 +231,7 @@ Same as shown previously, you need to stop the node (on both machines):
 
 ```
 sudo systemctl stop avalanchego
-
 ```
-
 
 
 <Callout type="warning">
@@ -277,9 +241,7 @@ Then, on the destination machine, change to a directory where you would like to 
 
 ```
 ssh -i /path/to/the/key.pem ubuntu@PUBLICIP 'tar czf - .avalanchego/db' | tar xvzf - -C .
-
 ```
-
 
 Make sure to replace the correct path to the key, and correct IP of the source machine. This will compress the database, but instead of writing it to a file it will pipe it over `ssh` directly to destination machine, where it will be decompressed and written to disk. The process can take a long time, make sure it completes before continuing.
 
@@ -288,25 +250,19 @@ After copying is done, all you need to do now is move the database to the correc
 ```
 rm -rf ~/.avalanchego/db
 mv db ~/.avalanchego/db
-
 ```
-
 
 You can now start the node on the destination machine:
 
 ```
 sudo systemctl start avalanchego
-
 ```
-
 
 Node should now be running from the copied database. To check that everything is in order and that node is not bootstrapping from scratch (which would indicate a problem), use:
 
 ```
 sudo journalctl -u avalanchego -f
-
 ```
-
 
 The node should be catching up to the network and fetching a small number of blocks before resuming normal operation (all the ones produced from the time when the node was stopped before the backup).
 

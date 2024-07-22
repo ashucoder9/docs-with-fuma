@@ -52,9 +52,7 @@ ssh-add ~/.ssh/avalanche.pem;
 
 # Change file modes or Access Control Lists
 sudo chmod 600 ~/.ssh/avalanche.pem
-
 ```
-
 
 Once these steps are complete you are ready to launch the Validator node on EC2. To make that happen click the "Launch" button
 
@@ -92,9 +90,7 @@ curl -X POST --data '{
     "params": {
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/info
-
 ```
-
 
 #### `info.getNetworkID` Response[​](#infogetnetworkid-response "Direct link to heading")
 
@@ -108,9 +104,7 @@ The returned `networkID` will be 1 which is the network ID for Mainnet.
   },
   "id": 1
 }
-
 ```
-
 
 Now you want to edit `/etc/avalanchego/conf.json` and change the `"network-id"` property from `"mainnet"` to `"fuji"`. To see the contents of `/etc/avalanchego/conf.json` you can `cat` the file.
 
@@ -125,9 +119,7 @@ cat /etc/avalanchego/conf.json
   "public-ip-resolution-service": "opendns",
   "network-id": "mainnet"
 }
-
 ```
-
 
 Edit that `/etc/avalanchego/conf.json` with your favorite text editor and change the value of the `"network-id"` property from `"mainnet"` to `"fuji"`. Once that's complete, save the file and restart the Avalanche node via `sudo systemctl restart avalanchego`. You can then call the `info.getNetworkID` endpoint to confirm the change was successful.
 
@@ -141,9 +133,7 @@ curl -X POST --data '{
     "params": {
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/info
-
 ```
-
 
 #### `info.getNetworkID` Response[​](#infogetnetworkid-response-1 "Direct link to heading")
 
@@ -157,9 +147,7 @@ The returned `networkID` will be 5 which is the network ID for Fuji.
   },
   "id": 1
 }
-
 ```
-
 
 Next you run the `info.isBoostrapped` command to confirm if the Avalanche Validator node has finished bootstrapping.
 
@@ -174,9 +162,7 @@ curl -X POST --data '{
         "chain":"P"
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/info
-
 ```
-
 
 Once the node is finished bootstrapping, the response will be:
 
@@ -190,9 +176,7 @@ Once the node is finished bootstrapping, the response will be:
     },
     "id": 1
 }
-
 ```
-
 
 **Note** that initially the response is `false` because the network is still syncing.  
 When you're adding your node as a Validator on the Avalanche Mainnet you'll want to wait for this response to return `true` so that you don't suffer from any downtime while validating. For this tutorial you're not going to wait for it to finish syncing as it's not strictly necessary.
@@ -211,9 +195,7 @@ curl --location --request POST 'http://127.0.0.1:9650/ext/info' \
     "params" :{
     }
 }'
-
 ```
-
 
 ### `info.getNodeID` Response[​](#infogetnodeid-response "Direct link to heading")
 
@@ -231,9 +213,7 @@ Take a note of the `nodeID` value which is returned as you'll need to use it in 
   },
   "id": 1
 }
-
 ```
-
 
 Add Node as Validator on Fuji via Core web[​](#add-node-as-validator-on-fuji-via-core-web "Direct link to heading")
 -------------------------------------------------------------------------------------------------------------------
@@ -338,9 +318,7 @@ curl --location --request POST 'https://api.avax-test.network/ext/bc/P' \
     },
     "id": 1
 }'
-
 ```
-
 
 ### `platform.getPendingValidators` Response[​](#platformgetpendingvalidators-response "Direct link to heading")
 
@@ -364,9 +342,7 @@ curl --location --request POST 'https://api.avax-test.network/ext/bc/P' \
   },
   "id": 1
 }
-
 ```
-
 
 You can also pass in the `NodeID` as a string to the `nodeIDs` array in the request body.
 
@@ -382,9 +358,7 @@ curl --location --request POST 'https://api.avax-test.network/ext/bc/P' \
     },
     "id": 1
 }'
-
 ```
-
 
 This will filter the response by the `nodeIDs` array which will save you time by no longer requiring you to search through the entire response body for the NodeIDs.
 
@@ -408,9 +382,7 @@ This will filter the response by the `nodeIDs` array which will save you time by
   },
   "id": 1
 }
-
 ```
-
 
 After 5 minutes the node will officially start validating the Avalanche Fuji testnet and you will no longer see it in the response body for the `platform.getPendingValidators` endpoint. Now you will access it via the `platform.getCurrentValidators` endpoint.
 
@@ -428,9 +400,7 @@ curl --location --request POST 'https://api.avax-test.network/ext/bc/P' \
     },
     "id": 1
 }'
-
 ```
-
 
 ### `platform.getCurrentValidators` Response[​](#platformgetcurrentvalidators-response "Direct link to heading")
 
@@ -476,9 +446,7 @@ curl --location --request POST 'https://api.avax-test.network/ext/bc/P' \
   },
   "id": 1
 }
-
 ```
-
 
 Mainnet[​](#mainnet "Direct link to heading")
 ---------------------------------------------

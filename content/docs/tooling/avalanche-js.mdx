@@ -2,6 +2,7 @@
 title: AvalancheJS Overview
 sidebarTitle: AvalancheJS
 ---
+
 AvalancheJS is a JavaScript Library for interfacing with the [Avalanche](https://docs.avax.network/intro) Platform. It is built using TypeScript and intended to support both browser and Node.js. The AvalancheJS library allows you to issue commands to the Avalanche node APIs.
 
 The APIs currently supported by default are:
@@ -79,9 +80,7 @@ The AvalancheJS library can be imported into your existing project as follows:
 
 ```js
 import { avm, pvm, evm } from '@avalabs/avalanchejs';
-
 ```
-
 
 Importing Essentials[​](#importing-essentials "Direct link to heading")
 -----------------------------------------------------------------------
@@ -96,9 +95,7 @@ const importTx = evm.newImportTx(...) // constructs a new import tx to C
 
 const publicKeyBytes = utils.hexToBuffer(publicKeyHex)
 const signature = utils.signHash(bytes, privateKeyBytes)
-
 ```
-
 
 Run Scripts[​](#run-scripts "Direct link to heading")
 -----------------------------------------------------
@@ -108,8 +105,9 @@ When cloning the AvalancheJS repository, there are several handy examples and ut
 `node --loader ts-node/esm path/script_name.ts`
 
 This command tells Node.js to use the ts-node/esm loader when running a TypeScript script.
+
+<Accordions>
 <Accordion title="Example">
-  
 Let's say that the AvalancheJS repository was cloned.  
 Suppose we want to run `examples/p-chain/export.ts`.
 
@@ -118,8 +116,6 @@ This creates an export transaction from C-Chain to X-Chain.
 First, make sure you add the environment variables in a `.env` file at the root of the project.
 
 Fill in the private key for your account, and the C-Chain and X-Chain addresses.
-
-![avalanchejs2](https://docs.avax.network/assets/images/avalanchejs-3-e05d1db16879ce07f00a1078b624497c.png)
 
 To execute the script, we use:
 
@@ -136,6 +132,4 @@ laviniatalpas@Lavinias-MacBook-Pro avalanchejs % node --loader ts-node/esm examp
 
 ```
 </Accordion>
-
-
-
+</Accordions>

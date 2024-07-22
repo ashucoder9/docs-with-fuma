@@ -252,9 +252,7 @@ Now that we are on our node, it's a good idea to update it to the latest package
 sudo apt update
 sudo apt upgrade -y
 sudo reboot
-
 ```
-
 
 ![Image for post](https://miro.medium.com/max/793/1*_2UmPN6vabjGe6aihX9KqA.png)
 
@@ -268,9 +266,7 @@ Once the installation is complete, our node should now be bootstrapping! We can 
 
 ```
 sudo systemctl status avalanchego
-
 ```
-
 
 To check the status of the bootstrap, we'll need to make a request to the local RPC using `curl`. This request is as follows:
 
@@ -283,9 +279,7 @@ curl -X POST --data '{
         "chain":"X"
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/info
-
 ```
-
 
 The node can take some time (upward of an hour at this moment writing) to bootstrap. Bootstrapping means that the node downloads and verifies the history of the chains. Give this some time. Once the node is finished bootstrapping, the response will be:
 
@@ -297,9 +291,7 @@ The node can take some time (upward of an hour at this moment writing) to bootst
     },
     "id": 1
 }
-
 ```
-
 
 We can always use `sudo systemctl status avalanchego` to peek at the latest status of our service as before, as well.
 
@@ -313,17 +305,13 @@ curl -X POST --data '{
     "id"     :1,
     "method" :"info.getNodeID"
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/info
-
 ```
-
 
 If all is well, the response should look something like:
 
 ```
 {"jsonrpc":"2.0","result":{"nodeID":"NodeID-Lve2PzuCvXZrqn8Stqwy9vWZux6VyGUCR"},"id":1}
-
 ```
-
 
 That portion that says, "NodeID-Lve2PzuCvXZrqn8Stqwy9vWZux6VyGUCR" is our NodeID, the entire thing. Copy that and keep that in our notes. There's nothing confidential or secure about this value, but it's an absolute must for when we submit this node to be a validator.
 
@@ -333,9 +321,7 @@ The last thing that should be done is backing up our staking keys in the untimel
 
 ```
 scp -i C:\Avalanche\avalanche_key.pem -r ubuntu@EnterYourAzureIPHere:/home/ubuntu/.avalanchego/staking C:\Avalanche
-
 ```
-
 
 As before, we'll need to replace "EnterYourAzureIPHere" with the appropriate value that we retrieved. This backs up our staking key and staking certificate into the C:\\Avalanche folder we created before.
 

@@ -25,9 +25,7 @@ To get a node's BLS key and proof of possession key, call info.getNodeID API as 
 
 ```
 avalanche primary addValidator [flags]
-
 ```
-
 
 **Flags:**
 
@@ -45,9 +43,7 @@ avalanche primary addValidator [flags]
     --public-key string             set the BLS public key of the validator
     --proof-of-possession string    set the BLS proof of possession of the validator
     --delegation-fee uint           set the delegation fee (20 000 is equivalent to 2%)
-
 ```
-
 
 Subnet[​](#subnet "Direct link to heading")
 -------------------------------------------
@@ -68,9 +64,7 @@ This command currently only works on Subnets deployed to either the Fuji Testnet
 
 ```
 avalanche subnet addValidator [subnetName] [flags]
-
 ```
-
 
 **Flags:**
 
@@ -93,9 +87,7 @@ avalanche subnet addValidator [subnetName] [flags]
     --subnet-auth-keys strings   control keys that will be used to authenticate add validator tx
     --testnet testnet            add subnet validator on testnet (alias for `fuji`)
     --weight uint                set the staking weight of the validator to add
-
 ```
-
 
 ### Remove Validator in a Subnet[​](#remove-validator-in-a-subnet "Direct link to heading")
 
@@ -105,9 +97,7 @@ This command removes a node as a validator in a Subnet.
 
 ```
 avalanche subnet removeValidator [subnetName] [flags]
-
 ```
-
 
 **Flags:**
 
@@ -122,9 +112,7 @@ avalanche subnet removeValidator [subnetName] [flags]
     --output-tx-path    string              file path of the removeValidator tx
     --subnet-auth-keys  strings             control keys that will be used to authenticate removeValidator tx
     --testnet                               remove validator in existing testnet deployment (alias for `fuji`)
-
 ```
-
 
 ### Subnet Change Owner[​](#subnet-change-owner "Direct link to heading")
 
@@ -136,9 +124,7 @@ This command currently only works on Subnets deployed to Devnet, Fuji or Mainnet
 
 ```
   avalanche subnet changeOwner [subnetName] [flags]
-
 ```
-
 
 **Flags:**
 
@@ -159,9 +145,7 @@ This command currently only works on Subnets deployed to Devnet, Fuji or Mainnet
     --subnet-auth-keys strings   control keys that will be used to authenticate transfer subnet ownership tx
     --testnet testnet            change subnet owner on testnet (alias for `fuji`)
     --threshold uint32           required number of control key signatures to make subnet changes
-
 ```
-
 
 ### Subnet Configure[​](#subnet-configure "Direct link to heading")
 
@@ -171,9 +155,7 @@ AvalancheGo nodes support several different configuration files. Subnets have th
 
 ```
 avalanche subnet configure [subnetName] [flags]
-
 ```
-
 
 **Flags:**
 
@@ -182,9 +164,7 @@ avalanche subnet configure [subnetName] [flags]
 -h, --help                           help for configure
     --per-node-chain-config string   path to per node chain configuration for local network
     --subnet-config string           path to the subnet configuration
-
 ```
-
 
 ### Subnet Create[​](#subnet-create "Direct link to heading")
 
@@ -198,9 +178,7 @@ By default, running the command with a `subnetName` that already exists causes t
 
 ```
 avalanche subnet create [subnetName] [flags]
-
 ```
-
 
 **Flags:**
 
@@ -223,9 +201,7 @@ avalanche subnet create [subnetName] [flags]
     --teleporter                      generate a teleporter-ready vm (default true)
     --vm string                       file path of custom vm to use. alias to custom-vm-path
     --vm-version string               version of Subnet-EVM template to use
-
 ```
-
 
 ### Subnet Delete[​](#subnet-delete "Direct link to heading")
 
@@ -235,17 +211,13 @@ The `subnet delete` command deletes an existing Subnet configuration.
 
 ```
 avalanche subnet delete [flags]
-
 ```
-
 
 **Flags:**
 
 ```
 -h, --help help for delete
-
 ```
-
 
 ### Subnet Deploy[​](#subnet-deploy "Direct link to heading")
 
@@ -259,9 +231,7 @@ Avalanche-CLI only supports deploying an individual Subnet once per network. Sub
 
 ```
 avalanche subnet deploy [subnetName] [flags]
-
 ```
-
 
 **Flags:**
 
@@ -286,9 +256,7 @@ avalanche subnet deploy [subnetName] [flags]
 -u, --subnet-id string             deploy into given subnet id
 -t, --testnet fuji                 deploy to testnet (alias to fuji)
     --threshold uint32             required number of control key signatures to make subnet changes
-
 ```
-
 
 ### Subnet Describe[​](#subnet-describe "Direct link to heading")
 
@@ -298,18 +266,14 @@ The `subnet describe` command prints the details of a Subnet configuration to th
 
 ```
 avalanche subnet describe [subnetName] [flags]
-
 ```
-
 
 **Flags:**
 
 ```
 -g, --genesis   Print the genesis to the console directly instead of the summary
 -h, --help      help for describe
-
 ```
-
 
 ### Subnet Export[​](#subnet-export "Direct link to heading")
 
@@ -321,18 +285,14 @@ The command prompts for an output path. You can also provide one with the `--out
 
 ```
 avalanche subnet export [subnetName] [flags]
-
 ```
-
 
 **Flags:**
 
 ```
 -h, --help            help for export
 -o, --output string   write the export data to the provided file path
-
 ```
-
 
 ### Subnet Import[​](#subnet-import "Direct link to heading")
 
@@ -348,9 +308,7 @@ To import from a file, you can optionally provide the path as a command-line arg
 
 ```
 avalanche subnet import file [subnetPath] [flags]
-
 ```
-
 
 **Flags:**
 
@@ -360,9 +318,7 @@ avalanche subnet import file [subnetPath] [flags]
 -h, --help            help for import
     --repo string     the repo to import (ex: ava-labs/avalanche-plugins-core) or url to download the repo from
     --subnet string   the subnet configuration to import from the provided repo
-
 ```
-
 
 #### Import from a Public Network[​](#import-from-a-public-network "Direct link to heading")
 
@@ -374,9 +330,7 @@ The genesis file should be available from the disk for this to work. By default,
 
 ```
 avalanche subnet import public [subnetPath] [flags]
-
 ```
-
 
 **Flags:**
 
@@ -392,9 +346,7 @@ avalanche subnet import public [subnetPath] [flags]
     --subnet-id string           the subnet ID
     --testnet testnet            import from testnet (alias for `fuji`)
 
-
 ```
-
 
 ### Subnet Join[​](#subnet-join "Direct link to heading")
 
@@ -410,9 +362,7 @@ This command currently only supports Subnets deployed on the Fuji Testnet and Ma
 
 ```
 avalanche subnet join [subnetName] [flags]
-
 ```
-
 
 **Flags:**
 
@@ -429,9 +379,7 @@ avalanche subnet join [subnetName] [flags]
     --print                       if true, print the manual config without prompting
     --skip-whitelist-check        if true, skip the whitelist check
     --testnet testnet             join on testnet (alias for `fuji`)
-
 ```
-
 
 ### Subnet List[​](#subnet-list "Direct link to heading")
 
@@ -441,18 +389,14 @@ The `subnet list` command prints the names of all created Subnet configurations.
 
 ```
 avalanche subnet list [flags]
-
 ```
-
 
 **Flags:**
 
 ```
     --deployed   show additional deploy information
 -h, --help       help for list
-
 ```
-
 
 ### Subnet Publish[​](#subnet-publish "Direct link to heading")
 
@@ -462,9 +406,7 @@ The `subnet publish` command publishes the Subnet's VM to a repository.
 
 ```
 avalanche subnet publish [subnetName] [flags]
-
 ```
-
 
 **Flags:**
 
@@ -476,9 +418,7 @@ avalanche subnet publish [subnetName] [flags]
     --repo-url string           The URL of the repo where we are publishing
     --subnet-file-path string   Path to the Subnet description file. If not given, a prompting sequence will be initiated.
     --vm-file-path string       Path to the VM description file. If not given, a prompting sequence will be initiated.
-
 ```
-
 
 ### Subnet Stats[​](#subnet-stats "Direct link to heading")
 
@@ -488,9 +428,7 @@ The `subnet stats` command prints validator statistics for the given Subnet.
 
 ```
 avalanche subnet stats [subnetName] [flags]
-
 ```
-
 
 **Flags:**
 
@@ -499,9 +437,7 @@ avalanche subnet stats [subnetName] [flags]
 -h, --help              help for stats
     --mainnet mainnet   print stats on mainnet
     --testnet testnet   print stats on testnet (alias for `fuji`)
-
 ```
-
 
 ### Subnet VMID[​](#subnet-vmid "Direct link to heading")
 
@@ -511,9 +447,7 @@ The `subnet vmid` command prints the virtual machine ID (VMID) for the given Sub
 
 ```
 avalanche subnet vmid [subnetName]
-
 ```
-
 
 Elastic Subnet[​](#elastic-subnet "Direct link to heading")
 -----------------------------------------------------------
@@ -526,9 +460,7 @@ This command transforms your permissioned Subnet into an Elastic Subnet (NOTE: t
 
 ```
 avalanche subnet elastic [subnetName] [flags]
-
 ```
-
 
 **Flags:**
 
@@ -551,9 +483,7 @@ avalanche subnet elastic [subnetName] [flags]
     --tokenName         string              specify the token name
     --tokenSymbol       string              specify the token symbol
     --transform-validators                  If true, transform validators to permissionless validators after elastic transform
-
 ```
-
 
 ### Add Permissionless Validator in an Elastic Subnet[​](#add-permissionless-validator-in-an-elastic-subnet "Direct link to heading")
 
@@ -563,9 +493,7 @@ This command adds a node as a permissionless validator in an Elastic Subnet.
 
 ```
 avalanche subnet join [subnetName] --elastic [flags]
-
 ```
-
 
 **Flags:**
 
@@ -581,9 +509,7 @@ avalanche subnet join [subnetName] --elastic [flags]
     --staking-period    string              how long validator validates for after start time
     --start-time        string              when validator starts validating (format as "2006-01-02 15:00:00")
     --testnet                               add permissionless validator in existing testnet deployment (alias for `fuji`)
-
 ```
-
 
 ### Add Permissionless Delegator in an Elastic Subnet[​](#add-permissionless-delegator-in-an-elastic-subnet "Direct link to heading")
 
@@ -593,9 +519,7 @@ This command delegates stake to a permissionless validator in an Elastic Subnet.
 
 ```
 avalanche subnet addPermissionlessDelegator [subnetName] [flags]
-
 ```
-
 
 **Flags:**
 
@@ -611,9 +535,7 @@ avalanche subnet addPermissionlessDelegator [subnetName] [flags]
     --staking-period    string              how long to delegate for after start time
     --start-time        string              when to starts delegating (format as "2006-01-02 15:00:00")
     --testnet                               add permissionless delegator in existing testnet deployment (alias for `fuji`)
-
 ```
-
 
 Subnet Upgrade[​](#subnet-upgrade "Direct link to heading")
 -----------------------------------------------------------
@@ -632,9 +554,7 @@ After you update your validator's configuration, you need to restart your valida
 
 ```
 avalanche subnet upgrade apply [subnetName] [flags]
-
 ```
-
 
 **Flags:**
 
@@ -648,9 +568,7 @@ avalanche subnet upgrade apply [subnetName] [flags]
     --mainnet mainnet                       apply upgrade existing mainnet deployment
     --print                                 if true, print the manual config without prompting (for public networks only)
     --testnet testnet                       apply upgrade existing testnet deployment (alias for `fuji`)
-
 ```
-
 
 ### Subnet Upgrade Export[​](#subnet-upgrade-export "Direct link to heading")
 
@@ -660,9 +578,7 @@ Export the upgrade bytes file to a location of choice on disk.
 
 ```
 avalanche subnet upgrade export [subnetName] [flags]
-
 ```
-
 
 **Flags:**
 
@@ -670,9 +586,7 @@ avalanche subnet upgrade export [subnetName] [flags]
     --force                     If true, overwrite a possibly existing file without prompting
 -h, --help                      help for export
     --upgrade-filepath string   Export upgrade bytes file to location of choice on disk
-
 ```
-
 
 ### Subnet Upgrade Generate[​](#subnet-upgrade-generate "Direct link to heading")
 
@@ -682,17 +596,13 @@ The `subnet upgrade generate` command builds a new upgrade.json file to customiz
 
 ```
 avalanche subnet upgrade generate [subnetName] [flags]
-
 ```
-
 
 **Flags:**
 
 ```
 -h, --help   help for generate
-
 ```
-
 
 ### Subnet Upgrade Import[​](#subnet-upgrade-import "Direct link to heading")
 
@@ -702,18 +612,14 @@ Import the upgrade bytes file into the local environment.
 
 ```
 avalanche subnet upgrade import [subnetName] [flags]
-
 ```
-
 
 **Flags:**
 
 ```
 -h, --help                      help for import
     --upgrade-filepath string   Import upgrade bytes file into local environment
-
 ```
-
 
 ### Subnet Upgrade Print[​](#subnet-upgrade-print "Direct link to heading")
 
@@ -723,9 +629,7 @@ Print the upgrade.json file content.
 
 ```
 avalanche subnet upgrade print [subnetName] [flags]
-
 ```
-
 
 **Flags:**
 
@@ -739,18 +643,14 @@ The command walks the user through an interactive wizard. The user can skip the 
 
 ```
 avalanche subnet upgrade export [subnetName] [flags]
-
 ```
-
 
 **Flags:**
 
 ```
     --deployed   show additional deploy information
 -h, --help       help for list
-
 ```
-
 
 Node[​](#node "Direct link to heading")
 ---------------------------------------
@@ -773,9 +673,7 @@ The created node will be part of group of validators called `<clusterName>` and 
 
 ```
   avalanche node create [clusterName] [flags]
-
 ```
-
 
 **Flags:**
 
@@ -804,9 +702,7 @@ The created node will be part of group of validators called `<clusterName>` and 
     --ssh-agent-identity string                use given ssh identity(only for ssh agent). If not set, default will be used
     --use-ssh-agent                            use ssh agent(ex: Yubikey) for ssh auth
     --use-static-ip                            attach static Public IP on cloud servers (default true)
-
 ```
-
 
 ### Node Devnet[​](#node-devnet "Direct link to heading")
 
@@ -824,9 +720,7 @@ The `node devnet deploy` command deploys a Subnet into a devnet cluster, creatin
 
 ```
   avalanche node devnet deploy [clusterName] [subnetName] [flags]
-
 ```
-
 
 **Flags:**
 
@@ -838,9 +732,7 @@ The `node devnet wiz` command creates a devnet and deploys, sync and validate a 
 
 ```
   avalanche node devnet wiz [clusterName] [subnetName] [flags]
-
 ```
-
 
 **Flags:**
 
@@ -884,9 +776,7 @@ The `node devnet wiz` command creates a devnet and deploys, sync and validate a 
     --use-ssh-agent                            use ssh agent for ssh
     --use-static-ip                            attach static Public IP on cloud servers (default true)
     --validators strings                       deploy subnet into given comma separated list of validators. defaults to all cluster nodes
-
 ```
-
 
 ### Node List[​](#node-list "Direct link to heading")
 
@@ -900,9 +790,7 @@ The `node list` command lists all clusters together with their nodes.
 
 ```
   avalanche node list [flags]
-
 ```
-
 
 **Flags:**
 
@@ -918,17 +806,13 @@ The `node ssh` command execute a given command using ssh on all nodes in the clu
 
 ```
   avalanche node ssh [clusterName] [flags]
-
 ```
-
 
 **Flags:**
 
 ```
 -h, --help            help for status
-
 ```
-
 
 ### Node Status[​](#node-status "Direct link to heading")
 
@@ -944,18 +828,14 @@ To get the bootstrap status of a node with a Subnet, use the `--subnet` flag.
 
 ```
   avalanche node status [clusterName] [flags]
-
 ```
-
 
 **Flags:**
 
 ```
 -h, --help            help for status
       --subnet string   specify the subnet the node is syncing with
-
 ```
-
 
 ### Node Stop[​](#node-stop "Direct link to heading")
 
@@ -971,9 +851,7 @@ Note that a stopped node may still incur cloud server storage fees.
 
 ```
   avalanche node stop [clusterName] [flags]
-
 ```
-
 
 **Flags:**
 
@@ -981,9 +859,7 @@ Note that a stopped node may still incur cloud server storage fees.
     --authorize-access   authorize CLI to release cloud resources
     --authorize-remove   authorize CLI to remove all local files related to cloud nodes
 -h, --help   help for stop
-
 ```
-
 
 ### Node Sync[​](#node-sync "Direct link to heading")
 
@@ -997,9 +873,7 @@ The `node sync` command enables all nodes in a cluster to be bootstrapped to a S
 
 ```
   avalanche node sync [clusterName] [subnetName] [flags]
-
 ```
-
 
 **Flags:**
 
@@ -1023,17 +897,13 @@ The `node update subnet` command updates all nodes in a cluster with latest Subn
 
 ```
   avalanche node update subnet [clusterName] [subnetName] [flags]
-
 ```
-
 
 **Flags:**
 
 ```
 -h, --help   help for subnet
-
 ```
-
 
 ### Node Validate[​](#node-validate "Direct link to heading")
 
@@ -1055,9 +925,7 @@ The `node validate primary` command enables all nodes in a cluster to be validat
 
 ```
   avalanche node validate primary [clusterName] [flags]
-
 ```
-
 
 **Flags:**
 
@@ -1071,9 +939,7 @@ The `node validate primary` command enables all nodes in a cluster to be validat
     --stake-amount uint         how many AVAX to stake in the validator
     --staking-period duration   how long validator validates for after start time
 -t, --testnet fuji              set up validator in testnet (alias to fuji)
-
 ```
-
 
 ### Node Validate Subnet[​](#node-validate-subnet "Direct link to heading")
 
@@ -1087,9 +953,7 @@ The `node validate subnet` command enables all nodes in a cluster to be validato
 
 ```
   avalanche node validate subnet [clusterName] [subnetName] [flags]
-
 ```
-
 
 **Flags:**
 
@@ -1108,9 +972,7 @@ The `node validate subnet` command enables all nodes in a cluster to be validato
     --staking-period duration    how long validator validates for after start time
     --start-time string          UTC start time when this validator starts validating, in 'YYYY-MM-DD HH:MM:SS' format
 -t, --testnet fuji               set up validator in testnet (alias to fuji)
-
 ```
-
 
 ### Node Whitelist[​](#node-whitelist "Direct link to heading")
 
@@ -1128,9 +990,7 @@ Secure SSH protocol is used to communicate with cloud instances. `node whitelist
 
 ```
   avalanche node whitelist <clusterName> [--ip <IP>] [--ssh "<sshPubKey>"] [flags]
-
 ```
-
 
 **Flags:**
 
@@ -1138,9 +998,7 @@ Secure SSH protocol is used to communicate with cloud instances. `node whitelist
   -h, --help         help for whitelist
       --ip string    ip address to whitelist
       --ssh string   ssh public key to whitelist
-
 ```
-
 
 ### Node Export[​](#node-export "Direct link to heading")
 
@@ -1162,9 +1020,7 @@ Flags:
       --force             overwrite the file if it exists
   -h, --help              help for export
       --include-secrets   include keys in the export
-
 ```
-
 
 ### Node Import[​](#node-import "Direct link to heading")
 
@@ -1184,9 +1040,7 @@ This command is useful with `node whitelist` command. With your SSH public key a
 Flags:
       --file string   specify the file to export the cluster configuration to
   -h, --help          help for import
-
 ```
-
 
 ### Node Resize[​](#node-resize "Direct link to heading")
 
@@ -1208,9 +1062,7 @@ Flags:
       --disk-size string     Disk size to resize in Gb (e.g. 1000Gb)
   -h, --help                 help for resize
       --node-type string     Node type to resize (e.g. t3.2xlarge)
-
 ```
-
 
 Network[​](#network "Direct link to heading")
 ---------------------------------------------
@@ -1229,18 +1081,14 @@ The `network clean` command shuts down your local, multi-node network. All deplo
 
 ```
 avalanche network clean [flags]
-
 ```
-
 
 **Flags:**
 
 ```
     --hard   Also clean downloaded avalanchego and plugin binaries
 -h, --help   help for clean
-
 ```
-
 
 ### Network Start[​](#network-start "Direct link to heading")
 
@@ -1252,9 +1100,7 @@ By default, the command loads the default snapshot. If you provide the `--snapsh
 
 ```
 avalanche network start [flags]
-
 ```
-
 
 **Flags:**
 
@@ -1263,9 +1109,7 @@ avalanche network start [flags]
     --avalanchego-version string   use this version of avalanchego (ex: v1.17.12) (default "latest")
 -h, --help                         help for start
     --snapshot-name string         name of snapshot to use to start the network from (default "default-1654102509")
-
 ```
-
 
 ### Network Status[​](#network-status "Direct link to heading")
 
@@ -1275,17 +1119,13 @@ The `network status` command prints whether or not a local Avalanche network is 
 
 ```
 avalanche network status [flags]
-
 ```
-
 
 **Flags:**
 
 ```
 -h, --help   help for status
-
 ```
-
 
 ### Network Stop[​](#network-stop "Direct link to heading")
 
@@ -1297,18 +1137,14 @@ All deployed Subnets shutdown gracefully and save their state. If you provide th
 
 ```
 avalanche network stop [flags]
-
 ```
-
 
 **Flags:**
 
 ```
 -h, --help                   help for stop
     --snapshot-name string   name of snapshot to use to save network state into (default "default-1654102509")
-
 ```
-
 
 Transaction[​](#transaction "Direct link to heading")
 -----------------------------------------------------
@@ -1323,18 +1159,14 @@ The `transaction commit` command commits a transaction by submitting it to the P
 
 ```
 avalanche transaction commit [subnetName] [flags]
-
 ```
-
 
 **Flags:**
 
 ```
 -h, --help                       help for commit
     --input-tx-filepath string   Path to the transaction signed by all signatories
-
 ```
-
 
 ### Transaction Sign[​](#transaction-sign "Direct link to heading")
 
@@ -1344,9 +1176,7 @@ The `transaction sign` command signs a multisig transaction.
 
 ```
 avalanche transaction sign [subnetName] [flags]
-
 ```
-
 
 **Flags:**
 
@@ -1356,9 +1186,7 @@ avalanche transaction sign [subnetName] [flags]
 -k, --key string                 select the key to use [fuji only]
 -g, --ledger                     use ledger instead of key (always true on mainnet, defaults to false on fuji)
     --ledger-addrs strings       use the given ledger addresses
-
 ```
-
 
 Key[​](#key "Direct link to heading")
 -------------------------------------
@@ -1379,9 +1207,7 @@ If you'd like to import an existing key instead of generating one from scratch, 
 
 ```
 avalanche key create [keyName] [flags]
-
 ```
-
 
 **Flags:**
 
@@ -1389,9 +1215,7 @@ avalanche key create [keyName] [flags]
     --file string   import the key from an existing key file
 -f, --force         overwrite an existing key with the same name
 -h, --help          help for create
-
 ```
-
 
 ### Key Delete[​](#key-delete "Direct link to heading")
 
@@ -1403,18 +1227,14 @@ To delete a key, provide the `keyName`. The command prompts for confirmation bef
 
 ```
 avalanche key delete [keyName] [flags]
-
 ```
-
 
 **Flags:**
 
 ```
 -f, --force   delete the key without confirmation
 -h, --help    help for delete
-
 ```
-
 
 ### Key Export[​](#key-export "Direct link to heading")
 
@@ -1431,9 +1251,7 @@ By default, the tool writes the hex encoded key to stdout. If you provide the `-
 ```
 -h, --help            help for export
 -o, --output string   write the key to the provided file path
-
 ```
-
 
 ### Key List[​](#key-list "Direct link to heading")
 
@@ -1443,9 +1261,7 @@ The `key list` command prints information for all stored signing keys or for the
 
 ```
 avalanche key list [flags]
-
 ```
-
 
 **Flags:**
 
@@ -1462,9 +1278,7 @@ avalanche key list [flags]
 -t, --testnet         list testnet (fuji) network addresses
 -n, --use-nano-avax   use nano Avax for balances
     --xchain          list X-Chain addresses (default true)
-
 ```
-
 
 ### Key Transfer[​](#key-transfer "Direct link to heading")
 
@@ -1474,9 +1288,7 @@ The `key transfer` command allows to transfer funds between stored keys or ledge
 
 ```
 avalanche key transfer [options] [flags]
-
 ```
-
 
 **Flags:**
 
@@ -1496,6 +1308,4 @@ avalanche key transfer [options] [flags]
 -s, --send                         send the transfer
 -a, --target-addr string           receiver address
 -t, --testnet                      transfer between testnet (fuji) addresses
-
 ```
-

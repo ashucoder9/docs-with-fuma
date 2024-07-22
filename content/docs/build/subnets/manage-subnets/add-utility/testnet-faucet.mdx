@@ -47,9 +47,7 @@ You can also integrate a new Subnet on the live [faucet](https://faucet.avax.net
         "WINDOW_SIZE": number
     }
 }
-
 ```
-
 
 *   `ID` - Each Subnet chain should have a unique and relatable ID.
 *   `NAME` - Name of the Subnet chain that will appear on the site.
@@ -82,9 +80,7 @@ Clone this repository at your preferred location.
 
 ```
 git clone https://github.com/ava-labs/avalanche-faucet
-
 ```
-
 
 <Callout type="info">
 
@@ -110,9 +106,7 @@ We need to configure our application with the server API endpoints and CAPTCHA s
     "action": "faucetdrip"
   }
 }
-
 ```
-
 
 Put the Google's reCAPTCHA site-key without which the faucet client can't send the necessary CAPTCHA response to the server. This key is not a secret and could be public.
 
@@ -137,9 +131,7 @@ C="C chain private key"
 WAGMI="Wagmi chain private key"
 PK="Sender Private Key with Funds in it"
 CAPTCHA_SECRET="Google reCAPTCHA Secret"
-
 ```
-
 
 `PK` will act as a fallback private key, in case, the key for any chain is not provided.
 
@@ -183,9 +175,7 @@ You can create a faucet server for any EVM chain by making changes in the `confi
         }
     }
 ]
-
 ```
-
 
 In the above configuration drip amount is in `nAVAX` or `gwei`, whereas fees are in `wei`. For example, with the above configurations, the faucet will send `1 AVAX` with maximum fees per gas being `100 nAVAX` and priority fee as `2 nAVAX`.
 
@@ -201,9 +191,7 @@ The `/health` API will always return a response with a `200` status code. This e
 
 ```
 curl http://localhost:8000/health
-
 ```
-
 
 Response
 
@@ -213,17 +201,13 @@ This API will be used for fetching the faucet address.
 
 ```
 curl http://localhost:8000/api/faucetAddress?chain=C
-
 ```
-
 
 It will give the following response
 
 ```
 0x3EA53fA26b41885cB9149B62f0b7c0BAf76C78D4
-
 ```
-
 
 #### Get Faucet Balance[​](#get-faucet-balance "Direct link to heading")
 
@@ -231,9 +215,7 @@ This API will be used for fetching the faucet address.
 
 ```
 curl http://localhost:8000/api/getBalance?chain=C
-
 ```
-
 
 It will give the following response
 
@@ -246,9 +228,7 @@ curl -d '{
         "address": "0x3EA53fA26b41885cB9149B62f0b7c0BAf76C78D4"
         "chain": "C"
 }' -H 'Content-Type: application/json' http://localhost:8000/api/sendToken
-
 ```
-
 
 Send token API requires a CAPTCHA response token that is generated using the CAPTCHA site key on the client-side. Since we can't generate and pass this token while making a curl request, we have to disable the CAPTCHA verification for testing purposes. You can find the steps to disable it in the next sections. The response is shown below
 
@@ -257,9 +237,7 @@ Send token API requires a CAPTCHA response token that is generated using the CAP
     "message": "Transaction successful on Avalanche C Chain!",
     "txHash": "0x3d1f1c3facf59c5cd7d6937b3b727d047a1e664f52834daf20b0555e89fc8317"
 }
-
 ```
-
 
 ### Rate Limiters (Important)[​](#rate-limiters-important "Direct link to heading")
 
@@ -276,9 +254,7 @@ The rate limiters are applied on the global (all endpoints) as well as on the `/
         "SKIP_FAILED_REQUESTS": false
     }
 }
-
 ```
-
 
 There could be multiple proxies between the server and the client. The server will see the IP address of the adjacent proxy connected with the server, and this may not be the client's actual IP.
 
@@ -306,9 +282,7 @@ So, if you want to deploy this faucet, and have some reverse proxies in between,
     "RATELIMIT": {
         "REVERSE_PROXIES": 4,
         ...
-
 ```
-
 
 ![faucet 7](/images/faucet3.png)
 
@@ -327,9 +301,7 @@ Comment or remove these 2 lines from the `server.ts` file
 ```
 new RateLimiter(app, [GLOBAL_RL]);
 new RateLimiter(app, evmchains);
-
 ```
-
 
 ### Disabling CAPTCHA Verification[​](#disabling-captcha-verification "Direct link to heading")
 
@@ -367,9 +339,7 @@ Docker images can be served as the built versions of our application, that can b
 
 ```
 docker build . -t faucet-image
-
 ```
-
 
 #### Starting Application inside Docker Container[​](#starting-application-inside-docker-container "Direct link to heading")
 
@@ -377,9 +347,7 @@ Now we can create any number of containers using the above `faucet` image. We al
 
 ```
 docker run -p 3000:8000 --name faucet-container --env-file ../.env faucet-image
-
 ```
-
 
 The server will run on port 8000, and our Docker will also expose this port for the outer world to interact. We have exposed this port in the `Dockerfile`. But we cannot directly interact with the container port, so we had to bind this container port to our host port. For the host port, we have chosen 3000. This flag `-p 3000:8000` achieves the same.
 
@@ -391,9 +359,7 @@ You can easily stop the container using the following command
 
 ```
 docker stop faucet-container
-
 ```
-
 
 #### Restarting the Container[​](#restarting-the-container "Direct link to heading")
 
@@ -401,9 +367,7 @@ To restart the container, use the following command
 
 ```
 docker start faucet-container
-
 ```
-
 
 Using the Faucet[​](#using-the-faucet "Direct link to heading")
 ---------------------------------------------------------------

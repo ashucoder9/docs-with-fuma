@@ -84,9 +84,7 @@ contract ExampleApp is
     }
 
 }
-
 ```
-
 
 ### TeleporterUpgradeable utility[​](#teleporterupgradeable-utility "Direct link to heading")
 
@@ -106,9 +104,7 @@ To prevent anyone from calling the dApp's `updateMinTeleporterVersion`, which wo
     function _checkTeleporterUpgradeAccess() internal view virtual override {
         _checkOwner();
     }
-
 ```
-
 
 Another example would be a dApp that has different roles and priveleges. `_checkTeleporterUpgradeAccess` can be implemented to check whether the caller is a specific role.
 
@@ -119,9 +115,7 @@ Another example would be a dApp that has different roles and priveleges. `_check
             "TeleporterUpgradeable: caller does not have upgrade access"
         );
     }
-
 ```
-
 
 #### Sending with specific Teleporter version[​](#sending-with-specific-teleporter-version "Direct link to heading")
 
@@ -133,9 +127,7 @@ Using latest version:
 
 ```
         ITeleporterMessenger teleporterMessenger = _getTeleporterMessenger();
-
 ```
-
 
 Using specific version:
 
@@ -153,9 +145,7 @@ Using specific version:
         }
 
         ITeleporterMessenger teleporterMessenger = _getTeleporterMessenger();
-
 ```
-
 
 #### Receiving from specific Teleporter versions[​](#receiving-from-specific-teleporter-versions "Direct link to heading")
 

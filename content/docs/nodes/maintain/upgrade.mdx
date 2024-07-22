@@ -11,9 +11,7 @@ Before upgrading your node, it is recommended you backup your staker files which
 cd
 cp ~/.avalanchego/staking/staker.crt .
 cp ~/.avalanchego/staking/staker.key .
-
 ```
-
 
 Then download `staker.crt` and `staker.key` files and keep them somewhere safe and private. If anything happens to your node or the machine node runs on, these files can be used to fully recreate your node.
 
@@ -26,9 +24,7 @@ If you installed your node using the [installer script](/nodes/run-a-node/using-
 
 ```
 ./avalanchego-installer.sh
-
 ```
-
 
 It will detect that you already have AvalancheGo installed:
 
@@ -39,9 +35,7 @@ Preparing environment...
 Found 64bit Intel/AMD architecture...
 Found AvalancheGo systemd service already installed, switching to upgrade mode.
 Stopping service...
-
 ```
-
 
 It will then upgrade your node to the latest version, and after it's done, start the node back up, and print out the information about the latest version:
 
@@ -50,9 +44,7 @@ Node upgraded, starting service...
 New node version:
 avalanche/1.1.1 [network=mainnet, database=v1.0.0, commit=f76f1fd5f99736cf468413bbac158d6626f712d2]
 Done!
-
 ```
-
 
 And that is it, your node is upgraded to the latest version.
 
@@ -82,9 +74,7 @@ If your node is running in the background (by running with `nohup`, for example)
 ```
 ubuntu  6834  0.0  0.0   2828   676 pts/1    S+   19:54   0:00 grep avalanche
 ubuntu  2630 26.1  9.4 2459236 753316 ?      Sl   Dec02 1220:52 /home/ubuntu/build/avalanchego
-
 ```
-
 
 In this example, second line shows information about your node. Note the process id, in this case, `2630`. Stop the node by running `kill -2 2630`.
 
@@ -130,17 +120,13 @@ If you are using the pre-built binaries on MacOS:
 
 ```
 ./avalanchego-<VERSION>/build/avalanchego
-
 ```
-
 
 If you are using the pre-built binaries on Linux:
 
 ```
 ./avalanchego-<VERSION>-linux/avalanchego
-
 ```
-
 
 Add `nohup` at the start of the command if you want to run the node in the background.
 
@@ -159,9 +145,7 @@ First clone our GitHub repo (you can skip this step if you've done this before):
 
 ```
 git clone https://github.com/ava-labs/avalanchego.git
-
 ```
-
 
 <Callout type="info">
 
@@ -191,8 +175,6 @@ You can check what version you're running by doing:
 
 ```
 ./build/avalanchego --version
-
 ```
-
 
 You can run your node with:

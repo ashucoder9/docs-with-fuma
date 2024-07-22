@@ -121,9 +121,7 @@ An example of a node config syncing two Subnets:
   "http-host": "",
   "track-subnets": "28nrH5T2BMvNrWecFcV3mfccjs6axM1TVyqe79MCv2Mhs8kxiY,Ai42MkKqk8yjXFCpoHXw7rdTWSHiKEMqh5h8gbxwjgkCUfkrk"
 }
-
 ```
-
 
 But that is not all. Besides tracking the SubnetID, the node also needs to have the plugin that contains the VM instance the blockchain in the Subnet will run. You should have already been through that on Testnet and Fuji, but for a refresher, you can refer to [this tutorial](/build/subnets/deploy-a-subnet/fuji-testnet).
 
@@ -137,17 +135,13 @@ After you have tracked the Subnet and placed the VM binary in the correct direct
 Jul 30 18:26:31 node-fuji avalanchego[1728308]: [07-30|18:26:31.422] INFO chains/manager.go:262 creating chain:
 Jul 30 18:26:31 node-fuji avalanchego[1728308]:     ID: 2ebCneCbwthjQ1rYT41nhd7M76Hc6YmosMAQrTFhBq8qeqh6tt
 Jul 30 18:26:31 node-fuji avalanchego[1728308]:     VMID:srEXiWaHuhNyGwPUi444Tu47ZEDwxTWrbQiuD7FmgSAQ6X7Dy
-
 ```
-
 
 That means the node has detected the Subnet, and is attempting to initialize it and start bootstrapping the Subnet. It might take some time (if there are already transactions on the Subnet), and eventually it will finish the bootstrap with a message like:
 
 ```
 Jul 30 18:27:21 node-fuji avalanchego[1728308]: [07-30|18:27:21.055] INFO <2ebCneCbwthjQ1rYT41nhd7M76Hc6YmosMAQrTFhBq8qeqh6tt Chain> snowman/transitive.go:333 consensus starting with J5wjmotMCrM2DKxeBTBPfwgCPpvsjtuqWNozLog2TomTjSuGK as the last accepted block
-
 ```
-
 
 That means the node has successfully bootstrapped the Subnet and is now in sync. If the node is one of the validators, it will start validating any transactions that get posted to the Subnet.
 

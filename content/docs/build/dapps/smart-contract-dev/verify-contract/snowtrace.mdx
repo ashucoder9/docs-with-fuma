@@ -56,9 +56,7 @@ The compile bytecode will identify if there are external libraries. If you relea
   "object": "....",
   ...
 }
-
 ```
-
 
 This requires you to add external libraries in order to verify the code.
 
@@ -90,9 +88,7 @@ An SPDX must be provided.
 
 ```
 // SPDX-License-Identifier: ...
-
 ```
-
 
 ### `keccak256` Strings Processed[​](#keccak256-strings-processed "Direct link to heading")
 
@@ -101,9 +97,7 @@ The C-Chain Explorer interprets all keccak256(...) strings, even those in commen
 ```
 /// keccak256("1");
 keccak256("2");
-
 ```
-
 
 This could cause automatic constructor verification failures. If you receive errors about constructor arguments they can be provided in ABI hex encoded form on the contract verification page.
 
@@ -129,8 +123,6 @@ contract Main is Parent {
     ...
   }
 }
-
 ```
-
 
 If you receive errors about constructor arguments they can be provided in ABI hex encoded form on the contract verification page.

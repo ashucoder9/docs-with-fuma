@@ -34,9 +34,7 @@ The genesis file of WAGMI can be found [here](https://github.com/ava-labs/public
 - Chain ID: 11111
 - Symbol: WGM
 - Explorer: [https://subnets.avax.network/wagmi/wagmi-chain-testnet/explorer]
-
 ```
-
 
 <Callout type="info">
     This can be used with other wallets too, such as MetaMask.
@@ -96,9 +94,7 @@ The content of the `upgrade.json` is:
     }
   ]
 }
-
 ```
-
 
 With the above `upgrade.json`, we intend to perform two network upgrades:
 
@@ -118,9 +114,7 @@ When the node restarts, AvalancheGo reads the contents of the JSON file and pass
 
 ```
 INFO [02-22|18:27:06.473] <2ebCneCbwthjQ1rYT41nhd7M76Hc6YmosMAQrTFhBq8qeqh6tt Chain> github.com/ava-labs/subnet-evm/core/blockchain.go:335: Upgrade Config: {"precompileUpgrades":[{"feeManagerConfig":{"adminAddresses":["0x6f0f6da1852857d7789f68a28bba866671f3880d"],"blockTimestamp":1660658400}},{"contractNativeMinterConfig":{"adminAddresses":["0x6f0f6da1852857d7789f68a28bba866671f3880d"],"managerAddresses":["0xadfa2910dc148674910c07d18df966a28cd21331"],"blockTimestamp":1708696800}}]}
-
 ```
-
 
 We note that `precompileUpgrades` correctly shows the upcoming precompile upgrades. Upgrade is locked in and ready.
 

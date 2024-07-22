@@ -19,9 +19,7 @@ Starting network...
 ..................................................................................
 ..................................................................................
 ......Error: failed to query network health: rpc error: code = DeadlineExceeded desc = context deadline exceeded
-
 ```
-
 
 Avalanche-CLI only supports running one local Avalanche network at a time. If other instances of AvalancheGo are running concurrently, your Avalanche-CLI network fails to start.
 
@@ -29,17 +27,13 @@ To test for this error, start by shutting down any Avalanche nodes started by Av
 
 ```
 avalanche network clean --hard
-
 ```
-
 
 Next, look for any lingering AvalancheGo processes with:
 
 ```
 ps aux | grep avalanchego
-
 ```
-
 
 If any processes are running, you need to stop them before you can launch your VM with Avalanche-CLI.
 
@@ -66,9 +60,7 @@ Blockchain has been deployed. Wait until network acknowledges...
 ..................................................................................
 ..................................................................................
 ......Error: failed to query network health: rpc error: code = DeadlineExceeded desc = context deadline exceeded
-
 ```
-
 
 This error has many possible causes, but a common cause is usually due to **an RPC protocol version mismatch.**
 
@@ -142,9 +134,7 @@ When running `avalanche subnet deploy` via the Avalanche-CLI, the terminal may t
 ```
 zsh: bad CPU type in executable:
 /Users/user.name/Downloads/build/avalanchego
-
 ```
-
 
 This is because some Macs lack support for x86 binaries. Running the following command should fix this issue:
 

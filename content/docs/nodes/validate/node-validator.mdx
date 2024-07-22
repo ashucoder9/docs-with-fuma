@@ -2,6 +2,7 @@
 title: Add a Node to the Validator Set
 sidebarTitle: Node --> Validator
 ---
+
 Introduction[​](#introduction "Direct link to heading")
 -------------------------------------------------------
 
@@ -35,9 +36,7 @@ curl -X POST --data '{
     "id"     :1,
     "method" :"info.getNodeID"
 }' -H 'content-type:application/json' 127.0.0.1:9650/ext/info
-
 ```
-
 
 The response has your node's ID:
 
@@ -49,9 +48,7 @@ The response has your node's ID:
   },
   "id": 1
 }
-
 ```
-
 
 ### Add as a Validator[​](#add-as-a-validator "Direct link to heading")
 
@@ -91,15 +88,13 @@ To use AvalancheJS, you can clone the repo:
 
 ```
 git clone https://github.com/ava-labs/avalanchejs.git
-
 ```
-
 
 
 <Callout type="info">
 The repository cloning method used is HTTPS, but SSH can be used too:
 
-`git clone [[email protected]](https://docs.avax.network/cdn-cgi/l/email-protection):ava-labs/avalanchejs.git`
+`git clone [[email protected]](https://docs.avax.network/cdn-cgi/l/email-protection):ava-labs/avalanchejs.git`
 
 You can find more about SSH and how to use it [here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/about-ssh).
 </Callout>
@@ -108,9 +103,7 @@ or add it to an existing project:
 
 ```
 yarn add @avalabs/avalanchejs
-
 ```
-
 
 For this tutorial we will use [`ts-node`](https://www.npmjs.com/package/ts-node) to run the example scripts directly from an AvalancheJS directory.
 
@@ -128,17 +121,13 @@ Locate this line in the file
 
 ```
 const privKey: string = `${PrivateKeyPrefix}${DefaultLocalGenesisPrivateKey}`;
-
 ```
-
 
 and replace this with a private key that you control. You can use [this code to generate a new key](https://github.com/ava-labs/avalanchejs/blob/master/examples/platformvm/createKeypair.ts).
 
 ```
 const privKey: string = "<YOUR-PRIVATE-KEY-HERE>";
-
 ```
-
 
 #### Network Setting[​](#network-setting "Direct link to heading")
 
@@ -149,9 +138,7 @@ const ip: string = "localhost";
 const port: number = 9650;
 const protocol: string = "http";
 const networkID: number = 5;
-
 ```
-
 
 However, to connect directly to the [Avalanche Fuji Testnet API server](/tooling/rpc-providers), the following changes are needed:
 
@@ -160,18 +147,16 @@ const ip: string = "api.avax-test.network";
 const port: number = 443;
 const protocol: string = "https";
 const networkID: number = 5;
-
 ```
-
 
 Depending on the networkID passed in when instantiating an `Avalanche` object in the code, the encoded addresses used will have a distinctive Human Readable Part(HRP) per network.
 
 _Example Address: 5 - X-`fuji`19rknw8l0grnfunjrzwxlxync6zrlu33yxqzg0h_
 
 For Fuji Testnet, 5 is the correct value to use.
-<Accordion title="Details about Bech32 Addresses">
-  
 
+<Accordions>
+<Accordion title="About Bech32 Addresses">
 The X-Chain and the P-Chain use Bech32 to encode addresses. Note, the C-Chain also uses Bech32 to encode addresses for importing and exporting assets however the EVM, in general, uses hex encoding for addresses. Ex: `0x46f3e64E4e3f5a46Eaf5c292301c6174B9B646Bf`.
 
 Each Bech32 address is composed of the following components
@@ -213,9 +198,7 @@ Here's the mapping of `networkID` to bech32 HRP.
 
 ```
 </Accordion>
-
-
-
+</Accordions>
 
 #### Settings for Validation[​](#settings-for-validation "Direct link to heading")
 
@@ -226,9 +209,7 @@ const nodeID: string = "NodeID-7Xhw2mDxuDS44j42TCB6U5579esbSt3Lg";
 const startTime: BN = UnixNow().add(new BN(60 * 1));
 const endTime: BN = startTime.add(new BN(26300000));
 const delegationFee: number = 10;
-
 ```
-
 
 #### Node ID[​](#node-id "Direct link to heading")
 
@@ -240,10 +221,10 @@ This is the node ID of the validator being added. See [above section](#retrieve-
 
 The sample code uses `const startTime: BN = UnixNow().add(new BN(60 * 1))` and `const endTime: BN = startTime.add(new BN(26300000))` to compute the Unix time 1 minute and 304 days in the future (at the time when this article was written) to use as the values of `startTime` and `endTime`, respectively.
 
-
 <Callout title="Tip">
 You can create your own Unix timestamp [here](https://www.unixtimestamp.com/) or by using the `UnixNow()` method
 </Callout>
+
 To create your own start times, please follow the steps below:
 
 Locate this line in the file
@@ -251,18 +232,14 @@ Locate this line in the file
 ```
 const startTime: BN = UnixNow().add(new BN(60 * 1));
 const endTime: BN = startTime.add(new BN(26300000));
-
 ```
-
 
 Change `startTime` and `endTime` to new `BN` values, for example:
 
 ```
 const startTime: BN = new BN(1654656829); // Wed Jun 08 2022 02:53:49 GMT+0000
 const endTime: BN = new BN(1662602029); // Thu Sep 08 2022 01:53:49 GMT+0000
-
 ```
-
 
 #### Delegation Fee Rate[​](#delegation-fee-rate "Direct link to heading")
 
@@ -278,9 +255,7 @@ By default, the example uses the variable `pAddressStrings` to define `toAddress
 
 ```
 const pAddressStrings: string[] = pchain.keyChain().getAddressStrings();
-
 ```
-
 
 This retrieves the P-Chain addresses that belong to the `private key` that appears earlier in the example.
 
@@ -294,17 +269,13 @@ Run the command:
 
 ```
 ts-node examples/platformvm/buildAddValidatorTx.ts
-
 ```
-
 
 The response has the transaction ID.
 
 ```
 Success! TXID: 2ftDVwmss5eJk8HFsNVi6a3vWK9s3szZFhEeSY2HCS8xDb8Cra
-
 ```
-
 
 We can check the transaction's status by running the example script: [`getTxStatus.ts`](https://github.com/ava-labs/avalanchejs/blob/master/examples/platformvm/getTxStatus.ts) following the steps below:
 
@@ -312,15 +283,12 @@ We can check the transaction's status by running the example script: [`getTxStat
     
 2.  Locate this line in the file
     
-
 ```
 const main = async (): Promise<any> => {
   const txID: string = "x1NLb9JaHkKTXvSRReVSsFwQ38mY7bfD1Ky1BPv721VhrpuSE"
   ...
   }
-
 ```
-
 
 and replace it with the _buildAddValidator_ TXID
 
@@ -329,17 +297,13 @@ const main = async (): Promise<any> => {
  const txID: string = "2ftDVwmss5eJk8HFsNVi6a3vWK9s3szZFhEeSY2HCS8xDb8Cra"
  ...
  }
-
 ```
-
 
 Run the command:
 
 ```
 ts-node examples/platformvm/getTxStatus.ts
-
 ```
-
 
 This returns:
 
@@ -349,9 +313,7 @@ We can see if the node is now in the pending validator set for the Fuji network 
 
 ```
 ts-node examples/platformvm/getPendingValidators.ts
-
 ```
-
 
 The response should include the node we just added:
 
@@ -367,9 +329,7 @@ The response should include the node we just added:
   ],
   "delegators": []
 }
-
 ```
-
 
 When the time reaches `1654656829` (Wed Jun 08 2022 02:53:49 GMT+0000), this node will start validating the Primary Network. When it reaches `1662602029` (Thu Sep 08 2022 01:53:49 GMT+0000), this node will stop validating the Primary Network. The staked AVAX and the rewards, if any, will be returned to `pAddressStrings`.
 
@@ -392,9 +352,7 @@ Locate this part of the code
 ```
 let privKey: string = `${PrivateKeyPrefix}${DefaultLocalGenesisPrivateKey}`;
 pKeychain.importKey(privKey);
-
 ```
-
 
 and replace `privKey` with private keys that you control. To generate a new keypair, we can use the [`createKeypair.ts`](https://github.com/ava-labs/avalanchejs/blob/master/examples/platformvm/createKeypair.ts) example script along with [Fuji Network Settings](#network-setting).
 
@@ -410,9 +368,7 @@ priKey = "PrivateKey-26JMUsR5RCkf5k9ME8WxKCWEuCK5s2SrALUn7vEa2urwyDDc91";
 pKeychain.importKey(privKey);
 
 const pAddressStrings: string[] = pchain.keyChain().getAddressStrings();
-
 ```
-
 
 This example would create a keychain with 4 addresses:
 
@@ -421,9 +377,7 @@ This example would create a keychain with 4 addresses:
   "P-fuji1wchdgdp94j8tszlpsp56qvgkvdn20svpmnm8qk", // pAddressStrings[1]
   "P-fuji1f36kkpy6yzd7ayrywxvvprns7qlrcu3hwqdya8", // pAddressStrings[2]
   "P-fuji1qw7yt3fp43kuwsufff4vhezs2yl00slr09vmh5", // pAddressStrings[3]
-
 ```
-
 
 Now we can pass in each address according to its slot in the `pAddressStrings` array:
 
@@ -444,9 +398,7 @@ const unsignedTx: UnsignedTx = await pchain.buildAddValidatorTx(
   memo,
   asOf
 );
-
 ```
-
 
 ### Mainnet Workflow[​](#mainnet-workflow "Direct link to heading")
 

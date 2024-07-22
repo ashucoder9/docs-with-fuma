@@ -58,9 +58,7 @@ Here's the body of the API call with the required parameters:
   "evmversion": "YOUR_EVM_VERSION_ON_REMIX",
   "constructorArguments": "YOUR_CONSTRUCTOR_ARGUMENTS"  // Remove if not applicable
 }
-
 ```
-
 
 Verifying with Hardhat-Verify[​](#verifying-with-hardhat-verify "Direct link to heading")
 -----------------------------------------------------------------------------------------
@@ -75,9 +73,7 @@ Example `.env.json`:
 {
   "MNEMONIC": "your-wallet-seed-phrase",
 }
-
 ```
-
 
 Below is a sample `hardhat.config.ts` used for deployment and verification (See LN 45: `etherscan`)
 
@@ -171,25 +167,19 @@ export default {
     },
   },
 }
-
 ```
-
 
 Once the contract is deployed, verify with hardhat verify by running the following:
 
 ```go
 npx hardhat verify <contract address> <arguments> --network <network>
-
 ```
-
 
 Example:
 
 ```go
 npx hardhat verify 0x3972c87769886C4f1Ff3a8b52bc57738E82192D5 MockNFT Mock ipfs://QmQ2RFEmZaMds8bRjZCTJxo4DusvcBdLTS6XuDbhp5BZjY 100 --network fuji
-
 ```
-
 
 You can also verify contracts programmatically via script
 
@@ -218,25 +208,19 @@ main()
     console.error(error)
     process.exit(1)
   })
-
 ```
-
 
 First create your script, then execute it via hardhat by running the following:
 
 ```go
 npx hardhat run scripts/<scriptname.ts> --network <network>
-
 ```
-
 
 Example:
 
 ```go
 npx hardhat run scripts/5-verifyNFT.ts --network fuji
-
 ```
-
 
 Verifying via terminal will not allow you to pass an array as an argument, however, you can do this when verifying via script by including the array in your _Constructor Arguments_
 

@@ -29,9 +29,7 @@ A BLS public key and a proof of possession of the key.
 +------------+----------+-------------------------+
                         |               144 bytes |
                         +-------------------------+
-
 ```
-
 
 ### Proof of Possession Specification[​](#proof-of-possession-specification-1 "Direct link to heading")
 
@@ -40,9 +38,7 @@ message ProofOfPossession {
     bytes public_key = 1; // 48 bytes
     bytes signature = 2;  // 96 bytes
 }
-
 ```
-
 
 ### Proof of Possession Example[​](#proof-of-possession-example "Direct link to heading")
 
@@ -67,9 +63,7 @@ message ProofOfPossession {
     0x4d, 0xdf, 0xad, 0xd1, 0xc1, 0x74, 0x3f, 0x7f,
     0x54, 0x9f, 0x1d, 0x07, 0xd5, 0x9d, 0x55, 0x65,
     0x59, 0x27, 0xf7, 0x2b, 0xc6, 0xbf, 0x7c, 0x12
-
 ```
-
 
 Transferable Output[​](#transferable-output "Direct link to heading")
 ---------------------------------------------------------------------
@@ -93,9 +87,7 @@ A transferable output contains an `AssetID` and an `Output`.
 +----------+----------+-------------------------+
                       | 32 + size(output) bytes |
                       +-------------------------+
-
 ```
-
 
 ### Proto Transferable Output Specification[​](#proto-transferable-output-specification "Direct link to heading")
 
@@ -104,9 +96,7 @@ message TransferableOutput {
     bytes asset_id = 1; // 32 bytes
     Output output = 2;  // size(output)
 }
-
 ```
-
 
 ### Transferable Output Example[​](#transferable-output-example "Direct link to heading")
 
@@ -135,9 +125,7 @@ Let's make a transferable output:
     0xbe, 0x82, 0xec, 0xc0, 0x0c, 0x34, 0xf3, 0x61,
     0xed, 0xa8, 0xeb, 0x30, 0xfb, 0x5a, 0x71, 0x5c,
 ]
-
 ```
-
 
 Transferable Input[​](#transferable-input "Direct link to heading")
 -------------------------------------------------------------------
@@ -167,9 +155,7 @@ A transferable input contains a `TxID`, `UTXOIndex` `AssetID` and an `Input`.
 +------------+----------+------------------------+
                         | 68 + size(input) bytes |
                         +------------------------+
-
 ```
-
 
 ### Proto Transferable Input Specification[​](#proto-transferable-input-specification "Direct link to heading")
 
@@ -180,9 +166,7 @@ message TransferableInput {
     bytes asset_id = 3;    // 32 bytes
     Input input = 4;       // size(input)
 }
-
 ```
-
 
 ### Transferable Input Example[​](#transferable-input-example "Direct link to heading")
 
@@ -219,9 +203,7 @@ Let's make a transferable input:
     0xee, 0x6b, 0x28, 0x00, 0x00, 0x00, 0x00, 0x01,
     0x00, 0x00, 0x00, 0x00
 ]
-
 ```
-
 
 Outputs[​](#outputs "Direct link to heading")
 ---------------------------------------------
@@ -259,9 +241,7 @@ A secp256k1 transfer output contains a `TypeID`, `Amount`, `Locktime`, `Threshol
 +-----------+------------+--------------------------------+
                          | 28 + 20 * len(addresses) bytes |
                          +--------------------------------+
-
 ```
-
 
 ### Proto SECP256K1 Transfer Output Specification[​](#proto-secp256k1-transfer-output-specification "Direct link to heading")
 
@@ -273,9 +253,7 @@ message SECP256K1TransferOutput {
     uint32 threshold = 4;         // 04 bytes
     repeated bytes addresses = 5; // 04 bytes + 20 bytes * len(addresses)
 }
-
 ```
-
 
 ### SECP256K1 Transfer Output Example[​](#secp256k1-transfer-output-example "Direct link to heading")
 
@@ -315,9 +293,7 @@ Let's make a secp256k1 transfer output with:
     0x0c, 0x34, 0xf3, 0x61, 0xed, 0xa8, 0xeb, 0x30,
     0xfb, 0x5a, 0x71, 0x5c,
 ]
-
 ```
-
 
 SECP256K1 Output Owners Output[​](#secp256k1-output-owners-output "Direct link to heading")
 -------------------------------------------------------------------------------------------
@@ -347,9 +323,7 @@ A secp256k1 output owners output contains a `TypeID`, `Locktime`, `Threshold`, a
 +-----------+------------+--------------------------------+
                          | 20 + 20 * len(addresses) bytes |
                          +--------------------------------+
-
 ```
-
 
 ### Proto SECP256K1 Output Owners Output Specification[​](#proto-secp256k1-output-owners-output-specification "Direct link to heading")
 
@@ -360,9 +334,7 @@ message SECP256K1OutputOwnersOutput {
     uint32 threshold = 3;         // 04 bytes
     repeated bytes addresses = 4; // 04 bytes + 20 bytes * len(addresses)
 }
-
 ```
-
 
 ### SECP256K1 Output Owners Output Example[​](#secp256k1-output-owners-output-example "Direct link to heading")
 
@@ -398,9 +370,7 @@ Let's make a secp256k1 output owners output with:
     0x0c, 0x34, 0xf3, 0x61, 0xed, 0xa8, 0xeb, 0x30,
     0xfb, 0x5a, 0x71, 0x5c,
 ]
-
 ```
-
 
 Inputs[​](#inputs "Direct link to heading")
 -------------------------------------------
@@ -432,9 +402,7 @@ A secp256k1 transfer input contains an `Amount` and `AddressIndices`.
 +-----------------+-------+-------------------------------------+
                           | 16 + 4 * len(address_indices) bytes |
                           +-------------------------------------+
-
 ```
-
 
 **Proto SECP256K1 Transfer Input Specification**
 
@@ -444,9 +412,7 @@ message SECP256K1TransferInput {
     uint64 amount = 2;                   // 08 bytes
     repeated uint32 address_indices = 3; // 04 bytes + 4 bytes * len(address_indices)
 }
-
 ```
-
 
 ### SECP256K1 Transfer Input Example[​](#secp256k1-transfer-input-example "Direct link to heading")
 
@@ -473,9 +439,7 @@ Let's make a payment input with:
     // address_indices[0]
     0x00, 0x00, 0x00, 0x00
 ]
-
 ```
-
 
 Unsigned Transactions[​](#unsigned-transactions "Direct link to heading")
 -------------------------------------------------------------------------
@@ -514,9 +478,7 @@ A base TX contains a `TypeID`, `NetworkID`, `BlockchainID`, `Outputs`, `Inputs`,
 +---------------+----------------------+-----------------------------------------+
                           | 52 + size(outputs) + size(inputs) + size(memo) bytes |
                           +------------------------------------------------------+
-
 ```
-
 
 ### Proto Base TX Specification[​](#proto-base-tx-specification "Direct link to heading")
 
@@ -529,9 +491,7 @@ message BaseTx {
     repeated Input inputs = 5;   // 04 bytes + size(ins)
     bytes memo = 6;              // 04 bytes + size(memo)
 }
-
 ```
-
 
 ### Base TX Example[​](#base-tx-example "Direct link to heading")
 
@@ -599,9 +559,7 @@ Let's make a base TX that uses the inputs and outputs from the previous examples
     // Memo length:
     0x00, 0x00, 0x00, 0x00,
 ]
-
 ```
-
 
 Unsigned Add Validator TX[​](#unsigned-add-validator-tx "Direct link to heading")
 ---------------------------------------------------------------------------------
@@ -637,9 +595,7 @@ An unsigned add validator TX contains a `BaseTx`, `Validator`, `Stake`, `Rewards
 +---------------+-----------------------+-----------------------------------------+
                   | 48 + size(stake) + size(rewards_owner) + size(base_tx) bytes |
                   +--------------------------------------------------------------+
-
 ```
-
 
 ### Proto Unsigned Add Validator TX Specification[​](#proto-unsigned-add-validator-tx-specification "Direct link to heading")
 
@@ -651,9 +607,7 @@ message AddValidatorTx {
     SECP256K1OutputOwners rewards_owner = 4; // size(rewards_owner)
     uint32 shares = 5;                       // 04 bytes
 }
-
 ```
-
 
 ### Unsigned Add Validator TX Example[​](#unsigned-add-validator-tx-example "Direct link to heading")
 
@@ -744,9 +698,7 @@ Let's make an unsigned add validator TX that uses the inputs and outputs from th
     // Shares
     0x00, 0x00, 0x00, 0x64,
 ]
-
 ```
-
 
 Unsigned Remove Subnet Validator TX[​](#unsigned-remove-subnet-validator-tx "Direct link to heading")
 -----------------------------------------------------------------------------------------------------
@@ -774,9 +726,7 @@ An unsigned remove Subnet validator TX contains a `BaseTx`, `NodeID`, `SubnetID`
 +---------------+----------------------+------------------------------------------------+
 | 56 + len(sig_indices) + size(base_tx) bytes                                           |
 +---------------------------------------------------------------------------------------+
-
 ```
-
 
 ### Proto Unsigned Remove Subnet Validator TX Specification[​](#proto-unsigned-remove-subnet-validator-tx-specification "Direct link to heading")
 
@@ -787,9 +737,7 @@ message RemoveSubnetValidatorTx {
     SubnetID subnet_id = 3;     // 32 bytes
     SubnetAuth subnet_auth = 4; // 04 bytes + len(sig_indices)
 }
-
 ```
-
 
 ### Unsigned Remove Subnet Validator TX Example[​](#unsigned-remove-subnet-validator-tx-example "Direct link to heading")
 
@@ -834,9 +782,7 @@ Let's make an unsigned remove Subnet validator TX that uses the inputs and outpu
     // SigIndices
     0x00, 0x00, 0x00, 0x00,
 ]
-
 ```
-
 
 Unsigned Add Permissionless Validator TX[​](#unsigned-add-permissionless-validator-tx "Direct link to heading")
 ---------------------------------------------------------------------------------------------------------------
@@ -881,9 +827,7 @@ An unsigned add permissionless validator TX contains a `BaseTx`, `Validator`, `S
 | 232 + size(base_tx) + size(stake_outs) +                                              |
 | size(validator_rewards_owner) + size(delegator_rewards_owner) bytes                   |
 +---------------------------------------------------------------------------------------+
-
 ```
-
 
 ### Proto Unsigned Add Permissionless Validator TX Specification[​](#proto-unsigned-add-permissionless-validator-tx-specification "Direct link to heading")
 
@@ -898,9 +842,7 @@ message AddPermissionlessValidatorTx {
     SECP256K1OutputOwners delegator_rewards_owner = 7; // size(delegator_rewards_owner) bytes
     uint32 delegation_shares = 8; // 4 bytes
 }
-
 ```
-
 
 ### Unsigned Add Permissionless Validator TX Example[​](#unsigned-add-permissionless-validator-tx-example "Direct link to heading")
 
@@ -1038,9 +980,7 @@ Let's make an unsigned add permissionless validator TX that uses the inputs and 
     // Delegation shares
     0x00, 0x00, 0x4e, 0x20,
 ]
-
 ```
-
 
 Unsigned Add Permissionless Delegator TX[​](#unsigned-add-permissionless-delegator-tx "Direct link to heading")
 ---------------------------------------------------------------------------------------------------------------
@@ -1075,9 +1015,7 @@ An unsigned add permissionless delegator TX contains a `BaseTx`, `Validator`, `S
 +---------------+----------------------+------------------------------------------------+
 | 80 + size(base_tx) + size(stake_outs) + size(delegator_rewards_owner) bytes           |
 +---------------------------------------------------------------------------------------+
-
 ```
-
 
 ### Proto Unsigned Add Permissionless Delegator TX Specification[​](#proto-unsigned-add-permissionless-delegator-tx-specification "Direct link to heading")
 
@@ -1089,9 +1027,7 @@ message AddPermissionlessDelegatorTx {
     repeated TransferOut stake_outs = 4; // 4 bytes + size(stake_outs)
     SECP256K1OutputOwners delegator_rewards_owner = 5; // size(delegator_rewards_owner) bytes
 }
-
 ```
-
 
 ### Unsigned Add Permissionless Delegator TX Example[​](#unsigned-add-permissionless-delegator-tx-example "Direct link to heading")
 
@@ -1180,9 +1116,7 @@ Let's make an unsigned add permissionless delegator TX that uses the inputs and 
     0x11, 0xce, 0x6e, 0x43, 0x7f, 0xde, 0xcd, 0x65,
     0xea, 0xce, 0x8f, 0x52,
 ]
-
 ```
-
 
 Unsigned Transform Subnet TX[​](#unsigned-transform-subnet-tx "Direct link to heading")
 ---------------------------------------------------------------------------------------
@@ -1277,9 +1211,7 @@ An unsigned transform Subnet TX contains a `BaseTx`, `SubnetID`, `AssetID`, `Ini
 +----------------------+------------------+----------------------------------+
 | 141 + size(base_tx) + len(sig_indices) bytes                               |
 +----------------------------------------------------------------------------+
-
 ```
-
 
 ### Proto Unsigned Transform Subnet TX Specification[​](#proto-unsigned-transform-subnet-tx-specification "Direct link to heading")
 
@@ -1302,9 +1234,7 @@ message TransformSubnetTx {
     uint32 uptime_requirement = 15; // 04 bytes
     SubnetAuth subnet_auth = 16;    // 04 bytes + len(sig_indices)
 }
-
 ```
-
 
 ### Unsigned Transform Subnet TX Example[​](#unsigned-transform-subnet-tx-example "Direct link to heading")
 
@@ -1430,9 +1360,7 @@ Let's make an unsigned transform Subnet TX that uses the inputs and outputs from
     // SigIndices
     0x00, 0x00, 0x00, 0x00,
 ]
-
 ```
-
 
 Unsigned Add Subnet Validator TX[​](#unsigned-add-subnet-validator-tx "Direct link to heading")
 -----------------------------------------------------------------------------------------------
@@ -1464,9 +1392,7 @@ An unsigned add Subnet validator TX contains a `BaseTx`, `Validator`, `SubnetID`
 +---------------+----------------------+-----------------------------------------+
                                    | 80 + len(sig_indices) + size(base_tx) bytes |
                                    +---------------------------------------------+
-
 ```
-
 
 ### Proto Unsigned Add Subnet Validator TX Specification[​](#proto-unsigned-add-subnet-validator-tx-specification "Direct link to heading")
 
@@ -1477,9 +1403,7 @@ message AddSubnetValidatorTx {
     SubnetID subnet_id = 3;     // 32 bytes
     SubnetAuth subnet_auth = 4; // 04 bytes + len(sig_indices)
 }
-
 ```
-
 
 ### Unsigned Add Subnet Validator TX Example[​](#unsigned-add-subnet-validator-tx-example "Direct link to heading")
 
@@ -1563,9 +1487,7 @@ Let's make an unsigned add Subnet validator TX that uses the inputs and outputs 
     // SigIndices
     0x00, 0x00, 0x00, 0x00,
 ]
-
 ```
-
 
 Unsigned Add Delegator TX[​](#unsigned-add-delegator-tx "Direct link to heading")
 ---------------------------------------------------------------------------------
@@ -1598,9 +1520,7 @@ An unsigned add delegator TX contains a `BaseTx`, `Validator`, `Stake`, and `Rew
 +---------------+-----------------------+-----------------------------------------+
                 |    44 + size(stake) + size(rewards_owner) + size(base_tx) bytes |
                 +-----------------------------------------------------------------+
-
 ```
-
 
 ### Proto Unsigned Add Delegator TX Specification[​](#proto-unsigned-add-delegator-tx-specification "Direct link to heading")
 
@@ -1611,9 +1531,7 @@ message AddDelegatorTx {
     Stake stake = 3;                         // size(LockedOuts)
     SECP256K1OutputOwners rewards_owner = 4; // size(rewards_owner)
 }
-
 ```
-
 
 ### Unsigned Add Delegator TX Example[​](#unsigned-add-delegator-tx-example "Direct link to heading")
 
@@ -1699,9 +1617,7 @@ Let's make an unsigned add delegator TX that uses the inputs and outputs from th
     0xbe, 0x82, 0xec, 0xc0, 0x0c, 0x34, 0xf3, 0x61,
     0xed, 0xa8, 0xeb, 0x30, 0xfb, 0x5a, 0x71, 0x5c,
 ]
-
 ```
-
 
 Unsigned Create Chain TX[​](#unsigned-create-chain-tx "Direct link to heading")
 -------------------------------------------------------------------------------
@@ -1739,9 +1655,7 @@ An unsigned create chain TX contains a `BaseTx`, `SubnetID`, `ChainName`, `VMID`
                | 74 + size(base_tx) + size(chain_name) + size(fx_ids) + |
                |           size(genesis_data) + size(subnet_auth) bytes |
 +--------------+--------------------------------------------------------+
-
 ```
-
 
 ### Proto Unsigned Create Chain TX Specification[​](#proto-unsigned-create-chain-tx-specification "Direct link to heading")
 
@@ -1755,9 +1669,7 @@ message CreateChainTx {
     GenesisData genesis_data = 6      // 4 + size(genesis_data) bytes
     SubnetAuth subnet_auth = 7;       // size(subnet_auth) bytes
 }
-
 ```
-
 
 ### Unsigned Create Chain TX Example[​](#unsigned-create-chain-tx-example "Direct link to heading")
 
@@ -1863,9 +1775,7 @@ Let's make an unsigned create chain TX that uses the inputs and outputs from the
   // address index
   0x00, 0x00, 0x00, 0x00,
 ]
-
 ```
-
 
 Unsigned Create Subnet TX[​](#unsigned-create-subnet-tx "Direct link to heading")
 ---------------------------------------------------------------------------------
@@ -1887,9 +1797,7 @@ An unsigned create Subnet TX contains a `BaseTx`, and `RewardsOwner`. The `TypeI
 +-----------------+-----------------------+---------------------------------+
                                 | size(rewards_owner) + size(base_tx) bytes |
                                 +-------------------------------------------+
-
 ```
-
 
 ### Proto Unsigned Create Subnet TX Specification[​](#proto-unsigned-create-subnet-tx-specification "Direct link to heading")
 
@@ -1898,9 +1806,7 @@ message CreateSubnetTx {
     BaseTx base_tx = 1;                      // size(base_tx)
     SECP256K1OutputOwners rewards_owner = 2; // size(rewards_owner)
 }
-
 ```
-
 
 ### Unsigned Create Subnet TX Example[​](#unsigned-create-subnet-tx-example "Direct link to heading")
 
@@ -1957,9 +1863,7 @@ Let's make an unsigned create Subnet TX that uses the inputs from the previous e
     0xbe, 0x82, 0xec, 0xc0, 0x0c, 0x34, 0xf3, 0x61,
     0xed, 0xa8, 0xeb, 0x30, 0xfb, 0x5a, 0x71, 0x5c
 ]
-
 ```
-
 
 Unsigned Import TX[​](#unsigned-import-tx "Direct link to heading")
 -------------------------------------------------------------------
@@ -1984,9 +1888,7 @@ An unsigned import TX contains a `BaseTx`, `SourceChain`, and `Ins`. The `TypeID
 +-----------------+--------------+---------------------------------+
                             | 36 + size(ins) + size(base_tx) bytes |
                             +--------------------------------------+
-
 ```
-
 
 ### Proto Unsigned Import TX Specification[​](#proto-unsigned-import-tx-specification "Direct link to heading")
 
@@ -1996,9 +1898,7 @@ message ImportTx {
     bytes source_chain = 2;      // 32 bytes
     repeated TransferIn ins = 3; // 4 bytes + size(ins)
 }
-
 ```
-
 
 ### Unsigned Import TX Example[​](#unsigned-import-tx-example "Direct link to heading")
 
@@ -2060,9 +1960,7 @@ Let's make an unsigned import TX that uses the inputs from the previous examples
     0xee, 0x6b, 0x28, 0x00, 0x00, 0x00, 0x00, 0x01,
     0x00, 0x00, 0x00, 0x00,
 ]
-
 ```
-
 
 Unsigned Export TX[​](#unsigned-export-tx "Direct link to heading")
 -------------------------------------------------------------------
@@ -2086,9 +1984,7 @@ An unsigned export TX contains a `BaseTx`, `DestinationChain`, and `Outs`. The `
 +-------------------+---------------+--------------------------------------+
                           | 36 + size(outs) + size(base_tx) bytes |
                           +---------------------------------------+
-
 ```
-
 
 ### Proto Unsigned Export TX Specification[​](#proto-unsigned-export-tx-specification "Direct link to heading")
 
@@ -2098,9 +1994,7 @@ message ExportTx {
     bytes destination_chain = 2;   // 32 bytes
     repeated TransferOut outs = 3; // 4 bytes + size(outs)
 }
-
 ```
-
 
 ### Unsigned Export TX Example[​](#unsigned-export-tx-example "Direct link to heading")
 
@@ -2176,9 +2070,7 @@ Let's make an unsigned export TX that uses the outputs from the previous example
     0xe0, 0x60, 0x12, 0x8e, 0xde, 0x35, 0x23, 0xa2,
     0x4a, 0x46, 0x1c, 0x89, 0x43, 0xab, 0x08, 0x59,
 ]
-
 ```
-
 
 Credentials[​](#credentials "Direct link to heading")
 -----------------------------------------------------
@@ -2205,9 +2097,7 @@ A [secp256k1](/api-reference/standards/cryptography#secp256k1-addresses) credent
 +-----------------+------------+---------------------------------+
                                |  8 + 65 * len(signatures) bytes |
                                +---------------------------------+
-
 ```
-
 
 ### Proto SECP256K1 Credential Specification[​](#proto-secp256k1-credential-specification "Direct link to heading")
 
@@ -2216,9 +2106,7 @@ message SECP256K1Credential {
     uint32 TypeID = 1;             // 4 bytes
     repeated bytes signatures = 2; // 4 bytes + 65 bytes * len(signatures)
 }
-
 ```
-
 
 ### SECP256K1 Credential Example[​](#secp256k1-credential-example "Direct link to heading")
 
@@ -2262,9 +2150,7 @@ Let's make a payment input with:
     0x78, 0x79, 0x7a, 0x7b, 0x7c, 0x7d, 0x7e, 0x7f,
     0x00,
 ]
-
 ```
-
 
 Signed Transaction[​](#signed-transaction "Direct link to heading")
 -------------------------------------------------------------------
@@ -2291,9 +2177,7 @@ A signed transaction contains a `CodecID`, `UnsignedTx`, and `Credentials`.
 +---------------------+--------------+------------------------------------------------+
                                      | 6 + size(unsigned_tx) + len(credentials) bytes |
                                      +------------------------------------------------+
-
 ```
-
 
 ### Proto Signed Transaction Specification[​](#proto-signed-transaction-specification "Direct link to heading")
 
@@ -2303,9 +2187,7 @@ message Tx {
     UnsignedTx unsigned_tx = 2;          // size(unsigned_tx)
     repeated Credential credentials = 3; // 4 bytes + size(credentials)
 }
-
 ```
-
 
 ### Signed Transaction Example[​](#signed-transaction-example "Direct link to heading")
 
@@ -2380,9 +2262,7 @@ Let's make a signed transaction that uses the unsigned transaction and credentia
     0x6f, 0x70, 0x71, 0x72, 0x73, 0x74, 0x75, 0x76,
     0x77, 0x78, 0x79, 0x7a, 0x7b, 0x7c, 0x7d, 0x7e,
     0x7f, 0x00,
-
 ```
-
 
 UTXO[​](#utxo "Direct link to heading")
 ---------------------------------------
@@ -2415,9 +2295,7 @@ A UTXO contains a `CodecID`, `TxID`, `UTXOIndex`, and `Output`.
 +--------------+----------+-------------------------+
                           | 70 + size(output) bytes |
                           +-------------------------+
-
 ```
-
 
 ### Proto UTXO Specification[​](#proto-utxo-specification "Direct link to heading")
 
@@ -2429,9 +2307,7 @@ message Utxo {
     bytes asset_id = 4;      // 32 bytes
     Output output = 5;       // size(output)
 }
-
 ```
-
 
 ### UTXO Example[​](#utxo-example "Direct link to heading")
 
@@ -2478,9 +2354,7 @@ Let's make a UTXO from the signed transaction created above:
     0x1c, 0x1d, 0x1e, 0x1f, 0x20, 0x21, 0x22, 0x23,
     0x24, 0x25, 0x26, 0x27,
 ]
-
 ```
-
 
 StakeableLockIn[​](#stakeablelockin "Direct link to heading")
 -------------------------------------------------------------
@@ -2507,9 +2381,7 @@ A StakeableLockIn contains a `TypeID`, `Locktime` and `TransferableIn`.
 +-----------------+-------------------+--------------------------------+
                                     | 12 + size(transferable_in) bytes |
                                     +----------------------------------+
-
 ```
-
 
 ### Proto StakeableLockIn Specification[​](#proto-stakeablelockin-specification "Direct link to heading")
 
@@ -2519,9 +2391,7 @@ message StakeableLockIn {
     uint64 locktime = 2;                   // 08 bytes
     TransferableInput transferable_in = 3; // size(transferable_in)
 }
-
 ```
-
 
 ### StakeableLockIn Example[​](#stakeablelockin-example "Direct link to heading")
 
@@ -2559,9 +2429,7 @@ Let's make a StakeableLockIn with:
     0x07, 0x5b, 0xcd, 0x15, 0x00, 0x00, 0x00, 0x01,
     0x00, 0x00, 0x00, 0x00,
 ]
-
 ```
-
 
 StakeableLockOut[​](#stakeablelockout "Direct link to heading")
 ---------------------------------------------------------------
@@ -2588,9 +2456,7 @@ A StakeableLockOut contains a `TypeID`, `Locktime` and `TransferableOut`.
 +------------------+--------------------+--------------------------------+
                                      | 12 + size(transferable_out) bytes |
                                      +-----------------------------------+
-
 ```
-
 
 ### Proto StakeableLockOut Specification[​](#proto-stakeablelockout-specification "Direct link to heading")
 
@@ -2600,9 +2466,7 @@ message StakeableLockOut {
     uint64 locktime = 2;                     // 08 bytes
     TransferableOutput transferable_out = 3; // size(transferable_out)
 }
-
 ```
-
 
 ### StakeableLockOut Example[​](#stakeablelockout-example "Direct link to heading")
 
@@ -2635,9 +2499,7 @@ Let's make a stakeablelockout with:
     0xde, 0x35, 0x23, 0xa2, 0x4a, 0x46, 0x1c, 0x89,
     0x43, 0xab, 0x08, 0x59,
 ]
-
 ```
-
 
 Subnet Auth[​](#subnet-auth "Direct link to heading")
 -----------------------------------------------------
@@ -2659,9 +2521,7 @@ Specifies the addresses whose signatures will be provided to demonstrate that th
 +-----------------+------------------+-------------------------------------+
                   |                       8 + 4*len(address_indices) bytes |
 +-----------------+--------------------------------------------------------+
-
 ```
-
 
 ### Proto Subnet Auth Specification[​](#proto-subnet-auth-specification "Direct link to heading")
 
@@ -2670,9 +2530,7 @@ message SubnetAuth {
     uint32 type_id = 1;                          // 04 bytes
     repeated AddressIndex address_indices = 2;   // 04 + 4*len(address_indices) bytes
 }
-
 ```
-
 
 ### Subnet Auth Example[​](#subnet-auth-example "Direct link to heading")
 
@@ -2700,9 +2558,7 @@ Let's make a Subnet auth:
   // address index 1
   0x00, 0x00, 0x00, 0x00
 ]
-
 ```
-
 
 Validator[​](#validator "Direct link to heading")
 -------------------------------------------------
@@ -2732,9 +2588,7 @@ A validator contains `NodeID`, `Start`, `End`, and `Wght`
 +------------------+----------+
 |                  | 44 bytes |
 +------------------+----------+
-
 ```
-
 
 ### Proto Validator Specification[​](#proto-validator-specification "Direct link to heading")
 
@@ -2745,9 +2599,7 @@ message Validator {
     uint64 end = 3;            // 08 bytes
     uint64 wght = 4;           // 08 bytes
 }
-
 ```
-
 
 ### Validator Example[​](#validator-example "Direct link to heading")
 
@@ -2779,9 +2631,7 @@ Let's make a validator:
   // wght
   0x14,
 ]
-
 ```
-
 
 Rewards Owner[​](#rewards-owner "Direct link to heading")
 ---------------------------------------------------------
@@ -2811,9 +2661,7 @@ A rewards owner contains a `TypeID`, `Locktime`, `Threshold`, and `Addresses`.
 +------------------------+-------------------------------+
 |                        | 40 bytes                      |
 +------------------------+-------------------------------+
-
 ```
-
 
 ### Proto Rewards Owner Specification[​](#proto-rewards-owner-specification "Direct link to heading")
 
@@ -2824,9 +2672,7 @@ message RewardsOwner {
     uint32 threshold = 3;         // 04 bytes
     repeated bytes addresses = 4; // 04 bytes + 20 bytes * len(addresses)
 }
-
 ```
-
 
 ### Rewards Owner Example[​](#rewards-owner-example "Direct link to heading")
 

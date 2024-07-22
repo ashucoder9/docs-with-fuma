@@ -20,9 +20,7 @@ Installation[​](#installation "Direct link to heading")
 
 ```
 curl -sSfL https://raw.githubusercontent.com/ava-labs/avalanche-network-runner/main/scripts/install.sh | sh
-
 ```
-
 
 The script installs the binary inside the `~/bin` directory. If the directory doesn't exist, it will be created.
 
@@ -36,9 +34,7 @@ Furthermore, `AVALANCHEGO_EXEC_PATH` should be set properly in all shells you ru
 # replace execPath with the path to AvalancheGo on your machine
 # e.g., ${HOME}/go/src/github.com/ava-labs/avalanchego/build/avalanchego
 AVALANCHEGO_EXEC_PATH="${HOME}/go/src/github.com/ava-labs/avalanchego/build/avalanchego"
-
 ```
-
 
 Unless otherwise specified, file paths given below are relative to the root of this repository.
 
@@ -76,9 +72,7 @@ avalanche-network-runner server \
 --log-level debug \
 --port=":8080" \
 --grpc-gateway-port=":8081"
-
 ```
-
 
 Note that the above command will run until you stop it with `CTRL + C`. Further commands will have to be run in a separate terminal.
 
@@ -97,9 +91,7 @@ Each of the examples below will show both modes, clarifying its usage.
 
 ```
 curl -X POST -k http://localhost:8081/v1/ping -d ''
-
 ```
-
 
 or
 
@@ -107,17 +99,13 @@ or
 avalanche-network-runner ping \
 --log-level debug \
 --endpoint="0.0.0.0:8080"
-
 ```
-
 
 #### Start a New Avalanche Network with Five Nodes[​](#start-a-new-avalanche-network-with-five-nodes "Direct link to heading")
 
 ```
 curl -X POST -k http://localhost:8081/v1/control/start -d '{"execPath":"'${AVALANCHEGO_EXEC_PATH}'","numNodes":5}'
-
 ```
-
 
 or
 
@@ -127,9 +115,7 @@ avalanche-network-runner control start \
 --endpoint="0.0.0.0:8080" \
 --number-of-nodes=5 \
 --avalanchego-path ${AVALANCHEGO_EXEC_PATH}
-
 ```
-
 
 Additional optional parameters which can be passed to the start command:
 
@@ -138,9 +124,7 @@ Additional optional parameters which can be passed to the start command:
   --blockchain-specs '[{"vm_name":"subnetevm","genesis":"/tmp/subnet-evm.genesis.json"}]' \
 	--global-node-config '{"index-enabled":false, "api-admin-enabled":true,"network-peer-list-gossip-frequency":"300ms"}' \
 	--custom-node-configs" '{"node1":{"log-level":"debug","api-admin-enabled":false},"node2":{...},...}'
-
 ```
-
 
 `--plugin-dir` and `--blockchain-specs` are parameters relevant to Subnet operation.
 
@@ -151,9 +135,7 @@ Additional optional parameters which can be passed to the start command:
 ```
    "vm_name": human readable name for the VM
    "genesis": path to a file containing the genesis for your blockchain (must be a valid path)
-
 ```
-
 
 See the [Avalanche-CLI documentation](/build/subnets/deploy-a-subnet/local-network) for details about how to create and run Subnets with our _Avalanche-CLI_ tool.
 
@@ -170,9 +152,7 @@ The network-runner supports AvalancheGo node configuration at different levels.
   "api-admin-enabled": true,
   "index-enabled": true
 }
-
 ```
-
     
 2.  `--global-node-config` is a JSON string representing a _single_ AvalancheGo config, which will be applied to **all nodes**. This makes it easy to define common properties to all nodes. Whatever is set here will be _combined_ with the standard set above.
     
@@ -190,18 +170,14 @@ The network-runner supports AvalancheGo node configuration at different levels.
   --http-port
   --staking-port
   --public-ipc
-
 ```
-
     
 
 #### Wait for All the Nodes in the Cluster to Become Healthy[​](#wait-for-all-the-nodes-in-the-cluster-to-become-healthy "Direct link to heading")
 
 ```
 curl -X POST -k http://localhost:8081/v1/control/health -d ''
-
 ```
-
 
 or
 
@@ -209,9 +185,7 @@ or
 avalanche-network-runner control health \
 --log-level debug \
 --endpoint="0.0.0.0:8080"
-
 ```
-
 
 The response to this call is actually pretty large, as it contains the state of the whole cluster. At the very end of it there should be a text saying `healthy:true` (it would say `false` if it wasn't healthy).
 
@@ -219,9 +193,7 @@ The response to this call is actually pretty large, as it contains the state of 
 
 ```
 curl -X POST -k http://localhost:8081/v1/control/uris -d ''
-
 ```
-
 
 or
 
@@ -229,17 +201,13 @@ or
 avalanche-network-runner control uris \
 --log-level debug \
 --endpoint="0.0.0.0:8080"
-
 ```
-
 
 #### Query Cluster Status from the Server[​](#query-cluster-status-from-the-server "Direct link to heading")
 
 ```
 curl -X POST -k http://localhost:8081/v1/control/status -d ''
-
 ```
-
 
 or
 
@@ -247,9 +215,7 @@ or
 avalanche-network-runner control status \
 --log-level debug \
 --endpoint="0.0.0.0:8080"
-
 ```
-
 
 #### Stream Cluster Status[​](#stream-cluster-status "Direct link to heading")
 
@@ -260,17 +226,13 @@ stream-status \
 --push-interval=5s \
 --log-level debug \
 --endpoint="0.0.0.0:8080"
-
 ```
-
 
 #### Remove (Stop) a Node[​](#remove-stop-a-node "Direct link to heading")
 
 ```
 curl -X POST -k http://localhost:8081/v1/control/removenode -d '{"name":"node5"}'
-
 ```
-
 
 or
 
@@ -279,9 +241,7 @@ avalanche-network-runner control remove-node node5 \
 --request-timeout=3m \
 --log-level debug \
 --endpoint="0.0.0.0:8080" \
-
 ```
-
 
 #### Restart a Node[​](#restart-a-node "Direct link to heading")
 
@@ -292,17 +252,13 @@ In this example we are stopping the node named `node1`.
 ```
 # e.g., ${HOME}/go/src/github.com/ava-labs/avalanchego/build/avalanchego
 AVALANCHEGO_EXEC_PATH="avalanchego"
-
 ```
-
 
 Note that you can restart the node with a different binary by providing
 
 ```
 curl -X POST -k http://localhost:8081/v1/control/restartnode -d '{"name":"node1","execPath":"'${AVALANCHEGO_EXEC_PATH}'"}'
-
 ```
-
 
 or
 
@@ -312,9 +268,7 @@ avalanche-network-runner control restart-node node1 \
 --log-level debug \
 --endpoint="0.0.0.0:8080" \
 --avalanchego-path ${AVALANCHEGO_EXEC_PATH}
-
 ```
-
 
 #### Add a Node[​](#add-a-node "Direct link to heading")
 
@@ -323,17 +277,13 @@ In this example we are adding a node named `node99`.
 ```
 # e.g., ${HOME}/go/src/github.com/ava-labs/avalanchego/build/avalanchego
 AVALANCHEGO_EXEC_PATH="avalanchego"
-
 ```
-
 
 Note that you can add the new node with a different binary by providing
 
 ```
 curl -X POST -k http://localhost:8081/v1/control/addnode -d '{"name":"node99","execPath":"'${AVALANCHEGO_EXEC_PATH}'"}'
-
 ```
-
 
 or
 
@@ -342,17 +292,13 @@ avalanche-network-runner control add-node node99 \
 --request-timeout=3m \
 --endpoint="0.0.0.0:8080" \
 --avalanchego-path ${AVALANCHEGO_EXEC_PATH}
-
 ```
-
 
 It's also possible to provide individual node config parameters:
 
 ```
 	--node-config '{"index-enabled":false, "api-admin-enabled":true,"network-peer-list-gossip-frequency":"300ms"}'
-
 ```
-
 
 `--node-config` allows to specify specific AvalancheGo config parameters to the new node. See [here](/nodes/configure/configs--flags) for the reference of supported flags.
 
@@ -366,9 +312,7 @@ Note that this will still require to stop your RPC server process with `Ctrl-C` 
 
 ```
 curl -X POST -k http://localhost:8081/v1/control/stop -d ''
-
 ```
-
 
 or
 
@@ -376,9 +320,7 @@ or
 avalanche-network-runner control stop \
 --log-level debug \
 --endpoint="0.0.0.0:8080"
-
 ```
-
 
 Subnets[​](#subnets "Direct link to heading")
 ---------------------------------------------
@@ -398,9 +340,7 @@ Creating a network is as simple as:
 
 ```
 network, err := local.NewDefaultNetwork(log, binaryPath)
-
 ```
-
 
 where `log` is a logger of type [`logging.Logger`](https://github.com/ava-labs/avalanchego/blob/master/utils/logging/logger.go#L12) and `binaryPath` is the path of the AvalancheGo binary that each node that exists on network startup will run.
 
@@ -408,9 +348,7 @@ For example, the below snippet creates a new network using default configuration
 
 ```
 network, err := local.NewDefaultNetwork(log,"/home/user/go/src/github.com/ava-labs/avalanchego/build")
-
 ```
-
 
 **Once you create a network, you must eventually call `Stop()` on it to make sure all of the nodes** **in the network stop.** Calling this method kills all of the Avalanche nodes in the network. You probably want to call this method in a `defer` statement to make sure it runs.
 
@@ -423,27 +361,21 @@ Use the network's method `GetNode(string)` to get a node by its name. For exampl
 ```
 names, _ := network.GetNodeNames()
 node, _ := network.GetNode(names[0])
-
 ```
-
 
 Then you can make API calls to the node:
 
 ```
 id, _ := node.GetAPIClient().InfoAPI().GetNodeID() // Gets the node's node ID
 balance, _ := node.GetAPIClient().XChainAPI().GetBalance(address,assetID,false) // Pretend these arguments are defined
-
 ```
-
 
 After a network has been created and is healthy, you can add or remove nodes to/from the network:
 
 ```
 newNode, _ := network.AddNode(nodeConfig)
 err := network.RemoveNode(names[0])
-
 ```
-
 
 Where `nodeConfig` is a struct which contains information about the new node to be created. For a local node, the most important elements are its name, its binary path and its identity, given by a TLS key/cert.
 
@@ -462,9 +394,7 @@ You can create a network where nodes are running different binaries -- just prov
     StakingKey:  stakingKey,
     StakingCert: stakingCert,
   }
-
 ```
-
 
 After adding a node, you may want to call the network's `Healthy` method again and wait until the new node is healthy before making API calls to it.
 

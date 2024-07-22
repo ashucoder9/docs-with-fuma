@@ -53,9 +53,7 @@ const wordlist = mnemonic.getWordlists("english") as string[];
 const m: string = mnemonic.generateMnemonic(strength, randomBytes, wordlist);
 console.log(m);
 // "chimney asset heavy ecology accuse window gold weekend annual oil emerge alley retreat rabbit seed advance define off amused board quick wealth peasant disorder"
-
 ```
-
 
 Derive Addresses[​](#derive-addresses "Direct link to heading")
 ---------------------------------------------------------------
@@ -97,9 +95,7 @@ console.log(cAddresses);
 //   '0x25d83F090D842c1b4645c1EFA46B15093d4CaC7C',
 //   '0xa14dFb7d8593c44a47A07298eCEA774557036ff3'
 // ]
-
 ```
-
 
 ### Generate Private Keys from a Mnemonic[​](#generate-private-keys-from-a-mnemonic "Direct link to heading")
 
@@ -138,9 +134,7 @@ console.log({ cAddresses, privateKeys });
 //     'c72e18ea0f9aa5457396e3bf810e9de8df0177c8e4e5bf83a85f871512d645a9'
 //   ]
 // }
-
 ```
-
 
 Get a Drip from the Fuji Faucet[​](#get-a-drip-from-the-fuji-faucet "Direct link to heading")
 ---------------------------------------------------------------------------------------------
@@ -183,9 +177,7 @@ const main = async (): Promise<any> => {
 };
 
 main();
-
 ```
-
 
 Sending AVAX[​](#sending-avax "Direct link to heading")
 -------------------------------------------------------
@@ -221,9 +213,7 @@ wallet.sendTransaction(tx).then((txObj) => {
   console.log(`"tx, https://testnet.snowtrace.io/tx/${txObj.hash}`);
   // A transaction result can be checked in a snowtrace with a transaction link which can be obtained here.
 });
-
 ```
-
 
 ### Verify Success[​](#verify-success "Direct link to heading")
 
@@ -253,9 +243,7 @@ const main = async (): Promise<any> => {
 };
 
 main();
-
 ```
-
 
 ### Sign in to Core Extension[​](#sign-in-to-core-extension "Direct link to heading")
 

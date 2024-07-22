@@ -18,9 +18,7 @@ Once you have Rust installed and are ready to build, you will want to add the Av
 ```js Cargo.toml
 [dependencies]
 avalanche-types = "0.1.4"
-
 ```
-
 
 However, if you want to use the [TimestampVM](https://github.com/ava-labs/timestampvm-rs) as a reference for your project, a more appropriate import would be the following:
 
@@ -29,6 +27,4 @@ However, if you want to use the [TimestampVM](https://github.com/ava-labs/timest
 
 [dependencies]
 avalanche-types = { version = "0.1.4", features = ["subnet", "codec_base64"] } 
-
 ```
-

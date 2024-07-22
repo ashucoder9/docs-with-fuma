@@ -39,9 +39,7 @@ So, in combining the base URL and the endpoint path we get the complete URL for 
 
 ```
 http://127.0.0.1:9650/ext/info
-
 ```
-
 
 Primary Network and Subnet RPC calls[​](#primary-network-and-subnet-rpc-calls "Direct link to heading")
 -------------------------------------------------------------------------------------------------------
@@ -66,25 +64,19 @@ To interact with Subnet instances of the EVM via the JSON-RPC endpoint:
 
 ```
 /ext/bc/[blockchainID]/rpc
-
 ```
-
 
 where `blockchainID` is the ID of the blockchain running the EVM. So for example, the RPC URL for the DFK Network (a Subnet that runs the DeFi Kingdoms:Crystalvale game) running on a local node would be:
 
 ```
 http://127.0.0.1/ext/bc/q2aTwKuyzgs8pynF7UXBZCU7DejbZbZ6EUyHr3JQzYgwNPUPi/rpc
-
 ```
-
 
 Or for the WAGMI Subnet on the Fuji testnet:
 
 ```
 http://127.0.0.1/ext/bc/2ebCneCbwthjQ1rYT41nhd7M76Hc6YmosMAQrTFhBq8qeqh6tt/rpc
-
 ```
-
 
 #### Websocket EVM Endpoints[​](#websocket-evm-endpoints "Direct link to heading")
 
@@ -96,9 +88,7 @@ where `blockchainID` is the ID of the blockchain running the EVM. For example, t
 
 ```
 ws://127.0.0.1:9650/ext/bc/C/ws
-
 ```
-
 
 
 <Callout type="info">
@@ -139,9 +129,7 @@ curl -X POST --data '{
         "txID":"2QouvFWUbjuySRxeX5xMbNCuAaKWfbk5FeEa2JmoF85RKLk2dD"
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/X
-
 ```
-
 
 *   `jsonrpc` specifies the version of the JSON RPC protocol. (In practice is always 2.0)
 *   `method` specifies the service (`avm`) and method (`getTxStatus`) that we want to invoke.
@@ -162,9 +150,7 @@ If the call is successful, the response will look like this:
   },
   "id": 1
 }
-
 ```
-
 
 *   `id` is the ID of the request that this response corresponds to.
 *   `result` is the returned values of `getTxStatus`.
@@ -185,9 +171,7 @@ Such a response would look like:
     },
     "id": 1
 }
-
 ```
-
 
 Other API Formats[​](#other-api-formats "Direct link to heading")
 -----------------------------------------------------------------

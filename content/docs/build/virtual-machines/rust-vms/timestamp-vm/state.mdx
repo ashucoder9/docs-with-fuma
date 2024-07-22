@@ -23,9 +23,7 @@ pub struct State {
     /// Each element is verified but not yet accepted/rejected (e.g., preferred).
     pub verified_blocks: Arc<RwLock<HashMap<ids::Id, Block>>>,
 }
-
 ```
-
 
 `State` in this context acts like the database of TimestampVM. Within `State`, we are managing two different data structures:
 
@@ -161,8 +159,6 @@ impl State {
         Ok(blk)
     }
 }
-
 ```
-
 
 The functions above are called will be called by both blocks and the VM itself.

@@ -2,6 +2,7 @@
 title: How to Stake on Avalanche
 sidebarTitle: How to Stake 
 ---
+
 Staking Parameters on Avalanche[​](#staking-parameters-on-avalanche "Direct link to heading")
 ---------------------------------------------------------------------------------------------
 
@@ -11,6 +12,7 @@ When a validator is done validating the [Primary Network](http://support.avalabs
 <Callout type="warning">
 Staking rewards are sent to your wallet address at the end of the staking term **as long as all of these parameters are met**.
 </Callout>
+
 ### Mainnet[​](#mainnet "Direct link to heading")
 
 *   The minimum amount that a validator must stake is 2,000 AVAX
@@ -50,8 +52,7 @@ When you add a node to the validator set, you specify:
 
 
 <Callout type="info">
-    The minimum amount that a validator must stake is 2,000 AVAX.
-
+The minimum amount that a validator must stake is 2,000 AVAX.
 </Callout>
 
 <Callout type="warning">
@@ -98,13 +99,15 @@ Assume that at the start of the staking period there is a SupplySupply amount of
 
 Then at the end of its staking period, a responsive validator receives a reward calculated as follows:
 
-
-$$Reward = (MaximumSupply - Supply) × \frac{Supply}{Stake} × \frac{MintingPeriod}{StakingPeriod} × EffectiveConsumptionRate$$
+```cobol
+$$Reward = (MaximumSupply - Supply) * \frac{Supply}{Stake} * \frac{MintingPeriod}{StakingPeriod} * EffectiveConsumptionRate$$
+```
 
 where
 
-$$EffectiveConsumptionRate = MinConsumptionRate × (1 - StakingPeriod/StakingPeriod) + MaxConsumptionRate × (StakingPeriod/StakingPeriod) × (1 - StakingPeriod/StakingPeriod)$$
-
+```cobol
+$$EffectiveConsumptionRate = MinConsumptionRate * (1 - StakingPeriod/StakingPeriod) + MaxConsumptionRate * (StakingPeriod/StakingPeriod) * (1 - StakingPeriod/StakingPeriod)$$
+```
 
 Note that $$StakingPeriod$$ is the staker's entire staking period, not just the staker's uptime, that is the aggregated time during which the staker has been responsive. The uptime comes into play only to decide whether a staker should be rewarded; to calculate the actual reward, only the staking period duration is taken into account.
 
@@ -116,7 +119,9 @@ The larger $$StakingPeriod$$ is, the closer $$EffectiveConsumptionRate$$ is to $
 
 A staker achieves the maximum reward for its stake if $$StakingPeriod$$ = $$MintingPeriod$$. The reward is:
 
+```cobol
 $$MaxReward = (MaximumSupply - Supply) × \frac{Supply}{Stake} × \frac{PercentDenominator}{MaxConsumptionRate}$$
+```
 
 Delegators[​](#delegators "Direct link to heading")
 ---------------------------------------------------
@@ -138,6 +143,7 @@ The minimum amount that a delegator must delegate is 25 AVAX.
 <Callout type="warning">
 Note that once you issue the transaction to add your stake to a delegator, there is no way to change the parameters. **You can't remove your stake early or change the stake amount, node ID, or reward address.** If you're not sure, ask for help on [Discord](https://chat.avax.network/).
 </Callout>
+
 ### Delegator Rewards[​](#delegator-rewards "Direct link to heading")
 
 If the validator that you delegate tokens to is sufficiently correct and responsive, you will receive a reward when you are done delegating. Delegators are rewarded according to the same function as validators. However, the validator that you delegate to keeps a portion of your reward specified by the validator's delegation fee rate.

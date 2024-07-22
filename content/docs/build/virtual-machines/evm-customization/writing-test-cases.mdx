@@ -43,9 +43,7 @@ type PrecompileTest struct {
 	// BlockNumber is the block number to use for the precompile's block context
 	BlockNumber int64
 }
-
 ```
-
 
 Each test can populate the fields of the `PrecompileTest` struct to customize the test. This test uses an AllowList helper function `allowlist.RunPrecompileWithAllowListTests(t, Module, state.NewTestStateDB, tests)` which can run all specified tests plus AllowList test suites. If you don't plan to use AllowList, you can directly run them as follows:
 
@@ -55,9 +53,7 @@ Each test can populate the fields of the `PrecompileTest` struct to customize th
 			test.Run(t, module, newStateDB(t))
 		})
 	}
-
 ```
-
 
 Adding VM Tests (Optional)[​](#adding-vm-tests-optional "Direct link to heading")
 ---------------------------------------------------------------------------------
@@ -90,9 +86,7 @@ contract ExampleHelloWorld {
     helloWorld.setGreeting(greeting);
   }
 }
-
 ```
-
 
 <Callout type="warning">
     Hello World Precompile is a different contract than ExampleHelloWorld and has a different address. Since the precompile uses AllowList for a permissioned access, any call to the precompile including from ExampleHelloWorld will be denied unless the caller is added to the AllowList.
@@ -105,7 +99,7 @@ Please note that this contract is simply a wrapper and is calling the precompile
 
 For the test contract we write our test in `./contracts/test/ExampleHelloWorldTest.sol`.
 <Tabs>
-  <Tab title="Subnet-EVM">
+  <Tab value="Subnet-EVM">
 ```
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
@@ -148,7 +142,7 @@ contract ExampleHelloWorldTest is AllowListTest {
 }
 ```
   </Tab>
-  <Tab title="Precompile-EVM">
+  <Tab value="Precompile-EVM">
 For Precompile-EVM, you should import AllowListTest with `@avalabs/subnet-evm-contracts` NPM package:
 
 ```
@@ -190,9 +184,7 @@ contract ExampleHelloWorldTest is AllowListTest {
     example.setGreeting(greeting);
     assertEq(example.sayHello(), greeting);
   }
-}
-```
-
+}```
 
   </Tab>
 </Tabs>
@@ -204,7 +196,7 @@ We can now trigger this test contract via `hardhat` tests. The test script uses 
 
 
 <Tabs>
-  <Tab title="Subnet-EVM">
+  <Tab value="Subnet-EVM">
 The test script looks like this:
 
 ```go
@@ -287,11 +279,9 @@ describe("IHelloWorld events", function () {
       );
   });
 });
-
 ```
-
   </Tab>
-  <Tab title="Precompile-EVM">
+  <Tab value="Precompile-EVM">
 The test script looks like this:
 
 ```go 

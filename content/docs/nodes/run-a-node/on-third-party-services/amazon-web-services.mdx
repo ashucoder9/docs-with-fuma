@@ -175,9 +175,7 @@ Add it to the SSH agent so that we can use it to SSH into your EC2 instance, and
 
 ```
 ssh-add ~/.ssh/avalanche.pem; chmod 400 ~/.ssh/avalanche.pem
-
 ```
-
 
 SSH into the instance. (Remember to replace `PUBLICIP` with the public IP field from earlier.)
 
@@ -193,9 +191,7 @@ If you have not already done so, update the instance to make sure it has the lat
 
 ```
 sudo apt update; sudo apt upgrade -y; sudo reboot
-
 ```
-
 
 This also reboots the instance. Wait 5 minutes, then log in again by running this command on your local machine:
 
@@ -212,9 +208,7 @@ curl -X POST --data '{
         "chain":"X"
     }
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/info
-
 ```
-
 
 Once the node is finished bootstrapping, the response will be:
 
@@ -226,9 +220,7 @@ Once the node is finished bootstrapping, the response will be:
     },
     "id": 1
 }
-
 ```
-
 
 You can continue on, even if AvalancheGo isn't done bootstrapping.
 
@@ -240,17 +232,13 @@ curl -X POST --data '{
     "id"     :1,
     "method" :"info.getNodeID"
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/info
-
 ```
-
 
 The response contains the node ID.
 
 ```
 {"jsonrpc":"2.0","result":{"nodeID":"NodeID-DznHmm3o7RkmpLkWMn9NqafH66mqunXbM"},"id":1}
-
 ```
-
 
 In the above example the node ID is`NodeID-DznHmm3o7RkmpLkWMn9NqafH66mqunXbM`. Copy your node ID for later. Your node ID is not a secret, so you can just paste it into a text editor.
 
@@ -268,9 +256,7 @@ To copy the staking key and certificate to your machine, run the following comma
 
 ```
 scp -r ubuntu@PUBLICIP:/home/ubuntu/.avalanchego/staking ~/aws_avalanche_backup
-
 ```
-
 
 Now your staking key and certificate are in directory `~/aws_avalanche_backup` . **The contents of this directory are secret.** You should hold this directory on storage not connected to the internet (like an external hard drive.)
 
@@ -280,9 +266,7 @@ AvalancheGo is an ongoing project and there are regular version upgrades. Most u
 
 ```
 ./avalanchego-installer.sh
-
 ```
-
 
 Your machine is now running the newest AvalancheGo version. To see the status of the AvalancheGo service, run `sudo systemctl status avalanchego.`
 

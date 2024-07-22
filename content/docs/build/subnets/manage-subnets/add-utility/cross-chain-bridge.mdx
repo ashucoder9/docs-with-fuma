@@ -65,9 +65,7 @@ git clone -b v1.0.0 --depth 1 https://github.com/ChainSafe/chainbridge-deploy \
 && cd chainbridge-deploy/cb-sol-cli \
 && npm install \
 && make install
-
 ```
-
 
 This will build the contracts and installs the `cb-sol-cli` command.
 
@@ -86,9 +84,7 @@ DST_PK="<your private key on Fuji>"
 
 SRC_TOKEN="0x3Ee7094DADda15810F191DD6AcF7E4FFa37571e4"
 RESOURCE_ID="0x00"
-
 ```
-
 
 *   `SRC_ADDR` and `DST_ADDR` are the addresses that will deploy bridge contracts and will act as a relayer.
 *   `SRC_TOKEN` is the token that we want to bridge. Here is the address of the wrapped ERC20 version of the WGM coin aka wWGM.
@@ -119,18 +115,14 @@ cb-sol-cli --url $SRC_GATEWAY --privateKey $SRC_PK --gasPrice 25000000000 deploy
     --relayerThreshold 1 \
     --expiry 500 \
     --chainId 0
-
 ```
-
 
 The output will return deployed contracts' (Bridge and Handler) address. Update the `configVars` file with these addresses by adding the following 2 variables and loading them to the environment.
 
 ```
 SRC_BRIDGE="<resulting bridge contract address>"
 SRC_HANDLER="<resulting erc20 handler contract address>"
-
 ```
-
 
 Make sure to load these using the `source` command.
 
@@ -144,9 +136,7 @@ cb-sol-cli --url $SRC_GATEWAY --privateKey $SRC_PK --gasPrice 25000000000 bridge
     --handler $SRC_HANDLER \
     --resourceId $RESOURCE_ID \
     --targetContract $SRC_TOKEN
-
 ```
-
 
 Setting Up Destination Chain[​](#setting-up-destination-chain "Direct link to heading")
 ---------------------------------------------------------------------------------------
@@ -169,9 +159,7 @@ cb-sol-cli --url $DST_GATEWAY --privateKey $DST_PK --gasPrice 25000000000 deploy
     --relayers $DST_ADDR \
     --relayerThreshold 1 \
     --chainId 1
-
 ```
-
 
 Update the environment variables with the details which you will get by running the above command. Don't forget to load these variables.
 
@@ -179,9 +167,7 @@ Update the environment variables with the details which you will get by running 
 DST_BRIDGE="<resulting bridge contract address>"
 DST_HANDLER="<resulting erc20 handler contract address>"
 DST_TOKEN="<resulting erc20 token address>"
-
 ```
-
 
 ### Configuring Resource on Bridge[​](#configuring-resource-on-bridge "Direct link to heading")
 
@@ -193,9 +179,7 @@ cb-sol-cli --url $DST_GATEWAY --privateKey $DST_PK --gasPrice 25000000000 bridge
     --handler $DST_HANDLER \
     --resourceId $RESOURCE_ID \
     --targetContract $DST_TOKEN
-
 ```
-
 
 ### Setting Token as Mintable and Burnable on Bridge[​](#setting-token-as-mintable-and-burnable-on-bridge "Direct link to heading")
 
@@ -211,9 +195,7 @@ cb-sol-cli --url $DST_GATEWAY --privateKey $DST_PK --gasPrice 25000000000 bridge
     --bridge $DST_BRIDGE \
     --handler $DST_HANDLER \
     --tokenContract $DST_TOKEN
-
 ```
-
 
 Now let's permit the handler to mint the deployed ERC20 (wWGM) token on the destination chain. Run the following command.
 
@@ -221,9 +203,7 @@ Now let's permit the handler to mint the deployed ERC20 (wWGM) token on the dest
 cb-sol-cli --url $DST_GATEWAY --privateKey $DST_PK --gasPrice 25000000000 erc20 add-minter \
     --minter $DST_HANDLER \
     --erc20Address $DST_TOKEN
-
 ```
-
 
 > **The deployer of the contracts (here `SRC_ADDR` or `DST_ADDR`) holds the admin rights. An admin** **can add or remove a new relayer, minter, admin etc. It can also mint new ERC20 tokens on the** **destination chain. You can issue these commands using `cb-sol-cli` with the options mentioned in** **these [files](https://github.com/ChainSafe/chainbridge-deploy/tree/main/cb-sol-cli/docs). The mint** **command should not be used manually, unless some intervention is required, when the relayers failed** **to mint the tokens on the destination chain on time.**
 
@@ -246,9 +226,7 @@ Now, move to the `deploy-bridge` directory and run the following command to clon
 git clone -b v1.1.1 --depth 1 https://github.com/ChainSafe/chainbridge \
 && cd chainbridge \
 && make build
-
 ```
-
 
 This will create a binary inside the `chainbridge/build` directory as `chainbridge`.
 
@@ -293,9 +271,7 @@ echo "{
     }
   ]
 }" >> config.json
-
 ```
-
 
 Check and confirm the details in the `config.json` file.
 
@@ -309,15 +285,11 @@ Give relayer access to your keys. Using these keys, the relayer will propose dep
 
 ```
 ./build/chainbridge accounts import --privateKey $SRC_PK
-
 ```
-
 
 ```
 ./build/chainbridge accounts import --privateKey $DST_PK
-
 ```
-
 
 Let's Test the Bridge[​](#lets-test-the-bridge "Direct link to heading")
 ------------------------------------------------------------------------
@@ -330,9 +302,7 @@ Run the following command to start the relayer. It will print logs of all the ev
 
 ```
 ./build/chainbridge --config config.json --verbosity trace --latest
-
 ```
-
 
 ### Approve Handler to Spend my Tokens[​](#approve-handler-to-spend-my-tokens "Direct link to heading")
 
@@ -343,9 +313,7 @@ cb-sol-cli --url $SRC_GATEWAY --privateKey $SRC_PK --gasPrice 25000000000 erc20 
     --amount 100000000000000000 \
     --erc20Address $SRC_TOKEN \
     --recipient $SRC_HANDLER
-
 ```
-
 
 ### Deposit Tokens to the Bridge[​](#deposit-tokens-to-the-bridge "Direct link to heading")
 
@@ -358,9 +326,7 @@ cb-sol-cli --url $SRC_GATEWAY --privateKey $SRC_PK --gasPrice 25000000000 erc20 
     --bridge $SRC_BRIDGE \
     --recipient $DST_ADDR \
     --resourceId $RESOURCE_ID
-
 ```
-
 
 This transaction will transfer 0.1 wWGM to token safe and emit a `Deposit` event, which will be captured by the relayer. Following this event, it will send a voting proposal to the destination chain. Since the threshold is 1, the bridge will execute the proposal, and new wWGM minted to the recipient's address. Here is the screenshot of the output from the relayer.
 
