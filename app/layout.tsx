@@ -8,12 +8,12 @@ import { baseUrl, createMetadata } from '@/utils/metadata';
 
 export const metadata = createMetadata({
   title: {
-    template: '%s | Avalanche Academy',
-    default: 'Avalanche Academy',
+    template: '%s | Avalanche Docs',
+    default: 'Avalanche Docs',
   },
 
   // area for improvement: add page specific metadata
-  description: 'The Learning Platform for Avalanche Ecosystem',
+  description: 'Documentation Platform for the Avalanche Ecosystem',
   metadataBase: baseUrl,
 });
 

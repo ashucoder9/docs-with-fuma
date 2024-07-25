@@ -31,7 +31,7 @@ export default function Page({
         enabled: page.data.toc,
         footer: (
           <a
-            href={`https://github.com/ava-labs/avalanche-academy/blob/main/${path}`}
+            href={`https://github.com/ava-labs/avalanche-docs/blob/main/${path}`}
             target="_blank"
             rel="noreferrer noopener"
             className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
@@ -92,7 +92,7 @@ export function generateMetadata({ params }: { params: Param }): Metadata {
   if (!page) notFound();
 
   const description =
-    page.data.description ?? 'Learn how to build on Avalanche blockchain with Academy';
+    page.data.description ?? 'Documentation Platform for the Avalanche Ecosystem';
 
   const imageParams = new URLSearchParams();
   imageParams.set('title', page.data.title);
