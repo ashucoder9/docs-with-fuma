@@ -142,17 +142,17 @@ Enables the public filter API for the `eth_*` namespace. Defaults to `true`.
 
 Adds the following RPC calls (see [here](https://eth.wiki/json-rpc/API) for complete documentation):
 
-*   `eth_newPendingTransactionFilter`
-*   `eth_newPendingTransactions`
-*   `eth_newAcceptedTransactions`
-*   `eth_newBlockFilter`
-*   `eth_newHeads`
-*   `eth_logs`
-*   `eth_newFilter`
-*   `eth_getLogs`
-*   `eth_uninstallFilter`
-*   `eth_getFilterLogs`
-*   `eth_getFilterChanges`
+- `eth_newPendingTransactionFilter`
+- `eth_newPendingTransactions`
+- `eth_newAcceptedTransactions`
+- `eth_newBlockFilter`
+- `eth_newHeads`
+- `eth_logs`
+- `eth_newFilter`
+- `eth_getLogs`
+- `eth_uninstallFilter`
+- `eth_getFilterLogs`
+- `eth_getFilterChanges`
 
 ### `admin`[​](#admin "Direct link to heading")
 
@@ -160,8 +160,8 @@ The API name `private-admin` is deprecated as of v1.7.15, and the APIs previousl
 
 Adds the following RPC calls to the `admin_*` namespace. Defaults to `false`.
 
-*   `admin_importChain`
-*   `admin_exportChain`
+- `admin_importChain`
+- `admin_exportChain`
 
 ### `debug`[​](#debug "Direct link to heading")
 
@@ -169,22 +169,22 @@ The API names `private-debug` and `public-debug` are deprecated as of v1.7.15, a
 
 Adds the following RPC calls to the `debug_*` namespace. Defaults to `false`.
 
-*   `debug_dumpBlock`
-*   `debug_accountRange`
-*   `debug_preimage`
-*   `debug_getBadBlocks`
-*   `debug_storageRangeAt`
-*   `debug_getModifiedAccountsByNumber`
-*   `debug_getModifiedAccountsByHash`
-*   `debug_getAccessibleState`
+- `debug_dumpBlock`
+- `debug_accountRange`
+- `debug_preimage`
+- `debug_getBadBlocks`
+- `debug_storageRangeAt`
+- `debug_getModifiedAccountsByNumber`
+- `debug_getModifiedAccountsByHash`
+- `debug_getAccessibleState`
 
 ### `net`[​](#net "Direct link to heading")
 
 Adds the following RPC calls to the `net_*` namespace. Defaults to `true`.
 
-*   `net_listening`
-*   `net_peerCount`
-*   `net_version`
+- `net_listening`
+- `net_peerCount`
+- `net_version`
 
 Note: Coreth is a virtual machine and does not have direct access to the networking layer, so `net_listening` always returns true and `net_peerCount` always returns 0. For accurate metrics on the network layer, users should use the AvalancheGo APIs.
 
@@ -192,21 +192,21 @@ Note: Coreth is a virtual machine and does not have direct access to the network
 
 Adds the following RPC calls to the `debug_*` namespace. Defaults to `false`.
 
-*   `debug_traceChain`
-*   `debug_traceBlockByNumber`
-*   `debug_traceBlockByHash`
-*   `debug_traceBlock`
-*   `debug_traceBadBlock`
-*   `debug_intermediateRoots`
-*   `debug_traceTransaction`
-*   `debug_traceCall`
+- `debug_traceChain`
+- `debug_traceBlockByNumber`
+- `debug_traceBlockByHash`
+- `debug_traceBlock`
+- `debug_traceBadBlock`
+- `debug_intermediateRoots`
+- `debug_traceTransaction`
+- `debug_traceCall`
 
 ### `web3`[​](#web3 "Direct link to heading")
 
 Adds the following RPC calls to the `web3_*` namespace. Defaults to `true`.
 
-*   `web3_clientVersion`
-*   `web3_sha3`
+- `web3_clientVersion`
+- `web3_sha3`
 
 ### `internal-eth`[​](#internal-eth "Direct link to heading")
 
@@ -214,10 +214,10 @@ The API name `internal-public-eth` is deprecated as of v1.7.15, and the APIs pre
 
 Adds the following RPC calls to the `eth_*` namespace. Defaults to `true`.
 
-*   `eth_gasPrice`
-*   `eth_baseFee`
-*   `eth_maxPriorityFeePerGas`
-*   `eth_feeHistory`
+- `eth_gasPrice`
+- `eth_baseFee`
+- `eth_maxPriorityFeePerGas`
+- `eth_feeHistory`
 
 ### `internal-blockchain`[​](#internal-blockchain "Direct link to heading")
 
@@ -225,24 +225,24 @@ The API name `internal-public-blockchain` is deprecated as of v1.7.15, and the A
 
 Adds the following RPC calls to the `eth_*` namespace. Defaults to `true`.
 
-*   `eth_chainId`
-*   `eth_blockNumber`
-*   `eth_getBalance`
-*   `eth_getAssetBalance`
-*   `eth_getProof`
-*   `eth_getHeaderByNumber`
-*   `eth_getHeaderByHash`
-*   `eth_getBlockByNumber`
-*   `eth_getBlockByHash`
-*   `eth_getUncleBlockByNumberAndIndex`
-*   `eth_getUncleBlockByBlockHashAndIndex`
-*   `eth_getUncleCountByBlockNumber`
-*   `eth_getUncleCountByBlockHash`
-*   `eth_getCode`
-*   `eth_getStorageAt`
-*   `eth_call`
-*   `eth_estimateGas`
-*   `eth_createAccessList`
+- `eth_chainId`
+- `eth_blockNumber`
+- `eth_getBalance`
+- `eth_getAssetBalance`
+- `eth_getProof`
+- `eth_getHeaderByNumber`
+- `eth_getHeaderByHash`
+- `eth_getBlockByNumber`
+- `eth_getBlockByHash`
+- `eth_getUncleBlockByNumberAndIndex`
+- `eth_getUncleBlockByBlockHashAndIndex`
+- `eth_getUncleCountByBlockNumber`
+- `eth_getUncleCountByBlockHash`
+- `eth_getCode`
+- `eth_getStorageAt`
+- `eth_call`
+- `eth_estimateGas`
+- `eth_createAccessList`
 
 ### `internal-transaction`[​](#internal-transaction "Direct link to heading")
 
@@ -250,23 +250,23 @@ The API name `internal-public-transaction-pool` is deprecated as of v1.7.15, and
 
 Adds the following RPC calls to the `eth_*` namespace. Defaults to `true`.
 
-*   `eth_getBlockTransactionCountByNumber`
-*   `eth_getBlockTransactionCountByHash`
-*   `eth_getTransactionByBlockNumberAndIndex`
-*   `eth_getTransactionByBlockHashAndIndex`
-*   `eth_getRawTransactionByBlockNumberAndIndex`
-*   `eth_getRawTransactionByBlockHashAndIndex`
-*   `eth_getTransactionCount`
-*   `eth_getTransactionByHash`
-*   `eth_getRawTransactionByHash`
-*   `eth_getTransactionReceipt`
-*   `eth_sendTransaction`
-*   `eth_fillTransaction`
-*   `eth_sendRawTransaction`
-*   `eth_sign`
-*   `eth_signTransaction`
-*   `eth_pendingTransactions`
-*   `eth_resend`
+- `eth_getBlockTransactionCountByNumber`
+- `eth_getBlockTransactionCountByHash`
+- `eth_getTransactionByBlockNumberAndIndex`
+- `eth_getTransactionByBlockHashAndIndex`
+- `eth_getRawTransactionByBlockNumberAndIndex`
+- `eth_getRawTransactionByBlockHashAndIndex`
+- `eth_getTransactionCount`
+- `eth_getTransactionByHash`
+- `eth_getRawTransactionByHash`
+- `eth_getTransactionReceipt`
+- `eth_sendTransaction`
+- `eth_fillTransaction`
+- `eth_sendRawTransaction`
+- `eth_sign`
+- `eth_signTransaction`
+- `eth_pendingTransactions`
+- `eth_resend`
 
 ### `internal-tx-pool`[​](#internal-tx-pool "Direct link to heading")
 
@@ -274,10 +274,10 @@ The API name `internal-public-tx-pool` is deprecated as of v1.7.15, and the APIs
 
 Adds the following RPC calls to the `txpool_*` namespace. Defaults to `false`.
 
-*   `txpool_content`
-*   `txpool_contentFrom`
-*   `txpool_status`
-*   `txpool_inspect`
+- `txpool_content`
+- `txpool_contentFrom`
+- `txpool_status`
+- `txpool_inspect`
 
 ### `internal-debug`[​](#internal-debug "Direct link to heading")
 
@@ -285,31 +285,31 @@ The API names `internal-private-debug` and `internal-public-debug` are deprecate
 
 Adds the following RPC calls to the `debug_*` namespace. Defaults to `false`.
 
-*   `debug_getHeaderRlp`
-*   `debug_getBlockRlp`
-*   `debug_printBlock`
-*   `debug_chaindbProperty`
-*   `debug_chaindbCompact`
+- `debug_getHeaderRlp`
+- `debug_getBlockRlp`
+- `debug_printBlock`
+- `debug_chaindbProperty`
+- `debug_chaindbCompact`
 
 ### `debug-handler`[​](#debug-handler "Direct link to heading")
 
 Adds the following RPC calls to the `debug_*` namespace. Defaults to `false`.
 
-*   `debug_verbosity`
-*   `debug_vmodule`
-*   `debug_backtraceAt`
-*   `debug_memStats`
-*   `debug_gcStats`
-*   `debug_blockProfile`
-*   `debug_setBlockProfileRate`
-*   `debug_writeBlockProfile`
-*   `debug_mutexProfile`
-*   `debug_setMutexProfileFraction`
-*   `debug_writeMutexProfile`
-*   `debug_writeMemProfile`
-*   `debug_stacks`
-*   `debug_freeOSMemory`
-*   `debug_setGCPercent`
+- `debug_verbosity`
+- `debug_vmodule`
+- `debug_backtraceAt`
+- `debug_memStats`
+- `debug_gcStats`
+- `debug_blockProfile`
+- `debug_setBlockProfileRate`
+- `debug_writeBlockProfile`
+- `debug_mutexProfile`
+- `debug_setMutexProfileFraction`
+- `debug_writeMutexProfile`
+- `debug_writeMemProfile`
+- `debug_stacks`
+- `debug_freeOSMemory`
+- `debug_setGCPercent`
 
 ### `internal-account`[​](#internal-account "Direct link to heading")
 
@@ -317,7 +317,7 @@ The API name `internal-public-account` is deprecated as of v1.7.15, and the APIs
 
 Adds the following RPC calls to the `eth_*` namespace. Defaults to `true`.
 
-*   `eth_accounts`
+- `eth_accounts`
 
 ### `internal-personal`[​](#internal-personal "Direct link to heading")
 
@@ -325,21 +325,21 @@ The API name `internal-private-personal` is deprecated as of v1.7.15, and the AP
 
 Adds the following RPC calls to the `personal_*` namespace. Defaults to `false`.
 
-*   `personal_listAccounts`
-*   `personal_listWallets`
-*   `personal_openWallet`
-*   `personal_deriveAccount`
-*   `personal_newAccount`
-*   `personal_importRawKey`
-*   `personal_unlockAccount`
-*   `personal_lockAccount`
-*   `personal_sendTransaction`
-*   `personal_signTransaction`
-*   `personal_sign`
-*   `personal_ecRecover`
-*   `personal_signAndSendTransaction`
-*   `personal_initializeWallet`
-*   `personal_unpair`
+- `personal_listAccounts`
+- `personal_listWallets`
+- `personal_openWallet`
+- `personal_deriveAccount`
+- `personal_newAccount`
+- `personal_importRawKey`
+- `personal_unlockAccount`
+- `personal_lockAccount`
+- `personal_sendTransaction`
+- `personal_signTransaction`
+- `personal_sign`
+- `personal_ecRecover`
+- `personal_signAndSendTransaction`
+- `personal_initializeWallet`
+- `personal_unpair`
 
 API Configuration[​](#api-configuration "Direct link to heading")
 -----------------------------------------------------------------

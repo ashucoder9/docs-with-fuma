@@ -7,10 +7,10 @@ sidebarTitle: Manually Adjust Gas Price
 Probable Reasons You Are Here[​](#probable-reasons-you-are-here "Direct link to heading")
 -----------------------------------------------------------------------------------------
 
-*   Your transaction has stalled, and you don't know what to do
-*   Your transaction has failed, with an error - `transaction underpriced`
-*   It's your first transaction, and you want to be sure about any potential issues
-*   Just for general knowledge on adjusting dynamic fee settings
+- Your transaction has stalled, and you don't know what to do
+- Your transaction has failed, with an error - `transaction underpriced`
+- It's your first transaction, and you want to be sure about any potential issues
+- Just for general knowledge on adjusting dynamic fee settings
 
 If these are your reasons for being here, then you can either go through this entire section, for a better understanding of the scenario or directly skip to the [solution](#adjusting-gas-fees-before-submitting-the-transaction).
 
@@ -35,7 +35,7 @@ When estimating the base fee for users, we simply look at the currently preferre
 
 Along with a gas limit, users can now pass 2 values in dynamic fee transactions
 
-*   `gas fee cap` and `gas tip cap`.
+- `gas fee cap` and `gas tip cap`.
 
 The maximum price per unit of gas, that the user is willing to pay for their transaction is called `gas fee cap`. If the base price for a block is more than the gas fee cap, then the transaction will remain in the transaction pool until the base fee has been changed to be less than or equal to the provided gas fee cap (note: the transaction pool limits the number of pending transactions, so if the number of pending transactions exceeds the configured cap then the transactions with the lowest fees may be evicted from the transaction pool and need to be re-issued).
 

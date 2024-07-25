@@ -16,8 +16,8 @@ A BLS public key and a proof of possession of the key.
 
 ### What Proof of Possession Contains[​](#what-proof-of-possession-contains "Direct link to heading")
 
-*   **PublicKey** is the 48 byte representation of the public key.
-*   **Signature** is the 96 byte signature by the private key over its public key.
+- **PublicKey** is the 48 byte representation of the public key.
+- **Signature** is the 96 byte signature by the private key over its public key.
 
 ### Proof of Possession Specification[​](#proof-of-possession-specification "Direct link to heading")
 
@@ -74,8 +74,8 @@ Transferable outputs wrap an output with an asset ID.
 
 A transferable output contains an `AssetID` and an `Output`.
 
-*   **`AssetID`** is a 32-byte array that defines which asset this output references. The only valid `AssetID` is the AVAX `AssetID`.
-*   **`Output`** is an output, as defined below. For example, this can be a SECP256K1 transfer output.
+- **`AssetID`** is a 32-byte array that defines which asset this output references. The only valid `AssetID` is the AVAX `AssetID`.
+- **`Output`** is an output, as defined below. For example, this can be a SECP256K1 transfer output.
 
 ### Gantt Transferable Output Specification[​](#gantt-transferable-output-specification "Direct link to heading")
 
@@ -102,8 +102,8 @@ message TransferableOutput {
 
 Let's make a transferable output:
 
-*   `AssetID: 0x6870b7d66ac32540311379e5b5dbad28ec7eb8ddbfc8f4d67299ebb48475907a`
-*   `Output: "Example SECP256K1 Transfer Output from below"`
+- `AssetID: 0x6870b7d66ac32540311379e5b5dbad28ec7eb8ddbfc8f4d67299ebb48475907a`
+- `Output: "Example SECP256K1 Transfer Output from below"`
 
 ```
 [
@@ -136,10 +136,10 @@ Transferable inputs describe a specific UTXO with a provided transfer input.
 
 A transferable input contains a `TxID`, `UTXOIndex` `AssetID` and an `Input`.
 
-*   **`TxID`** is a 32-byte array that defines which transaction this input is consuming an output from.
-*   **`UTXOIndex`** is an int that defines which utxo this input is consuming the specified transaction.
-*   **`AssetID`** is a 32-byte array that defines which asset this input references. The only valid `AssetID` is the AVAX `AssetID`.
-*   **`Input`** is a transferable input object.
+- **`TxID`** is a 32-byte array that defines which transaction this input is consuming an output from.
+- **`UTXOIndex`** is an int that defines which utxo this input is consuming the specified transaction.
+- **`AssetID`** is a 32-byte array that defines which asset this input references. The only valid `AssetID` is the AVAX `AssetID`.
+- **`Input`** is a transferable input object.
 
 ### Gantt Transferable Input Specification[​](#gantt-transferable-input-specification "Direct link to heading")
 
@@ -172,10 +172,10 @@ message TransferableInput {
 
 Let's make a transferable input:
 
-*   **`TxID`**: `0x0dfafbdf5c81f635c9257824ff21c8e3e6f7b632ac306e11446ee540d34711a15`
-*   **`UTXOIndex`**: `0`
-*   **`AssetID`**: `0x6870b7d66ac32540311379e5b5dbad28ec7eb8ddbfc8f4d67299ebb48475907a`
-*   **`Input`**: `"Example SECP256K1 Transfer Input from below"`
+- **`TxID`**: `0x0dfafbdf5c81f635c9257824ff21c8e3e6f7b632ac306e11446ee540d34711a15`
+- **`UTXOIndex`**: `0`
+- **`AssetID`**: `0x6870b7d66ac32540311379e5b5dbad28ec7eb8ddbfc8f4d67299ebb48475907a`
+- **`Input`**: `"Example SECP256K1 Transfer Input from below"`
 
 ```
 [
@@ -219,11 +219,11 @@ A [secp256k1](/api-reference/standards/cryptography#secp256k1-addresses) transfe
 
 A secp256k1 transfer output contains a `TypeID`, `Amount`, `Locktime`, `Threshold`, and `Addresses`.
 
-*   **`TypeID`** is the ID for this output type. It is `0x00000007`.
-*   **`Amount`** is a long that specifies the quantity of the asset that this output owns. Must be positive.
-*   **`Locktime`** is a long that contains the Unix timestamp that this output can be spent after. The Unix timestamp is specific to the second.
-*   **`Threshold`** is an int that names the number of unique signatures required to spend the output. Must be less than or equal to the length of **`Addresses`**. If **`Addresses`** is empty, must be 0.
-*   **`Addresses`** is a list of unique addresses that correspond to the private keys that can be used to spend this output. Addresses must be sorted lexicographically.
+- **`TypeID`** is the ID for this output type. It is `0x00000007`.
+- **`Amount`** is a long that specifies the quantity of the asset that this output owns. Must be positive.
+- **`Locktime`** is a long that contains the Unix timestamp that this output can be spent after. The Unix timestamp is specific to the second.
+- **`Threshold`** is an int that names the number of unique signatures required to spend the output. Must be less than or equal to the length of **`Addresses`**. If **`Addresses`** is empty, must be 0.
+- **`Addresses`** is a list of unique addresses that correspond to the private keys that can be used to spend this output. Addresses must be sorted lexicographically.
 
 ### Gantt SECP256K1 Transfer Output Specification[​](#gantt-secp256k1-transfer-output-specification "Direct link to heading")
 
@@ -259,12 +259,12 @@ message SECP256K1TransferOutput {
 
 Let's make a secp256k1 transfer output with:
 
-*   **`TypeID`**: 7
-*   **`Amount`**: 3999000000
-*   **`Locktime`**: 0
-*   **`Threshold`**: 1
-*   **`Addresses`**:
-    *   0xda2bee01be82ecc00c34f361eda8eb30fb5a715c
+- **`TypeID`**: 7
+- **`Amount`**: 3999000000
+- **`Locktime`**: 0
+- **`Threshold`**: 1
+- **`Addresses`**:
+    - 0xda2bee01be82ecc00c34f361eda8eb30fb5a715c
 
 ```
 [
@@ -304,10 +304,10 @@ A [secp256k1](/api-reference/standards/cryptography#secp256k1-addresses) output 
 
 A secp256k1 output owners output contains a `TypeID`, `Locktime`, `Threshold`, and `Addresses`.
 
-*   **`TypeID`** is the ID for this output type. It is `0x0000000b`.
-*   **`Locktime`** is a long that contains the Unix timestamp that this output can be spent after. The Unix timestamp is specific to the second.
-*   **`Threshold`** is an int that names the number of unique signatures required to spend the output. Must be less than or equal to the length of **`Addresses`**. If **`Addresses`** is empty, must be 0.
-*   **`Addresses`** is a list of unique addresses that correspond to the private keys that can be used to spend this output. Addresses must be sorted lexicographically.
+- **`TypeID`** is the ID for this output type. It is `0x0000000b`.
+- **`Locktime`** is a long that contains the Unix timestamp that this output can be spent after. The Unix timestamp is specific to the second.
+- **`Threshold`** is an int that names the number of unique signatures required to spend the output. Must be less than or equal to the length of **`Addresses`**. If **`Addresses`** is empty, must be 0.
+- **`Addresses`** is a list of unique addresses that correspond to the private keys that can be used to spend this output. Addresses must be sorted lexicographically.
 
 ### Gantt SECP256K1 Output Owners Output Specification[​](#gantt-secp256k1-output-owners-output-specification "Direct link to heading")
 
@@ -340,11 +340,11 @@ message SECP256K1OutputOwnersOutput {
 
 Let's make a secp256k1 output owners output with:
 
-*   **`TypeID`**: 11
-*   **`Locktime`**: 0
-*   **`Threshold`**: 1
-*   **`Addresses`**:
-    *   0xda2bee01be82ecc00c34f361eda8eb30fb5a715c
+- **`TypeID`**: 11
+- **`Locktime`**: 0
+- **`Threshold`**: 1
+- **`Addresses`**:
+    - 0xda2bee01be82ecc00c34f361eda8eb30fb5a715c
 
 ```
 [
@@ -386,9 +386,9 @@ A [secp256k1](/api-reference/standards/cryptography#secp256k1-addresses) transfe
 
 A secp256k1 transfer input contains an `Amount` and `AddressIndices`.
 
-*   **`TypeID`** is the ID for this output type. It is `0x00000005`.
-*   **`Amount`** is a long that specifies the quantity that this input should be consuming from the UTXO. Must be positive. Must be equal to the amount specified in the UTXO.
-*   **`AddressIndices`** is a list of unique ints that define the private keys are being used to spend the UTXO. Each UTXO has an array of addresses that can spend the UTXO. Each int represents the index in this address array that will sign this transaction. The array must be sorted low to high.
+- **`TypeID`** is the ID for this output type. It is `0x00000005`.
+- **`Amount`** is a long that specifies the quantity that this input should be consuming from the UTXO. Must be positive. Must be equal to the amount specified in the UTXO.
+- **`AddressIndices`** is a list of unique ints that define the private keys are being used to spend the UTXO. Each UTXO has an array of addresses that can spend the UTXO. Each int represents the index in this address array that will sign this transaction. The array must be sorted low to high.
 
 ### Gantt SECP256K1 Transfer Input Specification[​](#gantt-secp256k1-transfer-input-specification "Direct link to heading")
 
@@ -418,9 +418,9 @@ message SECP256K1TransferInput {
 
 Let's make a payment input with:
 
-*   **`TypeID`**: 5
-*   **`Amount`**: 4000000000
-*   **`AddressIndices`**: \[0\]
+- **`TypeID`**: 5
+- **`Amount`**: 4000000000
+- **`AddressIndices`**: \[0\]
 
 ```
 [
@@ -453,12 +453,12 @@ Unsigned BaseTx[​](#unsigned-basetx "Direct link to heading")
 
 A base TX contains a `TypeID`, `NetworkID`, `BlockchainID`, `Outputs`, `Inputs`, and `Memo`.
 
-*   **`TypeID`** is the ID for this type. It is `0x00000000`.
-*   **`NetworkID`** is an int that defines which network this transaction is meant to be issued to. This value is meant to support transaction routing and is not designed for replay attack prevention.
-*   **`BlockchainID`** is a 32-byte array that defines which blockchain this transaction was issued to. This is used for replay attack prevention for transactions that could potentially be valid across network or blockchain.
-*   **`Outputs`** is an array of transferable output objects. Outputs must be sorted lexicographically by their serialized representation. The total quantity of the assets created in these outputs must be less than or equal to the total quantity of each asset consumed in the inputs minus the transaction fee.
-*   **`Inputs`** is an array of transferable input objects. Inputs must be sorted and unique. Inputs are sorted first lexicographically by their **`TxID`** and then by the **`UTXOIndex`** from low to high. If there are inputs that have the same **`TxID`** and **`UTXOIndex`**, then the transaction is invalid as this would result in a double spend.
-*   **`Memo`** Memo field contains arbitrary bytes, up to 256 bytes.
+- **`TypeID`** is the ID for this type. It is `0x00000000`.
+- **`NetworkID`** is an int that defines which network this transaction is meant to be issued to. This value is meant to support transaction routing and is not designed for replay attack prevention.
+- **`BlockchainID`** is a 32-byte array that defines which blockchain this transaction was issued to. This is used for replay attack prevention for transactions that could potentially be valid across network or blockchain.
+- **`Outputs`** is an array of transferable output objects. Outputs must be sorted lexicographically by their serialized representation. The total quantity of the assets created in these outputs must be less than or equal to the total quantity of each asset consumed in the inputs minus the transaction fee.
+- **`Inputs`** is an array of transferable input objects. Inputs must be sorted and unique. Inputs are sorted first lexicographically by their **`TxID`** and then by the **`UTXOIndex`** from low to high. If there are inputs that have the same **`TxID`** and **`UTXOIndex`**, then the transaction is invalid as this would result in a double spend.
+- **`Memo`** Memo field contains arbitrary bytes, up to 256 bytes.
 
 ### Gantt Base TX Specification[​](#gantt-base-tx-specification "Direct link to heading")
 
@@ -497,13 +497,13 @@ message BaseTx {
 
 Let's make a base TX that uses the inputs and outputs from the previous examples:
 
-*   **`TypeID`**: `0`
-*   **`NetworkID`**: `12345`
-*   **`BlockchainID`**: `0x000000000000000000000000000000000000000000000000000000000000000`
-*   **`Outputs`**:
-    *   `"Example Transferable Output as defined above"`
-*   **`Inputs`**:
-    *   `"Example Transferable Input as defined above"`
+- **`TypeID`**: `0`
+- **`NetworkID`**: `12345`
+- **`BlockchainID`**: `0x000000000000000000000000000000000000000000000000000000000000000`
+- **`Outputs`**:
+    - `"Example Transferable Output as defined above"`
+- **`Inputs`**:
+    - `"Example Transferable Input as defined above"`
 
 ```
 [
@@ -568,16 +568,16 @@ Unsigned Add Validator TX[​](#unsigned-add-validator-tx "Direct link to headin
 
 An unsigned add validator TX contains a `BaseTx`, `Validator`, `Stake`, `RewardsOwner`, and `Shares`. The `TypeID` for this type is `0x0000000c`.
 
-*   **`BaseTx`**
-*   **`Validator`** Validator has a `NodeID`, `StartTime`, `EndTime`, and `Weight`
-    *   **`NodeID`** is 20 bytes which is the node ID of the validator.
-    *   **`StartTime`** is a long which is the Unix time when the validator starts validating.
-    *   **`EndTime`** is a long which is the Unix time when the validator stops validating.
-    *   **`Weight`** is a long which is the amount the validator stakes
-*   **`Stake`** Stake has `LockedOuts`
-    *   **`LockedOuts`** An array of Transferable Outputs that are locked for the duration of the staking period. At the end of the staking period, these outputs are refunded to their respective addresses.
-*   **`RewardsOwner`** A `SECP256K1OutputOwners`
-*   **`Shares`** 10,000 times percentage of reward taken from delegators
+- **`BaseTx`**
+- **`Validator`** Validator has a `NodeID`, `StartTime`, `EndTime`, and `Weight`
+    - **`NodeID`** is 20 bytes which is the node ID of the validator.
+    - **`StartTime`** is a long which is the Unix time when the validator starts validating.
+    - **`EndTime`** is a long which is the Unix time when the validator stops validating.
+    - **`Weight`** is a long which is the amount the validator stakes
+- **`Stake`** Stake has `LockedOuts`
+    - **`LockedOuts`** An array of Transferable Outputs that are locked for the duration of the staking period. At the end of the staking period, these outputs are refunded to their respective addresses.
+- **`RewardsOwner`** A `SECP256K1OutputOwners`
+- **`Shares`** 10,000 times percentage of reward taken from delegators
 
 ### Gantt Unsigned Add Validator TX Specification[​](#gantt-unsigned-add-validator-tx-specification "Direct link to heading")
 
@@ -613,15 +613,15 @@ message AddValidatorTx {
 
 Let's make an unsigned add validator TX that uses the inputs and outputs from the previous examples:
 
-*   **`BaseTx`**: `"Example BaseTx as defined above with ID set to 0c"`
-*   **`Validator`** Validator has a `NodeID`, `StartTime`, `EndTime`, and `Weight`
-    *   **`NodeID`** is 20 bytes which is the node ID of the validator.
-    *   **`StartTime`** is a long which is the Unix time when the validator starts validating.
-    *   **`EndTime`** is a long which is the Unix time when the validator stops validating.
-    *   **`Weight`** is a long which is the amount the validator stakes
-*   **`Stake`**: `0x0000000139c33a499ce4c33a3b09cdd2cfa01ae70dbf2d18b2d7d168524440e55d55008800000007000001d1a94a2000000000000000000000000001000000013cb7d3842e8cee6a0ebd09f1fe884f6861e1b29c`
-*   **`RewardsOwner`**: `0x0000000b00000000000000000000000100000001da2bee01be82ecc00c34f361eda8eb30fb5a715c`
-*   **`Shares`**: `0x00000064`
+- **`BaseTx`**: `"Example BaseTx as defined above with ID set to 0c"`
+- **`Validator`** Validator has a `NodeID`, `StartTime`, `EndTime`, and `Weight`
+    - **`NodeID`** is 20 bytes which is the node ID of the validator.
+    - **`StartTime`** is a long which is the Unix time when the validator starts validating.
+    - **`EndTime`** is a long which is the Unix time when the validator stops validating.
+    - **`Weight`** is a long which is the amount the validator stakes
+- **`Stake`**: `0x0000000139c33a499ce4c33a3b09cdd2cfa01ae70dbf2d18b2d7d168524440e55d55008800000007000001d1a94a2000000000000000000000000001000000013cb7d3842e8cee6a0ebd09f1fe884f6861e1b29c`
+- **`RewardsOwner`**: `0x0000000b00000000000000000000000100000001da2bee01be82ecc00c34f361eda8eb30fb5a715c`
+- **`Shares`**: `0x00000064`
 
 ```
 [
@@ -707,10 +707,10 @@ Unsigned Remove Subnet Validator TX[​](#unsigned-remove-subnet-validator-tx "D
 
 An unsigned remove Subnet validator TX contains a `BaseTx`, `NodeID`, `SubnetID`, and `SubnetAuth`. The `TypeID` for this type is 23 or `0x00000017`.
 
-*   **`BaseTx`**
-*   **`NodeID`** is the 20 byte node ID of the validator.
-*   **`SubnetID`** is the 32 byte Subnet ID that the validator is being removed from.
-*   **`SubnetAuth`** contains `SigIndices` and has a type id of `0x0000000a`. `SigIndices` is a list of unique ints that define the addresses signing the control signature which proves that the issuer has the right to remove the node from the Subnet. The array must be sorted low to high.
+- **`BaseTx`**
+- **`NodeID`** is the 20 byte node ID of the validator.
+- **`SubnetID`** is the 32 byte Subnet ID that the validator is being removed from.
+- **`SubnetAuth`** contains `SigIndices` and has a type id of `0x0000000a`. `SigIndices` is a list of unique ints that define the addresses signing the control signature which proves that the issuer has the right to remove the node from the Subnet. The array must be sorted low to high.
 
 ### Gantt Unsigned Remove Subnet Validator TX Specification[​](#gantt-unsigned-remove-subnet-validator-tx-specification "Direct link to heading")
 
@@ -743,10 +743,10 @@ message RemoveSubnetValidatorTx {
 
 Let's make an unsigned remove Subnet validator TX that uses the inputs and outputs from the previous examples:
 
-*   **`BaseTx`**: `"Example BaseTx as defined above with ID set to 17"`
-*   **`NodeID`**: `0xe902a9a86640bfdb1cd0e36c0cc982b83e5765fa`
-*   **`SubnetID`**: `0x4a177205df5c29929d06db9d941f83d5ea985de302015e99252d16469a6610db`
-*   **`SubnetAuth`**: `0x0000000a0000000100000000`
+- **`BaseTx`**: `"Example BaseTx as defined above with ID set to 17"`
+- **`NodeID`**: `0xe902a9a86640bfdb1cd0e36c0cc982b83e5765fa`
+- **`SubnetID`**: `0x4a177205df5c29929d06db9d941f83d5ea985de302015e99252d16469a6610db`
+- **`SubnetAuth`**: `0x0000000a0000000100000000`
 
 ```
 [
@@ -791,18 +791,18 @@ Unsigned Add Permissionless Validator TX[​](#unsigned-add-permissionless-valid
 
 An unsigned add permissionless validator TX contains a `BaseTx`, `Validator`, `SubnetID`, `Signer`, `StakeOuts`, `ValidatorRewardsOwner`, `DelegatorRewardsOwner`, and `DelegationShares`. The `TypeID` for this type is 25 or `0x00000019`.
 
-*   **`BaseTx`**
-*   **`Validator`** Validator has a `NodeID`, `StartTime`, `EndTime`, and `Weight`
-    *   **`NodeID`** is the 20 byte node ID of the validator.
-    *   **`StartTime`** is a long which is the Unix time when the validator starts validating.
-    *   **`EndTime`** is a long which is the Unix time when the validator stops validating.
-    *   **`Weight`** is a long which is the amount the validator stakes
-*   **`SubnetID`** is the 32 byte Subnet ID of the Subnet this validator will validate.
-*   **`Signer`** If the \[SubnetID\] is the primary network, \[Signer\] is the type ID 28 (`0x1C`) followed by a [Proof of Possession](#proof-of-possession). If the \[SubnetID\] is not the primary network, this value is the empty signer, whose byte representation is only the type ID 27 (`0x1B`).
-*   **`StakeOuts`** An array of Transferable Outputs. Where to send staked tokens when done validating.
-*   **`ValidatorRewardsOwner`** Where to send validation rewards when done validating.
-*   **`DelegatorRewardsOwner`** Where to send delegation rewards when done validating.
-*   **`DelegationShares`** a short which is the fee this validator charges delegators as a percentage, times 10,000 For example, if this validator has DelegationShares=300,000 then they take 30% of rewards from delegators.
+- **`BaseTx`**
+- **`Validator`** Validator has a `NodeID`, `StartTime`, `EndTime`, and `Weight`
+    - **`NodeID`** is the 20 byte node ID of the validator.
+    - **`StartTime`** is a long which is the Unix time when the validator starts validating.
+    - **`EndTime`** is a long which is the Unix time when the validator stops validating.
+    - **`Weight`** is a long which is the amount the validator stakes
+- **`SubnetID`** is the 32 byte Subnet ID of the Subnet this validator will validate.
+- **`Signer`** If the \[SubnetID\] is the primary network, \[Signer\] is the type ID 28 (`0x1C`) followed by a [Proof of Possession](#proof-of-possession). If the \[SubnetID\] is not the primary network, this value is the empty signer, whose byte representation is only the type ID 27 (`0x1B`).
+- **`StakeOuts`** An array of Transferable Outputs. Where to send staked tokens when done validating.
+- **`ValidatorRewardsOwner`** Where to send validation rewards when done validating.
+- **`DelegatorRewardsOwner`** Where to send delegation rewards when done validating.
+- **`DelegationShares`** a short which is the fee this validator charges delegators as a percentage, times 10,000 For example, if this validator has DelegationShares=300,000 then they take 30% of rewards from delegators.
 
 ### Gantt Unsigned Add Permissionless Validator TX Specification[​](#gantt-unsigned-add-permissionless-validator-tx-specification "Direct link to heading")
 
@@ -848,14 +848,14 @@ message AddPermissionlessValidatorTx {
 
 Let's make an unsigned add permissionless validator TX that uses the inputs and outputs from the previous examples:
 
-*   **`BaseTx`**: `"Example BaseTx as defined above with ID set to 1a"`
-*   **`Validator`**: `0x5fa29ed4356903dac2364713c60f57d8472c7dda000000006397616e0000000063beee6e000001d1a94a2000`
-*   **`SubnetID`**: `0xf3086d7bfc35be1c68db664ba9ce61a2060126b0d6b4bfb09fd7a5fb7678cada`
-*   **`Signer`**: `0x0000001ca5af179e4188583893c2b99e1a8be27d90a9213cfbff1d75b74fe2bc9f3b072c2ded0863a9d9acd9033f223295810e429238e28d3c9b7f7212b63d746b2ae73a54fe08a3de61b132f2f89e9eeff97d4d7ca3a3c88986aa855cd36296fcfe8f02162d0258be494d267d4c5798bc081ab602ded90b0fc16d8a035e68ff5294794cb63ff1ee068fbfc2b4c8cd2d08ebf297`
-*   **`StakeOuts`**: `0x000000013d0ad12b8ee8928edf248ca91ca55600fb383f07c32bff1d6dec472b25cf59a700000007000001d1a94a20000000000000000000000000010000000133eeffc64785cf9d80e7731d9f31f67bd03c5cf0`
-*   **`ValidatorRewardsOwner`**: `0x0000000b0000000000000000000000010000000172f3eb9aeaf8283011ce6e437fdecd65eace8f52`
-*   **`DelegatorRewardsOwner`**: `0x0000000b00000000000000000000000100000001b2b91313ac487c222445254e26cd026d21f6f440`
-*   **`DelegationShares`**: `0x00004e20`
+- **`BaseTx`**: `"Example BaseTx as defined above with ID set to 1a"`
+- **`Validator`**: `0x5fa29ed4356903dac2364713c60f57d8472c7dda000000006397616e0000000063beee6e000001d1a94a2000`
+- **`SubnetID`**: `0xf3086d7bfc35be1c68db664ba9ce61a2060126b0d6b4bfb09fd7a5fb7678cada`
+- **`Signer`**: `0x0000001ca5af179e4188583893c2b99e1a8be27d90a9213cfbff1d75b74fe2bc9f3b072c2ded0863a9d9acd9033f223295810e429238e28d3c9b7f7212b63d746b2ae73a54fe08a3de61b132f2f89e9eeff97d4d7ca3a3c88986aa855cd36296fcfe8f02162d0258be494d267d4c5798bc081ab602ded90b0fc16d8a035e68ff5294794cb63ff1ee068fbfc2b4c8cd2d08ebf297`
+- **`StakeOuts`**: `0x000000013d0ad12b8ee8928edf248ca91ca55600fb383f07c32bff1d6dec472b25cf59a700000007000001d1a94a20000000000000000000000000010000000133eeffc64785cf9d80e7731d9f31f67bd03c5cf0`
+- **`ValidatorRewardsOwner`**: `0x0000000b0000000000000000000000010000000172f3eb9aeaf8283011ce6e437fdecd65eace8f52`
+- **`DelegatorRewardsOwner`**: `0x0000000b00000000000000000000000100000001b2b91313ac487c222445254e26cd026d21f6f440`
+- **`DelegationShares`**: `0x00004e20`
 
 ```
 [
@@ -989,15 +989,15 @@ Unsigned Add Permissionless Delegator TX[​](#unsigned-add-permissionless-deleg
 
 An unsigned add permissionless delegator TX contains a `BaseTx`, `Validator`, `SubnetID`, `StakeOuts`, and `DelegatorRewardsOwner`. The `TypeID` for this type is 26 or `0x0000001a`.
 
-*   **`BaseTx`**
-*   **`Validator`** Validator has a `NodeID`, `StartTime`, `EndTime`, and `Weight`
-    *   **`NodeID`** is the 20 byte node ID of the validator.
-    *   **`StartTime`** is a long which is the Unix time when the validator starts validating.
-    *   **`EndTime`** is a long which is the Unix time when the validator stops validating.
-    *   **`Weight`** is a long which is the amount the validator stakes
-*   **`SubnetID`** is the 32 byte Subnet ID of the Subnet this delegation is on.
-*   **`StakeOuts`** An array of Transferable Outputs. Where to send staked tokens when done validating.
-*   **`DelegatorRewardsOwner`** Where to send staking rewards when done validating.
+- **`BaseTx`**
+- **`Validator`** Validator has a `NodeID`, `StartTime`, `EndTime`, and `Weight`
+    - **`NodeID`** is the 20 byte node ID of the validator.
+    - **`StartTime`** is a long which is the Unix time when the validator starts validating.
+    - **`EndTime`** is a long which is the Unix time when the validator stops validating.
+    - **`Weight`** is a long which is the amount the validator stakes
+- **`SubnetID`** is the 32 byte Subnet ID of the Subnet this delegation is on.
+- **`StakeOuts`** An array of Transferable Outputs. Where to send staked tokens when done validating.
+- **`DelegatorRewardsOwner`** Where to send staking rewards when done validating.
 
 ### Gantt Unsigned Add Permissionless Delegator TX Specification[​](#gantt-unsigned-add-permissionless-delegator-tx-specification "Direct link to heading")
 
@@ -1033,11 +1033,11 @@ message AddPermissionlessDelegatorTx {
 
 Let's make an unsigned add permissionless delegator TX that uses the inputs and outputs from the previous examples:
 
-*   **`BaseTx`**: `"Example BaseTx as defined above with ID set to 1a"`
-*   **`Validator`**: `0x5fa29ed4356903dac2364713c60f57d8472c7dda00000000639761970000000063beee97000001d1a94a2000`
-*   **`SubnetID`**: `0xf3086d7bfc35be1c68db664ba9ce61a2060126b0d6b4bfb09fd7a5fb7678cada`
-*   **`StakeOuts`**: `0x000000013d0ad12b8ee8928edf248ca91ca55600fb383f07c32bff1d6dec472b25cf59a700000007000001d1a94a20000000000000000000000000010000000133eeffc64785cf9d80e7731d9f31f67bd03c5cf0`
-*   **`DelegatorRewardsOwner`**: `0x0000000b0000000000000000000000010000000172f3eb9aeaf8283011ce6e437fdecd65eace8f52`
+- **`BaseTx`**: `"Example BaseTx as defined above with ID set to 1a"`
+- **`Validator`**: `0x5fa29ed4356903dac2364713c60f57d8472c7dda00000000639761970000000063beee97000001d1a94a2000`
+- **`SubnetID`**: `0xf3086d7bfc35be1c68db664ba9ce61a2060126b0d6b4bfb09fd7a5fb7678cada`
+- **`StakeOuts`**: `0x000000013d0ad12b8ee8928edf248ca91ca55600fb383f07c32bff1d6dec472b25cf59a700000007000001d1a94a20000000000000000000000000010000000133eeffc64785cf9d80e7731d9f31f67bd03c5cf0`
+- **`DelegatorRewardsOwner`**: `0x0000000b0000000000000000000000010000000172f3eb9aeaf8283011ce6e437fdecd65eace8f52`
 
 ```
 [
@@ -1127,51 +1127,51 @@ Transforms a permissioned Subnet into a permissionless Subnet. Must be signed by
 
 An unsigned transform Subnet TX contains a `BaseTx`, `SubnetID`, `AssetID`, `InitialSupply`, `MaximumSupply`, `MinConsumptionRate`, `MaxConsumptionRate`, `MinValidatorStake`, `MaxValidatorStake`, `MinStakeDuration`, `MaxStakeDuration`, `MinDelegationFee`, `MinDelegatorStake`, `MaxValidatorWeightFactor`, `UptimeRequirement`, and `SubnetAuth`. The `TypeID` for this type is 24 or `0x00000018`.
 
-*   **`BaseTx`**
-*   **`SubnetID`** a 32-byte Subnet ID of the Subnet to transform.
-*   **`AssetID`** is a 32-byte array that defines which asset to use when staking on the Subnet.
-    *   Restrictions
-        *   Must not be the Empty ID
-        *   Must not be the AVAX ID
-*   **`InitialSupply`** is a long which is the amount to initially specify as the current supply.
-    *   Restrictions
-        *   Must be > 0
-*   **`MaximumSupply`** is a long which is the amount to specify as the maximum token supply.
-    *   Restrictions
-        *   Must be >= \[InitialSupply\]
-*   **`MinConsumptionRate`** is a long which is the rate to allocate funds if the validator's stake duration is 0.
-*   **`MaxConsumptionRate`** is a long which is the rate to allocate funds if the validator's stake duration is equal to the minting period.
-    *   Restrictions
-        *   Must be `>=` \[MinConsumptionRate\]
-        *   Must be `<=` \[`reward.PercentDenominator`\]
-*   **`MinValidatorStake`** is a long which the minimum amount of funds required to become a validator.
-    *   Restrictions
-        *   Must be `>` 0
-        *   Must be `<=` \[InitialSupply\]
-*   **`MaxValidatorStake`** is a long which is the maximum amount of funds a single validator can be allocated, including delegated funds.
-    *   Restrictions:
-        *   Must be `>=` \[MinValidatorStake\]
-        *   Must be `<=` \[MaximumSupply\]
-*   **`MinStakeDuration`** is a short which is the minimum number of seconds a staker can stake for.
-    *   Restrictions
-        *   Must be `>` 0
-*   **`MaxStakeDuration`** is a short which is the maximum number of seconds a staker can stake for.
-    *   Restrictions
-        *   Must be `>=` \[MinStakeDuration\]
-        *   Must be `<=` \[GlobalMaxStakeDuration\]
-*   **`MinDelegationFee`** is a short is the minimum percentage a validator must charge a delegator for delegating.
-    *   Restrictions
-        *   Must be `<=` \[`reward.PercentDenominator`\]
-*   **`MinDelegatorStake`** is a short which is the minimum amount of funds required to become a delegator.
-    *   Restrictions
-        *   Must be `>` 0
-*   **`MaxValidatorWeightFactor`** is a byte which is the factor which calculates the maximum amount of delegation a validator can receive. Note: a value of 1 effectively disables delegation.
-    *   Restrictions
-        *   Must be `>` 0
-*   **`UptimeRequirement`** is a short which is the minimum percentage a validator must be online and responsive to receive a reward.
-    *   Restrictions
-        *   Must be `<=` \[`reward.PercentDenominator`\]
-*   **`SubnetAuth`** contains `SigIndices` and has a type id of `0x0000000a`. `SigIndices` is a list of unique ints that define the addresses signing the control signature to authorizes this transformation. The array must be sorted low to high.
+- **`BaseTx`**
+- **`SubnetID`** a 32-byte Subnet ID of the Subnet to transform.
+- **`AssetID`** is a 32-byte array that defines which asset to use when staking on the Subnet.
+    - Restrictions
+        - Must not be the Empty ID
+        - Must not be the AVAX ID
+- **`InitialSupply`** is a long which is the amount to initially specify as the current supply.
+    - Restrictions
+        - Must be > 0
+- **`MaximumSupply`** is a long which is the amount to specify as the maximum token supply.
+    - Restrictions
+        - Must be >= \[InitialSupply\]
+- **`MinConsumptionRate`** is a long which is the rate to allocate funds if the validator's stake duration is 0.
+- **`MaxConsumptionRate`** is a long which is the rate to allocate funds if the validator's stake duration is equal to the minting period.
+    - Restrictions
+        - Must be `>=` \[MinConsumptionRate\]
+        - Must be `<=` \[`reward.PercentDenominator`\]
+- **`MinValidatorStake`** is a long which the minimum amount of funds required to become a validator.
+    - Restrictions
+        - Must be `>` 0
+        - Must be `<=` \[InitialSupply\]
+- **`MaxValidatorStake`** is a long which is the maximum amount of funds a single validator can be allocated, including delegated funds.
+    - Restrictions:
+        - Must be `>=` \[MinValidatorStake\]
+        - Must be `<=` \[MaximumSupply\]
+- **`MinStakeDuration`** is a short which is the minimum number of seconds a staker can stake for.
+    - Restrictions
+        - Must be `>` 0
+- **`MaxStakeDuration`** is a short which is the maximum number of seconds a staker can stake for.
+    - Restrictions
+        - Must be `>=` \[MinStakeDuration\]
+        - Must be `<=` \[GlobalMaxStakeDuration\]
+- **`MinDelegationFee`** is a short is the minimum percentage a validator must charge a delegator for delegating.
+    - Restrictions
+        - Must be `<=` \[`reward.PercentDenominator`\]
+- **`MinDelegatorStake`** is a short which is the minimum amount of funds required to become a delegator.
+    - Restrictions
+        - Must be `>` 0
+- **`MaxValidatorWeightFactor`** is a byte which is the factor which calculates the maximum amount of delegation a validator can receive. Note: a value of 1 effectively disables delegation.
+    - Restrictions
+        - Must be `>` 0
+- **`UptimeRequirement`** is a short which is the minimum percentage a validator must be online and responsive to receive a reward.
+    - Restrictions
+        - Must be `<=` \[`reward.PercentDenominator`\]
+- **`SubnetAuth`** contains `SigIndices` and has a type id of `0x0000000a`. `SigIndices` is a list of unique ints that define the addresses signing the control signature to authorizes this transformation. The array must be sorted low to high.
 
 ### Gantt Unsigned Transform Subnet TX Specification[​](#gantt-unsigned-transform-subnet-tx-specification "Direct link to heading")
 
@@ -1240,24 +1240,24 @@ message TransformSubnetTx {
 
 Let's make an unsigned transform Subnet TX that uses the inputs and outputs from the previous examples:
 
-*   **`BaseTx`**: `"Example BaseTx as defined above with ID set to 18"`
-*   **`SubnetID`**: `0x5fa29ed4356903dac2364713c60f57d8472c7dda4a5e08d88a88ad8ea71aed60`
-*   **`AssetID`**: `0xf3086d7bfc35be1c68db664ba9ce61a2060126b0d6b4bfb09fd7a5fb7678cada`
-*   **`InitialSupply`**: `0x000000e8d4a51000`
-*   **`MaximumSupply`**: `0x000009184e72a000`
-*   **`MinConsumptionRate`**: `0x0000000000000001`
-*   **`MaxConsumptionRate`**: `0x000000000000000a`
-*   **`MinValidatorStake`**: `0x000000174876e800`
-*   **`MaxValidatorStake`**: `0x000001d1a94a2000`
-*   **`MinStakeDuration`**: `0x00015180`
-*   **`MaxStakeDuration`**: `0x01e13380`
-*   **`MinDelegationFee`**: `0x00002710`
-*   **`MinDelegatorStake`**: `0x000000174876e800`
-*   **`MaxValidatorWeightFactor`**: `0x05`
-*   **`UptimeRequirement`**: `0x000c3500`
-*   **`SubnetAuth`**:
-    *   **`TypeID`**: `0x0000000a`
-    *   **`SigIndices`**: `0x00000000`
+- **`BaseTx`**: `"Example BaseTx as defined above with ID set to 18"`
+- **`SubnetID`**: `0x5fa29ed4356903dac2364713c60f57d8472c7dda4a5e08d88a88ad8ea71aed60`
+- **`AssetID`**: `0xf3086d7bfc35be1c68db664ba9ce61a2060126b0d6b4bfb09fd7a5fb7678cada`
+- **`InitialSupply`**: `0x000000e8d4a51000`
+- **`MaximumSupply`**: `0x000009184e72a000`
+- **`MinConsumptionRate`**: `0x0000000000000001`
+- **`MaxConsumptionRate`**: `0x000000000000000a`
+- **`MinValidatorStake`**: `0x000000174876e800`
+- **`MaxValidatorStake`**: `0x000001d1a94a2000`
+- **`MinStakeDuration`**: `0x00015180`
+- **`MaxStakeDuration`**: `0x01e13380`
+- **`MinDelegationFee`**: `0x00002710`
+- **`MinDelegatorStake`**: `0x000000174876e800`
+- **`MaxValidatorWeightFactor`**: `0x05`
+- **`UptimeRequirement`**: `0x000c3500`
+- **`SubnetAuth`**:
+    - **`TypeID`**: `0x0000000a`
+    - **`SigIndices`**: `0x00000000`
 
 ```
 [
@@ -1369,14 +1369,14 @@ Unsigned Add Subnet Validator TX[​](#unsigned-add-subnet-validator-tx "Direct 
 
 An unsigned add Subnet validator TX contains a `BaseTx`, `Validator`, `SubnetID`, and `SubnetAuth`. The `TypeID` for this type is `0x0000000d`.
 
-*   **`BaseTx`**
-*   **`Validator`** Validator has a `NodeID`, `StartTime`, `EndTime`, and `Weight`
-    *   **`NodeID`** is the 20 byte node ID of the validator.
-    *   **`StartTime`** is a long which is the Unix time when the validator starts validating.
-    *   **`EndTime`** is a long which is the Unix time when the validator stops validating.
-    *   **`Weight`** is a long which is the amount the validator stakes
-*   **`SubnetID`** is the 32 byte Subnet ID to add the validator to.
-*   **`SubnetAuth`** contains `SigIndices` and has a type id of `0x0000000a`. `SigIndices` is a list of unique ints that define the addresses signing the control signature to add a validator to a Subnet. The array must be sorted low to high.
+- **`BaseTx`**
+- **`Validator`** Validator has a `NodeID`, `StartTime`, `EndTime`, and `Weight`
+    - **`NodeID`** is the 20 byte node ID of the validator.
+    - **`StartTime`** is a long which is the Unix time when the validator starts validating.
+    - **`EndTime`** is a long which is the Unix time when the validator stops validating.
+    - **`Weight`** is a long which is the amount the validator stakes
+- **`SubnetID`** is the 32 byte Subnet ID to add the validator to.
+- **`SubnetAuth`** contains `SigIndices` and has a type id of `0x0000000a`. `SigIndices` is a list of unique ints that define the addresses signing the control signature to add a validator to a Subnet. The array must be sorted low to high.
 
 ### Gantt Unsigned Add Subnet Validator TX Specification[​](#gantt-unsigned-add-subnet-validator-tx-specification "Direct link to heading")
 
@@ -1409,15 +1409,15 @@ message AddSubnetValidatorTx {
 
 Let's make an unsigned add Subnet validator TX that uses the inputs and outputs from the previous examples:
 
-*   **`BaseTx`**: `"Example BaseTx as defined above with ID set to 0d"`
-*   **`NodeID`**: `0xe9094f73698002fd52c90819b457b9fbc866ab80`
-*   **`StarTime`**: `0x000000005f21f31d`
-*   **`EndTime`**: `0x000000005f497dc6`
-*   **`Weight`**: `0x000000000000d431`
-*   **`SubnetID`**: `0x58b1092871db85bc752742054e2e8be0adf8166ec1f0f0769f4779f14c71d7eb`
-*   **`SubnetAuth`**:
-    *   **`TypeID`**: `0x0000000a`
-    *   **`SigIndices`**: `0x00000000`
+- **`BaseTx`**: `"Example BaseTx as defined above with ID set to 0d"`
+- **`NodeID`**: `0xe9094f73698002fd52c90819b457b9fbc866ab80`
+- **`StarTime`**: `0x000000005f21f31d`
+- **`EndTime`**: `0x000000005f497dc6`
+- **`Weight`**: `0x000000000000d431`
+- **`SubnetID`**: `0x58b1092871db85bc752742054e2e8be0adf8166ec1f0f0769f4779f14c71d7eb`
+- **`SubnetAuth`**:
+    - **`TypeID`**: `0x0000000a`
+    - **`SigIndices`**: `0x00000000`
 
 ```
 [
@@ -1496,15 +1496,15 @@ Unsigned Add Delegator TX[​](#unsigned-add-delegator-tx "Direct link to headin
 
 An unsigned add delegator TX contains a `BaseTx`, `Validator`, `Stake`, and `RewardsOwner`. The `TypeID` for this type is `0x0000000e`.
 
-*   **`BaseTx`**
-*   **`Validator`** Validator has a `NodeID`, `StartTime`, `EndTime`, and `Weight`
-    *   **`NodeID`** is 20 bytes which is the node ID of the delegatee.
-    *   **`StartTime`** is a long which is the Unix time when the delegator starts delegating.
-    *   **`EndTime`** is a long which is the Unix time when the delegator stops delegating (and staked AVAX is returned).
-    *   **`Weight`** is a long which is the amount the delegator stakes
-*   **`Stake`** Stake has `LockedOuts`
-    *   **`LockedOuts`** An array of Transferable Outputs that are locked for the duration of the staking period. At the end of the staking period, these outputs are refunded to their respective addresses.
-*   **`RewardsOwner`** An `SECP256K1OutputOwners`
+- **`BaseTx`**
+- **`Validator`** Validator has a `NodeID`, `StartTime`, `EndTime`, and `Weight`
+    - **`NodeID`** is 20 bytes which is the node ID of the delegatee.
+    - **`StartTime`** is a long which is the Unix time when the delegator starts delegating.
+    - **`EndTime`** is a long which is the Unix time when the delegator stops delegating (and staked AVAX is returned).
+    - **`Weight`** is a long which is the amount the delegator stakes
+- **`Stake`** Stake has `LockedOuts`
+    - **`LockedOuts`** An array of Transferable Outputs that are locked for the duration of the staking period. At the end of the staking period, these outputs are refunded to their respective addresses.
+- **`RewardsOwner`** An `SECP256K1OutputOwners`
 
 ### Gantt Unsigned Add Delegator TX Specification[​](#gantt-unsigned-add-delegator-tx-specification "Direct link to heading")
 
@@ -1537,13 +1537,13 @@ message AddDelegatorTx {
 
 Let's make an unsigned add delegator TX that uses the inputs and outputs from the previous examples:
 
-*   **`BaseTx`**: `"Example BaseTx as defined above with ID set to 0e"`
-*   **`NodeID`**: `0xe9094f73698002fd52c90819b457b9fbc866ab80`
-*   **`StarTime`**: `0x000000005f21f31d`
-*   **`EndTime`**: `0x000000005f497dc6`
-*   **`Weight`**: `0x000000000000d431`
-*   **`Stake`**: `0x0000000139c33a499ce4c33a3b09cdd2cfa01ae70dbf2d18b2d7d168524440e55d55008800000007000001d1a94a2000000000000000000000000001000000013cb7d3842e8cee6a0ebd09f1fe884f6861e1b29c`
-*   **`RewardsOwner`**: `0x0000000b00000000000000000000000100000001da2bee01be82ecc00c34f361eda8eb30fb5a715c`
+- **`BaseTx`**: `"Example BaseTx as defined above with ID set to 0e"`
+- **`NodeID`**: `0xe9094f73698002fd52c90819b457b9fbc866ab80`
+- **`StarTime`**: `0x000000005f21f31d`
+- **`EndTime`**: `0x000000005f497dc6`
+- **`Weight`**: `0x000000000000d431`
+- **`Stake`**: `0x0000000139c33a499ce4c33a3b09cdd2cfa01ae70dbf2d18b2d7d168524440e55d55008800000007000001d1a94a2000000000000000000000000001000000013cb7d3842e8cee6a0ebd09f1fe884f6861e1b29c`
+- **`RewardsOwner`**: `0x0000000b00000000000000000000000100000001da2bee01be82ecc00c34f361eda8eb30fb5a715c`
 
 ```
 [
@@ -1626,13 +1626,13 @@ Unsigned Create Chain TX[​](#unsigned-create-chain-tx "Direct link to heading"
 
 An unsigned create chain TX contains a `BaseTx`, `SubnetID`, `ChainName`, `VMID`, `FxIDs`, `GenesisData` and `SubnetAuth`. The `TypeID` for this type is `0x0000000f`.
 
-*   **`BaseTx`**
-*   **`SubnetID`** ID of the Subnet that validates this blockchain
-*   **`ChainName`** A human readable name for the chain; need not be unique
-*   **`VMID`** ID of the VM running on the new chain
-*   **`FxIDs`** IDs of the feature extensions running on the new chain
-*   **`GenesisData`** Byte representation of genesis state of the new chain
-*   **`SubnetAuth`** Authorizes this blockchain to be added to this Subnet
+- **`BaseTx`**
+- **`SubnetID`** ID of the Subnet that validates this blockchain
+- **`ChainName`** A human readable name for the chain; need not be unique
+- **`VMID`** ID of the VM running on the new chain
+- **`FxIDs`** IDs of the feature extensions running on the new chain
+- **`GenesisData`** Byte representation of genesis state of the new chain
+- **`SubnetAuth`** Authorizes this blockchain to be added to this Subnet
 
 ### Gantt Unsigned Create Chain TX Specification[​](#gantt-unsigned-create-chain-tx-specification "Direct link to heading")
 
@@ -1675,13 +1675,13 @@ message CreateChainTx {
 
 Let's make an unsigned create chain TX that uses the inputs and outputs from the previous examples:
 
-*   **`BaseTx`**: `"Example BaseTx as defined above with ID set to 0f"`
-*   **`SubnetID`**: `24tZhrm8j8GCJRE9PomW8FaeqbgGS4UAQjJnqqn8pq5NwYSYV1`
-*   **`ChainName`**: `EPIC AVM`
-*   **`VMID`**: `avm`
-*   **`FxIDs`**: \[`secp256k1fx`\]
-*   **`GenesisData`**: `11111DdZMhYXUZiFV9FNpfpTSQroysXhzWicG954YAKfkrk3bCEzLVY7gun1eAmAwMiQzVhtGpdR6dnPVcfhBE7brzkJ1r4wzi3dgA8G9Jwc4WpZ6Uh4Dr9aTdw7sFA5cpvCAVBsx6Xf3CB82jwH1gjPZ3WQnnCSKr2reoLtam6TfyYRra5xxXSkZcUm6BaJMW4fKzNP58uyExajPYKZvT5LrQ7MPJ9Fp7ebmYSzXg7YYauNARj`
-*   **`SubnetAuth`**: `0x0000000a0000000100000000`
+- **`BaseTx`**: `"Example BaseTx as defined above with ID set to 0f"`
+- **`SubnetID`**: `24tZhrm8j8GCJRE9PomW8FaeqbgGS4UAQjJnqqn8pq5NwYSYV1`
+- **`ChainName`**: `EPIC AVM`
+- **`VMID`**: `avm`
+- **`FxIDs`**: \[`secp256k1fx`\]
+- **`GenesisData`**: `11111DdZMhYXUZiFV9FNpfpTSQroysXhzWicG954YAKfkrk3bCEzLVY7gun1eAmAwMiQzVhtGpdR6dnPVcfhBE7brzkJ1r4wzi3dgA8G9Jwc4WpZ6Uh4Dr9aTdw7sFA5cpvCAVBsx6Xf3CB82jwH1gjPZ3WQnnCSKr2reoLtam6TfyYRra5xxXSkZcUm6BaJMW4fKzNP58uyExajPYKZvT5LrQ7MPJ9Fp7ebmYSzXg7YYauNARj`
+- **`SubnetAuth`**: `0x0000000a0000000100000000`
 
 ```
 [
@@ -1784,8 +1784,8 @@ Unsigned Create Subnet TX[​](#unsigned-create-subnet-tx "Direct link to headin
 
 An unsigned create Subnet TX contains a `BaseTx`, and `RewardsOwner`. The `TypeID` for this type is `0x00000010`.
 
-*   **`BaseTx`**
-*   **`RewardsOwner`** A `SECP256K1OutputOwners`
+- **`BaseTx`**
+- **`RewardsOwner`** A `SECP256K1OutputOwners`
 
 ### Gantt Unsigned Create Subnet TX Specification[​](#gantt-unsigned-create-subnet-tx-specification "Direct link to heading")
 
@@ -1812,12 +1812,12 @@ message CreateSubnetTx {
 
 Let's make an unsigned create Subnet TX that uses the inputs from the previous examples:
 
-*   **`BaseTx`**: "Example BaseTx as defined above but with TypeID set to 16"
-*   **`RewardsOwner`**:
-    *   **`TypeId`**: 11
-    *   **`Locktime`**: 0
-    *   **`Threshold`**: 1
-    *   **`Addresses`**: \[ 0xda2bee01be82ecc00c34f361eda8eb30fb5a715c \]
+- **`BaseTx`**: "Example BaseTx as defined above but with TypeID set to 16"
+- **`RewardsOwner`**:
+    - **`TypeId`**: 11
+    - **`Locktime`**: 0
+    - **`Threshold`**: 1
+    - **`Addresses`**: \[ 0xda2bee01be82ecc00c34f361eda8eb30fb5a715c \]
 
 ```
 [
@@ -1872,9 +1872,9 @@ Unsigned Import TX[​](#unsigned-import-tx "Direct link to heading")
 
 An unsigned import TX contains a `BaseTx`, `SourceChain`, and `Ins`. The `TypeID` for this type is `0x00000011`.
 
-*   **`BaseTx`**
-*   **`SourceChain`** is a 32-byte source blockchain ID.
-*   **`Ins`** is a variable length array of Transferable Inputs.
+- **`BaseTx`**
+- **`SourceChain`** is a 32-byte source blockchain ID.
+- **`Ins`** is a variable length array of Transferable Inputs.
 
 ### Gantt Unsigned Import TX Specification[​](#gantt-unsigned-import-tx-specification "Direct link to heading")
 
@@ -1904,9 +1904,9 @@ message ImportTx {
 
 Let's make an unsigned import TX that uses the inputs from the previous examples:
 
-*   **`BaseTx`**: "Example BaseTx as defined above with TypeID set to 17"
-*   **`SourceChain`**:
-*   **`Ins`**: "Example SECP256K1 Transfer Input as defined above"
+- **`BaseTx`**: "Example BaseTx as defined above with TypeID set to 17"
+- **`SourceChain`**:
+- **`Ins`**: "Example SECP256K1 Transfer Input as defined above"
 
 ```
 [
@@ -1969,8 +1969,8 @@ Unsigned Export TX[​](#unsigned-export-tx "Direct link to heading")
 
 An unsigned export TX contains a `BaseTx`, `DestinationChain`, and `Outs`. The `TypeID` for this type is `0x00000012`.
 
-*   **`DestinationChain`** is the 32 byte ID of the chain where the funds are being exported to.
-*   **`Outs`** is a variable length array of Transferable Outputs.
+- **`DestinationChain`** is the 32 byte ID of the chain where the funds are being exported to.
+- **`Outs`** is a variable length array of Transferable Outputs.
 
 ### Gantt Unsigned Export TX Specification[​](#gantt-unsigned-export-tx-specification "Direct link to heading")
 
@@ -2000,9 +2000,9 @@ message ExportTx {
 
 Let's make an unsigned export TX that uses the outputs from the previous examples:
 
-*   `BaseTx`: "Example BaseTx as defined above" with `TypeID` set to 18
-*   `DestinationChain`: `0x0000000000000000000000000000000000000000000000000000000000000000`
-*   `Outs`: "Example SECP256K1 Transfer Output as defined above"
+- `BaseTx`: "Example BaseTx as defined above" with `TypeID` set to 18
+- `DestinationChain`: `0x0000000000000000000000000000000000000000000000000000000000000000`
+- `Outs`: "Example SECP256K1 Transfer Output as defined above"
 
 ```
 [
@@ -2084,8 +2084,8 @@ A [secp256k1](/api-reference/standards/cryptography#secp256k1-addresses) credent
 
 ### What SECP256K1 Credential Contains[​](#what-secp256k1-credential-contains "Direct link to heading")
 
-*   **`TypeID`** is the ID for this type. It is `0x00000009`.
-*   **`Signatures`** is an array of 65-byte recoverable signatures. The order of the signatures must match the input's signature indices.
+- **`TypeID`** is the ID for this type. It is `0x00000009`.
+- **`Signatures`** is an array of 65-byte recoverable signatures. The order of the signatures must match the input's signature indices.
 
 ### Gantt SECP256K1 Credential Specification[​](#gantt-secp256k1-credential-specification "Direct link to heading")
 
@@ -2112,9 +2112,9 @@ message SECP256K1Credential {
 
 Let's make a payment input with:
 
-*   **`signatures`**:
-*   `0x000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1e1d1f202122232425262728292a2b2c2e2d2f303132333435363738393a3b3c3d3e3f00`
-*   `0x404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5e5d5f606162636465666768696a6b6c6e6d6f707172737475767778797a7b7c7d7e7f00`
+- **`signatures`**:
+- `0x000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1e1d1f202122232425262728292a2b2c2e2d2f303132333435363738393a3b3c3d3e3f00`
+- `0x404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5e5d5f606162636465666768696a6b6c6e6d6f707172737475767778797a7b7c7d7e7f00`
 
 ```
 [
@@ -2161,9 +2161,9 @@ A signed transaction is an unsigned transaction with the addition of an array of
 
 A signed transaction contains a `CodecID`, `UnsignedTx`, and `Credentials`.
 
-*   **`CodecID`** The only current valid codec id is `00 00`.
-*   **`UnsignedTx`** is an unsigned transaction, as described above.
-*   **`Credentials`** is an array of credentials. Each credential will be paired with the input in the same index at this credential.
+- **`CodecID`** The only current valid codec id is `00 00`.
+- **`UnsignedTx`** is an unsigned transaction, as described above.
+- **`Credentials`** is an array of credentials. Each credential will be paired with the input in the same index at this credential.
 
 ### Gantt Signed Transaction Specification[​](#gantt-signed-transaction-specification "Direct link to heading")
 
@@ -2193,9 +2193,9 @@ message Tx {
 
 Let's make a signed transaction that uses the unsigned transaction and credential from the previous examples.
 
-*   **`CodecID`**: `0`
-*   **`UnsignedTx`**: `0x0000000100000003ffffffffeeeeeeeeddddddddccccccccbbbbbbbbaaaaaaaa999999998888888800000001000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f000000070000000000003039000000000000d431000000010000000251025c61fbcfc078f69334f834be6dd26d55a955c3344128e060128ede3523a24a461c8943ab085900000001f1e1d1c1b1a191817161514131211101f0e0d0c0b0a09080706050403020100000000005000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f0000000500000000075bcd150000000200000003000000070000000400010203`
-*   **`Credentials`** `0x0000000900000002000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1e1d1f202122232425262728292a2b2c2e2d2f303132333435363738393a3b3c3d3e3f00404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5e5d5f606162636465666768696a6b6c6e6d6f707172737475767778797a7b7c7d7e7f00`
+- **`CodecID`**: `0`
+- **`UnsignedTx`**: `0x0000000100000003ffffffffeeeeeeeeddddddddccccccccbbbbbbbbaaaaaaaa999999998888888800000001000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f000000070000000000003039000000000000d431000000010000000251025c61fbcfc078f69334f834be6dd26d55a955c3344128e060128ede3523a24a461c8943ab085900000001f1e1d1c1b1a191817161514131211101f0e0d0c0b0a09080706050403020100000000005000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f0000000500000000075bcd150000000200000003000000070000000400010203`
+- **`Credentials`** `0x0000000900000002000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1e1d1f202122232425262728292a2b2c2e2d2f303132333435363738393a3b3c3d3e3f00404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5e5d5f606162636465666768696a6b6c6e6d6f707172737475767778797a7b7c7d7e7f00`
 
 ```
 [
@@ -2273,11 +2273,11 @@ A UTXO is a standalone representation of a transaction output.
 
 A UTXO contains a `CodecID`, `TxID`, `UTXOIndex`, and `Output`.
 
-*   **`CodecID`** The only current valid codec id is `00 00`.
-*   **`TxID`** is a 32-byte transaction ID. Transaction IDs are calculated by taking sha256 of the bytes of the signed transaction.
-*   **`UTXOIndex`** is an int that specifies which output in the transaction specified by **`TxID`** that this utxo was created by.
-*   **`AssetID`** is a 32-byte array that defines which asset this utxo references.
-*   **`Output`** is the output object that created this utxo. The serialization of Outputs was defined above.
+- **`CodecID`** The only current valid codec id is `00 00`.
+- **`TxID`** is a 32-byte transaction ID. Transaction IDs are calculated by taking sha256 of the bytes of the signed transaction.
+- **`UTXOIndex`** is an int that specifies which output in the transaction specified by **`TxID`** that this utxo was created by.
+- **`AssetID`** is a 32-byte array that defines which asset this utxo references.
+- **`Output`** is the output object that created this utxo. The serialization of Outputs was defined above.
 
 #### Gantt UTXO Specification[​](#gantt-utxo-specification "Direct link to heading")
 
@@ -2313,11 +2313,11 @@ message Utxo {
 
 Let's make a UTXO from the signed transaction created above:
 
-*   **`CodecID`**: `0`
-*   **`TxID`**: `0xf966750f438867c3c9828ddcdbe660e21ccdbb36a9276958f011ba472f75d4e7`
-*   **`UTXOIndex`**: 0x00000000
-*   **`AssetID`**: `0x000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f`
-*   **`Output`**: `"Example SECP256K1 Transferable Output as defined above"`
+- **`CodecID`**: `0`
+- **`TxID`**: `0xf966750f438867c3c9828ddcdbe660e21ccdbb36a9276958f011ba472f75d4e7`
+- **`UTXOIndex`**: 0x00000000
+- **`AssetID`**: `0x000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f`
+- **`Output`**: `"Example SECP256K1 Transferable Output as defined above"`
 
 ```
 [
@@ -2365,9 +2365,9 @@ A StakeableLockIn is a staked and locked input. The StakeableLockIn can only fun
 
 A StakeableLockIn contains a `TypeID`, `Locktime` and `TransferableIn`.
 
-*   **`TypeID`** is the ID for this output type. It is `0x00000015`.
-*   **`Locktime`** is a long that contains the Unix timestamp before which the input can be consumed only to stake. The Unix timestamp is specific to the second.
-*   **`TransferableIn`** is a transferable input object.
+- **`TypeID`** is the ID for this output type. It is `0x00000015`.
+- **`Locktime`** is a long that contains the Unix timestamp before which the input can be consumed only to stake. The Unix timestamp is specific to the second.
+- **`TransferableIn`** is a transferable input object.
 
 ### Gantt StakeableLockIn Specification[​](#gantt-stakeablelockin-specification "Direct link to heading")
 
@@ -2397,9 +2397,9 @@ message StakeableLockIn {
 
 Let's make a StakeableLockIn with:
 
-*   **`TypeID`**: 21
-*   **`Locktime`**: 54321
-*   **`TransferableIn`**: "Example SECP256K1 Transfer Input as defined above"
+- **`TypeID`**: 21
+- **`Locktime`**: 54321
+- **`TransferableIn`**: "Example SECP256K1 Transfer Input as defined above"
 
 ```
 [
@@ -2440,9 +2440,9 @@ A StakeableLockOut is an output that is locked until its lock time, but can be s
 
 A StakeableLockOut contains a `TypeID`, `Locktime` and `TransferableOut`.
 
-*   **`TypeID`** is the ID for this output type. It is `0x00000016`.
-*   **`Locktime`** is a long that contains the Unix timestamp before which the output can be consumed only to stake. The Unix timestamp is specific to the second.
-*   **`transferableout`**: "Example SECP256K1 Transfer Output as defined above"
+- **`TypeID`** is the ID for this output type. It is `0x00000016`.
+- **`Locktime`** is a long that contains the Unix timestamp before which the output can be consumed only to stake. The Unix timestamp is specific to the second.
+- **`transferableout`**: "Example SECP256K1 Transfer Output as defined above"
 
 ### Gantt StakeableLockOut Specification[​](#gantt-stakeablelockout-specification "Direct link to heading")
 
@@ -2472,9 +2472,9 @@ message StakeableLockOut {
 
 Let's make a stakeablelockout with:
 
-*   **`TypeID`**: 22
-*   **`Locktime`**: 54321
-*   **`TransferableOutput`**: `"Example SECP256K1 Transfer Output from above"`
+- **`TypeID`**: 22
+- **`Locktime`**: 54321
+- **`TransferableOutput`**: `"Example SECP256K1 Transfer Output from above"`
 
 ```
 [
@@ -2508,8 +2508,8 @@ Subnet Auth[​](#subnet-auth "Direct link to heading")
 
 Specifies the addresses whose signatures will be provided to demonstrate that the owners of a Subnet approve something.
 
-*   **`TypeID`** is the ID for this type. It is `0x0000000a`.
-*   **`AddressIndices`** defines which addresses' signatures will be attached to this transaction. AddressIndices\[i\] is the index in a Subnet owner list that corresponds to the signature at index i in the signature list. Must be sorted low to high and not have duplicates.
+- **`TypeID`** is the ID for this type. It is `0x0000000a`.
+- **`AddressIndices`** defines which addresses' signatures will be attached to this transaction. AddressIndices\[i\] is the index in a Subnet owner list that corresponds to the signature at index i in the signature list. Must be sorted low to high and not have duplicates.
 
 ### Gantt Subnet Auth Specification[​](#gantt-subnet-auth-specification "Direct link to heading")
 
@@ -2536,8 +2536,8 @@ message SubnetAuth {
 
 Let's make a Subnet auth:
 
-*   **`TypeID`**: `10`
-*   **`AddressIndices`**: \[`0`\]
+- **`TypeID`**: `10`
+- **`AddressIndices`**: \[`0`\]
 
 ```
 [
@@ -2569,10 +2569,10 @@ A validator verifies transactions on a blockchain.
 
 A validator contains `NodeID`, `Start`, `End`, and `Wght`
 
-*   **`NodeID`** is the ID of the validator
-*   **`Start`** Unix time this validator starts validating
-*   **`End`** Unix time this validator stops validating
-*   **`Wght`** Weight of this validator used when sampling
+- **`NodeID`** is the ID of the validator
+- **`Start`** Unix time this validator starts validating
+- **`End`** Unix time this validator stops validating
+- **`Wght`** Weight of this validator used when sampling
 
 ### Gantt Validator Specification[​](#gantt-validator-specification "Direct link to heading")
 
@@ -2605,10 +2605,10 @@ message Validator {
 
 Let's make a validator:
 
-*   **`NodeID`**: `"NodeID-GWPcbFJZFfZreETSoWjPimr846mXEKCtu"`
-*   **`Start`**: `1643068824`
-*   **`End`**: `1644364767`
-*   **`Wght`**: `20`
+- **`NodeID`**: `"NodeID-GWPcbFJZFfZreETSoWjPimr846mXEKCtu"`
+- **`Start`**: `1643068824`
+- **`End`**: `1644364767`
+- **`Wght`**: `20`
 
 ```
 [
@@ -2642,10 +2642,10 @@ Where to send staking rewards when done validating
 
 A rewards owner contains a `TypeID`, `Locktime`, `Threshold`, and `Addresses`.
 
-*   **`TypeID`** is the ID for this validator. It is `0x0000000b`.
-*   **`Locktime`** is a long that contains the Unix timestamp that this output can be spent after. The Unix timestamp is specific to the second.
-*   **`Threshold`** is an int that names the number of unique signatures required to spend the output. Must be less than or equal to the length of **`Addresses`**. If **`Addresses`** is empty, must be 0.
-*   **`Addresses`** is a list of unique addresses that correspond to the private keys that can be used to spend this output. Addresses must be sorted lexicographically.
+- **`TypeID`** is the ID for this validator. It is `0x0000000b`.
+- **`Locktime`** is a long that contains the Unix timestamp that this output can be spent after. The Unix timestamp is specific to the second.
+- **`Threshold`** is an int that names the number of unique signatures required to spend the output. Must be less than or equal to the length of **`Addresses`**. If **`Addresses`** is empty, must be 0.
+- **`Addresses`** is a list of unique addresses that correspond to the private keys that can be used to spend this output. Addresses must be sorted lexicographically.
 
 ### Gantt Rewards Owner Specification[​](#gantt-rewards-owner-specification "Direct link to heading")
 
@@ -2678,12 +2678,12 @@ message RewardsOwner {
 
 Let's make a rewards owner:
 
-*   **`TypeID`**: `11`
-*   **`Locktime`**: `54321`
-*   **`Threshold`**: `1`
-*   **`Addresses`**:
-*   `0x51025c61fbcfc078f69334f834be6dd26d55a955`
-*   `0xc3344128e060128ede3523a24a461c8943ab0859`
+- **`TypeID`**: `11`
+- **`Locktime`**: `54321`
+- **`Threshold`**: `1`
+- **`Addresses`**:
+- `0x51025c61fbcfc078f69334f834be6dd26d55a955`
+- `0xc3344128e060128ede3523a24a461c8943ab0859`
 
 ```
 [

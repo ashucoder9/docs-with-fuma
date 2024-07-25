@@ -13,9 +13,9 @@ Blocks and State[​](#blocks-and-state "Direct link to heading")
 
 Virtual Machines deal with blocks and state. The functionality provided by VMs is to:
 
-*   Define the representation of a blockchain's state
-*   Represent the operations in that state
-*   Apply the operations in that state
+- Define the representation of a blockchain's state
+- Represent the operations in that state
+- Apply the operations in that state
 
 Each block in the blockchain contains a set of state transitions. Each block is applied in order from the blockchain's initial genesis block to its last accepted block to reach the latest state of the blockchain.
 
@@ -29,9 +29,9 @@ A blockchain relies on two major components: The **Consensus Engine** and the **
 3.  The consensus engine will request the block from the VM
 4.  The consensus engine will verify the returned block using the VM's implementation of `Verify()`
 5.  The consensus engine will get the network to reach consensus on whether to accept or reject the newly verified block
-    *   Every virtuous (well-behaved) node on the network will have the same preference for a particular block
+    - Every virtuous (well-behaved) node on the network will have the same preference for a particular block
 6.  Depending upon the consensus results, the engine will either accept or reject the block
-    *   What happens when a block is accepted or rejected is specific to the implementation of the VM
+    - What happens when a block is accepted or rejected is specific to the implementation of the VM
 
 AvalancheGo provides the consensus engine for every blockchain on the Avalanche Network. The consensus engine relies on the VM interface to handle building, parsing, and storing blocks as well as verifying and executing on behalf of the consensus engine.
 
@@ -60,8 +60,8 @@ Users can interact with a blockchain and its VM through handlers exposed by the 
 
 VMs expose two types of handlers to serve responses for incoming requests:
 
-*   **Blockchain Handlers** - Referred to as handlers, these expose APIs to interact with a blockchain instantiated by a VM. The API endpoint will be different for each chain. The endpoint for a handler is `/ext/bc/[chainID]`.
-*   **VM Handlers** - Referred to as static handlers, these expose APIs to interact with the VM directly. One example API would be to parse genesis data to instantiate a new blockchain. The endpoint for a static handler is `/ext/vm/[vmID]`.
+- **Blockchain Handlers** - Referred to as handlers, these expose APIs to interact with a blockchain instantiated by a VM. The API endpoint will be different for each chain. The endpoint for a handler is `/ext/bc/[chainID]`.
+- **VM Handlers** - Referred to as static handlers, these expose APIs to interact with the VM directly. One example API would be to parse genesis data to instantiate a new blockchain. The endpoint for a static handler is `/ext/vm/[vmID]`.
 
 For any readers familiar with object-oriented programming, static and non-static handlers on a VM are analogous to static and non-static methods on a class. Blockchain handlers can be thought of as methods on an object, whereas VM handlers can be thought of as static methods on a class.
 

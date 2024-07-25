@@ -22,11 +22,11 @@ Although AvalancheGo can run on a MacOS or a Windows computer, we strongly recom
 
 For running AvalancheGo as a validator on the Primary Network the recommended configuration is as follows:
 
-*   CPU: Equivalent of 8 AWS vCPU
-*   RAM: 16 GiB
-*   Storage: 1 TiB with at least 3000 IOPS
-*   OS: Ubuntu 20.04
-*   Network: Reliable IPv4 or IPv6 network connection, with an open public port
+- CPU: Equivalent of 8 AWS vCPU
+- RAM: 16 GiB
+- Storage: 1 TiB with at least 3000 IOPS
+- OS: Ubuntu 20.04
+- Network: Reliable IPv4 or IPv6 network connection, with an open public port
 
 That is the configuration sufficient for running a Primary Network node. Any resource requirements for your Subnet come on top of this, so you should not go below this configuration, but may need to step up the specification if you expect your Subnet to handle a significant amount of transactions.
 
@@ -46,9 +46,9 @@ When installing the AvalancheGo node on the machines, unless you have a dedicate
 
 There are a number of different cloud providers. We have documents that show how to set up a node on the most popular ones:
 
-*   [Amazon Web Services](/nodes/run-a-node/on-third-party-services/amazon-web-services)
-*   [Azure](/nodes/run-a-node/on-third-party-services/microsoft-azure)
-*   [Google Cloud Platform](/nodes/run-a-node/on-third-party-services/google-cloud)
+- [Amazon Web Services](/nodes/run-a-node/on-third-party-services/amazon-web-services)
+- [Azure](/nodes/run-a-node/on-third-party-services/microsoft-azure)
+- [Google Cloud Platform](/nodes/run-a-node/on-third-party-services/google-cloud)
 
 There is a whole range of other cloud providers that may offer lower prices or better deals for your particular needs, so it makes sense to shop around.
 
@@ -106,8 +106,8 @@ Running nodes as Subnet validators warrants some additional considerations, abov
 
 For a node to join a Subnet, there are two prerequisites:
 
-*   Primary Network validation
-*   Subnet tracking
+- Primary Network validation
+- Subnet tracking
 
 Primary Network validation means that a node cannot join a Subnet as a validator before becoming a validator on the Primary Network itself. So, after you add the node to the validator set on the Primary Network, node can join a Subnet. Of course, this is valid only for Subnet validators, if you need a non-validating Subnet node, then the node doesn't need to be a validator at all.
 

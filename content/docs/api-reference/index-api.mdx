@@ -63,16 +63,16 @@ index.getContainerByID({
 
 **Request:**
 
-*   `id` is the container's ID
-*   `encoding` is `"hex"` only.
+- `id` is the container's ID
+- `encoding` is `"hex"` only.
 
 **Response:**
 
-*   `id` is the container's ID
-*   `bytes` is the byte representation of the container
-*   `timestamp` is the time at which this node accepted the container
-*   `encoding` is `"hex"` only.
-*   `index` is how many containers were accepted in this index before this one
+- `id` is the container's ID
+- `bytes` is the byte representation of the container
+- `timestamp` is the time at which this node accepted the container
+- `encoding` is `"hex"` only.
+- `index` is how many containers were accepted in this index before this one
 
 **Example Call:**
 
@@ -127,16 +127,16 @@ index.getContainerByIndex({
 
 **Request:**
 
-*   `index` is how many containers were accepted in this index before this one
-*   `encoding` is `"hex"` only.
+- `index` is how many containers were accepted in this index before this one
+- `encoding` is `"hex"` only.
 
 **Response:**
 
-*   `id` is the container's ID
-*   `bytes` is the byte representation of the container
-*   `timestamp` is the time at which this node accepted the container
-*   `index` is how many containers were accepted in this index before this one
-*   `encoding` is `"hex"` only.
+- `id` is the container's ID
+- `bytes` is the byte representation of the container
+- `timestamp` is the time at which this node accepted the container
+- `index` is how many containers were accepted in this index before this one
+- `encoding` is `"hex"` only.
 
 **Example Call:**
 
@@ -174,11 +174,11 @@ curl --location --request POST 'localhost:9650/ext/index/X/tx' \
 
 Returns the transactions at index \[`startIndex`\], \[`startIndex+1`\], ... , \[`startIndex+n-1`\]
 
-*   If \[`n`\] == 0, returns an empty response (for example: null).
-*   If \[`startIndex`\] > the last accepted index, returns an error (unless the above apply.)
-*   If \[`n`\] > \[`MaxFetchedByRange`\], returns an error.
-*   If we run out of transactions, returns the ones fetched before running out.
-*   `numToFetch` must be in `[0,1024]`.
+- If \[`n`\] == 0, returns an empty response (for example: null).
+- If \[`startIndex`\] > the last accepted index, returns an error (unless the above apply.)
+- If \[`n`\] > \[`MaxFetchedByRange`\], returns an error.
+- If we run out of transactions, returns the ones fetched before running out.
+- `numToFetch` must be in `[0,1024]`.
 
 **Signature:**
 
@@ -198,17 +198,17 @@ index.getContainerRange({
 
 **Request:**
 
-*   `startIndex` is the beginning index
-*   `numToFetch` is the number of containers to fetch
-*   `encoding` is `"hex"` only.
+- `startIndex` is the beginning index
+- `numToFetch` is the number of containers to fetch
+- `encoding` is `"hex"` only.
 
 **Response:**
 
-*   `id` is the container's ID
-*   `bytes` is the byte representation of the container
-*   `timestamp` is the time at which this node accepted the container
-*   `encoding` is `"hex"` only.
-*   `index` is how many containers were accepted in this index before this one
+- `id` is the container's ID
+- `bytes` is the byte representation of the container
+- `timestamp` is the time at which this node accepted the container
+- `encoding` is `"hex"` only.
+- `index` is how many containers were accepted in this index before this one
 
 **Example Call:**
 
@@ -262,12 +262,12 @@ index.getIndex({
 
 **Request:**
 
-*   `id` is the ID of the container to fetch
-*   `encoding` is `"hex"` only.
+- `id` is the ID of the container to fetch
+- `encoding` is `"hex"` only.
 
 **Response:**
 
-*   `index` is how many containers were accepted in this index before this one
+- `index` is how many containers were accepted in this index before this one
 
 **Example Call:**
 
@@ -317,14 +317,14 @@ index.getLastAccepted({
 
 **Request:**
 
-*   `encoding` is `"hex"` only.
+- `encoding` is `"hex"` only.
 
 **Response:**
 
-*   `id` is the container's ID
-*   `bytes` is the byte representation of the container
-*   `timestamp` is the time at which this node accepted the container
-*   `encoding` is `"hex"` only.
+- `id` is the container's ID
+- `bytes` is the byte representation of the container
+- `timestamp` is the time at which this node accepted the container
+- `encoding` is `"hex"` only.
 
 **Example Call:**
 
@@ -374,12 +374,12 @@ index.isAccepted({
 
 **Request:**
 
-*   `id` is the ID of the container to fetch
-*   `encoding` is `"hex"` only.
+- `id` is the ID of the container to fetch
+- `encoding` is `"hex"` only.
 
 **Response:**
 
-*   `isAccepted` displays if the container has been accepted
+- `isAccepted` displays if the container has been accepted
 
 **Example Call:**
 

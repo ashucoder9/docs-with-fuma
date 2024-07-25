@@ -41,11 +41,11 @@ Unless otherwise specified, file paths given below are relative to the root of t
 
 There are two main ways to use the network-runner:
 
-*   Run ANR as a binary
+- Run ANR as a binary
     
     This is the recommended approach for most use cases. Doesn't require Golang installation and provides a RPC server with an HTTP API and a client library for easy interaction.
     
-*   Import this repository into your go program
+- Import this repository into your go program
     
     This allows for custom network scenarios and high flexibility, but requires more code to be written.
     
@@ -71,8 +71,8 @@ Note that the above command will run until you stop it with `CTRL + C`. Further 
 
 The RPC server listens to two ports:
 
-*   `port`: the main gRPC port (see [gRPC](https://grpc.io/)).
-*   `grpc-gateway-port`: the gRPC gateway port (see [gRPC-gateway](https://grpc-ecosystem.github.io/grpc-gateway/)), which allows for HTTP requests.
+- `port`: the main gRPC port (see [gRPC](https://grpc.io/)).
+- `grpc-gateway-port`: the gRPC gateway port (see [gRPC-gateway](https://grpc-ecosystem.github.io/grpc-gateway/)), which allows for HTTP requests.
 
 When using the binary to issue calls, the main port will be hit. In this mode, the binary executes compiled code to issue calls. Alternatively, plain HTTP can be used to issue calls, without the need to use the binary. In this mode, the `grpc-gateway-port` should be queried.
 

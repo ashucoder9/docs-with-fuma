@@ -7,15 +7,15 @@ Advanced Node Configuration[​](#advanced-node-configuration "Direct link to he
 
 Without any additional arguments, the script installs the node in a most common configuration. But the script also enables various advanced options to be configured, via the command line prompts. Following is a list of advanced options and their usage:
 
-*   `admin` - [Admin API](/api-reference/admin-api) will be enabled
-*   `archival` - disables database pruning and preserves the complete transaction history
-*   `state-sync` - if `on` state-sync for the C-Chain is used, if `off` it will use regular transaction replay to bootstrap; state-sync is much faster, but has no historical data
-*   `db-dir` - use to provide the full path to the location where the database will be stored
-*   `fuji` - node will connect to Fuji testnet instead of the Mainnet
-*   `index` - [Index API](/api-reference/index-api) will be enabled
-*   `ip` - use `dynamic`, `static` arguments, of enter a desired IP directly to be used as the public IP node will advertise to the network
-*   `rpc` - use `any` or `local` argument to select any or local network interface to be used to listen for RPC calls
-*   `version` - install a specific node version, instead of the latest. See [here](#using-a-previous-version) for usage.
+- `admin` - [Admin API](/api-reference/admin-api) will be enabled
+- `archival` - disables database pruning and preserves the complete transaction history
+- `state-sync` - if `on` state-sync for the C-Chain is used, if `off` it will use regular transaction replay to bootstrap; state-sync is much faster, but has no historical data
+- `db-dir` - use to provide the full path to the location where the database will be stored
+- `fuji` - node will connect to Fuji testnet instead of the Mainnet
+- `index` - [Index API](/api-reference/index-api) will be enabled
+- `ip` - use `dynamic`, `static` arguments, of enter a desired IP directly to be used as the public IP node will advertise to the network
+- `rpc` - use `any` or `local` argument to select any or local network interface to be used to listen for RPC calls
+- `version` - install a specific node version, instead of the latest. See [here](#using-a-previous-version) for usage.
 
 
 <Callout type="info">
@@ -38,25 +38,25 @@ If you want to use the script in an automated environment where you cannot enter
 
 ### Usage Examples[​](#usage-examples "Direct link to heading")
 
-*   To run a Fuji node with indexing enabled and autodetected static IP:
+- To run a Fuji node with indexing enabled and autodetected static IP:
     
     ```
 ./avalanchego-installer.sh --fuji --ip static --index
 ```
     
-*   To run an archival Mainnet node with dynamic IP and database located at `/home/node/db`:
+- To run an archival Mainnet node with dynamic IP and database located at `/home/node/db`:
     
     ```
 ./avalanchego-installer.sh --archival --ip dynamic --db-dir /home/node/db
 ```
     
-*   To use C-Chain state-sync to quickly bootstrap a Mainnet node, with dynamic IP and local RPC only:
+- To use C-Chain state-sync to quickly bootstrap a Mainnet node, with dynamic IP and local RPC only:
     
     ```
 ./avalanchego-installer.sh --state-sync on --ip dynamic --rpc local
 ```
     
-*   To reinstall the node using node version 1.7.10 and use specific IP and local RPC only:
+- To reinstall the node using node version 1.7.10 and use specific IP and local RPC only:
     
     ```
 ./avalanchego-installer.sh --reinstall --ip 1.2.3.4 --version v1.7.10 --rpc local

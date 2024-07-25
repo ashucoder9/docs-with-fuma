@@ -43,9 +43,9 @@ platform.exportKey({
 }) -> {privateKey: string}
 ```
 
-*   `username` is the user that controls `address`.
-*   `password` is `username`'s password.
-*   `privateKey` is the string representation of the private key that controls `address`.
+- `username` is the user that controls `address`.
+- `password` is `username`'s password.
+- `privateKey` is the string representation of the private key that controls `address`.
 
 **Example Call:**
 
@@ -99,12 +99,12 @@ platform.getBalance({
 }
 ```
 
-*   `addresses` are the addresses to get the balance of.
-*   `balances` is a map from assetID to the total balance.
-*   `unlockeds` is a map from assetID to the unlocked balance.
-*   `lockedStakeables` is a map from assetID to the locked stakeable balance.
-*   `lockedNotStakeables` is a map from assetID to the locked and not stakeable balance.
-*   `utxoIDs` are the IDs of the UTXOs that reference `address`.
+- `addresses` are the addresses to get the balance of.
+- `balances` is a map from assetID to the total balance.
+- `unlockeds` is a map from assetID to the unlocked balance.
+- `lockedStakeables` is a map from assetID to the locked stakeable balance.
+- `lockedNotStakeables` is a map from assetID to the locked and not stakeable balance.
+- `utxoIDs` are the IDs of the UTXOs that reference `address`.
 
 **Example Call:**
 
@@ -172,13 +172,13 @@ platform.getBlock({
 
 **Request:**
 
-*   `blockID` is the block ID. It should be in cb58 format.
-*   `encoding` is the encoding format to use. Can be either `hex` or `json`. Defaults to `hex`.
+- `blockID` is the block ID. It should be in cb58 format.
+- `encoding` is the encoding format to use. Can be either `hex` or `json`. Defaults to `hex`.
 
 **Response:**
 
-*   `block` is the block encoded to `encoding`.
-*   `encoding` is the `encoding`.
+- `block` is the block encoded to `encoding`.
+- `encoding` is the `encoding`.
 
 #### Hex Example
 
@@ -305,13 +305,13 @@ platform.getBlockByHeight({
 
 **Request:**
 
-*   `height` is the block height.
-*   `encoding` is the encoding format to use. Can be either `hex` or `json`. Defaults to `hex`.
+- `height` is the block height.
+- `encoding` is the encoding format to use. Can be either `hex` or `json`. Defaults to `hex`.
 
 **Response:**
 
-*   `block` is the block encoded to `encoding`.
-*   `encoding` is the `encoding`.
+- `block` is the block encoded to `encoding`.
+- `encoding` is the `encoding`.
 
 #### Hex Example
 
@@ -442,11 +442,11 @@ platform.getBlockchains() ->
 }
 ```
 
-*   `blockchains` is all of the blockchains that exists on the Avalanche network.
-*   `name` is the human-readable name of this blockchain.
-*   `id` is the blockchain's ID.
-*   `subnetID` is the ID of the Subnet that validates this blockchain.
-*   `vmID` is the ID of the Virtual Machine the blockchain runs.
+- `blockchains` is all of the blockchains that exists on the Avalanche network.
+- `name` is the human-readable name of this blockchain.
+- `id` is the blockchain's ID.
+- `subnetID` is the ID of the Subnet that validates this blockchain.
+- `vmID` is the ID of the Virtual Machine the blockchain runs.
 
 **Example Call:**
 
@@ -530,11 +530,11 @@ platform.getBlockchainStatus(
 
 `status` is one of:
 
-*   `Validating`: The blockchain is being validated by this node.
-*   `Created`: The blockchain exists but isn't being validated by this node.
-*   `Preferred`: The blockchain was proposed to be created and is likely to be created but the transaction isn't yet accepted.
-*   `Syncing`: This node is participating in this blockchain as a non-validating node.
-*   `Unknown`: The blockchain either wasn't proposed or the proposal to create it isn't preferred. The proposal may be resubmitted.
+- `Validating`: The blockchain is being validated by this node.
+- `Created`: The blockchain exists but isn't being validated by this node.
+- `Preferred`: The blockchain was proposed to be created and is likely to be created but the transaction isn't yet accepted.
+- `Syncing`: This node is participating in this blockchain as a non-validating node.
+- `Unknown`: The blockchain either wasn't proposed or the proposal to create it isn't preferred. The proposal may be resubmitted.
 
 **Example Call:**
 
@@ -573,7 +573,7 @@ platform.getCurrentSupply({
 }) -> {supply: int}
 ```
 
-*   `supply` is an upper bound on the number of tokens that exist.
+- `supply` is an upper bound on the number of tokens that exist.
 
 **Example Call:**
 
@@ -657,32 +657,32 @@ platform.getCurrentValidators({
 }
 ```
 
-*   `subnetID` is the Subnet whose current validators are returned. If omitted, returns the current validators of the Primary Network.
-*   `nodeIDs` is a list of the NodeIDs of current validators to request. If omitted, all current validators are returned. If a specified NodeID is not in the set of current validators, it will not be included in the response.
-*   `validators`:
-    *   `txID` is the validator transaction.
-    *   `startTime` is the Unix time when the validator starts validating the Subnet.
-    *   `endTime` is the Unix time when the validator stops validating the Subnet.
-    *   `stakeAmount` is the amount of tokens this validator staked. Omitted if `subnetID` is not a PoS Subnet.
-    *   `nodeID` is the validator's node ID.
-    *   `weight` is the validator's weight when sampling validators. Omitted if `subnetID` is a PoS Subnet.
-    *   `validationRewardOwner` is an `OutputOwners` output which includes `locktime`, `threshold` and array of `addresses`. Specifies the owner of the potential reward earned from staking. Omitted if `subnetID` is not a PoS Subnet.
-    *   `delegationRewardOwner` is an `OutputOwners` output which includes `locktime`, `threshold` and array of `addresses`. Specifies the owner of the potential reward earned from delegations. Omitted if `subnetID` is not a PoS Subnet.
-    *   `potentialReward` is the potential reward earned from staking. Omitted if `subnetID` is not a PoS Subnet.
-    *   `delegationFeeRate` is the percent fee this validator charges when others delegate stake to them. Omitted if `subnetID` is not a PoS Subnet.
-    *   `uptime` is the % of time the queried node has reported the peer as online and validating the Subnet. Omitted if `subnetID` is not a PoS Subnet.
-    *   `connected` is if the node is connected and tracks the Subnet.
-    *   `signer` is the node's BLS public key and proof of possession. Omitted if the validator doesn't have a BLS public key.
-    *   `delegatorCount` is the number of delegators on this validator. Omitted if `subnetID` is not a PoS Subnet.
-    *   `delegatorWeight` is total weight of delegators on this validator. Omitted if `subnetID` is not a PoS Subnet.
-    *   `delegators` is the list of delegators to this validator. Omitted if `subnetID` is not a PoS Subnet. Omitted unless `nodeIDs` specifies a single NodeID.
-        *   `txID` is the delegator transaction.
-        *   `startTime` is the Unix time when the delegator started.
-        *   `endTime` is the Unix time when the delegator stops.
-        *   `stakeAmount` is the amount of nAVAX this delegator staked.
-        *   `nodeID` is the validating node's node ID.
-        *   `rewardOwner` is an `OutputOwners` output which includes `locktime`, `threshold` and array of `addresses`.
-        *   `potentialReward` is the potential reward earned from staking
+- `subnetID` is the Subnet whose current validators are returned. If omitted, returns the current validators of the Primary Network.
+- `nodeIDs` is a list of the NodeIDs of current validators to request. If omitted, all current validators are returned. If a specified NodeID is not in the set of current validators, it will not be included in the response.
+- `validators`:
+    - `txID` is the validator transaction.
+    - `startTime` is the Unix time when the validator starts validating the Subnet.
+    - `endTime` is the Unix time when the validator stops validating the Subnet.
+    - `stakeAmount` is the amount of tokens this validator staked. Omitted if `subnetID` is not a PoS Subnet.
+    - `nodeID` is the validator's node ID.
+    - `weight` is the validator's weight when sampling validators. Omitted if `subnetID` is a PoS Subnet.
+    - `validationRewardOwner` is an `OutputOwners` output which includes `locktime`, `threshold` and array of `addresses`. Specifies the owner of the potential reward earned from staking. Omitted if `subnetID` is not a PoS Subnet.
+    - `delegationRewardOwner` is an `OutputOwners` output which includes `locktime`, `threshold` and array of `addresses`. Specifies the owner of the potential reward earned from delegations. Omitted if `subnetID` is not a PoS Subnet.
+    - `potentialReward` is the potential reward earned from staking. Omitted if `subnetID` is not a PoS Subnet.
+    - `delegationFeeRate` is the percent fee this validator charges when others delegate stake to them. Omitted if `subnetID` is not a PoS Subnet.
+    - `uptime` is the % of time the queried node has reported the peer as online and validating the Subnet. Omitted if `subnetID` is not a PoS Subnet.
+    - `connected` is if the node is connected and tracks the Subnet.
+    - `signer` is the node's BLS public key and proof of possession. Omitted if the validator doesn't have a BLS public key.
+    - `delegatorCount` is the number of delegators on this validator. Omitted if `subnetID` is not a PoS Subnet.
+    - `delegatorWeight` is total weight of delegators on this validator. Omitted if `subnetID` is not a PoS Subnet.
+    - `delegators` is the list of delegators to this validator. Omitted if `subnetID` is not a PoS Subnet. Omitted unless `nodeIDs` specifies a single NodeID.
+        - `txID` is the delegator transaction.
+        - `startTime` is the Unix time when the delegator started.
+        - `endTime` is the Unix time when the delegator stops.
+        - `stakeAmount` is the amount of nAVAX this delegator staked.
+        - `nodeID` is the validating node's node ID.
+        - `rewardOwner` is an `OutputOwners` output which includes `locktime`, `threshold` and array of `addresses`.
+        - `potentialReward` is the potential reward earned from staking
 
 **Example Call:**
 
@@ -808,10 +808,10 @@ platform.getMaxStakeAmount(
 }
 ```
 
-*   `subnetID` is a Buffer or cb58 string representing Subnet
-*   `nodeID` is a string representing ID of the node whose stake amount is required during the given duration
-*   `startTime` is a big number denoting start time of the duration during which stake amount of the node is required.
-*   `endTime` is a big number denoting end time of the duration during which stake amount of the node is required.
+- `subnetID` is a Buffer or cb58 string representing Subnet
+- `nodeID` is a string representing ID of the node whose stake amount is required during the given duration
+- `startTime` is a big number denoting start time of the duration during which stake amount of the node is required.
+- `endTime` is a big number denoting end time of the duration during which stake amount of the node is required.
 
 **Example Call:**
 
@@ -918,23 +918,23 @@ platform.getPendingValidators({
 }
 ```
 
-*   `subnetID` is the Subnet whose current validators are returned. If omitted, returns the current validators of the Primary Network.
-*   `nodeIDs` is a list of the NodeIDs of pending validators to request. If omitted, all pending validators are returned. If a specified NodeID is not in the set of pending validators, it will not be included in the response.
-*   `validators`:
-    *   `txID` is the validator transaction.
-    *   `startTime` is the Unix time when the validator starts validating the Subnet.
-    *   `endTime` is the Unix time when the validator stops validating the Subnet.
-    *   `stakeAmount` is the amount of tokens this validator staked. Omitted if `subnetID` is not a PoS Subnet.
-    *   `nodeID` is the validator's node ID.
-    *   `connected` if the node is connected and tracks the Subnet.
-    *   `signer` is the node's BLS public key and proof of possession. Omitted if the validator doesn't have a BLS public key.
-    *   `weight` is the validator's weight when sampling validators. Omitted if `subnetID` is a PoS Subnet.
-*   `delegators`:
-    *   `txID` is the delegator transaction.
-    *   `startTime` is the Unix time when the delegator starts.
-    *   `endTime` is the Unix time when the delegator stops.
-    *   `stakeAmount` is the amount of tokens this delegator staked.
-    *   `nodeID` is the validating node's node ID.
+- `subnetID` is the Subnet whose current validators are returned. If omitted, returns the current validators of the Primary Network.
+- `nodeIDs` is a list of the NodeIDs of pending validators to request. If omitted, all pending validators are returned. If a specified NodeID is not in the set of pending validators, it will not be included in the response.
+- `validators`:
+    - `txID` is the validator transaction.
+    - `startTime` is the Unix time when the validator starts validating the Subnet.
+    - `endTime` is the Unix time when the validator stops validating the Subnet.
+    - `stakeAmount` is the amount of tokens this validator staked. Omitted if `subnetID` is not a PoS Subnet.
+    - `nodeID` is the validator's node ID.
+    - `connected` if the node is connected and tracks the Subnet.
+    - `signer` is the node's BLS public key and proof of possession. Omitted if the validator doesn't have a BLS public key.
+    - `weight` is the validator's weight when sampling validators. Omitted if `subnetID` is a PoS Subnet.
+- `delegators`:
+    - `txID` is the delegator transaction.
+    - `startTime` is the Unix time when the delegator starts.
+    - `endTime` is the Unix time when the delegator stops.
+    - `stakeAmount` is the amount of tokens this delegator staked.
+    - `nodeID` is the validating node's node ID.
 
 **Example Call:**
 
@@ -999,10 +999,10 @@ platform.getRewardUTXOs({
 }
 ```
 
-*   `txID` is the ID of the staking or delegating transaction
-*   `numFetched` is the number of returned UTXOs
-*   `utxos` is an array of encoded reward UTXOs
-*   `encoding` specifies the format for the returned UTXOs. Can only be `hex` when a value is provided.
+- `txID` is the ID of the staking or delegating transaction
+- `numFetched` is the number of returned UTXOs
+- `utxos` is an array of encoded reward UTXOs
+- `encoding` specifies the format for the returned UTXOs. Can only be `hex` when a value is provided.
 
 **Example Call:**
 
@@ -1056,11 +1056,11 @@ platform.getStake({
 }
 ```
 
-*   `addresses` are the addresses to get information about.
-*   `validatorsOnly` can be either `true` or `false`. If `true`, will skip checking delegators for stake.
-*   `stakeds` is a map from assetID to the amount staked by addresses provided.
-*   `stakedOutputs` are the string representation of staked outputs.
-*   `encoding` specifies the format for the returned outputs.
+- `addresses` are the addresses to get information about.
+- `validatorsOnly` can be either `true` or `false`. If `true`, will skip checking delegators for stake.
+- `stakeds` is a map from assetID to the amount staked by addresses provided.
+- `stakedOutputs` are the string representation of staked outputs.
+- `encoding` specifies the format for the returned outputs.
 
 **Example Call:**
 
@@ -1112,8 +1112,8 @@ platform.getStakingAssetID({
 }
 ```
 
-*   `subnetID` is the Subnet whose assetID is requested.
-*   `assetID` is the assetID for a Subnet's staking asset.
+- `subnetID` is the Subnet whose assetID is requested.
+- `assetID` is the assetID for a Subnet's staking asset.
 
 **Example Call:**
 
@@ -1173,9 +1173,9 @@ platform.getSubnets({
 }
 ```
 
-*   `ids` are the IDs of the Subnets to get information about. If omitted, gets information about all Subnets.
-*   `id` is the Subnet's ID.
-*   `threshold` signatures from addresses in `controlKeys` are needed to add a validator to the Subnet. If the Subnet is a PoS Subnet, then `threshold` will be `0` and `controlKeys` will be empty.
+- `ids` are the IDs of the Subnets to get information about. If omitted, gets information about all Subnets.
+- `id` is the Subnet's ID.
+- `threshold` signatures from addresses in `controlKeys` are needed to add a validator to the Subnet. If the Subnet is a PoS Subnet, then `threshold` will be `0` and `controlKeys` will be empty.
 
 See [here](/nodes/validate/node-validator) for information on adding a validator to a Subnet.
 
@@ -1441,10 +1441,10 @@ platform.getTxStatus({
 
 `status` is one of:
 
-*   `Committed`: The transaction is (or will be) accepted by every node
-*   `Processing`: The transaction is being voted on by this node
-*   `Dropped`: The transaction will never be accepted by any node in the network, check `reason` field for more information
-*   `Unknown`: The transaction hasn't been seen by this node
+- `Committed`: The transaction is (or will be) accepted by every node
+- `Processing`: The transaction is being voted on by this node
+- `Dropped`: The transaction will never be accepted by any node in the network, check `reason` field for more information
+- `Unknown`: The transaction hasn't been seen by this node
 
 **Example Call:**
 
@@ -1501,13 +1501,13 @@ platform.getUTXOs(
 }
 ```
 
-*   `utxos` is a list of UTXOs such that each UTXO references at least one address in `addresses`.
-*   At most `limit` UTXOs are returned. If `limit` is omitted or greater than 1024, it is set to 1024.
-*   This method supports pagination. `endIndex` denotes the last UTXO returned. To get the next set of UTXOs, use the value of `endIndex` as `startIndex` in the next call.
-*   If `startIndex` is omitted, will fetch all UTXOs up to `limit`.
-*   When using pagination (that is when `startIndex` is provided), UTXOs are not guaranteed to be unique across multiple calls. That is, a UTXO may appear in the result of the first call, and then again in the second call.
-*   When using pagination, consistency is not guaranteed across multiple calls. That is, the UTXO set of the addresses may have changed between calls.
-*   `encoding` specifies the format for the returned UTXOs. Can only be `hex` when a value is provided.
+- `utxos` is a list of UTXOs such that each UTXO references at least one address in `addresses`.
+- At most `limit` UTXOs are returned. If `limit` is omitted or greater than 1024, it is set to 1024.
+- This method supports pagination. `endIndex` denotes the last UTXO returned. To get the next set of UTXOs, use the value of `endIndex` as `startIndex` in the next call.
+- If `startIndex` is omitted, will fetch all UTXOs up to `limit`.
+- When using pagination (that is when `startIndex` is provided), UTXOs are not guaranteed to be unique across multiple calls. That is, a UTXO may appear in the result of the first call, and then again in the second call.
+- When using pagination, consistency is not guaranteed across multiple calls. That is, the UTXO set of the addresses may have changed between calls.
+- `encoding` specifies the format for the returned UTXOs. Can only be `hex` when a value is provided.
 
 #### Example
 
@@ -1644,8 +1644,8 @@ platform.getValidatorsAt(
 )
 ```
 
-*   `height` is the P-Chain height to get the validator set at.
-*   `subnetID` is the Subnet ID to get the validator set of. If not given, gets validator set of the Primary Network.
+- `height` is the P-Chain height to get the validator set at.
+- `subnetID` is the Subnet ID to get the validator set of. If not given, gets validator set of the Primary Network.
 
 **Example Call:**
 
@@ -1691,9 +1691,9 @@ platform.issueTx({
 }) -> {txID: string}
 ```
 
-*   `tx` is the byte representation of a transaction.
-*   `encoding` specifies the encoding format for the transaction bytes. Can only be `hex` when a value is provided.
-*   `txID` is the transaction's ID.
+- `tx` is the byte representation of a transaction.
+- `encoding` specifies the encoding format for the transaction bytes. Can only be `hex` when a value is provided.
+- `txID` is the transaction's ID.
 
 **Example Call:**
 
@@ -1787,9 +1787,9 @@ platform.sampleValidators(
 }
 ```
 
-*   `size` is the number of validators to sample.
-*   `subnetID` is the Subnet to sampled from. If omitted, defaults to the Primary Network.
-*   Each element of `validators` is the ID of a validator.
+- `size` is the number of validators to sample.
+- `subnetID` is the Subnet to sampled from. If omitted, defaults to the Primary Network.
+- Each element of `validators` is the ID of a validator.
 
 **Example Call:**
 
@@ -1833,8 +1833,8 @@ platform.validatedBy(
 ) -> {subnetID: string}
 ```
 
-*   `blockchainID` is the blockchain's ID.
-*   `subnetID` is the ID of the Subnet that validates the blockchain.
+- `blockchainID` is the blockchain's ID.
+- `subnetID` is the ID of the Subnet that validates the blockchain.
 
 **Example Call:**
 
@@ -1875,8 +1875,8 @@ platform.validates(
 ) -> {blockchainIDs: []string}
 ```
 
-*   `subnetID` is the Subnet's ID.
-*   Each element of `blockchainIDs` is the ID of a blockchain the Subnet validates.
+- `subnetID` is the Subnet's ID.
+- Each element of `blockchainIDs` is the ID of a blockchain the Subnet validates.
 
 **Example Call:**
 

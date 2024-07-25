@@ -51,10 +51,10 @@ The returned results will include health checks for both subnetIDs as well as gl
 
 The available endpoints for GET requests are:
 
-*   `/ext/health` returns a holistic report of the status of the node. **Most operators should monitor this status.**
-*   `/ext/health/health` is the same as `/ext/health`.
-*   `/ext/health/readiness` returns healthy once the node has finished initializing.
-*   `/ext/health/liveness` returns healthy once the endpoint is available.
+- `/ext/health` returns a holistic report of the status of the node. **Most operators should monitor this status.**
+- `/ext/health/health` is the same as `/ext/health`.
+- `/ext/health/readiness` returns healthy once the node has finished initializing.
+- `/ext/health/liveness` returns healthy once the endpoint is available.
 
 JSON RPC Request[​](#json-rpc-request "Direct link to heading")
 ---------------------------------------------------------------
@@ -190,14 +190,14 @@ In this example response, every check has passed. So, the node is healthy.
 
 **Response Explanation:**
 
-*   `checks` is a list of health check responses.
-    *   A check response may include a `message` with additional context.
-    *   A check response may include an `error` describing why the check failed.
-    *   `timestamp` is the timestamp of the last health check.
-    *   `duration` is the execution duration of the last health check, in nanoseconds.
-    *   `contiguousFailures` is the number of times in a row this check failed.
-    *   `timeOfFirstFailure` is the time this check first failed.
-*   `healthy` is true all the health checks are passing.
+- `checks` is a list of health check responses.
+    - A check response may include a `message` with additional context.
+    - A check response may include an `error` describing why the check failed.
+    - `timestamp` is the timestamp of the last health check.
+    - `duration` is the execution duration of the last health check, in nanoseconds.
+    - `contiguousFailures` is the number of times in a row this check failed.
+    - `timeOfFirstFailure` is the time this check first failed.
+- `healthy` is true all the health checks are passing.
 
 #### `health.readiness`[​](#healthreadiness "Direct link to heading")
 
@@ -239,14 +239,14 @@ In this example response, every check has passed. So, the node has finished the 
 
 **Response Explanation:**
 
-*   `checks` is a list of health check responses.
-    *   A check response may include a `message` with additional context.
-    *   A check response may include an `error` describing why the check failed.
-    *   `timestamp` is the timestamp of the last health check.
-    *   `duration` is the execution duration of the last health check, in nanoseconds.
-    *   `contiguousFailures` is the number of times in a row this check failed.
-    *   `timeOfFirstFailure` is the time this check first failed.
-*   `healthy` is true all the health checks are passing.
+- `checks` is a list of health check responses.
+    - A check response may include a `message` with additional context.
+    - A check response may include an `error` describing why the check failed.
+    - `timestamp` is the timestamp of the last health check.
+    - `duration` is the execution duration of the last health check, in nanoseconds.
+    - `contiguousFailures` is the number of times in a row this check failed.
+    - `timeOfFirstFailure` is the time this check first failed.
+- `healthy` is true all the health checks are passing.
 
 #### `health.liveness`[​](#healthliveness "Direct link to heading")
 
@@ -279,5 +279,5 @@ In this example response, the node was able to handle the request and mark the s
 
 **Response Explanation:**
 
-*   `checks` is an empty list.
-*   `healthy` is true.
+- `checks` is an empty list.
+- `healthy` is true.

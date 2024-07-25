@@ -17,7 +17,7 @@ Subnet-EVM comes with an API request for getting fee config at a specific block.
 eth_feeConfig([blk BlkNrOrHash]) -> {feeConfig: json}
 ```
 
-*   `blk` is the block number or hash at which to retrieve the fee config. Defaults to the latest block if omitted.
+- `blk` is the block number or hash at which to retrieve the fee config. Defaults to the latest block if omitted.
 
 **Example Call:**
 
@@ -150,7 +150,7 @@ curl -X POST --data '{
 eth_getActivePrecompilesAt([timestamp uint]) -> {precompiles: []Precompile}
 ```
 
-*   `timestamp` specifies the timestamp to show the precompiles active at this time. If omitted it shows precompiles activated at the latest block timestamp.
+- `timestamp` specifies the timestamp to show the precompiles active at this time. If omitted it shows precompiles activated at the latest block timestamp.
 
 **Example Call:**
 

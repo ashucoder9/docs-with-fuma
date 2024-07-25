@@ -11,17 +11,17 @@ This is one of the first cases of using Avalanche Subnets as a proving ground fo
 
 We created a basic WAGMI Explorer [https://subnets-test.avax.network/wagmi](https://subnets-test.avax.network/wagmi) that surfaces aggregated usage statistics about the Subnet.
 
-*   SubnetID: [28nrH5T2BMvNrWecFcV3mfccjs6axM1TVyqe79MCv2Mhs8kxiY](https://explorer-xp.avax-test.network/subnet/28nrH5T2BMvNrWecFcV3mfccjs6axM1TVyqe79MCv2Mhs8kxiY?tab=validators)
-*   ChainID: [2ebCneCbwthjQ1rYT41nhd7M76Hc6YmosMAQrTFhBq8qeqh6tt](https://testnet.avascan.info/blockchain/2ebCneCbwthjQ1rYT41nhd7M76Hc6YmosMAQrTFhBq8qeqh6tt)
+- SubnetID: [28nrH5T2BMvNrWecFcV3mfccjs6axM1TVyqe79MCv2Mhs8kxiY](https://explorer-xp.avax-test.network/subnet/28nrH5T2BMvNrWecFcV3mfccjs6axM1TVyqe79MCv2Mhs8kxiY?tab=validators)
+- ChainID: [2ebCneCbwthjQ1rYT41nhd7M76Hc6YmosMAQrTFhBq8qeqh6tt](https://testnet.avascan.info/blockchain/2ebCneCbwthjQ1rYT41nhd7M76Hc6YmosMAQrTFhBq8qeqh6tt)
 
 ### Network Parameters[​](#network-parameters "Direct link to heading")
 
-*   NetworkID: 11111
-*   ChainID: 11111
-*   Block Gas Limit: 20,000,000 (2.5x C-Chain)
-*   10s Gas Target: 100,000,000 (~6.67x C-Chain)
-*   Min Fee: 1 Gwei (4% of C-Chain)
-*   Target Block Rate: 2s (Same as C-Chain)
+- NetworkID: 11111
+- ChainID: 11111
+- Block Gas Limit: 20,000,000 (2.5x C-Chain)
+- 10s Gas Target: 100,000,000 (~6.67x C-Chain)
+- Min Fee: 1 Gwei (4% of C-Chain)
+- Target Block Rate: 2s (Same as C-Chain)
 
 The genesis file of WAGMI can be found [here](https://github.com/ava-labs/public-chain-assets/blob/1951594346dcc91682bdd8929bcf8c1bf6a04c33/chains/11111/genesis.json).
 
@@ -57,14 +57,14 @@ Instead of hard coding the timing of network upgrades in client code like most E
 
 Detailed description of how to do this can be found in [Customize a Subnet](/build/subnets/manage-subnets/upgrade/customize-subnet#network-upgrades-enabledisable-precompiles) tutorial. Here's a summary:
 
-*   Network Upgrade utilizes existing precompiles on the Subnet-EVM:
-    *   ContractDeployerAllowList, for restricting smart contract deployers
-    *   TransactionAllowList, for restricting who can submit transactions
-    *   NativeMinter, for minting native coins
-    *   FeeManager, for configuring dynamic fees
-    *   RewardManager, for enabling block rewards
-*   Each of these precompiles can be individually enabled or disabled at a given timestamp as a network upgrade, or any of the parameters governing its behavior changed.
-*   These upgrades must be specified in a file named `upgrade.json` placed in the same directory where [`config.json`](/build/subnets/manage-subnets/upgrade/customize-subnet#avalanchego-chain-configs) resides: `{chain-config-dir}/{blockchainID}/upgrade.json`.
+- Network Upgrade utilizes existing precompiles on the Subnet-EVM:
+    - ContractDeployerAllowList, for restricting smart contract deployers
+    - TransactionAllowList, for restricting who can submit transactions
+    - NativeMinter, for minting native coins
+    - FeeManager, for configuring dynamic fees
+    - RewardManager, for enabling block rewards
+- Each of these precompiles can be individually enabled or disabled at a given timestamp as a network upgrade, or any of the parameters governing its behavior changed.
+- These upgrades must be specified in a file named `upgrade.json` placed in the same directory where [`config.json`](/build/subnets/manage-subnets/upgrade/customize-subnet#avalanchego-chain-configs) resides: `{chain-config-dir}/{blockchainID}/upgrade.json`.
 
 ### Preparation[​](#preparation "Direct link to heading")
 
@@ -99,12 +99,12 @@ The content of the `upgrade.json` is:
 With the above `upgrade.json`, we intend to perform two network upgrades:
 
 1.  The first upgrade is to activate the FeeManager precompile:
-    *   `0x6f0f6DA1852857d7789f68a28bba866671f3880D` is named as the new Admin of the FeeManager precompile.
-    *   `1660658400` is the [Unix timestamp](https://www.unixtimestamp.com/) for Tue Aug 16 2022 14:00:00 GMT+0000 (future time when we made the announcement) when the new FeeManager change would take effect.
+    - `0x6f0f6DA1852857d7789f68a28bba866671f3880D` is named as the new Admin of the FeeManager precompile.
+    - `1660658400` is the [Unix timestamp](https://www.unixtimestamp.com/) for Tue Aug 16 2022 14:00:00 GMT+0000 (future time when we made the announcement) when the new FeeManager change would take effect.
 2.  The second upgrade is to activate the NativeMinter precompile:
-    *   `0x6f0f6DA1852857d7789f68a28bba866671f3880D` is named as the new Admin of the NativeMinter precompile.
-    *   `0xadFA2910DC148674910c07d18DF966A28CD21331` is named as the new Manager of the NativeMinter precompile. Manager addresses are enabled after Durango upgrades which occurred on February 13, 2024.
-    *   `1708696800` is the [Unix timestamp](https://www.unixtimestamp.com/) for Fri Feb 23 2024 14:00:00 GMT+0000 (future time when we made the announcement) when the new NativeMinter change would take effect.
+    - `0x6f0f6DA1852857d7789f68a28bba866671f3880D` is named as the new Admin of the NativeMinter precompile.
+    - `0xadFA2910DC148674910c07d18DF966A28CD21331` is named as the new Manager of the NativeMinter precompile. Manager addresses are enabled after Durango upgrades which occurred on February 13, 2024.
+    - `1708696800` is the [Unix timestamp](https://www.unixtimestamp.com/) for Fri Feb 23 2024 14:00:00 GMT+0000 (future time when we made the announcement) when the new NativeMinter change would take effect.
 
 Detailed explanations of feeManagerConfig can be found in [here](/build/subnets/manage-subnets/upgrade/customize-subnet#configuring-dynamic-fees), and for the contractNativeMinterConfig in [here](/build/subnets/manage-subnets/upgrade/customize-subnet#minting-native-coins).
 
@@ -146,8 +146,8 @@ We then switch to WAGMI in the networks dropdown. We are ready to move on to Rem
 
 Good, we're talking to WAGMI Subnet. Next we need to load the contracts into Remix. Using 'load from GitHub' option from the Remix home screen we load two contracts:
 
-*   [IAllowList.sol](https://github.com/ava-labs/subnet-evm/blob/master/contracts/contracts/interfaces/IAllowList.sol)
-*   and [IFeeManager.sol](https://github.com/ava-labs/subnet-evm/blob/master/contract/contracts/interfaces/IFeeManager.sol).
+- [IAllowList.sol](https://github.com/ava-labs/subnet-evm/blob/master/contracts/contracts/interfaces/IAllowList.sol)
+- and [IFeeManager.sol](https://github.com/ava-labs/subnet-evm/blob/master/contract/contracts/interfaces/IFeeManager.sol).
 
 IFeeManager is our precompile, but it references the IAllowList, so we need that one as well. We compile IFeeManager.sol and use deployed contract at the precompile address `0x0200000000000000000000000000000000000003` used on the [Subnet](https://github.com/ava-labs/subnet-evm/blob/master/precompile/contracts/feemanager/module.go#L21).
 
@@ -173,8 +173,8 @@ That's it, fees changed! No network upgrades, no complex and risky deployments, 
 
 For the NativeMinter, we can use the same process to connect to the Subnet and interact with the precompile. We can load INativeMinter interface using 'load from GitHub' option from the Remix home screen with following contracts:
 
-*   [IAllowList.sol](https://github.com/ava-labs/subnet-evm/blob/master/contracts/contracts/interfaces/IAllowList.sol)
-*   and [INativeMinter.sol](https://github.com/ava-labs/subnet-evm/blob/master/contracts/contracts/interfaces/INativeMinter.sol).
+- [IAllowList.sol](https://github.com/ava-labs/subnet-evm/blob/master/contracts/contracts/interfaces/IAllowList.sol)
+- and [INativeMinter.sol](https://github.com/ava-labs/subnet-evm/blob/master/contracts/contracts/interfaces/INativeMinter.sol).
 
 We can compile them and interact with the deployed contract at the precompile address `0x0200000000000000000000000000000000000001` used on the [Subnet](https://github.com/ava-labs/subnet-evm/blob/master/precompile/contracts/nativeminter/module.go#L22).
 

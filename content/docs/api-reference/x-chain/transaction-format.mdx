@@ -18,8 +18,8 @@ Transferable outputs wrap an output with an asset ID.
 
 A transferable output contains an `AssetID` and an [`Output`](/api-reference/x-chain/transaction-format#outputs).
 
-*   **`AssetID`** is a 32-byte array that defines which asset this output references.
-*   **`Output`** is an output, as defined [below](/api-reference/x-chain/transaction-format#outputs). Outputs have four possible types: [`SECP256K1TransferOutput`](/api-reference/x-chain/transaction-format#secp256k1-transfer-output), [`SECP256K1MintOutput`](/api-reference/x-chain/transaction-format#secp256k1-mint-output), [`NFTTransferOutput`](/api-reference/x-chain/transaction-format#nft-transfer-output) and [`NFTMintOutput`](/api-reference/x-chain/transaction-format#nft-mint-output).
+- **`AssetID`** is a 32-byte array that defines which asset this output references.
+- **`Output`** is an output, as defined [below](/api-reference/x-chain/transaction-format#outputs). Outputs have four possible types: [`SECP256K1TransferOutput`](/api-reference/x-chain/transaction-format#secp256k1-transfer-output), [`SECP256K1MintOutput`](/api-reference/x-chain/transaction-format#secp256k1-mint-output), [`NFTTransferOutput`](/api-reference/x-chain/transaction-format#nft-transfer-output) and [`NFTMintOutput`](/api-reference/x-chain/transaction-format#nft-mint-output).
 
 ### Gantt Transferable Output Specification[​](#gantt-transferable-output-specification "Direct link to heading")
 
@@ -46,8 +46,8 @@ message TransferableOutput {
 
 Let's make a transferable output:
 
-*   `AssetID`: `0x000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f`
-*   `Output`: `"Example SECP256K1 Transfer Output from below"`
+- `AssetID`: `0x000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f`
+- `Output`: `"Example SECP256K1 Transfer Output from below"`
 
 ```
 [
@@ -83,10 +83,10 @@ Transferable inputs describe a specific UTXO with a provided transfer input.
 
 A transferable input contains a `TxID`, `UTXOIndex` `AssetID` and an `Input`.
 
-*   **`TxID`** is a 32-byte array that defines which transaction this input is consuming an output from. Transaction IDs are calculated by taking sha256 of the bytes of the signed transaction.
-*   **`UTXOIndex`** is an int that defines which UTXO this input is consuming in the specified transaction.
-*   **`AssetID`** is a 32-byte array that defines which asset this input references.
-*   **`Input`** is an input, as defined below. This can currently only be a [SECP256K1 transfer input](/api-reference/x-chain/transaction-format#secp256k1-transfer-input)
+- **`TxID`** is a 32-byte array that defines which transaction this input is consuming an output from. Transaction IDs are calculated by taking sha256 of the bytes of the signed transaction.
+- **`UTXOIndex`** is an int that defines which UTXO this input is consuming in the specified transaction.
+- **`AssetID`** is a 32-byte array that defines which asset this input references.
+- **`Input`** is an input, as defined below. This can currently only be a [SECP256K1 transfer input](/api-reference/x-chain/transaction-format#secp256k1-transfer-input)
 
 ### Gantt Transferable Input Specification[​](#gantt-transferable-input-specification "Direct link to heading")
 
@@ -119,10 +119,10 @@ message TransferableInput {
 
 Let's make a transferable input:
 
-*   `TxID`: `0xf1e1d1c1b1a191817161514131211101f0e0d0c0b0a090807060504030201000`
-*   `UTXOIndex`: `5`
-*   `AssetID`: `0x000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f`
-*   `Input`: `"Example SECP256K1 Transfer Input from below"`
+- `TxID`: `0xf1e1d1c1b1a191817161514131211101f0e0d0c0b0a090807060504030201000`
+- `UTXOIndex`: `5`
+- `AssetID`: `0x000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f`
+- `Input`: `"Example SECP256K1 Transfer Input from below"`
 
 ```
 [
@@ -161,9 +161,9 @@ Transferable operations describe a set of UTXOs with a provided transfer operati
 
 A transferable operation contains an `AssetID`, `UTXOIDs`, and a `TransferOp`.
 
-*   **`AssetID`** is a 32-byte array that defines which asset this operation changes.
-*   **`UTXOIDs`** is an array of TxID-OutputIndex tuples. This array must be sorted in lexicographical order.
-*   **`TransferOp`** is a [transferable operation object](/api-reference/x-chain/transaction-format#operations).
+- **`AssetID`** is a 32-byte array that defines which asset this operation changes.
+- **`UTXOIDs`** is an array of TxID-OutputIndex tuples. This array must be sorted in lexicographical order.
+- **`TransferOp`** is a [transferable operation object](/api-reference/x-chain/transaction-format#operations).
 
 ### Gantt Transferable Op Specification[​](#gantt-transferable-op-specification "Direct link to heading")
 
@@ -198,12 +198,12 @@ message TransferableOp {
 
 Let's make a transferable operation:
 
-*   `AssetID`: `0x000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f`
-*   `UTXOIDs`:
-    *   `UTXOID`:
-        *   `TxID`: `0xf1e1d1c1b1a191817161514131211101f0e0d0c0b0a090807060504030201000`
-        *   `UTXOIndex`: `5`
-*   `Op`: `"Example Transfer Op from below"`
+- `AssetID`: `0x000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f`
+- `UTXOIDs`:
+    - `UTXOID`:
+        - `TxID`: `0xf1e1d1c1b1a191817161514131211101f0e0d0c0b0a090807060504030201000`
+        - `UTXOIndex`: `5`
+- `Op`: `"Example Transfer Op from below"`
 
 ```
 [
@@ -260,10 +260,10 @@ A [secp256k1](/api-reference/standards/cryptography#secp256k1-addresses) mint ou
 
 A secp256k1 Mint output contains a `TypeID`, `Locktime`, `Threshold`, and `Addresses`.
 
-*   **`TypeID`** is the ID for this output type. It is `0x00000006`.
-*   **`Locktime`** is a long that contains the Unix timestamp that this output can be spent after. The Unix timestamp is specific to the second.
-*   **`Threshold`** is an int that names the number of unique signatures required to spend the output. Must be less than or equal to the length of **`Addresses`**. If **`Addresses`** is empty, must be 0.
-*   **`Addresses`** is a list of unique addresses that correspond to the private keys that can be used to spend this output. Addresses must be sorted lexicographically.
+- **`TypeID`** is the ID for this output type. It is `0x00000006`.
+- **`Locktime`** is a long that contains the Unix timestamp that this output can be spent after. The Unix timestamp is specific to the second.
+- **`Threshold`** is an int that names the number of unique signatures required to spend the output. Must be less than or equal to the length of **`Addresses`**. If **`Addresses`** is empty, must be 0.
+- **`Addresses`** is a list of unique addresses that correspond to the private keys that can be used to spend this output. Addresses must be sorted lexicographically.
 
 ### Gantt SECP256K1 Mint Output Specification[​](#gantt-secp256k1-mint-output-specification "Direct link to heading")
 
@@ -296,12 +296,12 @@ message SECP256K1MintOutput {
 
 Let's make a SECP256K1 mint output with:
 
-*   **`TypeID`**: `6`
-*   **`Locktime`**: `54321`
-*   **`Threshold`**: `1`
-*   **`Addresses`**:
-*   `0x51025c61fbcfc078f69334f834be6dd26d55a955`
-*   `0xc3344128e060128ede3523a24a461c8943ab0859`
+- **`TypeID`**: `6`
+- **`Locktime`**: `54321`
+- **`Threshold`**: `1`
+- **`Addresses`**:
+- `0x51025c61fbcfc078f69334f834be6dd26d55a955`
+- `0xc3344128e060128ede3523a24a461c8943ab0859`
 
 ```
 [
@@ -343,11 +343,11 @@ A [secp256k1](/api-reference/standards/cryptography#secp256k1-addresses) transfe
 
 A secp256k1 transfer output contains a `TypeID`, `Amount`, `Locktime`, `Threshold`, and `Addresses`.
 
-*   **`TypeID`** is the ID for this output type. It is `0x00000007`.
-*   **`Amount`** is a long that specifies the quantity of the asset that this output owns. Must be positive.
-*   **`Locktime`** is a long that contains the Unix timestamp that this output can be spent after. The Unix timestamp is specific to the second.
-*   **`Threshold`** is an int that names the number of unique signatures required to spend the output. Must be less than or equal to the length of **`Addresses`**. If **`Addresses`** is empty, must be 0.
-*   **`Addresses`** is a list of unique addresses that correspond to the private keys that can be used to spend this output. Addresses must be sorted lexicographically.
+- **`TypeID`** is the ID for this output type. It is `0x00000007`.
+- **`Amount`** is a long that specifies the quantity of the asset that this output owns. Must be positive.
+- **`Locktime`** is a long that contains the Unix timestamp that this output can be spent after. The Unix timestamp is specific to the second.
+- **`Threshold`** is an int that names the number of unique signatures required to spend the output. Must be less than or equal to the length of **`Addresses`**. If **`Addresses`** is empty, must be 0.
+- **`Addresses`** is a list of unique addresses that correspond to the private keys that can be used to spend this output. Addresses must be sorted lexicographically.
 
 ### Gantt SECP256K1 Transfer Output Specification[​](#gantt-secp256k1-transfer-output-specification "Direct link to heading")
 
@@ -383,13 +383,13 @@ message SECP256K1TransferOutput {
 
 Let's make a secp256k1 transfer output with:
 
-*   **`TypeID`**: `7`
-*   **`Amount`**: `12345`
-*   **`Locktime`**: `54321`
-*   **`Threshold`**: `1`
-*   **`Addresses`**:
-*   `0x51025c61fbcfc078f69334f834be6dd26d55a955`
-*   `0xc3344128e060128ede3523a24a461c8943ab0859`
+- **`TypeID`**: `7`
+- **`Amount`**: `12345`
+- **`Locktime`**: `54321`
+- **`Threshold`**: `1`
+- **`Addresses`**:
+- `0x51025c61fbcfc078f69334f834be6dd26d55a955`
+- `0xc3344128e060128ede3523a24a461c8943ab0859`
 
 ```
 [
@@ -434,11 +434,11 @@ An NFT mint output is an NFT that is owned by a collection of addresses.
 
 An NFT Mint output contains a `TypeID`, `GroupID`, `Locktime`, `Threshold`, and `Addresses`.
 
-*   **`TypeID`** is the ID for this output type. It is `0x0000000a`.
-*   **`GroupID`** is an int that specifies the group this NFT is issued to.
-*   **`Locktime`** is a long that contains the Unix timestamp that this output can be spent after. The Unix timestamp is specific to the second.
-*   **`Threshold`** is an int that names the number of unique signatures required to spend the output. Must be less than or equal to the length of **`Addresses`**. If **`Addresses`** is empty, must be 0.
-*   **`Addresses`** is a list of unique addresses that correspond to the private keys that can be used to spend this output. Addresses must be sorted lexicographically.
+- **`TypeID`** is the ID for this output type. It is `0x0000000a`.
+- **`GroupID`** is an int that specifies the group this NFT is issued to.
+- **`Locktime`** is a long that contains the Unix timestamp that this output can be spent after. The Unix timestamp is specific to the second.
+- **`Threshold`** is an int that names the number of unique signatures required to spend the output. Must be less than or equal to the length of **`Addresses`**. If **`Addresses`** is empty, must be 0.
+- **`Addresses`** is a list of unique addresses that correspond to the private keys that can be used to spend this output. Addresses must be sorted lexicographically.
 
 ### Gantt NFT Mint Output Specification[​](#gantt-nft-mint-output-specification "Direct link to heading")
 
@@ -474,13 +474,13 @@ message NFTMintOutput {
 
 Let's make an NFT mint output with:
 
-*   **`TypeID`**: `10`
-*   **`GroupID`**: `12345`
-*   **`Locktime`**: `54321`
-*   **`Threshold`**: `1`
-*   **`Addresses`**:
-*   `0x51025c61fbcfc078f69334f834be6dd26d55a955`
-*   `0xc3344128e060128ede3523a24a461c8943ab0859`
+- **`TypeID`**: `10`
+- **`GroupID`**: `12345`
+- **`Locktime`**: `54321`
+- **`Threshold`**: `1`
+- **`Addresses`**:
+- `0x51025c61fbcfc078f69334f834be6dd26d55a955`
+- `0xc3344128e060128ede3523a24a461c8943ab0859`
 
 ```
 [
@@ -525,12 +525,12 @@ An NFT transfer output is an NFT that is owned by a collection of addresses.
 
 An NFT transfer output contains a `TypeID`, `GroupID`, `Payload`, `Locktime`, `Threshold`, and `Addresses`.
 
-*   **`TypeID`** is the ID for this output type. It is `0x0000000b`.
-*   **`GroupID`** is an int that specifies the group this NFT was issued with.
-*   **`Payload`** is an arbitrary string of bytes no long longer than 1024 bytes.
-*   **`Locktime`** is a long that contains the Unix timestamp that this output can be spent after. The Unix timestamp is specific to the second.
-*   **`Threshold`** is an int that names the number of unique signatures required to spend the output. Must be less than or equal to the length of **`Addresses`**. If **`Addresses`** is empty, must be 0.
-*   **`Addresses`** is a list of unique addresses that correspond to the private keys that can be used to spend this output. Addresses must be sorted lexicographically.
+- **`TypeID`** is the ID for this output type. It is `0x0000000b`.
+- **`GroupID`** is an int that specifies the group this NFT was issued with.
+- **`Payload`** is an arbitrary string of bytes no long longer than 1024 bytes.
+- **`Locktime`** is a long that contains the Unix timestamp that this output can be spent after. The Unix timestamp is specific to the second.
+- **`Threshold`** is an int that names the number of unique signatures required to spend the output. Must be less than or equal to the length of **`Addresses`**. If **`Addresses`** is empty, must be 0.
+- **`Addresses`** is a list of unique addresses that correspond to the private keys that can be used to spend this output. Addresses must be sorted lexicographically.
 
 ### Gantt NFT Transfer Output Specification[​](#gantt-nft-transfer-output-specification "Direct link to heading")
 
@@ -570,14 +570,14 @@ message NFTTransferOutput {
 
 Let's make an NFT transfer output with:
 
-*   **`TypeID`**: `11`
-*   **`GroupID`**: `12345`
-*   **`Payload`**: `NFT Payload`
-*   **`Locktime`**: `54321`
-*   **`Threshold`**: `1`
-*   **`Addresses`**:
-*   `0x51025c61fbcfc078f69334f834be6dd26d55a955`
-*   `0xc3344128e060128ede3523a24a461c8943ab0859`
+- **`TypeID`**: `11`
+- **`GroupID`**: `12345`
+- **`Payload`**: `NFT Payload`
+- **`Locktime`**: `54321`
+- **`Threshold`**: `1`
+- **`Addresses`**:
+- `0x51025c61fbcfc078f69334f834be6dd26d55a955`
+- `0xc3344128e060128ede3523a24a461c8943ab0859`
 
 ```
 [
@@ -633,9 +633,9 @@ A [secp256k1](/api-reference/standards/cryptography#secp256k1-addresses) transfe
 
 A secp256k1 transfer input contains an `Amount` and `AddressIndices`.
 
-*   **`TypeID`** is the ID for this input type. It is `0x00000005`.
-*   **`Amount`** is a long that specifies the quantity that this input should be consuming from the UTXO. Must be positive. Must be equal to the amount specified in the UTXO.
-*   **`AddressIndices`** is a list of unique ints that define the private keys that are being used to spend the UTXO. Each UTXO has an array of addresses that can spend the UTXO. Each int represents the index in this address array that will sign this transaction. The array must be sorted low to high.
+- **`TypeID`** is the ID for this input type. It is `0x00000005`.
+- **`Amount`** is a long that specifies the quantity that this input should be consuming from the UTXO. Must be positive. Must be equal to the amount specified in the UTXO.
+- **`AddressIndices`** is a list of unique ints that define the private keys that are being used to spend the UTXO. Each UTXO has an array of addresses that can spend the UTXO. Each int represents the index in this address array that will sign this transaction. The array must be sorted low to high.
 
 ### Gantt SECP256K1 Transfer Input Specification[​](#gantt-secp256k1-transfer-input-specification "Direct link to heading")
 
@@ -665,9 +665,9 @@ message SECP256K1TransferInput {
 
 Let's make a payment input with:
 
-*   **`TypeId`**: `5`
-*   **`Amount`**: `123456789`
-*   **`AddressIndices`**: \[`3`,`7`\]
+- **`TypeId`**: `5`
+- **`Amount`**: `123456789`
+- **`AddressIndices`**: \[`3`,`7`\]
 
 ```
 [
@@ -704,10 +704,10 @@ A [secp256k1](/api-reference/standards/cryptography#secp256k1-addresses) mint op
 
 A secp256k1 Mint operation contains a `TypeID`, `AddressIndices`, `MintOutput`, and `TransferOutput`.
 
-*   **`TypeID`** is the ID for this output type. It is `0x00000008`.
-*   **`AddressIndices`** is a list of unique ints that define the private keys that are being used to spend the [UTXO](/api-reference/x-chain/transaction-format#utxo). Each UTXO has an array of addresses that can spend the UTXO. Each int represents the index in this address array that will sign this transaction. The array must be sorted low to high.
-*   **`MintOutput`** is a [SECP256K1 Mint output](/api-reference/x-chain/transaction-format#secp256k1-mint-output).
-*   **`TransferOutput`** is a [SECP256K1 Transfer output](/api-reference/x-chain/transaction-format#secp256k1-transfer-output).
+- **`TypeID`** is the ID for this output type. It is `0x00000008`.
+- **`AddressIndices`** is a list of unique ints that define the private keys that are being used to spend the [UTXO](/api-reference/x-chain/transaction-format#utxo). Each UTXO has an array of addresses that can spend the UTXO. Each int represents the index in this address array that will sign this transaction. The array must be sorted low to high.
+- **`MintOutput`** is a [SECP256K1 Mint output](/api-reference/x-chain/transaction-format#secp256k1-mint-output).
+- **`TransferOutput`** is a [SECP256K1 Transfer output](/api-reference/x-chain/transaction-format#secp256k1-transfer-output).
 
 ### Gantt SECP256K1 Mint Operation Specification[​](#gantt-secp256k1-mint-operation-specification "Direct link to heading")
 
@@ -742,12 +742,12 @@ message SECP256K1MintOperation {
 
 Let's make a [secp256k1](/api-reference/standards/cryptography#secp256k1-addresses) mint operation with:
 
-*   **`TypeId`**: `8`
-*   **`AddressIndices`**:
-*   `0x00000003`
-*   `0x00000007`
-*   **`MintOutput`**: `"Example SECP256K1 Mint Output from above"`
-*   **`TransferOutput`**: `"Example SECP256K1 Transfer Output from above"`
+- **`TypeId`**: `8`
+- **`AddressIndices`**:
+- `0x00000003`
+- `0x00000007`
+- **`MintOutput`**: `"Example SECP256K1 Mint Output from above"`
+- **`TransferOutput`**: `"Example SECP256K1 Transfer Output from above"`
 
 ```
 [
@@ -797,11 +797,11 @@ An NFT mint operation consumes an NFT mint output and sends an unspent output to
 
 An NFT mint operation contains a `TypeID`, `AddressIndices`, `GroupID`, `Payload`, and `Output` of addresses.
 
-*   **`TypeID`** is the ID for this operation type. It is `0x0000000c`.
-*   **`AddressIndices`** is a list of unique ints that define the private keys that are being used to spend the UTXO. Each UTXO has an array of addresses that can spend the UTXO. Each int represents the index in this address array that will sign this transaction. The array must be sorted low to high.
-*   **`GroupID`** is an int that specifies the group this NFT is issued to.
-*   **`Payload`** is an arbitrary string of bytes no longer than 1024 bytes.
-*   **`Output`** is not a `TransferableOutput`, but rather is a lock time, threshold, and an array of unique addresses that correspond to the private keys that can be used to spend this output. Addresses must be sorted lexicographically.
+- **`TypeID`** is the ID for this operation type. It is `0x0000000c`.
+- **`AddressIndices`** is a list of unique ints that define the private keys that are being used to spend the UTXO. Each UTXO has an array of addresses that can spend the UTXO. Each int represents the index in this address array that will sign this transaction. The array must be sorted low to high.
+- **`GroupID`** is an int that specifies the group this NFT is issued to.
+- **`Payload`** is an arbitrary string of bytes no longer than 1024 bytes.
+- **`Output`** is not a `TransferableOutput`, but rather is a lock time, threshold, and an array of unique addresses that correspond to the private keys that can be used to spend this output. Addresses must be sorted lexicographically.
 
 ### Gantt NFT Mint Op Specification[​](#gantt-nft-mint-op-specification "Direct link to heading")
 
@@ -840,16 +840,16 @@ message NFTMintOp {
 
 Let's make an NFT mint operation with:
 
-*   **`TypeId`**: `12`
-*   **`AddressIndices`**:
-    *   `0x00000003`
-    *   `0x00000007`
-*   **`GroupID`**: `12345`
-*   **`Payload`**: `0x431100`
-*   **`Locktime`**: `54321`
-*   **`Threshold`**: `1`
-*   **`Addresses`**:
-*   `0xc3344128e060128ede3523a24a461c8943ab0859`
+- **`TypeId`**: `12`
+- **`AddressIndices`**:
+    - `0x00000003`
+    - `0x00000007`
+- **`GroupID`**: `12345`
+- **`Payload`**: `0x431100`
+- **`Locktime`**: `54321`
+- **`Threshold`**: `1`
+- **`Addresses`**:
+- `0xc3344128e060128ede3523a24a461c8943ab0859`
 
 ```
 [
@@ -907,9 +907,9 @@ An NFT transfer operation sends an unspent NFT transfer output to a new set of o
 
 An NFT transfer operation contains a `TypeID`, `AddressIndices` and an untyped `NFTTransferOutput`.
 
-*   **`TypeID`** is the ID for this output type. It is `0x0000000d`.
-*   **`AddressIndices`** is a list of unique ints that define the private keys that are being used to spend the UTXO. Each UTXO has an array of addresses that can spend the UTXO. Each int represents the index in this address array that will sign this transaction. The array must be sorted low to high.
-*   **`NFTTransferOutput`** is the output of this operation and must be an [NFT Transfer Output](/api-reference/x-chain/transaction-format#nft-transfer-output). This output doesn't have the **`TypeId`**, because the type is known by the context of being in this operation.
+- **`TypeID`** is the ID for this output type. It is `0x0000000d`.
+- **`AddressIndices`** is a list of unique ints that define the private keys that are being used to spend the UTXO. Each UTXO has an array of addresses that can spend the UTXO. Each int represents the index in this address array that will sign this transaction. The array must be sorted low to high.
+- **`NFTTransferOutput`** is the output of this operation and must be an [NFT Transfer Output](/api-reference/x-chain/transaction-format#nft-transfer-output). This output doesn't have the **`TypeId`**, because the type is known by the context of being in this operation.
 
 ### Gantt NFT Transfer Op Specification[​](#gantt-nft-transfer-op-specification "Direct link to heading")
 
@@ -953,17 +953,17 @@ message NFTTransferOp {
 
 Let's make an NFT transfer operation with:
 
-*   **`TypeID`**: `13`
-*   **`AddressIndices`**:
-*   `0x00000007`
-*   `0x00000003`
-*   **`GroupID`**: `12345`
-*   **`Payload`**: `0x431100`
-*   **`Locktime`**: `54321`
-*   **`Threshold`**: `1`
-*   **`Addresses`**:
-*   `0xc3344128e060128ede3523a24a461c8943ab0859`
-*   `0x51025c61fbcfc078f69334f834be6dd26d55a955`
+- **`TypeID`**: `13`
+- **`AddressIndices`**:
+- `0x00000007`
+- `0x00000003`
+- **`GroupID`**: `12345`
+- **`Payload`**: `0x431100`
+- **`Locktime`**: `54321`
+- **`Threshold`**: `1`
+- **`Addresses`**:
+- `0xc3344128e060128ede3523a24a461c8943ab0859`
+- `0x51025c61fbcfc078f69334f834be6dd26d55a955`
 
 ```
 [
@@ -1023,8 +1023,8 @@ Initial state describes the initial state of an asset when it is created. It con
 
 Initial state contains a `FxID` and an array of `Output`.
 
-*   **`FxID`** is an int that defines which feature extension this state is part of. For SECP256K1 assets, this is `0x00000000`. For NFT assets, this is `0x00000001`.
-*   **`Outputs`** is a variable length array of [outputs](/api-reference/x-chain/transaction-format#outputs), as defined above.
+- **`FxID`** is an int that defines which feature extension this state is part of. For SECP256K1 assets, this is `0x00000000`. For NFT assets, this is `0x00000001`.
+- **`Outputs`** is a variable length array of [outputs](/api-reference/x-chain/transaction-format#outputs), as defined above.
 
 ### Gantt Initial State Specification[​](#gantt-initial-state-specification "Direct link to heading")
 
@@ -1051,8 +1051,8 @@ message InitialState {
 
 Let's make an initial state:
 
-*   `FxID`: `0x00000000`
-*   `InitialState`: `["Example SECP256K1 Transfer Output from above"]`
+- `FxID`: `0x00000000`
+- `InitialState`: `["Example SECP256K1 Transfer Output from above"]`
 
 ```
 [
@@ -1092,8 +1092,8 @@ A [secp256k1](/api-reference/standards/cryptography#secp256k1-addresses) credent
 
 ### What SECP256K1 Credential Contains[​](#what-secp256k1-credential-contains "Direct link to heading")
 
-*   **`TypeID`** is the ID for this type. It is `0x00000009`.
-*   **`Signatures`** is an array of 65-byte recoverable signatures. The order of the signatures must match the input's signature indices.
+- **`TypeID`** is the ID for this type. It is `0x00000009`.
+- **`Signatures`** is an array of 65-byte recoverable signatures. The order of the signatures must match the input's signature indices.
 
 ### Gantt SECP256K1 Credential Specification[​](#gantt-secp256k1-credential-specification "Direct link to heading")
 
@@ -1120,10 +1120,10 @@ message SECP256K1Credential {
 
 Let's make a payment input with:
 
-*   **`TypeID`**: `9`
-*   **`signatures`**:
-*   `0x000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1e1d1f202122232425262728292a2b2c2e2d2f303132333435363738393a3b3c3d3e3f00`
-*   `0x404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5e5d5f606162636465666768696a6b6c6e6d6f707172737475767778797a7b7c7d7e7f00`
+- **`TypeID`**: `9`
+- **`signatures`**:
+- `0x000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1e1d1f202122232425262728292a2b2c2e2d2f303132333435363738393a3b3c3d3e3f00`
+- `0x404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5e5d5f606162636465666768696a6b6c6e6d6f707172737475767778797a7b7c7d7e7f00`
 
 ```
 [
@@ -1179,12 +1179,12 @@ Unsigned BaseTx[​](#unsigned-basetx "Direct link to heading")
 
 A base TX contains a `TypeID`, `NetworkID`, `BlockchainID`, `Outputs`, `Inputs`, and `Memo`.
 
-*   **`TypeID`** is the ID for this type. It is `0x00000000`.
-*   **`NetworkID`** is an int that defines which network this transaction is meant to be issued to. This value is meant to support transaction routing and is not designed for replay attack prevention.
-*   **`BlockchainID`** is a 32-byte array that defines which blockchain this transaction was issued to. This is used for replay attack prevention for transactions that could potentially be valid across network or blockchain.
-*   **`Outputs`** is an array of [transferable output objects](/api-reference/x-chain/transaction-format#transferable-output). Outputs must be sorted lexicographically by their serialized representation. The total quantity of the assets created in these outputs must be less than or equal to the total quantity of each asset consumed in the inputs minus the transaction fee.
-*   **`Inputs`** is an array of [transferable input objects](/api-reference/x-chain/transaction-format#transferable-input). Inputs must be sorted and unique. Inputs are sorted first lexicographically by their **`TxID`** and then by the **`UTXOIndex`** from low to high. If there are inputs that have the same **`TxID`** and **`UTXOIndex`**, then the transaction is invalid as this would result in a double spend.
-*   **`Memo`** Memo field contains arbitrary bytes, up to 256 bytes.
+- **`TypeID`** is the ID for this type. It is `0x00000000`.
+- **`NetworkID`** is an int that defines which network this transaction is meant to be issued to. This value is meant to support transaction routing and is not designed for replay attack prevention.
+- **`BlockchainID`** is a 32-byte array that defines which blockchain this transaction was issued to. This is used for replay attack prevention for transactions that could potentially be valid across network or blockchain.
+- **`Outputs`** is an array of [transferable output objects](/api-reference/x-chain/transaction-format#transferable-output). Outputs must be sorted lexicographically by their serialized representation. The total quantity of the assets created in these outputs must be less than or equal to the total quantity of each asset consumed in the inputs minus the transaction fee.
+- **`Inputs`** is an array of [transferable input objects](/api-reference/x-chain/transaction-format#transferable-input). Inputs must be sorted and unique. Inputs are sorted first lexicographically by their **`TxID`** and then by the **`UTXOIndex`** from low to high. If there are inputs that have the same **`TxID`** and **`UTXOIndex`**, then the transaction is invalid as this would result in a double spend.
+- **`Memo`** Memo field contains arbitrary bytes, up to 256 bytes.
 
 ### Gantt Base TX Specification[​](#gantt-base-tx-specification "Direct link to heading")
 
@@ -1223,14 +1223,14 @@ message BaseTx {
 
 Let's make an base TX that uses the inputs and outputs from the previous examples:
 
-*   **`TypeID`**: `0`
-*   **`NetworkID`**: `4`
-*   **`BlockchainID`**: `0xffffffffeeeeeeeeddddddddcccccccbbbbbbbbaaaaaaaa9999999988888888`
-*   **`Outputs`**:
-    *   `"Example Transferable Output as defined above"`
-*   **`Inputs`**:
-    *   `"Example Transferable Input as defined above"`
-*   **`Memo`**: `0x00010203`
+- **`TypeID`**: `0`
+- **`NetworkID`**: `4`
+- **`BlockchainID`**: `0xffffffffeeeeeeeeddddddddcccccccbbbbbbbbaaaaaaaa9999999988888888`
+- **`Outputs`**:
+    - `"Example Transferable Output as defined above"`
+- **`Inputs`**:
+    - `"Example Transferable Input as defined above"`
+- **`Memo`**: `0x00010203`
 
 ```
 [
@@ -1301,11 +1301,11 @@ Unsigned CreateAssetTx[​](#unsigned-createassettx "Direct link to heading")
 
 An unsigned create asset TX contains a `BaseTx`, `Name`, `Symbol`, `Denomination`, and `InitialStates`. The `TypeID` is `0x00000001`.
 
-*   **`BaseTx`**
-*   **`Name`** is a human readable string that defines the name of the asset this transaction will create. The name is not guaranteed to be unique. The name must consist of only printable ASCII characters and must be no longer than 128 characters.
-*   **`Symbol`** is a human readable string that defines the symbol of the asset this transaction will create. The symbol is not guaranteed to be unique. The symbol must consist of only printable ASCII characters and must be no longer than 4 characters.
-*   **`Denomination`** is a byte that defines the divisibility of the asset this transaction will create. For example, the AVAX token is divisible into billionths. Therefore, the denomination of the AVAX token is 9. The denomination must be no more than 32.
-*   **`InitialStates`** is a variable length array that defines the feature extensions this asset supports, and the [initial state](/api-reference/x-chain/transaction-format#initial-state) of those feature extensions.
+- **`BaseTx`**
+- **`Name`** is a human readable string that defines the name of the asset this transaction will create. The name is not guaranteed to be unique. The name must consist of only printable ASCII characters and must be no longer than 128 characters.
+- **`Symbol`** is a human readable string that defines the symbol of the asset this transaction will create. The symbol is not guaranteed to be unique. The symbol must consist of only printable ASCII characters and must be no longer than 4 characters.
+- **`Denomination`** is a byte that defines the divisibility of the asset this transaction will create. For example, the AVAX token is divisible into billionths. Therefore, the denomination of the AVAX token is 9. The denomination must be no more than 32.
+- **`InitialStates`** is a variable length array that defines the feature extensions this asset supports, and the [initial state](/api-reference/x-chain/transaction-format#initial-state) of those feature extensions.
 
 ### Gantt Unsigned Create Asset TX Specification[​](#gantt-unsigned-create-asset-tx-specification "Direct link to heading")
 
@@ -1342,12 +1342,12 @@ message CreateAssetTx {
 
 Let's make an unsigned base TX that uses the inputs and outputs from the previous examples:
 
-*   `BaseTx`: `"Example BaseTx as defined above with ID set to 1"`
-*   `Name`: `Volatility Index`
-*   `Symbol`: `VIX`
-*   `Denomination`: `2`
-*   **`InitialStates`**:
-*   `"Example Initial State as defined above"`
+- `BaseTx`: `"Example BaseTx as defined above with ID set to 1"`
+- `Name`: `Volatility Index`
+- `Symbol`: `VIX`
+- `Denomination`: `2`
+- **`InitialStates`**:
+- `"Example Initial State as defined above"`
 
 ```
 [
@@ -1427,8 +1427,8 @@ Unsigned OperationTx[​](#unsigned-operationtx "Direct link to heading")
 
 An unsigned operation TX contains a `BaseTx`, and `Ops`. The `TypeID` for this type is `0x00000002`.
 
-*   **`BaseTx`**
-*   **`Ops`** is a variable-length array of [Transferable Ops](/api-reference/x-chain/transaction-format#transferable-op).
+- **`BaseTx`**
+- **`Ops`** is a variable-length array of [Transferable Ops](/api-reference/x-chain/transaction-format#transferable-op).
 
 ### Gantt Unsigned Operation TX Specification[​](#gantt-unsigned-operation-tx-specification "Direct link to heading")
 
@@ -1455,8 +1455,8 @@ message OperationTx {
 
 Let's make an unsigned operation TX that uses the inputs and outputs from the previous examples:
 
-*   `BaseTx`: `"Example BaseTx above" with TypeID set to 2`
-*   **`Ops`**: \[`"Example Transferable Op as defined above"`\]
+- `BaseTx`: `"Example BaseTx above" with TypeID set to 2`
+- **`Ops`**: \[`"Example Transferable Op as defined above"`\]
 
 ```
 [
@@ -1532,9 +1532,9 @@ Unsigned ImportTx[​](#unsigned-importtx "Direct link to heading")
 
 An unsigned import TX contains a `BaseTx`, `SourceChain` and `Ins`. \* The `TypeID`for this type is `0x00000003`.
 
-*   **`BaseTx`**
-*   **`SourceChain`** is a 32-byte source blockchain ID.
-*   **`Ins`** is a variable length array of [Transferable Inputs](/api-reference/x-chain/transaction-format#transferable-input).
+- **`BaseTx`**
+- **`SourceChain`** is a 32-byte source blockchain ID.
+- **`Ins`** is a variable length array of [Transferable Inputs](/api-reference/x-chain/transaction-format#transferable-input).
 
 ### Gantt Unsigned Import TX Specification[​](#gantt-unsigned-import-tx-specification "Direct link to heading")
 
@@ -1564,9 +1564,9 @@ message ImportTx {
 
 Let's make an unsigned import TX that uses the inputs from the previous examples:
 
-*   `BaseTx`: `"Example BaseTx as defined above"`, but with `TypeID` set to `3`
-*   `SourceChain`: `0x0000000000000000000000000000000000000000000000000000000000000000`
-*   `Ins`: `"Example SECP256K1 Transfer Input as defined above"`
+- `BaseTx`: `"Example BaseTx as defined above"`, but with `TypeID` set to `3`
+- `SourceChain`: `0x0000000000000000000000000000000000000000000000000000000000000000`
+- `Ins`: `"Example SECP256K1 Transfer Input as defined above"`
 
 ```
 [
@@ -1644,8 +1644,8 @@ Unsigned ExportTx[​](#unsigned-exporttx "Direct link to heading")
 
 An unsigned export TX contains a `BaseTx`, `DestinationChain`, and `Outs`. The `TypeID` for this type is `0x00000004`.
 
-*   **`DestinationChain`** is the 32 byte ID of the chain where the funds are being exported to.
-*   **`Outs`** is a variable length array of [Transferable Outputs](/api-reference/x-chain/transaction-format#transferable-output).
+- **`DestinationChain`** is the 32 byte ID of the chain where the funds are being exported to.
+- **`Outs`** is a variable length array of [Transferable Outputs](/api-reference/x-chain/transaction-format#transferable-output).
 
 ### Gantt Unsigned Export TX Specification[​](#gantt-unsigned-export-tx-specification "Direct link to heading")
 
@@ -1675,9 +1675,9 @@ message ExportTx {
 
 Let's make an unsigned export TX that uses the outputs from the previous examples:
 
-*   `BaseTx`: `"Example BaseTx as defined above"`, but with `TypeID` set to `4`
-*   `DestinationChain`: `0x0000000000000000000000000000000000000000000000000000000000000000`
-*   `Outs`: `"Example SECP256K1 Transfer Output as defined above"`
+- `BaseTx`: `"Example BaseTx as defined above"`, but with `TypeID` set to `4`
+- `DestinationChain`: `0x0000000000000000000000000000000000000000000000000000000000000000`
+- `Outs`: `"Example SECP256K1 Transfer Output as defined above"`
 
 ```
 [
@@ -1756,9 +1756,9 @@ A signed transaction is an unsigned transaction with the addition of an array of
 
 A signed transaction contains a `CodecID`, `UnsignedTx`, and `Credentials`.
 
-*   **`CodecID`** The only current valid codec id is `00 00`.
-*   **`UnsignedTx`** is an unsigned transaction, as described above.
-*   **`Credentials`** is an array of [credentials](/api-reference/x-chain/transaction-format#credentials). Each credential will be paired with the input in the same index at this credential.
+- **`CodecID`** The only current valid codec id is `00 00`.
+- **`UnsignedTx`** is an unsigned transaction, as described above.
+- **`Credentials`** is an array of [credentials](/api-reference/x-chain/transaction-format#credentials). Each credential will be paired with the input in the same index at this credential.
 
 ### Gantt Signed Transaction Specification[​](#gantt-signed-transaction-specification "Direct link to heading")
 
@@ -1788,9 +1788,9 @@ message Tx {
 
 Let's make a signed transaction that uses the unsigned transaction and credentials from the previous examples.
 
-*   **`CodecID`**: `0`
-*   **`UnsignedTx`**: `0x0000000100000004ffffffffeeeeeeeeddddddddccccccccbbbbbbbbaaaaaaaa999999998888888800000001000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f000000070000000000003039000000000000d431000000010000000251025c61fbcfc078f69334f834be6dd26d55a955c3344128e060128ede3523a24a461c8943ab085900000001f1e1d1c1b1a191817161514131211101f0e0d0c0b0a09080706050403020100000000005000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f0000000500000000075bcd150000000200000007000000030000000400010203`
-*   **`Credentials`** `0x0000000900000002000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1e1d1f202122232425262728292a2b2c2e2d2f303132333435363738393a3b3c3d3e3f00404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5e5d5f606162636465666768696a6b6c6e6d6f707172737475767778797a7b7c7d7e7f00`
+- **`CodecID`**: `0`
+- **`UnsignedTx`**: `0x0000000100000004ffffffffeeeeeeeeddddddddccccccccbbbbbbbbaaaaaaaa999999998888888800000001000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f000000070000000000003039000000000000d431000000010000000251025c61fbcfc078f69334f834be6dd26d55a955c3344128e060128ede3523a24a461c8943ab085900000001f1e1d1c1b1a191817161514131211101f0e0d0c0b0a09080706050403020100000000005000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f0000000500000000075bcd150000000200000007000000030000000400010203`
+- **`Credentials`** `0x0000000900000002000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1e1d1f202122232425262728292a2b2c2e2d2f303132333435363738393a3b3c3d3e3f00404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5e5d5f606162636465666768696a6b6c6e6d6f707172737475767778797a7b7c7d7e7f00`
 
 ```
 [
@@ -1868,11 +1868,11 @@ A UTXO is a standalone representation of a transaction output.
 
 A UTXO contains a `CodecID`, `TxID`, `UTXOIndex`, `AssetID`, and `Output`.
 
-*   **`CodecID`** The only valid `CodecID` is `00 00`
-*   **`TxID`** is a 32-byte transaction ID. Transaction IDs are calculated by taking sha256 of the bytes of the signed transaction.
-*   **`UTXOIndex`** is an int that specifies which output in the transaction specified by **`TxID`** that this UTXO was created by.
-*   **`AssetID`** is a 32-byte array that defines which asset this UTXO references.
-*   **`Output`** is the output object that created this UTXO. The serialization of Outputs was defined above. Valid output types are [SECP Mint Output](/api-reference/x-chain/transaction-format#secp256k1-mint-output), [SECP Transfer Output](/api-reference/x-chain/transaction-format#secp256k1-transfer-output), [NFT Mint Output](/api-reference/x-chain/transaction-format#nft-mint-output), [NFT Transfer Output](/api-reference/x-chain/transaction-format#nft-transfer-output).
+- **`CodecID`** The only valid `CodecID` is `00 00`
+- **`TxID`** is a 32-byte transaction ID. Transaction IDs are calculated by taking sha256 of the bytes of the signed transaction.
+- **`UTXOIndex`** is an int that specifies which output in the transaction specified by **`TxID`** that this UTXO was created by.
+- **`AssetID`** is a 32-byte array that defines which asset this UTXO references.
+- **`Output`** is the output object that created this UTXO. The serialization of Outputs was defined above. Valid output types are [SECP Mint Output](/api-reference/x-chain/transaction-format#secp256k1-mint-output), [SECP Transfer Output](/api-reference/x-chain/transaction-format#secp256k1-transfer-output), [NFT Mint Output](/api-reference/x-chain/transaction-format#nft-mint-output), [NFT Transfer Output](/api-reference/x-chain/transaction-format#nft-transfer-output).
 
 ### Gantt UTXO Specification[​](#gantt-utxo-specification "Direct link to heading")
 
@@ -1908,11 +1908,11 @@ message Utxo {
 
 Let's make a UTXO with a SECP Mint Output:
 
-*   **`CodecID`**: `0`
-*   **`TxID`**: `0x47c92ed62d18e3cccda512f60a0d5b1e939b6ab73fb2d011e5e306e79bd0448f`
-*   **`UTXOIndex`**: `0` = `0x00000001`
-*   **`AssetID`**: `0x47c92ed62d18e3cccda512f60a0d5b1e939b6ab73fb2d011e5e306e79bd0448f`
-*   **`Output`**: `0x00000006000000000000000000000001000000013cb7d3842e8cee6a0ebd09f1fe884f6861e1b29c6276aa2a`
+- **`CodecID`**: `0`
+- **`TxID`**: `0x47c92ed62d18e3cccda512f60a0d5b1e939b6ab73fb2d011e5e306e79bd0448f`
+- **`UTXOIndex`**: `0` = `0x00000001`
+- **`AssetID`**: `0x47c92ed62d18e3cccda512f60a0d5b1e939b6ab73fb2d011e5e306e79bd0448f`
+- **`Output`**: `0x00000006000000000000000000000001000000013cb7d3842e8cee6a0ebd09f1fe884f6861e1b29c6276aa2a`
 
 ```
 [
@@ -1950,11 +1950,11 @@ Let's make a UTXO with a SECP Mint Output:
 
 Let's make a UTXO with a SECP Transfer Output from the signed transaction created above:
 
-*   **`CodecID`**: `0`
-*   **`TxID`**: `0xf966750f438867c3c9828ddcdbe660e21ccdbb36a9276958f011ba472f75d4e7`
-*   **`UTXOIndex`**: `0` = `0x00000000`
-*   **`AssetID`**: `0x000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f`
-*   **`Output`**: `"Example SECP256K1 Transferable Output as defined above"`
+- **`CodecID`**: `0`
+- **`TxID`**: `0xf966750f438867c3c9828ddcdbe660e21ccdbb36a9276958f011ba472f75d4e7`
+- **`UTXOIndex`**: `0` = `0x00000000`
+- **`AssetID`**: `0x000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f`
+- **`Output`**: `"Example SECP256K1 Transferable Output as defined above"`
 
 ```
 [
@@ -1995,11 +1995,11 @@ Let's make a UTXO with a SECP Transfer Output from the signed transaction create
 
 Let's make a UTXO with an NFT Mint Output:
 
-*   **`CodecID`**: `0`
-*   **`TxID`**: `0x03c686efe8d80c519f356929f6da945f7ff90378f0044bb0e1a5d6c1ad06bae7`
-*   **`UTXOIndex`**: `0` = `0x00000001`
-*   **`AssetID`**: `0x03c686efe8d80c519f356929f6da945f7ff90378f0044bb0e1a5d6c1ad06bae7`
-*   **`Output`**: `0x0000000a00000000000000000000000000000001000000013cb7d3842e8cee6a0ebd09f1fe884f6861e1b29c6276aa2a`
+- **`CodecID`**: `0`
+- **`TxID`**: `0x03c686efe8d80c519f356929f6da945f7ff90378f0044bb0e1a5d6c1ad06bae7`
+- **`UTXOIndex`**: `0` = `0x00000001`
+- **`AssetID`**: `0x03c686efe8d80c519f356929f6da945f7ff90378f0044bb0e1a5d6c1ad06bae7`
+- **`Output`**: `0x0000000a00000000000000000000000000000001000000013cb7d3842e8cee6a0ebd09f1fe884f6861e1b29c6276aa2a`
 
 ```
 [
@@ -2037,11 +2037,11 @@ Let's make a UTXO with an NFT Mint Output:
 
 Let's make a UTXO with an NFT Transfer Output:
 
-*   **`CodecID`**: `0`
-*   **`TxID`**: `0xa68f794a7de7bdfc5db7ba5b73654304731dd586bbf4a6d7b05be6e49de2f936`
-*   **`UTXOIndex`**: `0` = `0x00000001`
-*   **`AssetID`**: `0x03c686efe8d80c519f356929f6da945f7ff90378f0044bb0e1a5d6c1ad06bae7`
-*   **`Output`**: `0x0000000b000000000000000b4e4654205061796c6f6164000000000000000000000001000000013cb7d3842e8cee6a0ebd09f1fe884f6861e1b29c6276aa2a`
+- **`CodecID`**: `0`
+- **`TxID`**: `0xa68f794a7de7bdfc5db7ba5b73654304731dd586bbf4a6d7b05be6e49de2f936`
+- **`UTXOIndex`**: `0` = `0x00000001`
+- **`AssetID`**: `0x03c686efe8d80c519f356929f6da945f7ff90378f0044bb0e1a5d6c1ad06bae7`
+- **`Output`**: `0x0000000b000000000000000b4e4654205061796c6f6164000000000000000000000001000000013cb7d3842e8cee6a0ebd09f1fe884f6861e1b29c6276aa2a`
 
 ```
 [
@@ -2088,16 +2088,16 @@ An asset to be issued in an instance of the AVM's Genesis
 
 An instance of a GenesisAsset contains an `Alias`, `NetworkID`, `BlockchainID`, `Outputs`, `Inputs`, `Memo`, `Name`, `Symbol`, `Denomination`, and `InitialStates`.
 
-*   **`Alias`** is the alias for this asset.
-*   **`NetworkID`** defines which network this transaction is meant to be issued to. This value is meant to support transaction routing and is not designed for replay attack prevention.
-*   **`BlockchainID`** is the ID (32-byte array) that defines which blockchain this transaction was issued to. This is used for replay attack prevention for transactions that could potentially be valid across network or blockchain.
-*   **`Outputs`** is an array of [transferable output objects](/api-reference/x-chain/transaction-format#transferable-output). Outputs must be sorted lexicographically by their serialized representation. The total quantity of the assets created in these outputs must be less than or equal to the total quantity of each asset consumed in the inputs minus the transaction fee.
-*   **`Inputs`** is an array of [transferable input objects](/api-reference/x-chain/transaction-format#transferable-input). Inputs must be sorted and unique. Inputs are sorted first lexicographically by their **`TxID`** and then by the **`UTXOIndex`** from low to high. If there are inputs that have the same **`TxID`** and **`UTXOIndex`**, then the transaction is invalid as this would result in a double spend.
-*   **`Memo`** is a memo field that contains arbitrary bytes, up to 256 bytes.
-*   **`Name`** is a human readable string that defines the name of the asset this transaction will create. The name is not guaranteed to be unique. The name must consist of only printable ASCII characters and must be no longer than 128 characters.
-*   **`Symbol`** is a human readable string that defines the symbol of the asset this transaction will create. The symbol is not guaranteed to be unique. The symbol must consist of only printable ASCII characters and must be no longer than 4 characters.
-*   **`Denomination`** is a byte that defines the divisibility of the asset this transaction will create. For example, the AVAX token is divisible into billionths. Therefore, the denomination of the AVAX token is 9. The denomination must be no more than 32.
-*   **`InitialStates`** is a variable length array that defines the feature extensions this asset supports, and the [initial state](/api-reference/x-chain/transaction-format#initial-state) of those feature extensions.
+- **`Alias`** is the alias for this asset.
+- **`NetworkID`** defines which network this transaction is meant to be issued to. This value is meant to support transaction routing and is not designed for replay attack prevention.
+- **`BlockchainID`** is the ID (32-byte array) that defines which blockchain this transaction was issued to. This is used for replay attack prevention for transactions that could potentially be valid across network or blockchain.
+- **`Outputs`** is an array of [transferable output objects](/api-reference/x-chain/transaction-format#transferable-output). Outputs must be sorted lexicographically by their serialized representation. The total quantity of the assets created in these outputs must be less than or equal to the total quantity of each asset consumed in the inputs minus the transaction fee.
+- **`Inputs`** is an array of [transferable input objects](/api-reference/x-chain/transaction-format#transferable-input). Inputs must be sorted and unique. Inputs are sorted first lexicographically by their **`TxID`** and then by the **`UTXOIndex`** from low to high. If there are inputs that have the same **`TxID`** and **`UTXOIndex`**, then the transaction is invalid as this would result in a double spend.
+- **`Memo`** is a memo field that contains arbitrary bytes, up to 256 bytes.
+- **`Name`** is a human readable string that defines the name of the asset this transaction will create. The name is not guaranteed to be unique. The name must consist of only printable ASCII characters and must be no longer than 128 characters.
+- **`Symbol`** is a human readable string that defines the symbol of the asset this transaction will create. The symbol is not guaranteed to be unique. The symbol must consist of only printable ASCII characters and must be no longer than 4 characters.
+- **`Denomination`** is a byte that defines the divisibility of the asset this transaction will create. For example, the AVAX token is divisible into billionths. Therefore, the denomination of the AVAX token is 9. The denomination must be no more than 32.
+- **`InitialStates`** is a variable length array that defines the feature extensions this asset supports, and the [initial state](/api-reference/x-chain/transaction-format#initial-state) of those feature extensions.
 
 ### Gantt GenesisAsset Specification[​](#gantt-genesisasset-specification "Direct link to heading")
 
@@ -2148,17 +2148,17 @@ message GenesisAsset {
 
 Let's make a GenesisAsset:
 
-*   **`Alias`**: `asset1`
-*   **`NetworkID`**: `12345`
-*   **`BlockchainID`**: `0x0000000000000000000000000000000000000000000000000000000000000000`
-*   **`Outputs`**: \[\]
-*   **`Inputs`**: \[\]
-*   **`Memo`**: `2Zc54v4ek37TEwu4LiV3j41PUMRd6acDDU3ZCVSxE7X`
-*   **`Name`**: `asset1`
-*   **`Symbol`**: `MFCA`
-*   **`Denomination`**: `1`
-*   **`InitialStates`**:
-*   `"Example Initial State as defined above"`
+- **`Alias`**: `asset1`
+- **`NetworkID`**: `12345`
+- **`BlockchainID`**: `0x0000000000000000000000000000000000000000000000000000000000000000`
+- **`Outputs`**: \[\]
+- **`Inputs`**: \[\]
+- **`Memo`**: `2Zc54v4ek37TEwu4LiV3j41PUMRd6acDDU3ZCVSxE7X`
+- **`Name`**: `asset1`
+- **`Symbol`**: `MFCA`
+- **`Denomination`**: `1`
+- **`InitialStates`**:
+- `"Example Initial State as defined above"`
 
 ```
 [

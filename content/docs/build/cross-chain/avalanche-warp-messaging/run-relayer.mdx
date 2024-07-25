@@ -1,11 +1,9 @@
 ---
-title: AWM Relayer
-sidebarTitle: Run a Relayer
+title: Run an AWM Relayer
 ---
 
 <Callout type="info">
-    Dive deeper into Teleporter and kickstart your journey in building cross-chain dApps by enrolling in our [Teleporter course](https://academy.avax.network/course/teleporter).
-
+Dive deeper into Teleporter and kickstart your journey in building cross-chain dApps by enrolling in our [Teleporter course](https://academy.avax.network/course/teleporter).
 </Callout>
 
 Reference relayer implementation for cross-chain Avalanche Warp Message delivery.
@@ -60,32 +58,32 @@ Requirements[​](#requirements "Direct link to heading")
 
 ### System Requirements[​](#system-requirements "Direct link to heading")
 
-*   Ubuntu 22.04 or later
-    *   Tested on x86\_64/amd64 architecture.
-*   MacOS 14.3 or later
-    *   Tested on arm64 architecture (Apple silicon).
+- Ubuntu 22.04 or later
+    - Tested on x86\_64/amd64 architecture.
+- MacOS 14.3 or later
+    - Tested on arm64 architecture (Apple silicon).
 
 ### API Requirements[​](#api-requirements "Direct link to heading")
 
-*   AWM Relayer requires access to Avalanche API nodes for the P-Chain as well as any connected Subnets. The API nodes must have the following methods enabled:
-    *   Each Subnet API node must have enabled:
-        *   eth API (RPC and WS)
-    *   The P-Chain API node must have enabled:
-        *   platform.getHeight
-        *   platform.validatedBy
-        *   platform.getValidatorsAt OR platform.getCurrentValidators
-    *   The Info API node must have enabled:
-        *   info.peers
-        *   info.getNetworkID
-    *   If the Info API node is also a Subnet validator, it must have enabled:
-        *   info.getNodeID
-        *   info.getNodeIP
+- AWM Relayer requires access to Avalanche API nodes for the P-Chain as well as any connected Subnets. The API nodes must have the following methods enabled:
+    - Each Subnet API node must have enabled:
+        - eth API (RPC and WS)
+    - The P-Chain API node must have enabled:
+        - platform.getHeight
+        - platform.validatedBy
+        - platform.getValidatorsAt OR platform.getCurrentValidators
+    - The Info API node must have enabled:
+        - info.peers
+        - info.getNetworkID
+    - If the Info API node is also a Subnet validator, it must have enabled:
+        - info.getNodeID
+        - info.getNodeIP
 
 The Fuji and Mainnet [public API nodes](/tooling/rpc-providers) provided by Avalanche have these methods enabled, and are suitable for use with the relayer.
 
 ### Peer-to-Peer Connections[​](#peer-to-peer-connections "Direct link to heading")
 
-*   The AWM relayer implementation gathers BLS signatures from the validators of the source Subnet via peer-to-peer `AppRequest` messages. Validator nodes need to be configured to accept incoming peer connections. Otherwise, the relayer will fail to gather Warp message signatures. For example, networking rules may need to be adjusted to allow traffic on the default AvalancheGo P2P port (9651), or the public IP may need to be manually set in the [node configuration](/nodes/configure/configs--flags#public-ip).
+- The AWM relayer implementation gathers BLS signatures from the validators of the source Subnet via peer-to-peer `AppRequest` messages. Validator nodes need to be configured to accept incoming peer connections. Otherwise, the relayer will fail to gather Warp message signatures. For example, networking rules may need to be adjusted to allow traffic on the default AvalancheGo P2P port (9651), or the public IP may need to be manually set in the [node configuration](/nodes/configure/configs--flags#public-ip).
 
 Usage[​](#usage "Direct link to heading")
 -----------------------------------------
@@ -116,149 +114,149 @@ The relayer is configured via a JSON file, the path to which is passed in via th
 
 `"log-level": "verbo" | "debug" | "info" | "warn" | "error" | "fatal" | "panic"`
 
-*   The log level for the relayer. Defaults to `info`.
+- The log level for the relayer. Defaults to `info`.
 
 `"p-chain-api": APIConfig`
 
-*   The configuration for the Avalanche P-Chain API node. The `PChainAPI` object has the following configuration:
+- The configuration for the Avalanche P-Chain API node. The `PChainAPI` object has the following configuration:
     
     `"base-url": string`
     
-    *   The URL of the Avalanche P-Chain API node to which the relayer will connect. This API node needs to have the following methods enabled:
-        *   platform.getHeight
-        *   platform.validatedBy
-        *   platform.getValidatorsAt OR platform.getCurrentValidators
+    - The URL of the Avalanche P-Chain API node to which the relayer will connect. This API node needs to have the following methods enabled:
+        - platform.getHeight
+        - platform.validatedBy
+        - platform.getValidatorsAt OR platform.getCurrentValidators
     
     `"query-parameters": map[string]string`
     
-    *   Additional query parameters to include in the API requests.
+    - Additional query parameters to include in the API requests.
 
 `"info-api": APIConfig`
 
-*   The configuration for the Avalanche Info API node. The `InfoAPI` object has the following configuration:
+- The configuration for the Avalanche Info API node. The `InfoAPI` object has the following configuration:
     
     `"base-url": string`
     
-    *   The URL of the Avalanche Info API node to which the relayer will connect. This API node needs to have the following methods enabled:
+    - The URL of the Avalanche Info API node to which the relayer will connect. This API node needs to have the following methods enabled:
         
-        *   info.peers
-        *   info.getNetworkID
-    *   Additionally, if the Info API node is also a validator, it must have enabled:
+        - info.peers
+        - info.getNetworkID
+    - Additionally, if the Info API node is also a validator, it must have enabled:
         
-        *   info.getNodeID
-        *   info.getNodeIP
+        - info.getNodeID
+        - info.getNodeIP
     
     `"query-parameters": map[string]string`
     
-    *   Additional query parameters to include in the API requests.
+    - Additional query parameters to include in the API requests.
 
 `"storage-location": string`
 
-*   The path to the directory in which the relayer will store its state. Defaults to `./awm-relayer-storage`.
+- The path to the directory in which the relayer will store its state. Defaults to `./awm-relayer-storage`.
 
 `"redis-url": string`
 
-*   The URL of the Redis server to use to manage state. This URL should specify the user, password, host, port, DB index, and protocol version. For example, `"redis://user:password@localhost:6379/0?protocol=3"`. Overrides `storage-location` if provided.
+- The URL of the Redis server to use to manage state. This URL should specify the user, password, host, port, DB index, and protocol version. For example, `"redis://user:password@localhost:6379/0?protocol=3"`. Overrides `storage-location` if provided.
 
 `"process-missed-blocks": boolean`
 
-*   Whether or not to process missed blocks after restarting. Defaults to `true`. If set to false, the relayer will start processing blocks from the chain head.
+- Whether or not to process missed blocks after restarting. Defaults to `true`. If set to false, the relayer will start processing blocks from the chain head.
 
 `"manual-warp-messages": []ManualWarpMessage`
 
-*   The list of Warp messages to relay on startup, independent of the catch-up mechanism or normal operation. Each `ManualWarpMessage` has the following configuration:
+- The list of Warp messages to relay on startup, independent of the catch-up mechanism or normal operation. Each `ManualWarpMessage` has the following configuration:
     
     `"unsigned-message-bytes": string`
     
-    *   The hex-encoded bytes of the unsigned Warp message to relay.
+    - The hex-encoded bytes of the unsigned Warp message to relay.
     
     `"source-blockchain-id": string`
     
-    *   cb58-encoded blockchain ID of the source blockchain.
+    - cb58-encoded blockchain ID of the source blockchain.
     
     `"destination-blockchain-id": string`
     
-    *   cb58-encoded blockchain ID of the destination blockchain.
+    - cb58-encoded blockchain ID of the destination blockchain.
     
     `"source-address": string`
     
-    *   The address of the source account that sent the Warp message.
+    - The address of the source account that sent the Warp message.
     
     `"destination-address": string`
     
-    *   The address of the destination account that will receive the Warp message.
+    - The address of the destination account that will receive the Warp message.
 
 `"source-blockchains": []SourceBlockchains`
 
-*   The list of source blockchains to support. Each `SourceBlockchain` has the following configuration:
+- The list of source blockchains to support. Each `SourceBlockchain` has the following configuration:
     
     `"subnet-id": string`
     
-    *   cb58-encoded Subnet ID.
+    - cb58-encoded Subnet ID.
     
     `"blockchain-id": string`
     
-    *   cb58-encoded blockchain ID.
+    - cb58-encoded blockchain ID.
     
     `"vm": string`
     
-    *   The VM type of the source blockchain.
+    - The VM type of the source blockchain.
     
     `"rpc-endpoint": string`
     
-    *   The RPC endpoint of the source blockchain's API node.
+    - The RPC endpoint of the source blockchain's API node.
     
     `"ws-endpoint": string`
     
-    *   The WebSocket endpoint of the source blockchain's API node.
+    - The WebSocket endpoint of the source blockchain's API node.
     
     `"message-contracts": map[string]MessageProtocolConfig`
     
-    *   Map of contract addresses to the config options of the protocol at that address. Each `MessageProtocolConfig` consists of a unique `message-format` name, and the raw JSON `settings`.
+    - Map of contract addresses to the config options of the protocol at that address. Each `MessageProtocolConfig` consists of a unique `message-format` name, and the raw JSON `settings`.
     
     `"supported-destinations": []SupportedDestination`
     
-    *   List of destinations that the source blockchain supports. Each `SupportedDestination` consists of a cb58-encoded destination blockchain ID (`"blockchain-id"`), and a list of hex-encoded addresses (`"addresses"`) on that destination blockchain that the relayer supports delivering Warp messages to. The destination address is defined by the message protocol. For example, it could be the address called from the message protocol contract. If no supported addresses are provided, all addresses are allowed on that blockchain. If `supported-destinations` is empty, then all destination blockchains (and therefore all addresses on those destination blockchains) are supported.
+    - List of destinations that the source blockchain supports. Each `SupportedDestination` consists of a cb58-encoded destination blockchain ID (`"blockchain-id"`), and a list of hex-encoded addresses (`"addresses"`) on that destination blockchain that the relayer supports delivering Warp messages to. The destination address is defined by the message protocol. For example, it could be the address called from the message protocol contract. If no supported addresses are provided, all addresses are allowed on that blockchain. If `supported-destinations` is empty, then all destination blockchains (and therefore all addresses on those destination blockchains) are supported.
     
     `"process-historical-blocks-from-height": unsigned integer`
     
-    *   The block height at which to back-process transactions from the source blockchain. If the database already contains a later block height for the source blockchain, then that will be used instead. Must be non-zero. Will only be used if `process-missed-blocks` is set to `true`.
+    - The block height at which to back-process transactions from the source blockchain. If the database already contains a later block height for the source blockchain, then that will be used instead. Must be non-zero. Will only be used if `process-missed-blocks` is set to `true`.
     
     `"allowed-origin-sender-addresses": []string`
     
-    *   List of addresses on this source blockchain to relay Warp messages from. The sending address is defined by the message protocol. For example, it could be defined as the EOA that initiates the transaction, or the address that calls the message protocol contract. If empty, then all addresses are allowed.
+    - List of addresses on this source blockchain to relay Warp messages from. The sending address is defined by the message protocol. For example, it could be defined as the EOA that initiates the transaction, or the address that calls the message protocol contract. If empty, then all addresses are allowed.
 
 `"destination-blockchains": []DestinationBlockchains`
 
-*   The list of destination blockchains to support. Each `DestinationBlockchain` has the following configuration:
+- The list of destination blockchains to support. Each `DestinationBlockchain` has the following configuration:
     
     `"subnet-id": string`
     
-    *   cb58-encoded Subnet ID.
+    - cb58-encoded Subnet ID.
     
     `"blockchain-id": string`
     
-    *   cb58-encoded blockchain ID.
+    - cb58-encoded blockchain ID.
     
     `"vm": string`
     
-    *   The VM type of the source blockchain.
+    - The VM type of the source blockchain.
     
     `"rpc-endpoint": string`
     
-    *   The RPC endpoint of the destination blockchains's API node.
+    - The RPC endpoint of the destination blockchains's API node.
     
     `"account-private-key": string`
     
-    *   The hex-encoded private key to use for signing transactions on the destination blockchain. May be provided by the environment variable `ACCOUNT_PRIVATE_KEY`. Each `destination-subnet` may use a separate private key by appending the cb58 encoded blockchain ID to the private key environment variable name, for example `ACCOUNT_PRIVATE_KEY_11111111111111111111111111111111LpoYY`
+    - The hex-encoded private key to use for signing transactions on the destination blockchain. May be provided by the environment variable `ACCOUNT_PRIVATE_KEY`. Each `destination-subnet` may use a separate private key by appending the cb58 encoded blockchain ID to the private key environment variable name, for example `ACCOUNT_PRIVATE_KEY_11111111111111111111111111111111LpoYY`
     
     `"kms-key-id": string`
     
-    *   The ID of the KMS key to use for signing transactions on the destination blockchain. Only one of `account-private-key` or `kms-key-id` should be provided. If `kms-key-id` is provided, then `kms-aws-region` is required.
+    - The ID of the KMS key to use for signing transactions on the destination blockchain. Only one of `account-private-key` or `kms-key-id` should be provided. If `kms-key-id` is provided, then `kms-aws-region` is required.
     
     `"kms-aws-region": string`
     
-    *   The AWS region in which the KMS key is located. Required if `kms-key-id` is provided.
+    - The AWS region in which the KMS key is located. Required if `kms-key-id` is provided.
 
 Architecture[​](#architecture "Direct link to heading")
 -------------------------------------------------------
@@ -267,17 +265,17 @@ Architecture[​](#architecture "Direct link to heading")
 
 The relayer consists of the following components:
 
-*   At the global level:
-    *   P2P app network: issues signature `AppRequests`
-    *   P-Chain client: gets the validators for a Subnet
-    *   JSON database: stores latest processed block for each Application Relayer
-*   Per Source Blockchain
-    *   Subscriber: listens for logs pertaining to cross-chain message transactions
-    *   Source RPC client: queries for missed blocks on startup
-*   Per Destination Blockchain
-    *   Destination RPC client: broadcasts transactions to the destination
-*   Application Relayers
-    *   Relay messages from a specific source blockchain and source address to a specific destination blockchain and destination address
+- At the global level:
+    - P2P app network: issues signature `AppRequests`
+    - P-Chain client: gets the validators for a Subnet
+    - JSON database: stores latest processed block for each Application Relayer
+- Per Source Blockchain
+    - Subscriber: listens for logs pertaining to cross-chain message transactions
+    - Source RPC client: queries for missed blocks on startup
+- Per Destination Blockchain
+    - Destination RPC client: broadcasts transactions to the destination
+- Application Relayers
+    - Relay messages from a specific source blockchain and source address to a specific destination blockchain and destination address
 
 ### Data Flow[​](#data-flow "Direct link to heading")
 
@@ -310,9 +308,9 @@ GINKGO_FOCUS="Basic" ./scripts/e2e_test.sh --local --subnet-evm ~/subnet-evm --d
 
 The E2E tests use the `TeleporterMessenger` contract deployment transaction specified in the following files:
 
-*   `tests/utils/UniversalTeleporterDeployerAddress.txt`
-*   `tests/utils/UniversalTeleporterDeployerTransaction.txt`
-*   `tests/utils/UniversalTeleporterMessagerContractAddress.txt` To update the version of Teleporter used by the E2E tests, update these values with the latest contract deployment information. For more information on how to deploy the Teleporter contract, see the [Teleporter documentation](https://github.com/ava-labs/teleporter/tree/main/utils/contract-deployment).
+- `tests/utils/UniversalTeleporterDeployerAddress.txt`
+- `tests/utils/UniversalTeleporterDeployerTransaction.txt`
+- `tests/utils/UniversalTeleporterMessagerContractAddress.txt` To update the version of Teleporter used by the E2E tests, update these values with the latest contract deployment information. For more information on how to deploy the Teleporter contract, see the [Teleporter documentation](https://github.com/ava-labs/teleporter/tree/main/utils/contract-deployment).
 
 ### Generate Mocks[​](#generate-mocks "Direct link to heading")
 

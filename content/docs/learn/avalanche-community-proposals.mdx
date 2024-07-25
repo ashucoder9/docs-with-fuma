@@ -1,39 +1,36 @@
 ---
-title: What is an Avalanche Community Proposal?
-sidebarTitle: Avalanche Community Proposals
+title: Avalanche Community Proposals
 ---
+
 <Card
   icon="github"
   href="https://github.com/avalanche-foundation/ACPs"
 >
-  Github
+Github
 </Card>
 
 An Avalanche Community Proposal is a concise document that introduces a change or best practice for adoption on the [Avalanche Network](https://www.avax.com/). ACPs should provide clear technical specifications of any proposals and a compelling rationale for their adoption.
 
 ACPs are an open framework for proposing improvements and gathering consensus around changes to the Avalanche Network. ACPs can be proposed by anyone and will be merged into this repository as long as they are well-formatted and coherent. The Avalanche Foundation may, from time to time, recommend specific ACPs that it believes benefit the Avalanche Network/Community but it is ultimately up to members of the Avalanche Network/Community to adopt ACPs they support by running a compatible Avalanche Network Client (ANC), such as [AvalancheGo](https://github.com/ava-labs/avalanchego). The Avalanche Foundation's recommendation is not binding and is made without representations, warranties or guarantees of any kind.
 
-ACP Tracks[​](#acp-tracks "Direct link to heading")
----------------------------------------------------
+## ACP Tracks
 
 There are three kinds of ACP:
 
-*   A `Standards Track` ACP describes a change to the design or function of the Avalanche Network, such as a change to the P2P networking protocol, P-Chain design, Subnet architecture, or any change/addition that affects the interoperability of Avalanche Network Clients (ANCs).
-*   A `Best Practices Track` ACP describes a design pattern or common interface that should be used across the Avalanche Network to make it easier to integrate with Avalanche or for Subnets to interoperate with each other. This would include things like proposing a smart contract interface, not proposing a change to how smart contracts are executed.
-*   A `Meta Track` ACP describes a change to the ACP process or suggests a new way for the Avalanche Community to collaborate.
+- A `Standards Track` ACP describes a change to the design or function of the Avalanche Network, such as a change to the P2P networking protocol, P-Chain design, Subnet architecture, or any change/addition that affects the interoperability of Avalanche Network Clients (ANCs).
+- A `Best Practices Track` ACP describes a design pattern or common interface that should be used across the Avalanche Network to make it easier to integrate with Avalanche or for Subnets to interoperate with each other. This would include things like proposing a smart contract interface, not proposing a change to how smart contracts are executed.
+- A `Meta Track` ACP describes a change to the ACP process or suggests a new way for the Avalanche Community to collaborate.
 
-ACP Statuses[​](#acp-statuses "Direct link to heading")
--------------------------------------------------------
+## ACP Statuses
 
 There are four statuses of an ACP:
 
-*   A `Proposed` ACP has been merged into the main branch of the ACP repository. It is actively being discussed by the Avalanche Community and may be modified based on feedback.
-*   An `Implementable` ACP is considered "ready for implementation" by the author(s) and will no longer change meaningfully from its current form (which would require a new ACP). ACPs that are `Implementable` may be `Recommended` by the Avalanche Foundation, if the Avalanche Foundation believes that the `Implementable` ACP benefits the Avalanche Network/Community. Such recommendation does not create any obligation on the part of any individual in the Avalanche Community or the Avalanche Foundation.
-*   A `Recommended` ACP means that it has been recommended by the Avalanche Foundation; it being understood that neither a recommendation nor a lack of a recommendation creates any obligation or liability on any individual or the Avalanche Foundation. A recommendation by the Avalanche Foundation is merely the opinion of the Avalanche Foundation and is made without any representations, warranties or guarantees of any kind.
-*   A `Stale` ACP has been abandoned by its author(s) because it is not supported by the Avalanche Community or has been replaced with another ACP.
+- A `Proposed` ACP has been merged into the main branch of the ACP repository. It is actively being discussed by the Avalanche Community and may be modified based on feedback.
+- An `Implementable` ACP is considered "ready for implementation" by the author(s) and will no longer change meaningfully from its current form (which would require a new ACP). ACPs that are `Implementable` may be `Recommended` by the Avalanche Foundation, if the Avalanche Foundation believes that the `Implementable` ACP benefits the Avalanche Network/Community. Such recommendation does not create any obligation on the part of any individual in the Avalanche Community or the Avalanche Foundation.
+- A `Recommended` ACP means that it has been recommended by the Avalanche Foundation; it being understood that neither a recommendation nor a lack of a recommendation creates any obligation or liability on any individual or the Avalanche Foundation. A recommendation by the Avalanche Foundation is merely the opinion of the Avalanche Foundation and is made without any representations, warranties or guarantees of any kind.
+- A `Stale` ACP has been abandoned by its author(s) because it is not supported by the Avalanche Community or has been replaced with another ACP.
 
-ACP Workflow[​](#acp-workflow "Direct link to heading")
--------------------------------------------------------
+## ACP Workflow
 
 ### Step 0: Think of a Novel Improvement to Avalanche[​](#step-0-think-of-a-novel-improvement-to-avalanche "Direct link to heading")
 
@@ -59,33 +56,32 @@ Once an ACP is considered complete by the author(s), it should be marked as `Imp
 
 An ACP can be superseded by a different ACP, rendering the original obsolete. If this occurs, the original ACP will be marked as `Stale`. ACPs may also be marked as `Stale` if the author(s) abandon work on it for a prolonged period of time (12+ months). ACPs may be reopened and moved back to `Proposed` if the author(s) restart work.
 
-What belongs in a successful ACP?[​](#what-belongs-in-a-successful-acp "Direct link to heading")
-------------------------------------------------------------------------------------------------
+## What belongs in a successful ACP?
 
 Each ACP must have the following parts:
 
-*   `Preamble`: RFC 822 style headers containing metadata about the ACP, including the ACP number, a short descriptive title, the author(s), and optionally the contact info for each author, etc.
-*   `Abstract`: Concise (~200 word) description of the ACP
-*   `Motivation`: Rationale for adopting the ACP and the specific issue/challenge/opportunity it addresses
-*   `Specification`: Complete description of the semantics of any change should allow any ANC/Avalanche Community member to implement the ACP
-*   `Security Considerations`: Security implications of the proposed ACP
+- `Preamble`: RFC 822 style headers containing metadata about the ACP, including the ACP number, a short descriptive title, the author(s), and optionally the contact info for each author, etc.
+- `Abstract`: Concise (~200 word) description of the ACP
+- `Motivation`: Rationale for adopting the ACP and the specific issue/challenge/opportunity it addresses
+- `Specification`: Complete description of the semantics of any change should allow any ANC/Avalanche Community member to implement the ACP
+- `Security Considerations`: Security implications of the proposed ACP
 
 Each ACP can have the following parts:
 
-*   `Open Questions`: Questions that should be resolved before implementation
-*   `Straw Poll`: Collection of advocates/objectors of an ACP
+- `Open Questions`: Questions that should be resolved before implementation
+- `Straw Poll`: Collection of advocates/objectors of an ACP
 
 Each `Standards Track` ACP must have the following parts:
 
-*   `Backwards Compatibility`: List of backwards incompatible changes required to implement the ACP and their impact on the Avalanche Community
-*   `Reference Implementation`: Code, documentation, and telemetry (from a local network) of the ACP change
+- `Backwards Compatibility`: List of backwards incompatible changes required to implement the ACP and their impact on the Avalanche Community
+- `Reference Implementation`: Code, documentation, and telemetry (from a local network) of the ACP change
 
 Each `Best Practices Track` ACP can have the following parts:
 
-*   `Backwards Compatibility`: List of backwards incompatible changes required to implement the ACP and their impact on the Avalanche Community
-*   `Reference Implementation`: Code, documentation, and telemetry (from a local network) of the ACP change
+- `Backwards Compatibility`: List of backwards incompatible changes required to implement the ACP and their impact on the Avalanche Community
+- `Reference Implementation`: Code, documentation, and telemetry (from a local network) of the ACP change
 
-### ACP "Straw Poll"[​](#acp-straw-poll "Direct link to heading")
+### ACP Straw Poll
 
 Anyone can open a PR against an ACP and mark themselves as a supporter (you want an ACP to be adopted) or as an objector (you want the ACP to be rejected). This PR must include a message + signature indicating ownership of a given amount of $AVAX. This action is non-binding and only meant to gauge support of an ACP in the Avalanche Community.
 
@@ -103,19 +99,19 @@ Message: "AVALANCHE_STRAW_POLL|1|yes|1696288255|x.com/avax/status/<permalink>"
 Signature: "34k8j3w1rxL5wtLCi5AsP93CtjwUWoV5wnyiRucRtSDs9CgAUU8bsYNbgtAAuCmHdG375qa7fimhodxJg2rMxmLfPYrD31E"
 ```
 
-*   `AVALANCHE_STRAW_POLL` is included to prevent signing a message that could somehow be replayed on-chain.
-*   `timestamp` is included so that Avalanche Community members can update their preference if they change their mind as the ACP evolves.
-*   `metadata` is an optional field that can be used by Avalanche Community members to link their preference to a social identity (where they must also post the same message + signature) for maintainers to verify before merging.
+- `AVALANCHE_STRAW_POLL` is included to prevent signing a message that could somehow be replayed on-chain.
+- `timestamp` is included so that Avalanche Community members can update their preference if they change their mind as the ACP evolves.
+- `metadata` is an optional field that can be used by Avalanche Community members to link their preference to a social identity (where they must also post the same message + signature) for maintainers to verify before merging.
 
-### ACP Formats and Templates[​](#acp-formats-and-templates "Direct link to heading")
+### ACP Formats and Templates
 
 ACPs should be written in [markdown](https://daringfireball.net/projects/markdown/syntax) format. Please see the [ACP template](https://github.com/avalanche-foundation/ACPs/blob/main/ACPs/TEMPLATE.md) for an example of the correct layout.
 
-### Auxiliary Files[​](#auxiliary-files "Direct link to heading")
+### Auxiliary Files
 
 ACPs may include auxiliary files such as diagrams. Image files should be included in a subdirectory for that ACP. Auxiliary files must be named `ACP-XXXX-Y.ext`, where "XXXX" is the ACP number, "Y" is a serial number (starting at 1), and "ext" is replaced by the actual file extension (e.g. "png").
 
-### Waived Copyright[​](#waived-copyright "Direct link to heading")
+### Waived Copyright
 
 ACP authors must waive any copyright claims before an ACP will be merged into the repository. This can be done by including the following text in an ACP:
 
@@ -125,11 +121,9 @@ ACP authors must waive any copyright claims before an ACP will be merged into th
 Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
 ```
 
-Proposals[​](#proposals "Direct link to heading")
--------------------------------------------------
+## Proposals
 
-_You can view the status of each ACP on the [ACP Tracker](https://github.com/orgs/avalanche-foundation/projects/1/views/1)._
-
+You can view the status of each ACP on the [ACP Tracker](https://github.com/orgs/avalanche-foundation/projects/1/views/1).
 
 | Number                                                                                                            | Title                                           | Author(s)                                                                                   | Type      |
 |-------------------------------------------------------------------------------------------------------------------|-------------------------------------------------|---------------------------------------------------------------------------------------------|-----------|
@@ -143,7 +137,6 @@ _You can view the status of each ACP on the [ACP Tracker](https://github.com/org
 | [41](https://github.com/avalanche-foundation/ACPs/blob/main/ACPs/41-remove-pending-stakers.md)                    | Remove Pending Stakers                          | Dhruba Basu (https://github.com/dhrubabasu)                                                 | Standards |
 | [62](https://github.com/avalanche-foundation/ACPs/blob/main/ACPs/62-disable-addvalidatortx-and-adddelegatortx.md) | Disable `AddValidatorTx` and `AddDelegatorTx`   | Jacob Everly (https://twitter.com/JacobEv3rly), Dhruba Basu (https://github.com/dhrubabasu) | Standards |
 
-Contributing[​](#contributing "Direct link to heading")
--------------------------------------------------------
+## Contributing to ACPs
 
 Before contributing to ACPs, please read the [ACP Terms of Contribution](https://github.com/avalanche-foundation/ACPs/blob/main/CONTRIBUTING.md).

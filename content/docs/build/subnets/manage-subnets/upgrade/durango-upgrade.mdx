@@ -11,12 +11,12 @@ Note: Subnet-EVM already performs these upgrades in native stateful precompiles.
 
 Durango introduces following changes to Subnet-EVM:
 
-*   Avalanche Warp Messaging
-*   Events in Precompiles
-*   Manager Role
-*   Non-Strict Mode
-*   Shanghai Upgrade [(ACP-24)](https://github.com/avalanche-foundation/ACPs/blob/main/ACPs/24-shanghai-eips.md)
-    *   Shangai Upgrade will be activated with Durango without any further modification in Subnet-EVM.
+- Avalanche Warp Messaging
+- Events in Precompiles
+- Manager Role
+- Non-Strict Mode
+- Shanghai Upgrade [(ACP-24)](https://github.com/avalanche-foundation/ACPs/blob/main/ACPs/24-shanghai-eips.md)
+    - Shangai Upgrade will be activated with Durango without any further modification in Subnet-EVM.
 
 Avalanche Warp Messaging[​](#avalanche-warp-messaging "Direct link to heading")
 -------------------------------------------------------------------------------
@@ -30,12 +30,12 @@ Events[​](#events "Direct link to heading")
 
 Subnet-EVM Native Precompiles will start emitting events with the Durango network upgrade. This will allow you to listen to events emitted by Subnet-EVM native precompiles. Following events will be introduced:
 
-*   `event RoleSet(uint256 indexed role, address indexed account, address indexed sender, uint256 oldRole)`: This event will be emitted when a role is set for an account. Precompiles that uses `IAllowList` interface will emit this event without requiring any changes. The event contains the role, account, sender as indexed parameters and old role as non-indexed parameter.
-*   `event FeeConfigChanged(address indexed sender, FeeConfig oldFeeConfig, FeeConfig newFeeConfig)`: This event will be emitted when the fee configuration is changed in `FeeManager` precompile. The event contains the sender as indexed parameter and old and new fee configuration as non-indexed parameters.
-*   `event NativeCoinMinted(address indexed sender, address indexed recipient, uint256 amount)`: This event will be emitted when new native coins are minted. The event contains the sender, recipient as indexed parameters and the amount as non-indexed parameter.
-*   `event RewardAddressChanged(address indexed sender, address indexed oldRewardAddress, address indexed newRewardAddress)`: This event will be emitted when the reward address is changed in `RewardManager` precompile. The event contains the sender, old and new reward addresses as non-indexed parameters.
-*   `event FeeRecipientsAllowed(address indexed sender)`: This event will be emitted when the fee recipients are allowed in `RewardManager` precompile. The event contains the sender as indexed parameter.
-*   `event RewardsDisabled(address indexed sender)`: This event will be emitted when the rewards are disabled in `RewardManager` precompile. The event contains the sender as indexed parameter.
+- `event RoleSet(uint256 indexed role, address indexed account, address indexed sender, uint256 oldRole)`: This event will be emitted when a role is set for an account. Precompiles that uses `IAllowList` interface will emit this event without requiring any changes. The event contains the role, account, sender as indexed parameters and old role as non-indexed parameter.
+- `event FeeConfigChanged(address indexed sender, FeeConfig oldFeeConfig, FeeConfig newFeeConfig)`: This event will be emitted when the fee configuration is changed in `FeeManager` precompile. The event contains the sender as indexed parameter and old and new fee configuration as non-indexed parameters.
+- `event NativeCoinMinted(address indexed sender, address indexed recipient, uint256 amount)`: This event will be emitted when new native coins are minted. The event contains the sender, recipient as indexed parameters and the amount as non-indexed parameter.
+- `event RewardAddressChanged(address indexed sender, address indexed oldRewardAddress, address indexed newRewardAddress)`: This event will be emitted when the reward address is changed in `RewardManager` precompile. The event contains the sender, old and new reward addresses as non-indexed parameters.
+- `event FeeRecipientsAllowed(address indexed sender)`: This event will be emitted when the fee recipients are allowed in `RewardManager` precompile. The event contains the sender as indexed parameter.
+- `event RewardsDisabled(address indexed sender)`: This event will be emitted when the rewards are disabled in `RewardManager` precompile. The event contains the sender as indexed parameter.
 
 ### Custom Events[​](#custom-events "Direct link to heading")
 

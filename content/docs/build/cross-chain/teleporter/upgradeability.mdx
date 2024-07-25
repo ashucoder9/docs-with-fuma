@@ -1,11 +1,9 @@
 ---
-title: Teleporter Contracts Upgradeability
-sidebarTitle: Upgradeability
+title: Upgradeability
 ---
 
 <Callout type="info">
-    Dive deeper into Teleporter and kickstart your journey in building cross-chain dApps by enrolling in our [Teleporter course](https://academy.avax.network/course/teleporter).
-
+Dive deeper into Teleporter and kickstart your journey in building cross-chain dApps by enrolling in our [Teleporter course](https://academy.avax.network/course/teleporter).
 </Callout>
 
 
@@ -18,25 +16,25 @@ However, there could still be new versions of `TeleporterMessenger` contracts ne
 
 The `TeleporterRegistry` maintains a mapping of `TeleporterMessenger` contract versions to their addresses. When a new `TeleporterMessenger` version is deployed, its address can be added to the `TeleporterRegistry`. The `TeleporterRegistry` can only be updated through a Warp off-chain message that meets the following requirements:
 
-*   `sourceChainAddress` must match `VALIDATORS_SOURCE_ADDRESS = address(0)`
-    *   The zero address can only be set as the source chain address by a Warp off-chain message, and cannot be set by an on-chain Warp message.
-*   `sourceBlockchainID` must match the blockchain ID that the registry is deployed on
-*   `destinationBlockchainID` must match the blockchain ID that the registry is deployed on
-*   `destinationAddress` must match the address of the registry
+- `sourceChainAddress` must match `VALIDATORS_SOURCE_ADDRESS = address(0)`
+    - The zero address can only be set as the source chain address by a Warp off-chain message, and cannot be set by an on-chain Warp message.
+- `sourceBlockchainID` must match the blockchain ID that the registry is deployed on
+- `destinationBlockchainID` must match the blockchain ID that the registry is deployed on
+- `destinationAddress` must match the address of the registry
 
 In the `TeleporterRegistry` contract, the `latestVersion` state variable returns the highest version number that has been registered in the registry. The `getLatestTeleporter` function returns the `ITeleporterMessenger` that is registered with the corresponding version.
 
 Design[​](#design "Direct link to heading")
 -------------------------------------------
 
-*   `TeleporterRegistry` is deployed on each blockchain that needs to keep track of `TeleporterMessenger` contract versions.
-*   The registry's contract address on each blockchain does not need to be the same, and does not require a Nick's method transaction for deployment.
-*   Each registry's mapping of version to contract address is independent of registries on other blockchains, and chains can decide on their own registry mapping entries.
-*   Each blockchain should only have one canonical `TeleporterRegistry` contract.
-*   `TeleporterRegistry` contract can be initialized through a list of initial registry entries, which are `TeleporterMessenger` contract versions and their addresses.
-*   The registry keeps track of a mapping of `TeleporterMessenger` contract versions to their addresses, and vice versa, a mapping of `TeleporterMessenger` contract addresses to their versions.
-*   Version zero is an invalid version, and is used to indicate that a `TeleporterMessenger` contract has not been registered yet.
-*   Once a version number is registered in the registry, it cannot be changed, but a previous registered protocol address can be added to the registry with a new version. This is especially important in the case of a rollback to a previous Teleporter version, in which case the previous Teleporter contract address would need to be registered with a new version to the registry.
+- `TeleporterRegistry` is deployed on each blockchain that needs to keep track of `TeleporterMessenger` contract versions.
+- The registry's contract address on each blockchain does not need to be the same, and does not require a Nick's method transaction for deployment.
+- Each registry's mapping of version to contract address is independent of registries on other blockchains, and chains can decide on their own registry mapping entries.
+- Each blockchain should only have one canonical `TeleporterRegistry` contract.
+- `TeleporterRegistry` contract can be initialized through a list of initial registry entries, which are `TeleporterMessenger` contract versions and their addresses.
+- The registry keeps track of a mapping of `TeleporterMessenger` contract versions to their addresses, and vice versa, a mapping of `TeleporterMessenger` contract addresses to their versions.
+- Version zero is an invalid version, and is used to indicate that a `TeleporterMessenger` contract has not been registered yet.
+- Once a version number is registered in the registry, it cannot be changed, but a previous registered protocol address can be added to the registry with a new version. This is especially important in the case of a rollback to a previous Teleporter version, in which case the previous Teleporter contract address would need to be registered with a new version to the registry.
 
 Integrating `TeleporterRegistry` with `TeleporterUpgradeable`[​](#integrating-teleporterregistry-with-teleporterupgradeable "Direct link to heading")
 -----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -45,10 +43,10 @@ Integrating `TeleporterRegistry` with `TeleporterUpgradeable`[​](#integrating-
 
 [TeleporterUpgradeable](https://github.com/ava-labs/teleporter/blob/main/contracts/src/Teleporter/upgrades/TeleporterUpgradeable.sol) is an abstract contract that helps integrate the `TeleporterRegistry` into a dApp built on top of Teleporter. By inheriting from `TeleporterUpgradeable`, dapps get:
 
-*   Ability to send Teleporter messages through the latest version of the Teleporter contract registered in the Teleporter registry. (The dApp can also override this to use a specific version of the Teleporter contract.)
-*   `minTeleporterVersion` management that allows the dApp to specify the minimum Teleporter version that can send messages to the dApp.
-*   Access controlled utility to update the `minTeleporterVersion`
-*   Access controlled utility to pause/unpause interaction with specific Teleporter addresses.
+- Ability to send Teleporter messages through the latest version of the Teleporter contract registered in the Teleporter registry. (The dApp can also override this to use a specific version of the Teleporter contract.)
+- `minTeleporterVersion` management that allows the dApp to specify the minimum Teleporter version that can send messages to the dApp.
+- Access controlled utility to update the `minTeleporterVersion`
+- Access controlled utility to pause/unpause interaction with specific Teleporter addresses.
 
 To integrate `TeleporterUpgradeable` with a dApp pass in the Teleporter registry address inside the constructor. An example dApp looks like:
 

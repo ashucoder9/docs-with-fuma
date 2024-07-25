@@ -175,14 +175,14 @@ For example the following Bech32 address, `X-avax19rknw8l0grnfunjrzwxlxync6zrlu3
 
 Depending on the `networkID`, the encoded addresses will have a distinctive HRP per each network.
 
-*   0 - X-`custom`19rknw8l0grnfunjrzwxlxync6zrlu33yeg5dya
-*   1 - X-`avax`19rknw8l0grnfunjrzwxlxync6zrlu33y2jxhrg
-*   2 - X-`cascade`19rknw8l0grnfunjrzwxlxync6zrlu33ypmtvnh
-*   3 - X-`denali`19rknw8l0grnfunjrzwxlxync6zrlu33yhc357h
-*   4 - X-`everest`19rknw8l0grnfunjrzwxlxync6zrlu33yn44wty
-*   5 - X-`fuji`19rknw8l0grnfunjrzwxlxync6zrlu33yxqzg0h
-*   1337 - X-`custom`19rknw8l0grnfunjrzwxlxync6zrlu33yeg5dya
-*   12345 - X-`local`19rknw8l0grnfunjrzwxlxync6zrlu33ynpm3qq
+- 0 - X-`custom`19rknw8l0grnfunjrzwxlxync6zrlu33yeg5dya
+- 1 - X-`avax`19rknw8l0grnfunjrzwxlxync6zrlu33y2jxhrg
+- 2 - X-`cascade`19rknw8l0grnfunjrzwxlxync6zrlu33ypmtvnh
+- 3 - X-`denali`19rknw8l0grnfunjrzwxlxync6zrlu33yhc357h
+- 4 - X-`everest`19rknw8l0grnfunjrzwxlxync6zrlu33yn44wty
+- 5 - X-`fuji`19rknw8l0grnfunjrzwxlxync6zrlu33yxqzg0h
+- 1337 - X-`custom`19rknw8l0grnfunjrzwxlxync6zrlu33yeg5dya
+- 12345 - X-`local`19rknw8l0grnfunjrzwxlxync6zrlu33ynpm3qq
 
 Here's the mapping of `networkID` to bech32 HRP.
 
@@ -404,7 +404,7 @@ const unsignedTx: UnsignedTx = await pchain.buildAddValidatorTx(
 
 The Fuji workflow above can be adapted to Mainnet with the following modifications:
 
-*   The correct private key.
-*   Network setting should be to a Mainnet node, either [a local node on Mainnet](/nodes/configure/configs--flags#network-id) or [Avalanche Mainnet API server](/tooling/rpc-providers#using-the-public-api-nodes) where `api.avax.network` should be used for the `ip`.
-*   `const networkID: number = 1`.
-*   Set the correct amount to stake.
+- The correct private key.
+- Network setting should be to a Mainnet node, either [a local node on Mainnet](/nodes/configure/configs--flags#network-id) or [Avalanche Mainnet API server](/tooling/rpc-providers#using-the-public-api-nodes) where `api.avax.network` should be used for the `ip`.
+- `const networkID: number = 1`.
+- Set the correct amount to stake.

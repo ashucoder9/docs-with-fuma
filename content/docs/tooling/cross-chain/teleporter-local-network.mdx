@@ -8,14 +8,14 @@ After this tutorial, you would have created and deployed two Subnets to the loca
 
 For more information on cross chain messaging through Teleporter and Warp, check:
 
-*   [Cross Chain References](/build/cross-chain/quicklinks)
+- [Cross Chain References](/build/cross-chain/quicklinks)
 
 Note that currently only [Subnet-EVM](https://github.com/ava-labs/subnet-evm) and [Subnet-EVM-Based](/build/virtual-machines/evm-customization/introduction) virtual machines support Teleporter.
 
 Prerequisites[​](#prerequisites "Direct link to heading")
 ---------------------------------------------------------
 
-*   [Avalanche-CLI installed](/tooling/guides/install-avalanche-cli)
+- [Avalanche-CLI installed](/tooling/guides/install-avalanche-cli)
 
 Create Subnet Configurations[​](#create-subnet-configurations "Direct link to heading")
 ---------------------------------------------------------------------------------------
@@ -105,9 +105,9 @@ Currency Symbol:  TOKEN1
 
 Notice some details here:
 
-*   Two smart contracts are deployed to each Subnet: Teleporter Messenger and Teleporter Registry
-*   Both Teleporter smart contracts are also deployed to `C-Chain` in the Local Network
-*   [AWM Teleporter Relayer](https://github.com/ava-labs/awm-relayer) is installed, configured and executed in background (A Relayer [listens](/build/cross-chain/teleporter/overview#data-flow) for new messages being generated on a source Subnet and sends them to the destination Subnet.)
+- Two smart contracts are deployed to each Subnet: Teleporter Messenger and Teleporter Registry
+- Both Teleporter smart contracts are also deployed to `C-Chain` in the Local Network
+- [AWM Teleporter Relayer](https://github.com/ava-labs/awm-relayer) is installed, configured and executed in background (A Relayer [listens](/build/cross-chain/teleporter/overview#data-flow) for new messages being generated on a source Subnet and sends them to the destination Subnet.)
 
 CLI configures the Relayer to enable every Subnet to send messages to all other Subnets. If you add more Subnets, the Relayer will be automatically reconfigured.
 
@@ -193,11 +193,11 @@ Obtaining Information on Teleporter Deploys[​](#obtaining-information-on-telep
 
 By executing `subnet describe` on a Teleporter enabled Subnet, the following relevant information can be found:
 
-*   Blockchain RPC URL
-*   Blockchain ID in cb58 format
-*   Blockchain ID in plain hex format
-*   Teleporter Messenger address
-*   Teleporter Registry address
+- Blockchain RPC URL
+- Blockchain ID in cb58 format
+- Blockchain ID in plain hex format
+- Teleporter Messenger address
+- Teleporter Registry address
 
 Let's get the information for `<subnet1>`:
 

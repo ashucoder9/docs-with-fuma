@@ -21,16 +21,16 @@ Peer-to-Peer (P2P)[​](#peer-to-peer-p2p "Direct link to heading")
 
 All messaging functions in `OutboundMsgBuilder` can be categorized as follows:
 
-*   **Handshake**
-    *   Nodes need to be on a certain version before they can be accepted into the network.
-*   **State Sync**
-    *   A new node can ask other nodes for the current state of the network. It only syncs the required state for a specific block.
-*   **Bootstrapping**
-    *   Nodes can ask other nodes for blocks to build their own copy of the chain. A node can fetch all blocks from the locally last accepted block to the current last accepted block in the network.
-*   **Consensus**
-    *   Once a node is up to tip they can participate in consensus! During consensus, a node conducts a poll to several different small random samples of the validator set. They can communicate decisions on whether or not they have accepted/rejected a block.
-*   **App**
-    *   VMs communicate application-specific messages to other nodes through app messages. A common example is mempool gossiping.
+- **Handshake**
+    - Nodes need to be on a certain version before they can be accepted into the network.
+- **State Sync**
+    - A new node can ask other nodes for the current state of the network. It only syncs the required state for a specific block.
+- **Bootstrapping**
+    - Nodes can ask other nodes for blocks to build their own copy of the chain. A node can fetch all blocks from the locally last accepted block to the current last accepted block in the network.
+- **Consensus**
+    - Once a node is up to tip they can participate in consensus! During consensus, a node conducts a poll to several different small random samples of the validator set. They can communicate decisions on whether or not they have accepted/rejected a block.
+- **App**
+    - VMs communicate application-specific messages to other nodes through app messages. A common example is mempool gossiping.
 
 Currently, AvalancheGo implements its own message serialization to communicate. In the future, AvalancheGo will use protocol buffers to communicate.
 
@@ -50,10 +50,10 @@ Handler[​](#handler "Direct link to heading")
 
 The main function of [the `Handler`](https://github.com/ava-labs/avalanchego/blob/master/snow/networking/handler/handler.go) is to pass messages from the network to the consensus engine. It receives these messages from the `ChainRouter`. It passes messages by pushing them onto a sync or Async queue (depends on message type). Messages are then popped from the queue, parsed, and routed to the correct function in consensus engine. This can be one of the following.
 
-*   **State sync message (sync queue)**
-*   **Bootstrapping message (sync queue)**
-*   **Consensus message (sync queue)**
-*   **App message (Async queue)**
+- **State sync message (sync queue)**
+- **Bootstrapping message (sync queue)**
+- **Consensus message (sync queue)**
+- **App message (Async queue)**
 
 Sender[​](#sender "Direct link to heading")
 -------------------------------------------

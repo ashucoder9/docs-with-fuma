@@ -1,7 +1,7 @@
 ---
-title: Avalanche Warp Messaging
-sidebarTitle: Deep Dive
+title: Deep Dive into AWM
 ---
+
 Avalanche Warp Messaging (AWM) provides a primitive for cross-subnet communication on the Avalanche Network.
 
 The Avalanche P-Chain provides an index of every Subnet's validator set on the Avalanche Network, including the BLS public key of each validator (as of the [Banff Upgrade](https://github.com/ava-labs/avalanchego/releases/v1.9.0)). AWM utilizes the weighted validator sets stored on the P-Chain to build a cross-subnet communication protocol between any two Subnets on the Avalanche Network.
@@ -13,9 +13,9 @@ Background[​](#background "Direct link to heading")
 
 This README assumes familiarity with:
 
-*   Avalanche P-Chain / [PlatformVM](https://github.com/ava-labs/avalanchego/tree/master/vms/platformvm/)
-*   [ProposerVM](https://github.com/ava-labs/avalanchego/tree/master/vms/proposervm/README.md)
-*   Basic familiarity with [BLS Multi-Signatures](https://crypto.stanford.edu/~dabo/pubs/papers/BLSmultisig.html)
+- Avalanche P-Chain / [PlatformVM](https://github.com/ava-labs/avalanchego/tree/master/vms/platformvm/)
+- [ProposerVM](https://github.com/ava-labs/avalanchego/tree/master/vms/proposervm/README.md)
+- Basic familiarity with [BLS Multi-Signatures](https://crypto.stanford.edu/~dabo/pubs/papers/BLSmultisig.html)
 
 BLS Multi-Signatures with Public-Key Aggregation[​](#bls-multi-signatures-with-public-key-aggregation "Direct link to heading")
 -------------------------------------------------------------------------------------------------------------------------------
@@ -43,9 +43,9 @@ Unsigned Message:
                              +--------------------------+
 ```
 
-*   `networkID` is the unique ID of an Avalanche Network (Mainnet/Testnet) and provides replay protection for BLS Signers across different Avalanche Networks
-*   `sourceChainID` is the hash of the transaction that created the blockchain on the Avalanche P-Chain. It serves as the unique identifier for the blockchain across the Avalanche Network so that each blockchain can only sign a message with its own id.
-*   `payload` provides an arbitrary byte array containing the contents of the message. VMs define their own message types to include in the `payload`
+- `networkID` is the unique ID of an Avalanche Network (Mainnet/Testnet) and provides replay protection for BLS Signers across different Avalanche Networks
+- `sourceChainID` is the hash of the transaction that created the blockchain on the Avalanche P-Chain. It serves as the unique identifier for the blockchain across the Avalanche Network so that each blockchain can only sign a message with its own id.
+- `payload` provides an arbitrary byte array containing the contents of the message. VMs define their own message types to include in the `payload`
 
 BitSetSignature:
 
@@ -61,9 +61,9 @@ BitSetSignature:
                        +---------------------------+
 ```
 
-*   `typeID` is the ID of this signature type, which is `0x00000000`
-*   `signers` encodes a bitset of which validators' signatures are included (a bitset is a byte array where each bit indicates membership of the element at that index in the set)
-*   `signature` is an aggregated BLS Multi-Signature of the Unsigned Message
+- `typeID` is the ID of this signature type, which is `0x00000000`
+- `signers` encodes a bitset of which validators' signatures are included (a bitset is a byte array where each bit indicates membership of the element at that index in the set)
+- `signature` is an aggregated BLS Multi-Signature of the Unsigned Message
 
 BitSetSignatures are verified within the context of a specific P-Chain height. At any given P-Chain height, the PlatformVM serves a canonically ordered validator set for the source subnet (validator set is ordered lexicographically by the BLS public key's byte representation). The `signers` bitset encodes which validator signatures were included. A value of `1` at index `i` in `signers` bitset indicates that a corresponding signature from the same validator at index `i` in the canonical validator set was included in the aggregate signature.
 
@@ -126,5 +126,5 @@ Therefore, the new bootstrapping node can assume the block was valid to determin
 
 Two strategies to provide that mechanism are:
 
-*   Require warp message validity for transaction inclusion. If the transaction is included, the warp message must have passed verification.
-*   Include the results of warp message verification in the block itself. Use the results to determine which messages passed verification.
+- Require warp message validity for transaction inclusion. If the transaction is included, the warp message must have passed verification.
+- Include the results of warp message verification in the block itself. Use the results to determine which messages passed verification.

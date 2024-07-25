@@ -254,14 +254,14 @@ avm.createFixedCapAsset({
 }
 ```
 
-*   `name` is a human-readable name for the asset. Not necessarily unique.
-*   `symbol` is a shorthand symbol for the asset. Between 0 and 4 characters. Not necessarily unique. May be omitted.
-*   `denomination` determines how balances of this asset are displayed by user interfaces. If `denomination` is 0, 100 units of this asset are displayed as 100. If `denomination` is 1, 100 units of this asset are displayed as 10.0. If `denomination` is 2, 100 units of this asset are displayed as 1.00, etc. Defaults to 0.
-*   `from` are the addresses that you want to use for this operation. If omitted, uses any of your addresses as needed.
-*   `changeAddr` is the address any change will be sent to. If omitted, change is sent to one of the addresses controlled by the user.
-*   `username` and `password` denote the user paying the transaction fee.
-*   Each element in `initialHolders` specifies that `address` holds `amount` units of the asset at genesis.
-*   `assetID` is the ID of the new asset.
+- `name` is a human-readable name for the asset. Not necessarily unique.
+- `symbol` is a shorthand symbol for the asset. Between 0 and 4 characters. Not necessarily unique. May be omitted.
+- `denomination` determines how balances of this asset are displayed by user interfaces. If `denomination` is 0, 100 units of this asset are displayed as 100. If `denomination` is 1, 100 units of this asset are displayed as 10.0. If `denomination` is 2, 100 units of this asset are displayed as 1.00, etc. Defaults to 0.
+- `from` are the addresses that you want to use for this operation. If omitted, uses any of your addresses as needed.
+- `changeAddr` is the address any change will be sent to. If omitted, change is sent to one of the addresses controlled by the user.
+- `username` and `password` denote the user paying the transaction fee.
+- Each element in `initialHolders` specifies that `address` holds `amount` units of the asset at genesis.
+- `assetID` is the ID of the new asset.
 
 **Example Call:**
 
@@ -336,14 +336,14 @@ avm.createNFTAsset({
 }
 ```
 
-*   `name` is a human-readable name for the asset. Not necessarily unique.
-*   `symbol` is a shorthand symbol for the asset. Between 0 and 4 characters. Not necessarily unique. May be omitted.
-*   `minterSets` is a list where each element specifies that `threshold` of the addresses in `minters` may together mint more of the asset by signing a minting transaction.
-*   `from` are the addresses that you want to use for this operation. If omitted, uses any of your addresses as needed.
-*   `changeAddr` is the address any change will be sent to. If omitted, change is sent to one of the addresses controlled by the user.
-*   `username` pays the transaction fee.
-*   `assetID` is the ID of the new asset.
-*   `changeAddr` in the result is the address where any change was sent.
+- `name` is a human-readable name for the asset. Not necessarily unique.
+- `symbol` is a shorthand symbol for the asset. Between 0 and 4 characters. Not necessarily unique. May be omitted.
+- `minterSets` is a list where each element specifies that `threshold` of the addresses in `minters` may together mint more of the asset by signing a minting transaction.
+- `from` are the addresses that you want to use for this operation. If omitted, uses any of your addresses as needed.
+- `changeAddr` is the address any change will be sent to. If omitted, change is sent to one of the addresses controlled by the user.
+- `username` pays the transaction fee.
+- `assetID` is the ID of the new asset.
+- `changeAddr` in the result is the address where any change was sent.
 
 **Example Call:**
 
@@ -417,15 +417,15 @@ avm.createVariableCapAsset({
 }
 ```
 
-*   `name` is a human-readable name for the asset. Not necessarily unique.
-*   `symbol` is a shorthand symbol for the asset. Between 0 and 4 characters. Not necessarily unique. May be omitted.
-*   `denomination` determines how balances of this asset are displayed by user interfaces. If denomination is 0, 100 units of this asset are displayed as 100. If denomination is 1, 100 units of this asset are displayed as 10.0. If denomination is 2, 100 units of this asset are displays as .100, etc.
-*   `minterSets` is a list where each element specifies that `threshold` of the addresses in `minters` may together mint more of the asset by signing a minting transaction.
-*   `from` are the addresses that you want to use for this operation. If omitted, uses any of your addresses as needed.
-*   `changeAddr` is the address any change will be sent to. If omitted, change is sent to one of the addresses controlled by the user.
-*   `username` pays the transaction fee.
-*   `assetID` is the ID of the new asset.
-*   `changeAddr` in the result is the address where any change was sent.
+- `name` is a human-readable name for the asset. Not necessarily unique.
+- `symbol` is a shorthand symbol for the asset. Between 0 and 4 characters. Not necessarily unique. May be omitted.
+- `denomination` determines how balances of this asset are displayed by user interfaces. If denomination is 0, 100 units of this asset are displayed as 100. If denomination is 1, 100 units of this asset are displayed as 10.0. If denomination is 2, 100 units of this asset are displays as .100, etc.
+- `minterSets` is a list where each element specifies that `threshold` of the addresses in `minters` may together mint more of the asset by signing a minting transaction.
+- `from` are the addresses that you want to use for this operation. If omitted, uses any of your addresses as needed.
+- `changeAddr` is the address any change will be sent to. If omitted, change is sent to one of the addresses controlled by the user.
+- `username` pays the transaction fee.
+- `assetID` is the ID of the new asset.
+- `changeAddr` in the result is the address where any change was sent.
 
 **Example Call:**
 
@@ -503,23 +503,23 @@ avm.export({
 }
 ```
 
-*   `to` is the P-Chain or C-Chain address the asset is sent to.
+- `to` is the P-Chain or C-Chain address the asset is sent to.
     
-*   `amount` is the amount of the asset to send.
+- `amount` is the amount of the asset to send.
     
-*   `assetID` is the asset id of the asset which is sent. Use `AVAX` for AVAX exports.
+- `assetID` is the asset id of the asset which is sent. Use `AVAX` for AVAX exports.
     
-*   `from` are the addresses that you want to use for this operation. If omitted, uses any of your addresses as needed.
+- `from` are the addresses that you want to use for this operation. If omitted, uses any of your addresses as needed.
     
-*   `changeAddr` is the address any change will be sent to. If omitted, change is sent to one of the addresses controlled by the user.
+- `changeAddr` is the address any change will be sent to. If omitted, change is sent to one of the addresses controlled by the user.
     
-*   The asset is sent from addresses controlled by `username`
+- The asset is sent from addresses controlled by `username`
     
-*   `password` is `username`‘s password.
+- `password` is `username`‘s password.
     
-*   `txID` is this transaction's ID.
+- `txID` is this transaction's ID.
     
-*   `changeAddr` in the result is the address where any change was sent.
+- `changeAddr` in the result is the address where any change was sent.
     
 
 **Example Call:**
@@ -575,8 +575,8 @@ avm.exportKey({
 }) -> {privateKey: string}
 ```
 
-*   `username` must control `address`.
-*   `privateKey` is the string representation of the private key that controls `address`.
+- `username` must control `address`.
+- `privateKey` is the string representation of the private key that controls `address`.
 
 **Example Call:**
 
@@ -614,8 +614,8 @@ curl -X POST --data '{
 
 Returns all transactions that change the balance of the given address. A transaction is said to change an address's balance if either is true:
 
-*   A UTXO that the transaction consumes was at least partially owned by the address.
-*   A UTXO that the transaction produces is at least partially owned by the address.
+- A UTXO that the transaction consumes was at least partially owned by the address.
+- A UTXO that the transaction produces is at least partially owned by the address.
 
 
 <Callout title="Tip">
@@ -638,14 +638,14 @@ avm.getAddressTxs({
 
 **Request Parameters:**
 
-*   `address`: The address for which we're fetching related transactions
-*   `assetID`: Only return transactions that changed the balance of this asset. Must be an ID or an alias for an asset.
-*   `pageSize`: Number of items to return per page. Optional. Defaults to 1024.
+- `address`: The address for which we're fetching related transactions
+- `assetID`: Only return transactions that changed the balance of this asset. Must be an ID or an alias for an asset.
+- `pageSize`: Number of items to return per page. Optional. Defaults to 1024.
 
 **Response Parameter:**
 
-*   `txIDs`: List of transaction IDs that affected the balance of this address.
-*   `cursor`: Page number or offset. Use this in request to get the next page.
+- `txIDs`: List of transaction IDs that affected the balance of this address.
+- `cursor`: Page number or offset. Use this in request to get the next page.
 
 **Example Call:**
 
@@ -742,10 +742,10 @@ avm.getAssetDescription({assetID: string}) -> {
 }
 ```
 
-*   `assetID` is the id of the asset for which the information is requested.
-*   `name` is the asset's human-readable, not necessarily unique name.
-*   `symbol` is the asset's symbol.
-*   `denomination` determines how balances of this asset are displayed by user interfaces. If denomination is 0, 100 units of this asset are displayed as 100. If denomination is 1, 100 units of this asset are displayed as 10.0. If denomination is 2, 100 units of this asset are displays as .100, etc.
+- `assetID` is the id of the asset for which the information is requested.
+- `name` is the asset's human-readable, not necessarily unique name.
+- `symbol` is the asset's symbol.
+- `denomination` determines how balances of this asset are displayed by user interfaces. If denomination is 0, 100 units of this asset are displayed as 100. If denomination is 1, 100 units of this asset are displayed as 10.0. If denomination is 2, 100 units of this asset are displays as .100, etc.
 
 <Callout type="info">
 The AssetID for AVAX differs depending on the network you are on.
@@ -804,8 +804,8 @@ avm.getBalance({
 }) -> {balance: int}
 ```
 
-*   `address` owner of the asset
-*   `assetID` id of the asset for which the balance is requested
+- `address` owner of the asset
+- `assetID` id of the asset for which the balance is requested
 
 **Example Call:**
 
@@ -857,13 +857,13 @@ avm.getBlock({
 
 **Request:**
 
-*   `blockID` is the block ID. It should be in cb58 format.
-*   `encoding` is the encoding format to use. Can be either `hex` or `json`. Defaults to `hex`.
+- `blockID` is the block ID. It should be in cb58 format.
+- `encoding` is the encoding format to use. Can be either `hex` or `json`. Defaults to `hex`.
 
 **Response:**
 
-*   `block` is the transaction encoded to `encoding`.
-*   `encoding` is the `encoding`.
+- `block` is the transaction encoded to `encoding`.
+- `encoding` is the `encoding`.
 
 #### Hex Example[​](#hex-example "Direct link to heading")
 
@@ -912,13 +912,13 @@ avm.getBlockByHeight({
 
 **Request:**
 
-*   `blockHeight` is the block height. It should be in `string` format.
-*   `encoding` is the encoding format to use. Can be either `hex` or `json`. Defaults to `hex`.
+- `blockHeight` is the block height. It should be in `string` format.
+- `encoding` is the encoding format to use. Can be either `hex` or `json`. Defaults to `hex`.
 
 **Response:**
 
-*   `block` is the transaction encoded to `encoding`.
-*   `encoding` is the `encoding`.
+- `block` is the transaction encoded to `encoding`.
+- `encoding` is the `encoding`.
 
 #### Hex Example[​](#hex-example-1 "Direct link to heading")
 
@@ -1073,20 +1073,20 @@ curl -X POST --data '{
 
 Where:
 
-*   `credentials` is a list of this transaction's credentials. Each credential proves that this transaction's creator is allowed to consume one of this transaction's inputs. Each credential is a list of signatures.
-*   `unsignedTx` is the non-signature portion of the transaction.
-*   `networkID` is the ID of the network this transaction happened on. (Avalanche Mainnet is `1`.)
-*   `blockchainID` is the ID of the blockchain this transaction happened on. (Avalanche Mainnet X-Chain is `2oYMBNV4eNHyqk2fjjV5nVQLDbtmNJzq5s3qs3Lo6ftnC6FByM`.)
-*   Each element of `outputs` is an output (UTXO) of this transaction that is not being exported to another chain.
-*   Each element of `inputs` is an input of this transaction which has not been imported from another chain.
-*   Import Transactions have additional fields `sourceChain` and `importedInputs`, which specify the blockchain ID that assets are being imported from, and the inputs that are being imported.
-*   Export Transactions have additional fields `destinationChain` and `exportedOutputs`, which specify the blockchain ID that assets are being exported to, and the UTXOs that are being exported.
+- `credentials` is a list of this transaction's credentials. Each credential proves that this transaction's creator is allowed to consume one of this transaction's inputs. Each credential is a list of signatures.
+- `unsignedTx` is the non-signature portion of the transaction.
+- `networkID` is the ID of the network this transaction happened on. (Avalanche Mainnet is `1`.)
+- `blockchainID` is the ID of the blockchain this transaction happened on. (Avalanche Mainnet X-Chain is `2oYMBNV4eNHyqk2fjjV5nVQLDbtmNJzq5s3qs3Lo6ftnC6FByM`.)
+- Each element of `outputs` is an output (UTXO) of this transaction that is not being exported to another chain.
+- Each element of `inputs` is an input of this transaction which has not been imported from another chain.
+- Import Transactions have additional fields `sourceChain` and `importedInputs`, which specify the blockchain ID that assets are being imported from, and the inputs that are being imported.
+- Export Transactions have additional fields `destinationChain` and `exportedOutputs`, which specify the blockchain ID that assets are being exported to, and the UTXOs that are being exported.
 
 An output contains:
 
-*   `assetID`: The ID of the asset being transferred. (The Mainnet Avax ID is `FvwEAhmxKfeiG8SnEvq42hc6whRyY3EFYAvebMqDNDGCgxN5Z`.)
-*   `fxID`: The ID of the FX this output uses.
-*   `output`: The FX-specific contents of this output.
+- `assetID`: The ID of the asset being transferred. (The Mainnet Avax ID is `FvwEAhmxKfeiG8SnEvq42hc6whRyY3EFYAvebMqDNDGCgxN5Z`.)
+- `fxID`: The ID of the FX this output uses.
+- `output`: The FX-specific contents of this output.
 
 Most outputs use the secp256k1 FX, look like this:
 
@@ -1121,10 +1121,10 @@ avm.getTxStatus({txID: string}) -> {status: string}
 
 `status` is one of:
 
-*   `Accepted`: The transaction is (or will be) accepted by every node
-*   `Processing`: The transaction is being voted on by this node
-*   `Rejected`: The transaction will never be accepted by any node in the network
-*   `Unknown`: The transaction hasn't been seen by this node
+- `Accepted`: The transaction is (or will be) accepted by every node
+- `Processing`: The transaction is being voted on by this node
+- `Rejected`: The transaction will never be accepted by any node in the network
+- `Unknown`: The transaction hasn't been seen by this node
 
 **Example Call:**
 
@@ -1179,13 +1179,13 @@ avm.getUTXOs({
 }
 ```
 
-*   `utxos` is a list of UTXOs such that each UTXO references at least one address in `addresses`.
-*   At most `limit` UTXOs are returned. If `limit` is omitted or greater than 1024, it is set to 1024.
-*   This method supports pagination. `endIndex` denotes the last UTXO returned. To get the next set of UTXOs, use the value of `endIndex` as `startIndex` in the next call.
-*   If `startIndex` is omitted, will fetch all UTXOs up to `limit`.
-*   When using pagination (when `startIndex` is provided), UTXOs are not guaranteed to be unique across multiple calls. That is, a UTXO may appear in the result of the first call, and then again in the second call.
-*   When using pagination, consistency is not guaranteed across multiple calls. That is, the UTXO set of the addresses may have changed between calls.
-*   `encoding` sets the format for the returned UTXOs. Can only be `hex` when a value is provided.
+- `utxos` is a list of UTXOs such that each UTXO references at least one address in `addresses`.
+- At most `limit` UTXOs are returned. If `limit` is omitted or greater than 1024, it is set to 1024.
+- This method supports pagination. `endIndex` denotes the last UTXO returned. To get the next set of UTXOs, use the value of `endIndex` as `startIndex` in the next call.
+- If `startIndex` is omitted, will fetch all UTXOs up to `limit`.
+- When using pagination (when `startIndex` is provided), UTXOs are not guaranteed to be unique across multiple calls. That is, a UTXO may appear in the result of the first call, and then again in the second call.
+- When using pagination, consistency is not guaranteed across multiple calls. That is, the UTXO set of the addresses may have changed between calls.
+- `encoding` sets the format for the returned UTXOs. Can only be `hex` when a value is provided.
 
 #### **Example**[​](#example "Direct link to heading")
 
@@ -1330,10 +1330,10 @@ avm.import({
 }) -> {txID: string}
 ```
 
-*   `to` is the address the AVAX is sent to. This must be the same as the `to` argument in the corresponding call to the P-Chain's `exportAVAX` or C-Chain's `export`.
-*   `sourceChain` is the ID or alias of the chain the AVAX is being imported from. To import funds from the C-Chain, use `"C"`.
-*   `username` is the user that controls `to`.
-*   `txID` is the ID of the newly created atomic transaction.
+- `to` is the address the AVAX is sent to. This must be the same as the `to` argument in the corresponding call to the P-Chain's `exportAVAX` or C-Chain's `export`.
+- `sourceChain` is the ID or alias of the chain the AVAX is being imported from. To import funds from the C-Chain, use `"C"`.
+- `username` is the user that controls `to`.
+- `txID` is the ID of the newly created atomic transaction.
 
 **Example Call:**
 
@@ -1384,7 +1384,7 @@ avm.importKey({
 }) -> {address: string}
 ```
 
-*   Add `privateKey` to `username`‘s set of private keys. `address` is the address `username` now controls with the private key.
+- Add `privateKey` to `username`‘s set of private keys. `address` is the address `username` now controls with the private key.
 
 **Example Call:**
 
@@ -1529,12 +1529,12 @@ avm.mint({
 }
 ```
 
-*   `amount` units of `assetID` will be created and controlled by address `to`.
-*   `from` are the addresses that you want to use for this operation. If omitted, uses any of your addresses as needed.
-*   `changeAddr` is the address any change will be sent to. If omitted, change is sent to one of the addresses controlled by the user.
-*   `username` is the user that pays the transaction fee. `username` must hold keys giving it permission to mint more of this asset. That is, it must control at least _threshold_ keys for one of the minter sets.
-*   `txID` is this transaction's ID.
-*   `changeAddr` in the result is the address where any change was sent.
+- `amount` units of `assetID` will be created and controlled by address `to`.
+- `from` are the addresses that you want to use for this operation. If omitted, uses any of your addresses as needed.
+- `changeAddr` is the address any change will be sent to. If omitted, change is sent to one of the addresses controlled by the user.
+- `username` is the user that pays the transaction fee. `username` must hold keys giving it permission to mint more of this asset. That is, it must control at least _threshold_ keys for one of the minter sets.
+- `txID` is this transaction's ID.
+- `changeAddr` in the result is the address where any change was sent.
 
 **Example Call:**
 
@@ -1598,14 +1598,14 @@ avm.mintNFT({
 }
 ```
 
-*   `assetID` is the assetID of the newly created NFT asset.
-*   `payload` is an arbitrary payload of up to 1024 bytes. Its encoding format is specified by the `encoding` argument.
-*   `from` are the addresses that you want to use for this operation. If omitted, uses any of your addresses as needed.
-*   `changeAddr` is the address any change will be sent to. If omitted, change is sent to one of the addresses controlled by the user.
-*   `username` is the user that pays the transaction fee. `username` must hold keys giving it permission to mint more of this asset. That is, it must control at least _threshold_ keys for one of the minter sets.
-*   `txID` is this transaction's ID.
-*   `changeAddr` in the result is the address where any change was sent.
-*   `encoding` is the encoding format to use for the payload argument. Can only be `hex` when a value is provided.
+- `assetID` is the assetID of the newly created NFT asset.
+- `payload` is an arbitrary payload of up to 1024 bytes. Its encoding format is specified by the `encoding` argument.
+- `from` are the addresses that you want to use for this operation. If omitted, uses any of your addresses as needed.
+- `changeAddr` is the address any change will be sent to. If omitted, change is sent to one of the addresses controlled by the user.
+- `username` is the user that pays the transaction fee. `username` must hold keys giving it permission to mint more of this asset. That is, it must control at least _threshold_ keys for one of the minter sets.
+- `txID` is this transaction's ID.
+- `changeAddr` in the result is the address where any change was sent.
+- `encoding` is the encoding format to use for the payload argument. Can only be `hex` when a value is provided.
 
 **Example Call:**
 
@@ -1665,12 +1665,12 @@ avm.send({
 }) -> {txID: string, changeAddr: string}
 ```
 
-*   Sends `amount` units of asset with ID `assetID` to address `to`. `amount` is denominated in the smallest increment of the asset. For AVAX this is 1 nAVAX (one billionth of 1 AVAX.)
-*   `to` is the X-Chain address the asset is sent to.
-*   `from` are the addresses that you want to use for this operation. If omitted, uses any of your addresses as needed.
-*   `changeAddr` is the address any change will be sent to. If omitted, change is sent to one of the addresses controlled by the user.
-*   You can attach a `memo`, whose length can be up to 256 bytes.
-*   The asset is sent from addresses controlled by user `username`. (Of course, that user will need to hold at least the balance of the asset being sent.)
+- Sends `amount` units of asset with ID `assetID` to address `to`. `amount` is denominated in the smallest increment of the asset. For AVAX this is 1 nAVAX (one billionth of 1 AVAX.)
+- `to` is the X-Chain address the asset is sent to.
+- `from` are the addresses that you want to use for this operation. If omitted, uses any of your addresses as needed.
+- `changeAddr` is the address any change will be sent to. If omitted, change is sent to one of the addresses controlled by the user.
+- You can attach a `memo`, whose length can be up to 256 bytes.
+- The asset is sent from addresses controlled by user `username`. (Of course, that user will need to hold at least the balance of the asset being sent.)
 
 **Example Call:**
 
@@ -1733,11 +1733,11 @@ avm.sendMultiple({
 }) -> {txID: string, changeAddr: string}
 ```
 
-*   `outputs` is an array of object literals which each contain an `assetID`, `amount` and `to`.
-*   `memo` is an optional message, whose length can be up to 256 bytes.
-*   `from` are the addresses that you want to use for this operation. If omitted, uses any of your addresses as needed.
-*   `changeAddr` is the address any change will be sent to. If omitted, change is sent to one of the addresses controlled by the user.
-*   The asset is sent from addresses controlled by user `username`. (Of course, that user will need to hold at least the balance of the asset being sent.)
+- `outputs` is an array of object literals which each contain an `assetID`, `amount` and `to`.
+- `memo` is an optional message, whose length can be up to 256 bytes.
+- `from` are the addresses that you want to use for this operation. If omitted, uses any of your addresses as needed.
+- `changeAddr` is the address any change will be sent to. If omitted, change is sent to one of the addresses controlled by the user.
+- The asset is sent from addresses controlled by user `username`. (Of course, that user will need to hold at least the balance of the asset being sent.)
 
 **Example Call:**
 
@@ -1806,11 +1806,11 @@ avm.sendNFT({
 }) -> {txID: string}
 ```
 
-*   `assetID` is the asset ID of the NFT being sent.
-*   `groupID` is the NFT group from which to send the NFT. NFT creation allows multiple groups under each NFT ID. You can issue multiple NFTs to each group.
-*   `to` is the X-Chain address the NFT is sent to.
-*   `from` are the addresses that you want to use for this operation. If omitted, uses any of your addresses as needed. `changeAddr` is the address any change will be sent to. If omitted, change is sent to one of the addresses controlled by the user.
-*   The asset is sent from addresses controlled by user `username`. (Of course, that user will need to hold at least the balance of the NFT being sent.)
+- `assetID` is the asset ID of the NFT being sent.
+- `groupID` is the NFT group from which to send the NFT. NFT creation allows multiple groups under each NFT ID. You can issue multiple NFTs to each group.
+- `to` is the X-Chain address the NFT is sent to.
+- `from` are the addresses that you want to use for this operation. If omitted, uses any of your addresses as needed. `changeAddr` is the address any change will be sent to. If omitted, change is sent to one of the addresses controlled by the user.
+- The asset is sent from addresses controlled by user `username`. (Of course, that user will need to hold at least the balance of the NFT being sent.)
 
 **Example Call:**
 
@@ -1926,12 +1926,12 @@ wallet.send({
 }) -> {txID: string, changeAddr: string}
 ```
 
-*   Sends `amount` units of asset with ID `assetID` to address `to`. `amount` is denominated in the smallest increment of the asset. For AVAX this is 1 nAVAX (one billionth of 1 AVAX.)
-*   `to` is the X-Chain address the asset is sent to.
-*   `from` are the addresses that you want to use for this operation. If omitted, uses any of your addresses as needed.
-*   `changeAddr` is the address any change will be sent to. If omitted, change is sent to one of the addresses controlled by the user.
-*   You can attach a `memo`, whose length can be up to 256 bytes.
-*   The asset is sent from addresses controlled by user `username`. (Of course, that user will need to hold at least the balance of the asset being sent.)
+- Sends `amount` units of asset with ID `assetID` to address `to`. `amount` is denominated in the smallest increment of the asset. For AVAX this is 1 nAVAX (one billionth of 1 AVAX.)
+- `to` is the X-Chain address the asset is sent to.
+- `from` are the addresses that you want to use for this operation. If omitted, uses any of your addresses as needed.
+- `changeAddr` is the address any change will be sent to. If omitted, change is sent to one of the addresses controlled by the user.
+- You can attach a `memo`, whose length can be up to 256 bytes.
+- The asset is sent from addresses controlled by user `username`. (Of course, that user will need to hold at least the balance of the asset being sent.)
 
 **Example Call:**
 
@@ -1999,11 +1999,11 @@ wallet.sendMultiple({
 }) -> {txID: string, changeAddr: string}
 ```
 
-*   `outputs` is an array of object literals which each contain an `assetID`, `amount` and `to`.
-*   `from` are the addresses that you want to use for this operation. If omitted, uses any of your addresses as needed.
-*   `changeAddr` is the address any change will be sent to. If omitted, change is sent to one of the addresses controlled by the user.
-*   You can attach a `memo`, whose length can be up to 256 bytes.
-*   The asset is sent from addresses controlled by user `username`. (Of course, that user will need to hold at least the balance of the asset being sent.)
+- `outputs` is an array of object literals which each contain an `assetID`, `amount` and `to`.
+- `from` are the addresses that you want to use for this operation. If omitted, uses any of your addresses as needed.
+- `changeAddr` is the address any change will be sent to. If omitted, change is sent to one of the addresses controlled by the user.
+- You can attach a `memo`, whose length can be up to 256 bytes.
+- The asset is sent from addresses controlled by user `username`. (Of course, that user will need to hold at least the balance of the asset being sent.)
 
 **Example Call:**
 
@@ -2161,8 +2161,8 @@ Calling **NewSet** or **NewBloom** resets the filter, and must be followed with 
 
 **Set details:**
 
-*   **NewSet** performs absolute address matches, if the address is in the set you will be sent the transaction.
-*   **NewBloom** [Bloom filtering](https://en.wikipedia.org/wiki/Bloom_filter) can produce false positives, but can allow a greater number of addresses to be filtered. If the addresses is in the filter, you will be sent the transaction.
+- **NewSet** performs absolute address matches, if the address is in the set you will be sent the transaction.
+- **NewBloom** [Bloom filtering](https://en.wikipedia.org/wiki/Bloom_filter) can produce false positives, but can allow a greater number of addresses to be filtered. If the addresses is in the filter, you will be sent the transaction.
 
 **Example Response:**
 

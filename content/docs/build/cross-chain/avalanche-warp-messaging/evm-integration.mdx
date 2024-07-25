@@ -1,7 +1,7 @@
 ---
-title: Integrating Avalanche Warp Messaging into the EVM
-sidebarTitle: EVM Integration
+title: Integration with EVM
 ---
+
 Avalanche Warp Messaging offers a basic primitive to enable Cross-Subnet communication on the Avalanche Network.
 
 It is intended to allow communication between arbitrary Custom Virtual Machines (including, but not limited to Subnet-EVM and Coreth).
@@ -34,9 +34,9 @@ The Warp Precompile is broken down into three functions defined in the Solidity 
 
 `sendWarpMessage` is used to send a verifiable message. Calling this function results in sending a message with the following contents:
 
-*   `SourceChainID` - blockchainID of the sourceChain on the Avalanche P-Chain
-*   `SourceAddress` - `msg.sender` encoded as a 32 byte value that calls `sendWarpMessage`
-*   `Payload` - `payload` argument specified in the call to `sendWarpMessage` emitted as the unindexed data of the resulting log
+- `SourceChainID` - blockchainID of the sourceChain on the Avalanche P-Chain
+- `SourceAddress` - `msg.sender` encoded as a 32 byte value that calls `sendWarpMessage`
+- `Payload` - `payload` argument specified in the call to `sendWarpMessage` emitted as the unindexed data of the resulting log
 
 Calling this function will issue a `SendWarpMessage` event from the Warp Precompile. Since the EVM limits the number of topics to 4 including the EventID, this message includes only the topics that would be expected to help filter messages emitted from the Warp Precompile the most.
 
@@ -44,8 +44,8 @@ Specifically, the `payload` is not emitted as a topic because each topic must be
 
 Additionally, the `SourceChainID` is excluded because anyone parsing the chain can be expected to already know the blockchainID. Therefore, the `SendWarpMessage` event includes the indexable attributes:
 
-*   `sender`
-*   The `messageID` of the unsigned message (sha256 of the unsigned message)
+- `sender`
+- The `messageID` of the unsigned message (sha256 of the unsigned message)
 
 The actual `message` is the entire [Avalanche Warp Unsigned Message](https://github.com/ava-labs/avalanchego/blob/master/vms/platformvm/warp/unsigned_message.go#L14) including an [AddressedCall](https://github.com/ava-labs/avalanchego/tree/master/vms/platformvm/warp/payload#readme). The unsigned message is emitted as the unindexed data in the log.
 
@@ -144,12 +144,12 @@ The Warp Precompile was designed with the intention of minimizing the trusted co
 
 The Warp Precompile itself provides ONLY the following ability:
 
-*   Emit a verifiable message from (Address A, Blockchain A) to (Address B, Blockchain B) that can be verified by the destination chain
+- Emit a verifiable message from (Address A, Blockchain A) to (Address B, Blockchain B) that can be verified by the destination chain
 
 #### Explicitly Not Provided / Built on Top[​](#explicitly-not-provided--built-on-top "Direct link to heading")
 
 The Warp Precompile itself does not provide any guarantees of:
 
-*   Eventual message delivery (may require re-send on blockchain A and additional assumptions about off-chain relayers and chain progress)
-*   Ordering of messages (requires ordering provided a layer above)
-*   Replay protection (requires replay protection provided a layer above)
+- Eventual message delivery (may require re-send on blockchain A and additional assumptions about off-chain relayers and chain progress)
+- Ordering of messages (requires ordering provided a layer above)
+- Replay protection (requires replay protection provided a layer above)

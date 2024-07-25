@@ -7,17 +7,17 @@ Introduction[​](#introduction "Direct link to heading")
 
 This tutorial demonstrates how to set up infrastructure to monitor an instance of [AvalancheGo](https://github.com/ava-labs/avalanchego). We will use:
 
-*   [Prometheus](https://prometheus.io/) to gather and store data
-*   [`node_exporter`](https://github.com/prometheus/node_exporter) to get information about the machine,
-*   AvalancheGo's [Metrics API](/api-reference/metrics-api) to get information about the node
-*   [Grafana](https://grafana.com/) to visualize data on a dashboard.
-*   A set of pre-made [Avalanche dashboards](https://github.com/ava-labs/avalanche-monitoring/tree/main/grafana/dashboards)
+- [Prometheus](https://prometheus.io/) to gather and store data
+- [`node_exporter`](https://github.com/prometheus/node_exporter) to get information about the machine,
+- AvalancheGo's [Metrics API](/api-reference/metrics-api) to get information about the node
+- [Grafana](https://grafana.com/) to visualize data on a dashboard.
+- A set of pre-made [Avalanche dashboards](https://github.com/ava-labs/avalanche-monitoring/tree/main/grafana/dashboards)
 
 Prerequisites:
 
-*   A running AvalancheGo node
-*   Shell access to the machine running the node
-*   Administrator privileges on the machine
+- A running AvalancheGo node
+- Shell access to the machine running the node
+- Administrator privileges on the machine
 
 This tutorial assumes you have Ubuntu 20.04 running on your node. Other Linux flavors that use `systemd` for running services and `apt-get` for package management might work but have not been tested. Community member has reported it works on Debian 10, might work on other Debian releases as well.
 
@@ -197,9 +197,9 @@ sudo systemctl status node_exporter
 
 If the service is running, Prometheus, Grafana and `node_exporter` should all work together now. To check, in your browser visit Prometheus web interface on `http://your-node-host-ip:9090/targets`. You should see three targets enabled:
 
-*   Prometheus
-*   AvalancheGo
-*   `avalanchego-machine`
+- Prometheus
+- AvalancheGo
+- `avalanchego-machine`
 
 Make sure that all of them have `State` as `UP`.
 

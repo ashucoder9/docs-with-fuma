@@ -269,10 +269,10 @@ info.getNodeID() -> {
 }
 ```
 
-*   `nodeID` Node ID is the unique identifier of the node that you set to act as a validator on the Primary Network.
-*   `nodePOP` is this node's BLS key and proof of possession. Nodes must register a BLS key to act as a validator on the Primary Network. Your node's POP is logged on startup and is accessible over this endpoint.
-    *   `publicKey` is the 48 byte hex representation of the BLS key.
-    *   `proofOfPossession` is the 96 byte hex representation of the BLS signature.
+- `nodeID` Node ID is the unique identifier of the node that you set to act as a validator on the Primary Network.
+- `nodePOP` is this node's BLS key and proof of possession. Nodes must register a BLS key to act as a validator on the Primary Network. Your node's POP is logged on startup and is accessible over this endpoint.
+    - `publicKey` is the 48 byte hex representation of the BLS key.
+    - `proofOfPossession` is the 96 byte hex representation of the BLS signature.
 
 **Example Call:**
 
@@ -354,11 +354,11 @@ info.getNodeVersion() -> {
 
 where:
 
-*   `version` is this node's version
-*   `databaseVersion` is the version of the database this node is using
-*   `gitCommit` is the Git commit that this node was built from
-*   `vmVersions` is map where each key/value pair is the name of a VM, and the version of that VM this node runs
-*   `rpcProtocolVersion` is the RPCChainVM protocol version
+- `version` is this node's version
+- `databaseVersion` is the version of the database this node is using
+- `gitCommit` is the Git commit that this node was built from
+- `vmVersions` is map where each key/value pair is the name of a VM, and the version of that VM this node runs
+- `rpcProtocolVersion` is the RPCChainVM protocol version
 
 **Example Call:**
 
@@ -411,15 +411,15 @@ info.getTxFee() ->
 }
 ```
 
-*   `txFee` is the default fee for making transactions.
-*   `createAssetTxFee` is the fee for creating a new asset.
-*   `createSubnetTxFee` is the fee for creating a new Subnet.
-*   `transformSubnetTxFee` is the fee for converting a PoA Subnet into a PoS Subnet.
-*   `createBlockchainTxFee` is the fee for creating a new blockchain.
-*   `addPrimaryNetworkValidatorFee` is the fee for adding a new primary network validator.
-*   `addPrimaryNetworkDelegatorFee` is the fee for adding a new primary network delegator.
-*   `addSubnetValidatorFee` is the fee for adding a new Subnet validator.
-*   `addSubnetDelegatorFee` is the fee for adding a new Subnet delegator.
+- `txFee` is the default fee for making transactions.
+- `createAssetTxFee` is the fee for creating a new asset.
+- `createSubnetTxFee` is the fee for creating a new Subnet.
+- `transformSubnetTxFee` is the fee for converting a PoA Subnet into a PoS Subnet.
+- `createBlockchainTxFee` is the fee for creating a new blockchain.
+- `addPrimaryNetworkValidatorFee` is the fee for adding a new primary network validator.
+- `addPrimaryNetworkDelegatorFee` is the fee for adding a new primary network delegator.
+- `addSubnetValidatorFee` is the fee for adding a new Subnet validator.
+- `addSubnetDelegatorFee` is the fee for adding a new Subnet delegator.
 
 All fees are denominated in nAVAX.
 
@@ -525,16 +525,16 @@ info.peers({
 }
 ```
 
-*   `nodeIDs` is an optional parameter to specify what NodeID's descriptions should be returned. If this parameter is left empty, descriptions for all active connections will be returned. If the node is not connected to a specified NodeID, it will be omitted from the response.
-*   `ip` is the remote IP of the peer.
-*   `publicIP` is the public IP of the peer.
-*   `nodeID` is the prefixed Node ID of the peer.
-*   `version` shows which version the peer runs on.
-*   `lastSent` is the timestamp of last message sent to the peer.
-*   `lastReceived` is the timestamp of last message received from the peer.
-*   `benched` shows chain IDs that the peer is being benched.
-*   `observedUptime` is this node's primary network uptime, observed by the peer.
-*   `observedSubnetUptime` is a map of Subnet IDs to this node's Subnet uptimes, observed by the peer.
+- `nodeIDs` is an optional parameter to specify what NodeID's descriptions should be returned. If this parameter is left empty, descriptions for all active connections will be returned. If the node is not connected to a specified NodeID, it will be omitted from the response.
+- `ip` is the remote IP of the peer.
+- `publicIP` is the public IP of the peer.
+- `nodeID` is the prefixed Node ID of the peer.
+- `version` shows which version the peer runs on.
+- `lastSent` is the timestamp of last message sent to the peer.
+- `lastReceived` is the timestamp of last message received from the peer.
+- `benched` shows chain IDs that the peer is being benched.
+- `observedUptime` is this node's primary network uptime, observed by the peer.
+- `observedSubnetUptime` is a map of Subnet IDs to this node's Subnet uptimes, observed by the peer.
 
 **Example Call:**
 
@@ -622,11 +622,11 @@ info.uptime({
 }
 ```
 
-*   `subnetID` is the Subnet to get the uptime of. If not provided, returns the uptime of the node on the primary network.
+- `subnetID` is the Subnet to get the uptime of. If not provided, returns the uptime of the node on the primary network.
     
-*   `rewardingStakePercentage` is the percent of stake which thinks this node is above the uptime requirement.
+- `rewardingStakePercentage` is the percent of stake which thinks this node is above the uptime requirement.
     
-*   `weightedAveragePercentage` is the stake-weighted average of all observed uptimes for this node.
+- `weightedAveragePercentage` is the stake-weighted average of all observed uptimes for this node.
     
 
 **Example Call:**

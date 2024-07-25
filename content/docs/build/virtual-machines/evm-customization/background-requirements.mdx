@@ -4,10 +4,10 @@ title: Background and Requirements
 
 This is a brief overview of what this tutorial will cover.
 
-*   Write a Solidity interface
-*   Generate the precompile template
-*   Implement the precompile functions in Golang
-*   Write and run tests
+- Write a Solidity interface
+- Generate the precompile template
+- Implement the precompile functions in Golang
+- Write and run tests
 
 <Callout type="warning">
 Stateful precompiles are [alpha software](https://en.wikipedia.org/wiki/Software_release_life_cycle#Alpha). Build at your own risk.
@@ -33,14 +33,14 @@ Additionally, users should be deeply familiar with the EVM in order to understan
 
 Here are some recommended resources to learn the ins and outs of the EVM:
 
-*   [The Ethereum Virtual Machine](https://github.com/ethereumbook/ethereumbook/blob/develop/13evm.asciidoc)
-*   [Precompiles in Solidity](https://medium.com/@rbkhmrcr/precompiles-solidity-e5d29bd428c4)
-*   [Deconstructing a Smart Contract](https://blog.openzeppelin.com/deconstructing-a-solidity-contract-part-i-introduction-832efd2d7737/)
-*   [Layout of State Variables in Storage](https://docs.soliditylang.org/en/v0.8.10/internals/layout_in_storage.html)
-*   [Layout in Memory](https://docs.soliditylang.org/en/v0.8.10/internals/layout_in_memory.html)
-*   [Layout of Call Data](https://docs.soliditylang.org/en/v0.8.10/internals/layout_in_calldata.html)
-*   [Contract ABI Specification](https://docs.soliditylang.org/en/v0.8.10/abi-spec.html)
-*   [Customizing the EVM with Stateful Precompiles](https://medium.com/avalancheavax/customizing-the-evm-with-stateful-precompiles-f44a34f39efd)
+- [The Ethereum Virtual Machine](https://github.com/ethereumbook/ethereumbook/blob/develop/13evm.asciidoc)
+- [Precompiles in Solidity](https://medium.com/@rbkhmrcr/precompiles-solidity-e5d29bd428c4)
+- [Deconstructing a Smart Contract](https://blog.openzeppelin.com/deconstructing-a-solidity-contract-part-i-introduction-832efd2d7737/)
+- [Layout of State Variables in Storage](https://docs.soliditylang.org/en/v0.8.10/internals/layout_in_storage.html)
+- [Layout in Memory](https://docs.soliditylang.org/en/v0.8.10/internals/layout_in_memory.html)
+- [Layout of Call Data](https://docs.soliditylang.org/en/v0.8.10/internals/layout_in_calldata.html)
+- [Contract ABI Specification](https://docs.soliditylang.org/en/v0.8.10/abi-spec.html)
+- [Customizing the EVM with Stateful Precompiles](https://medium.com/avalancheavax/customizing-the-evm-with-stateful-precompiles-f44a34f39efd)
 
 Please install the following before getting started.
 
@@ -57,11 +57,11 @@ As a few things will be installed into `$GOPATH/bin`, please make sure that `$GO
 
 Download the following prerequisites into your `$GOPATH`:
 
-*   Git Clone the repository (Subnet-EVM or Precompile-EVM)
-*   Git Clone [AvalancheGo](https://github.com/ava-labs/avalanchego) repository
-*   Install [Avalanche Network Runner](/tooling/avalanche-network-runner/introduction)
-*   Install [solc](https://github.com/ethereum/solc-js#usage-on-the-command-line)
-*   Install [Node.js and NPM](https://nodejs.org/en/download) For easy copy paste, use the below commands:
+- Git Clone the repository (Subnet-EVM or Precompile-EVM)
+- Git Clone [AvalancheGo](https://github.com/ava-labs/avalanchego) repository
+- Install [Avalanche Network Runner](/tooling/avalanche-network-runner/introduction)
+- Install [solc](https://github.com/ethereum/solc-js#usage-on-the-command-line)
+- Install [Node.js and NPM](https://nodejs.org/en/download) For easy copy paste, use the below commands:
 
 ```
 cd $GOPATH

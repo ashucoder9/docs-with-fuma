@@ -8,7 +8,7 @@ After this tutorial, you would have created a Devnet and deployed two Subnets in
 
 For more information on cross chain messaging through Teleporter and Warp, check:
 
-*   [Cross Chain References](/build/cross-chain/quicklinks)
+- [Cross Chain References](/build/cross-chain/quicklinks)
 
 Note that currently only [Subnet-EVM](https://github.com/ava-labs/subnet-evm) and [Subnet-EVM-Based](/build/virtual-machines/evm-customization/introduction) virtual machines support Teleporter.
 
@@ -17,7 +17,7 @@ Prerequisites[​](#prerequisites "Direct link to heading")
 
 Before we begin, you will need to have:
 
-*   Created an AWS account and have an updated AWS `credentials` file in home directory with \[default\] profile
+- Created an AWS account and have an updated AWS `credentials` file in home directory with \[default\] profile
 
 Note: the tutorial uses AWS hosts, but Devnets can also be created and operated in other supported cloud providers, such as GCP.
 
@@ -70,9 +70,9 @@ Subnet <subnet1> RPC URL: http://67.202.23.231:9650/ext/bc/fqcM24LNb3kTV7KD1mAvU
 
 Notice some details here:
 
-*   Two smart contracts are deployed to the Subnet: Teleporter Messenger and Teleporter Registry
-*   Both Teleporter smart contracts are also deployed to `C-Chain`
-*   [AWM Teleporter Relayer](https://github.com/ava-labs/awm-relayer) is installed and configured as a service into one of the nodes (A Relayer [listens](/build/cross-chain/teleporter/overview#data-flow) for new messages being generated on a source Subnet and sends them to the destination Subnet.)
+- Two smart contracts are deployed to the Subnet: Teleporter Messenger and Teleporter Registry
+- Both Teleporter smart contracts are also deployed to `C-Chain`
+- [AWM Teleporter Relayer](https://github.com/ava-labs/awm-relayer) is installed and configured as a service into one of the nodes (A Relayer [listens](/build/cross-chain/teleporter/overview#data-flow) for new messages being generated on a source Subnet and sends them to the destination Subnet.)
 
 CLI configures the Relayer to enable every Subnet to send messages to all other Subnets. If you add more Subnets to the Devnet, the Relayer will be automatically reconfigured.
 
@@ -195,11 +195,11 @@ Obtaining Information on Teleporter Deploys[​](#obtaining-information-on-telep
 
 By executing `subnet describe` on a Teleporter enabled Subnet, the following relevant information can be found:
 
-*   Blockchain RPC URL
-*   Blockchain ID in cb58 format
-*   Blockchain ID in plain hex format
-*   Teleporter Messenger address
-*   Teleporter Registry address
+- Blockchain RPC URL
+- Blockchain ID in cb58 format
+- Blockchain ID in plain hex format
+- Teleporter Messenger address
+- Teleporter Registry address
 
 Let's get the information for `<subnet1>`:
 

@@ -13,62 +13,62 @@ A VM defines how a blockchain should be built. A block is populated with a set o
 
 The BlobVM repository has a few components to handle the lifecycle of tasks from a transaction being issued to a block being accepted across the network:
 
-*   **Transaction** - A state transition
-*   **Mempool** - Stores pending transactions that haven't been finalized yet
-*   **Network** - Propagates transactions from the mempool other nodes in the network
-*   **Block** - Defines the block format, how to verify it, and how it should be accepted or rejected across the network
-*   **Block Builder** - Builds blocks by including transactions from the mempool
-*   **Virtual Machine** - Application-level logic. Implements the VM interface needed to interact with Avalanche consensus and defines the blueprint for the blockchain.
-*   **Service** - Exposes APIs so users can interact with the VM
-*   **Factory** - Used to initialize the VM
+- **Transaction** - A state transition
+- **Mempool** - Stores pending transactions that haven't been finalized yet
+- **Network** - Propagates transactions from the mempool other nodes in the network
+- **Block** - Defines the block format, how to verify it, and how it should be accepted or rejected across the network
+- **Block Builder** - Builds blocks by including transactions from the mempool
+- **Virtual Machine** - Application-level logic. Implements the VM interface needed to interact with Avalanche consensus and defines the blueprint for the blockchain.
+- **Service** - Exposes APIs so users can interact with the VM
+- **Factory** - Used to initialize the VM
 
 Lifecycle of a Transaction[​](#lifecycle-of-a-transaction "Direct link to heading")
 -----------------------------------------------------------------------------------
 
 A VM will often times expose a set of APIs so users can interact with the it. In the blockchain, blocks can contain a set of transactions which mutate the blockchain's state. Let's dive into the lifecycle of a transaction from its issuance to its finalization on the blockchain.
 
-*   A user makes an API request to `service.IssueRawTx` to issue their transaction
-    *   This API will deserialize the user's transaction and forward it to the VM
-*   The transaction is submitted to the VM
-    *   The transaction is added to the VM's mempool
-*   The VM asynchronously periodically gossips new transactions in its mempool to other nodes in the network so they can learn about them
-*   The VM sends the Avalanche consensus engine a message to indicate that it has transactions in the mempool that are ready to be built into a block
-*   The VM proposes the block with to consensus
-*   Consensus verifies that the block is valid and well-formed
-*   Consensus gets the network to vote on whether the block should be accepted or rejected
-    *   If a block is rejected, its transactions are reclaimed by the mempool so they can be included in a future block
-    *   If a block is accepted, it's finalized by writing it to the blockchain
+- A user makes an API request to `service.IssueRawTx` to issue their transaction
+    - This API will deserialize the user's transaction and forward it to the VM
+- The transaction is submitted to the VM
+    - The transaction is added to the VM's mempool
+- The VM asynchronously periodically gossips new transactions in its mempool to other nodes in the network so they can learn about them
+- The VM sends the Avalanche consensus engine a message to indicate that it has transactions in the mempool that are ready to be built into a block
+- The VM proposes the block with to consensus
+- Consensus verifies that the block is valid and well-formed
+- Consensus gets the network to vote on whether the block should be accepted or rejected
+    - If a block is rejected, its transactions are reclaimed by the mempool so they can be included in a future block
+    - If a block is accepted, it's finalized by writing it to the blockchain
 
 Coding the Virtual Machine[​](#coding-the-virtual-machine "Direct link to heading")
 -----------------------------------------------------------------------------------
 
 We'll dive into a few of the packages that are in the The BlobVM repository to learn more about how they work:
 
-*   [`vm`](https://github.com/ava-labs/blobvm/tree/master/vm)
-    *   `block_builder.go`
-    *   `chain_vm.go`
-    *   `network.go`
-    *   `service.go`
-    *   `vm.go`
-*   [`chain`](https://github.com/ava-labs/blobvm/tree/master/chain)
-    *   `unsigned_tx.go`
-    *   `base_tx.go`
-    *   `transfer_tx.go`
-    *   `set_tx.go`
-    *   `tx.go`
-    *   `block.go`
-    *   `mempool.go`
-    *   `storage.go`
-    *   `builder.go`
-*   [`mempool`](https://github.com/ava-labs/blobvm/tree/master/mempool)
-    *   `mempool.go`
+- [`vm`](https://github.com/ava-labs/blobvm/tree/master/vm)
+    - `block_builder.go`
+    - `chain_vm.go`
+    - `network.go`
+    - `service.go`
+    - `vm.go`
+- [`chain`](https://github.com/ava-labs/blobvm/tree/master/chain)
+    - `unsigned_tx.go`
+    - `base_tx.go`
+    - `transfer_tx.go`
+    - `set_tx.go`
+    - `tx.go`
+    - `block.go`
+    - `mempool.go`
+    - `storage.go`
+    - `builder.go`
+- [`mempool`](https://github.com/ava-labs/blobvm/tree/master/mempool)
+    - `mempool.go`
 
 ### Transactions[​](#transactions "Direct link to heading")
 
 The state the blockchain can only be mutated by getting the network to accept a signed transaction. A signed transaction contains the transaction to be executed alongside the signature of the issuer. The signature is required to cryptographically verify the sender's identity. A VM can define an arbitrary amount of unique transactions types to support different operations on the blockchain. The BlobVM implements two different transactions types:
 
-*   [TransferTx](https://github.com/ava-labs/blobvm/blob/master/chain/transfer_tx.go) - Transfers coins between accounts.
-*   [SetTx](https://github.com/ava-labs/blobvm/blob/master/chain/set_tx.go) - Stores a key-value pair on the blockchain.
+- [TransferTx](https://github.com/ava-labs/blobvm/blob/master/chain/transfer_tx.go) - Transfers coins between accounts.
+- [SetTx](https://github.com/ava-labs/blobvm/blob/master/chain/set_tx.go) - Stores a key-value pair on the blockchain.
 
 #### UnsignedTransaction[​](#unsignedtransaction "Direct link to heading")
 
@@ -97,15 +97,15 @@ type UnsignedTransaction interface {
 
 Common functionality and metadata for transaction types are implemented by [`BaseTx`](https://github.com/ava-labs/blobvm/blob/master/chain/base_tx.go).
 
-*   [`SetBlockID`](https://github.com/ava-labs/blobvm/blob/master/chain/base_tx.go#L26) sets the transaction's block ID.
-*   [`GetBlockID`](https://github.com/ava-labs/blobvm/blob/master/chain/base_tx.go#L22) returns the transaction's block ID.
-*   [`SetMagic`](https://github.com/ava-labs/blobvm/blob/master/chain/base_tx.go#L34) sets the magic number. The magic number is used to differentiate chains to prevent replay attacks
-*   [`GetMagic`](https://github.com/ava-labs/blobvm/blob/master/chain/base_tx.go#L30) returns the magic number. Magic number is defined in genesis.
-*   [`SetPrice`](https://github.com/ava-labs/blobvm/blob/master/chain/base_tx.go#L42) sets the price per fee unit for this transaction.
-*   [`GetPrice`](https://github.com/ava-labs/blobvm/blob/master/chain/base_tx.go#L38) returns the price for this transaction.
-*   [`FeeUnits`](https://github.com/ava-labs/blobvm/blob/master/chain/base_tx.go#L59) returns the fee units this transaction will consume.
-*   [`LoadUnits`](https://github.com/ava-labs/blobvm/blob/master/chain/base_tx.go#L63) identical to `FeeUnits`
-*   [`ExecuteBase`](https://github.com/ava-labs/blobvm/blob/master/chain/base_tx.go#L46) executes common validation checks across different transaction types. This validates the transaction contains a valid block ID, magic number, and gas price as defined by genesis.
+- [`SetBlockID`](https://github.com/ava-labs/blobvm/blob/master/chain/base_tx.go#L26) sets the transaction's block ID.
+- [`GetBlockID`](https://github.com/ava-labs/blobvm/blob/master/chain/base_tx.go#L22) returns the transaction's block ID.
+- [`SetMagic`](https://github.com/ava-labs/blobvm/blob/master/chain/base_tx.go#L34) sets the magic number. The magic number is used to differentiate chains to prevent replay attacks
+- [`GetMagic`](https://github.com/ava-labs/blobvm/blob/master/chain/base_tx.go#L30) returns the magic number. Magic number is defined in genesis.
+- [`SetPrice`](https://github.com/ava-labs/blobvm/blob/master/chain/base_tx.go#L42) sets the price per fee unit for this transaction.
+- [`GetPrice`](https://github.com/ava-labs/blobvm/blob/master/chain/base_tx.go#L38) returns the price for this transaction.
+- [`FeeUnits`](https://github.com/ava-labs/blobvm/blob/master/chain/base_tx.go#L59) returns the fee units this transaction will consume.
+- [`LoadUnits`](https://github.com/ava-labs/blobvm/blob/master/chain/base_tx.go#L63) identical to `FeeUnits`
+- [`ExecuteBase`](https://github.com/ava-labs/blobvm/blob/master/chain/base_tx.go#L46) executes common validation checks across different transaction types. This validates the transaction contains a valid block ID, magic number, and gas price as defined by genesis.
 
 #### TransferTx[​](#transfertx "Direct link to heading")
 
@@ -278,7 +278,7 @@ func (t *Transaction) Execute(g *Genesis, db database.Database, blk *StatelessBl
 
 Let's walk through an example on how to issue a `SetTx` transaction to the BlobVM to write a key-value pair.
 
-*   Create the unsigned transaction for `SetTx`
+- Create the unsigned transaction for `SetTx`
 
 ```
 utx := &chain.SetTx{
@@ -291,19 +291,19 @@ utx.SetMagic(genesis.Magic)
 utx.SetPrice(price + blockCost/utx.FeeUnits(genesis))
 ```
 
-*   Calculate the [digest hash](https://github.com/ava-labs/blobvm/blob/master/chain/tx.go#L41) for the transaction.
+- Calculate the [digest hash](https://github.com/ava-labs/blobvm/blob/master/chain/tx.go#L41) for the transaction.
 
 ```
 digest, err := chain.DigestHash(utx)
 ```
 
-*   [Sign](https://github.com/ava-labs/blobvm/blob/master/chain/crypto.go#L17) the digest hash with the issuer's private key.
+- [Sign](https://github.com/ava-labs/blobvm/blob/master/chain/crypto.go#L17) the digest hash with the issuer's private key.
 
 ```
 signature, err := chain.Sign(digest, privateKey)
 ```
 
-*   Create and initialize the new signed transaction.
+- Create and initialize the new signed transaction.
 
 ```
 tx := chain.NewTx(utx, sig)
@@ -312,7 +312,7 @@ if err := tx.Init(g); err != nil {
 }
 ```
 
-*   Issue the request with the client
+- Issue the request with the client
 
 ```
 txID, err = cli.IssueRawTx(ctx, tx.Bytes())
@@ -338,11 +338,11 @@ Whenever a transaction is submitted to VM, it first gets initialized, verified, 
 
 When a transaction is added to the mempool, [`Add`](https://github.com/ava-labs/blobvm/blob/master/mempool/mempool.go#L43) is called. This performs the following:
 
-*   Checks if the transaction being added already exists in the mempool or not
-*   The transaction is added to the min-max heap
-*   If the mempool's heap size is larger than the maximum configured value, then the lowest paying transaction is evicted
-*   The transaction is added to the list of transactions that are able to be gossiped to other peers
-*   A notification is sent through the in the `mempool.Pending` channel to indicate that the consensus engine should build a new block
+- Checks if the transaction being added already exists in the mempool or not
+- The transaction is added to the min-max heap
+- If the mempool's heap size is larger than the maximum configured value, then the lowest paying transaction is evicted
+- The transaction is added to the list of transactions that are able to be gossiped to other peers
+- A notification is sent through the in the `mempool.Pending` channel to indicate that the consensus engine should build a new block
 
 ### Block Builder[​](#block-builder "Direct link to heading")
 
@@ -350,14 +350,14 @@ When a transaction is added to the mempool, [`Add`](https://github.com/ava-labs/
 
 The [`TimeBuilder`](https://github.com/ava-labs/blobvm/blob/master/vm/block_builder.go) implementation for `BlockBuilder` acts as an intermediary notification service between the mempool and the consensus engine. It serves the following functions:
 
-*   Periodically gossips new transactions to other nodes in the network
-*   Periodically notifies the consensus engine that new transactions from the mempool are ready to be built into blocks
+- Periodically gossips new transactions to other nodes in the network
+- Periodically notifies the consensus engine that new transactions from the mempool are ready to be built into blocks
 
 `TimeBuilder` and can exist in 3 states:
 
-*   `dontBuild` - There are no transactions in the mempool that are ready to be included in a block
-*   `building` - The consensus engine has been notified that it should build a block and there are currently transactions in the mempool that are eligible to be included into a block
-*   `mayBuild` - There are transactions in the mempool that are eligible to be included into a block, but the consensus engine has not been notified yet
+- `dontBuild` - There are no transactions in the mempool that are ready to be included in a block
+- `building` - The consensus engine has been notified that it should build a block and there are currently transactions in the mempool that are eligible to be included into a block
+- `mayBuild` - There are transactions in the mempool that are eligible to be included into a block, but the consensus engine has not been notified yet
 
 #### Block Builder Methods[​](#block-builder-methods "Direct link to heading")
 
@@ -373,7 +373,7 @@ If the mempool signals the `TimeBuilder` that it has available transactions, `Ti
 
 When the consensus engine receives the `common.PendingTxs` message it calls the VM's `BuildBlock` method. The VM will then build a block from eligible transactions in the mempool.
 
-*   If there are still remaining transactions in the mempool after a block is built, then the `TimeBuilder` is put into the `mayBuild` state to indicate that there are still transactions that are eligible to be built into block, but the consensus engine isn't aware of it yet.
+- If there are still remaining transactions in the mempool after a block is built, then the `TimeBuilder` is put into the `mayBuild` state to indicate that there are still transactions that are eligible to be built into block, but the consensus engine isn't aware of it yet.
 
 ### Network[​](#network "Direct link to heading")
 
@@ -466,12 +466,12 @@ type StatelessBlock struct {
 
 Let's have a look at the fields of StatelessBlock:
 
-*   `StatefulBlock` - The metadata about the block that will be written to the database upon acceptance
-*   `bytes` - The serialized form of the `StatefulBlock`.
-*   `id` - The Keccak256 hash of `bytes`.
-*   `st` - The status of the block in consensus (i.e `Processing`, `Accepted`, or `Rejected`)
-*   `children` - The children of this block
-*   `onAcceptDB` - The database this block should be written to upon acceptance.
+- `StatefulBlock` - The metadata about the block that will be written to the database upon acceptance
+- `bytes` - The serialized form of the `StatefulBlock`.
+- `id` - The Keccak256 hash of `bytes`.
+- `st` - The status of the block in consensus (i.e `Processing`, `Accepted`, or `Rejected`)
+- `children` - The children of this block
+- `onAcceptDB` - The database this block should be written to upon acceptance.
 
 When the consensus engine tries to build a block by calling the VM's `BuildBlock`, the VM calls the [`block.NewBlock`](https://github.com/ava-labs/blobvm/blob/master/chain/block.go#L52) function to get a new block that is a child of the currently preferred block.
 
@@ -521,14 +521,14 @@ To build the block, the VM will try to remove as many of the highest-paying tran
 
 A block once built, can exist in two states:
 
-*   Rejected - The block was not accepted by consensus
-    *   In this case, the mempool will reclaim the rejected block's transactions so they can be included in a future block.
-*   Accepted - The block was accepted by consensus
-    *   In this case, we write the block to the blockchain by committing it to the database.
+- Rejected - The block was not accepted by consensus
+    - In this case, the mempool will reclaim the rejected block's transactions so they can be included in a future block.
+- Accepted - The block was accepted by consensus
+    - In this case, we write the block to the blockchain by committing it to the database.
 
 When the consensus engine receives the built block, it calls the block's [`Verify`](https://github.com/ava-labs/blobvm/blob/master/chain/block.go#L227) method to validate that the block is well-formed. In BlobVM, the following constraints are placed on valid blocks:
 
-*   A block must contain at least one transaction and the block's timestamp must be within 10s into the future.
+- A block must contain at least one transaction and the block's timestamp must be within 10s into the future.
 
 ```
 if len(b.Txs) == 0 {
@@ -539,7 +539,7 @@ if b.Timestamp().Unix() >= time.Now().Add(futureBound).Unix() {
 }
 ```
 
-*   The sum of the gas units consumed by the transactions in the block must not exceed the gas limit defined by genesis.
+- The sum of the gas units consumed by the transactions in the block must not exceed the gas limit defined by genesis.
 
 ```
 blockSize := uint64(0)
@@ -551,7 +551,7 @@ for _, tx := range b.Txs {
 }
 ```
 
-*   The parent block of the proposed block must exist and have an earlier timestamp.
+- The parent block of the proposed block must exist and have an earlier timestamp.
 
 ```
 parent, err := b.vm.GetStatelessBlock(b.Prnt)
@@ -564,7 +564,7 @@ if b.Timestamp().Unix() < parent.Timestamp().Unix() {
 }
 ```
 
-*   The target block price and minimum gas price must meet the minimum enforced by the VM.
+- The target block price and minimum gas price must meet the minimum enforced by the VM.
 
 ```
 context, err := b.vm.ExecutionContext(b.Tmstmp, parent)
@@ -659,14 +659,14 @@ Let's look at some of the important methods of `vm.go` that must be implemented:
 
 [Initialize](https://github.com/ava-labs/blobvm/blob/master/vm/vm.go#L92) is invoked by `avalanchego` when creating the blockchain. `avalanchego` passes some parameters to the implementing VM.
 
-*   `ctx` - Metadata about the VM's execution
-*   `dbManager` - The database that the VM can write to
-*   `genesisBytes` - The serialized representation of the genesis state of this VM
-*   `upgradeBytes` - The serialized representation of network upgrades
-*   `configBytes` - The serialized VM-specific [configuration](https://github.com/ava-labs/blobvm/blob/master/vm/config.go#L10)
-*   `toEngine` - The channel used to send messages to the consensus engine
-*   `fxs` - Feature extensions that attach to this VM
-*   `appSender` - Used to send messages to other nodes in the network
+- `ctx` - Metadata about the VM's execution
+- `dbManager` - The database that the VM can write to
+- `genesisBytes` - The serialized representation of the genesis state of this VM
+- `upgradeBytes` - The serialized representation of network upgrades
+- `configBytes` - The serialized VM-specific [configuration](https://github.com/ava-labs/blobvm/blob/master/vm/config.go#L10)
+- `toEngine` - The channel used to send messages to the consensus engine
+- `fxs` - Feature extensions that attach to this VM
+- `appSender` - Used to send messages to other nodes in the network
 
 BlobVM upon initialization persists these fields in its own state to use them throughout the lifetime of its execution.
 

@@ -8,19 +8,19 @@ A Subnet can have one or more blockchains. For example, the Primary Network, whi
 
 A blockchain created by or forked from [Subnet-EVM](https://github.com/ava-labs/subnet-evm) can be customized by utilizing one or more of the following methods:
 
-*   [Genesis](#genesis)
-*   [Precompile](#precompiles)
-*   [Upgrade Configs](#network-upgrades-enabledisable-precompiles)
-*   [Chain Configs](#avalanchego-chain-configs)
+- [Genesis](#genesis)
+- [Precompile](#precompiles)
+- [Upgrade Configs](#network-upgrades-enabledisable-precompiles)
+- [Chain Configs](#avalanchego-chain-configs)
 
 Subnet Configs[​](#subnet-configs "Direct link to heading")
 -----------------------------------------------------------
 
 A Subnet can customized by setting parameters for the following:
 
-*   [Validator-only communication to create a private Subnet](/nodes/configure/subnet-configs#validatoronly-bool)
-*   [Consensus](/nodes/configure/subnet-configs#consensus-parameters)
-*   [Gossip](/nodes/configure/subnet-configs#gossip-configs)
+- [Validator-only communication to create a private Subnet](/nodes/configure/subnet-configs#validatoronly-bool)
+- [Consensus](/nodes/configure/subnet-configs#consensus-parameters)
+- [Gossip](/nodes/configure/subnet-configs#gossip-configs)
 
 See [here](/nodes/configure/subnet-configs) for more info.
 
@@ -151,7 +151,7 @@ Another example of a genesis file can be found in the [networks folder](https://
 
 Here are a few examples on how a genesis file is used:
 
-*   [scripts/run.sh](https://github.com/ava-labs/subnet-evm/blob/master/scripts/run.sh#L99)
+- [scripts/run.sh](https://github.com/ava-labs/subnet-evm/blob/master/scripts/run.sh#L99)
 
 ### Setting the Genesis Allocation[​](#setting-the-genesis-allocation "Direct link to heading")
 
@@ -299,11 +299,11 @@ In this example, `0x8db97C7cEcE249c2b98bDC0226Cc4C2A57BF52FC` is named as the `A
 
 The `Stateful Precompile` contract powering the `ContractDeployerAllowList` adheres to the [AllowList Solidity interface](#allowlist-interface) at `0x0200000000000000000000000000000000000000` (you can load this interface and interact directly in Remix):
 
-*   If you attempt to add a `Enabled` and you are not an `Admin`, you will see something like: ![admin fail](/images/customize1.png)
+- If you attempt to add a `Enabled` and you are not an `Admin`, you will see something like: ![admin fail](/images/customize1.png)
     
-*   If you attempt to deploy a contract but you are not an `Admin` not a `Enabled`, you will see something like: ![deploy fail](/images/customize2.png)
+- If you attempt to deploy a contract but you are not an `Admin` not a `Enabled`, you will see something like: ![deploy fail](/images/customize2.png)
     
-*   If you call `readAllowList(addr)` then you can read the current role of `addr`, which will return a uint256 with a value of 0, 1, or 2, corresponding to the roles `None`, `Enabled`, and `Admin` respectively.
+- If you call `readAllowList(addr)` then you can read the current role of `addr`, which will return a uint256 with a value of 0, 1, or 2, corresponding to the roles `None`, `Enabled`, and `Admin` respectively.
     
 
 <Callout type="warning">
@@ -345,11 +345,11 @@ In this example, `0x8db97C7cEcE249c2b98bDC0226Cc4C2A57BF52FC` is named as the `A
 
 The `Stateful Precompile` contract powering the `TxAllowList` adheres to the [AllowList Solidity interface](#allowlist-interface) at `0x0200000000000000000000000000000000000002` (you can load this interface and interact directly in Remix):
 
-*   If you attempt to add an `Enabled` and you are not an `Admin`, you will see something like: ![admin fail](/images/customize3.png)
+- If you attempt to add an `Enabled` and you are not an `Admin`, you will see something like: ![admin fail](/images/customize3.png)
     
-*   If you attempt to submit a transaction but you are not an `Admin`, `Manager` or not `Enabled`, you will see something like: `cannot issue transaction from non-allow listed address`
+- If you attempt to submit a transaction but you are not an `Admin`, `Manager` or not `Enabled`, you will see something like: `cannot issue transaction from non-allow listed address`
     
-*   If you call `readAllowList(addr)` then you can read the current role of `addr`, which will return a `uint256` with a value of 0, 1, 2 or 3 corresponding to the roles `None`, `Allowed`, `Admin` and `Manager` respectively.
+- If you call `readAllowList(addr)` then you can read the current role of `addr`, which will return a `uint256` with a value of 0, 1, 2 or 3 corresponding to the roles `None`, `Allowed`, `Admin` and `Manager` respectively.
     
 
 <Callout type="warning">
@@ -519,10 +519,10 @@ FeeConfigManager precompile uses `IAllowList` interface directly, meaning that i
 
 In addition to the `AllowList` interface, the FeeConfigManager adds the following capabilities:
 
-*   `getFeeConfig` - retrieves the current dynamic fee config
-*   `getFeeConfigLastChangedAt` - retrieves the timestamp of the last block where the fee config was updated
-*   `setFeeConfig` - sets the dynamic fee config on chain (see [here](#fee-config) for details on the fee config parameters). This function can only be called by an `Admin`, `Manager` or `Enabled` address.
-*   `FeeConfigChanged` - an event that is emitted when the fee config is updated. Topics include the sender, the old fee config, and the new fee config.
+- `getFeeConfig` - retrieves the current dynamic fee config
+- `getFeeConfigLastChangedAt` - retrieves the timestamp of the last block where the fee config was updated
+- `setFeeConfig` - sets the dynamic fee config on chain (see [here](#fee-config) for details on the fee config parameters). This function can only be called by an `Admin`, `Manager` or `Enabled` address.
+- `FeeConfigChanged` - an event that is emitted when the fee config is updated. Topics include the sender, the old fee config, and the new fee config.
 
 You can also get the fee configuration at a block with the `eth_feeConfig` RPC method. For more information see [here](/api-reference/subnet-evm-api#eth_feeconfig).
 
@@ -611,21 +611,21 @@ interface IRewardManager is IAllowList {
 
 In addition to the `AllowList` interface, the `RewardManager` adds the following capabilities:
 
-*   `setRewardAddress` - sets the address to which fees are sent. This address can be a contract or a user address. The address becomes the required coinbase address for the blocks that this mechanism is enabled on. Meaning that it will receive the fees collected from the transactions in the block. Receiving fees will not call any contract functions or fallback functions. It will simply increase the balance of the address by the amount of fees.
+- `setRewardAddress` - sets the address to which fees are sent. This address can be a contract or a user address. The address becomes the required coinbase address for the blocks that this mechanism is enabled on. Meaning that it will receive the fees collected from the transactions in the block. Receiving fees will not call any contract functions or fallback functions. It will simply increase the balance of the address by the amount of fees.
     
-*   `allowFeeRecipients` - enables block producers to claim fees. This will allow block producers to claim fees by specifying their own addresses in their chain configs. See [here](#fee-recipient) for more information on how to specify the fee recipient address in the chain config.
+- `allowFeeRecipients` - enables block producers to claim fees. This will allow block producers to claim fees by specifying their own addresses in their chain configs. See [here](#fee-recipient) for more information on how to specify the fee recipient address in the chain config.
     
-*   `disableRewards` - disables block rewards and starts burning fees.
+- `disableRewards` - disables block rewards and starts burning fees.
     
-*   `currentRewardAddress` - returns the current reward address. This is the address to which fees are sent. It can include black hole address (`0x010...0`) which means that fees are burned. It can also include a predefined hash (`0x0000000000000000000000000000000000000000`) denoting custom fee recipients are allowed. It's advised to use the `areFeeRecipientsAllowed` function to check if custom fee recipients are allowed first.
+- `currentRewardAddress` - returns the current reward address. This is the address to which fees are sent. It can include black hole address (`0x010...0`) which means that fees are burned. It can also include a predefined hash (`0x0000000000000000000000000000000000000000`) denoting custom fee recipients are allowed. It's advised to use the `areFeeRecipientsAllowed` function to check if custom fee recipients are allowed first.
     
-*   `areFeeRecipientsAllowed` - returns true if custom fee recipients are allowed.
+- `areFeeRecipientsAllowed` - returns true if custom fee recipients are allowed.
     
-*   `RewardAddressChanged` - an event that is emitted when the reward address is updated. Topics include the sender, the old reward address, and the new reward address.
+- `RewardAddressChanged` - an event that is emitted when the reward address is updated. Topics include the sender, the old reward address, and the new reward address.
     
-*   `FeeRecipientsAllowed` - an event that is emitted when fee recipients are allowed. Topics include the sender.
+- `FeeRecipientsAllowed` - an event that is emitted when fee recipients are allowed. Topics include the sender.
     
-*   `RewardsDisabled` - an event that is emitted when rewards are disabled. Topics include the sender.
+- `RewardsDisabled` - an event that is emitted when rewards are disabled. Topics include the sender.
     
 
 These 3 mechanisms (burning, sending to a predefined address, and enabling fees to be collected by block producers) cannot be enabled at the same time. Enabling one mechanism will take over the previous mechanism. For example, if you enable `allowFeeRecipients` and then enable `disableRewards`, the `disableRewards` will take over and fees will be burned.
@@ -953,9 +953,9 @@ The timestamps for upgrades in `stateUpgrades` must be in increasing order. `sta
 
 The following three state modifications are supported:
 
-*   `balanceChange`: adds a specified amount to the balance of a given account. This amount can be specified as hex or decimal and must be positive.
-*   `storage`: modifies the specified storage slots to the specified values. Keys and values must be 32 bytes specified in hex, with a `0x` prefix.
-*   `code`: modifies the code stored in the specified account. The code must _only_ be the runtime portion of a code. The code must start with a `0x` prefix.
+- `balanceChange`: adds a specified amount to the balance of a given account. This amount can be specified as hex or decimal and must be positive.
+- `storage`: modifies the specified storage slots to the specified values. Keys and values must be 32 bytes specified in hex, with a `0x` prefix.
+- `code`: modifies the code stored in the specified account. The code must _only_ be the runtime portion of a code. The code must start with a `0x` prefix.
 
 <Callout type="warning">
     If modifying the code, _only_ the runtime portion of the bytecode should be provided in `upgrades.json`. Do not use the bytecode that would be used for deploying a new contract, as this includes the constructor code as well. Refer to your compiler's documentation for information on how to find the runtime portion of the contract you wish to modify.
@@ -965,9 +965,9 @@ The following three state modifications are supported:
 
 The `upgrades.json` file shown below describes a network upgrade that will make the following state modifications at the first block after (or at) `March 8, 2023 1:30:00 AM GMT`:
 
-*   Sets the code for the account at `0x71562b71999873DB5b286dF957af199Ec94617F7`,
-*   And adds `100` wei to the balance of the account at `0xb794f5ea0ba39494ce839613fffba74279579268`,
-*   Sets the storage slot `0x1234` to the value `0x6666` for the account at `0xb794f5ea0ba39494ce839613fffba74279579268`.
+- Sets the code for the account at `0x71562b71999873DB5b286dF957af199Ec94617F7`,
+- And adds `100` wei to the balance of the account at `0xb794f5ea0ba39494ce839613fffba74279579268`,
+- Sets the storage slot `0x1234` to the value `0x6666` for the account at `0xb794f5ea0ba39494ce839613fffba74279579268`.
 
 ```
 {

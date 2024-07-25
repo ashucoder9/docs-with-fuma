@@ -5,11 +5,11 @@ sidebarTitle: ANR Commands
 Global Flags[​](#global-flags "Direct link to heading")
 -------------------------------------------------------
 
-*   `--dial-timeout duration` server dial timeout (default 10s)
-*   `--endpoint string` server endpoint (default "localhost:8080")
-*   `--log-dir string` log directory
-*   `--log-level string` log level (default "INFO")
-*   `--request-timeout duration` client request timeout (default 3m0s)
+- `--dial-timeout duration` server dial timeout (default 10s)
+- `--endpoint string` server endpoint (default "localhost:8080")
+- `--log-dir string` log directory
+- `--log-level string` log level (default "INFO")
+- `--request-timeout duration` client request timeout (default 3m0s)
 
 Ping[​](#ping "Direct link to heading")
 ---------------------------------------
@@ -41,14 +41,14 @@ avalanche-network-runner server [options] [flags]
 
 ### Flags[​](#flags "Direct link to heading")
 
-*   `--dial-timeout duration` server dial timeout (default 10s)
-*   `--disable-grpc-gateway`true to disable grpc-gateway server (overrides `--grpc-gateway-port`)
-*   `--disable-nodes-output` true to disable nodes stdout/stderr
-*   `--grpc-gateway-port string` grpc-gateway server port (default ":8081")
-*   `--log-dir string` log directory
-*   `--log-level string` log level for server logs (default "INFO")
-*   `--port string` server port (default ":8080")
-*   `--snapshots-dir string` directory for snapshots
+- `--dial-timeout duration` server dial timeout (default 10s)
+- `--disable-grpc-gateway`true to disable grpc-gateway server (overrides `--grpc-gateway-port`)
+- `--disable-nodes-output` true to disable nodes stdout/stderr
+- `--grpc-gateway-port string` grpc-gateway server port (default ":8081")
+- `--log-dir string` log directory
+- `--log-level string` log level for server logs (default "INFO")
+- `--port string` server port (default ":8080")
+- `--snapshots-dir string` directory for snapshots
 
 ### Example[​](#example-1 "Direct link to heading")
 
@@ -75,12 +75,12 @@ avalanche-network-runner control add-node node-name [options] [flags]
 
 #### Flags[​](#flags-1 "Direct link to heading")
 
-*   `--avalanchego-path string` AvalancheGo binary path
-*   `--chain-configs string` \[optional\] JSON string of map from chain id to its config file contents
-*   `--node-config string` node config as string
-*   `--plugin-dir string` \[optional\] plugin directory
-*   `--subnet-configs string` \[optional\] JSON string of map from Subnet id to its config file contents
-*   `--upgrade-configs string` \[optional\] JSON string of map from chain id to its upgrade file contents
+- `--avalanchego-path string` AvalancheGo binary path
+- `--chain-configs string` \[optional\] JSON string of map from chain id to its config file contents
+- `--node-config string` node config as string
+- `--plugin-dir string` \[optional\] plugin directory
+- `--subnet-configs string` \[optional\] JSON string of map from Subnet id to its config file contents
+- `--upgrade-configs string` \[optional\] JSON string of map from chain id to its upgrade file contents
 
 #### Example[​](#example-2 "Direct link to heading")
 
@@ -384,14 +384,14 @@ avalanche-network-runner control load-snapshot snapshotName --avalanchego-path /
 
 #### Flags[​](#flags-3 "Direct link to heading")
 
-*   `--avalanchego-path string` AvalancheGo binary path
-*   `--chain-configs string` \[optional\] JSON string of map from chain id to its config file contents
-*   `--global-node-config string` \[optional\] global node config as JSON string, applied to all nodes
-*   `--plugin-dir string` plugin directory
-*   `--reassign-ports-if-used` true to reassign snapshot ports if already taken
-*   `--root-data-dir string` root data directory to store logs and configurations
-*   `--subnet-configs string` \[optional\] JSON string of map from Subnet id to its config file contents
-*   `--upgrade-configs string` \[optional\] JSON string of map from chain id to its upgrade file contents
+- `--avalanchego-path string` AvalancheGo binary path
+- `--chain-configs string` \[optional\] JSON string of map from chain id to its config file contents
+- `--global-node-config string` \[optional\] global node config as JSON string, applied to all nodes
+- `--plugin-dir string` plugin directory
+- `--reassign-ports-if-used` true to reassign snapshot ports if already taken
+- `--root-data-dir string` root data directory to store logs and configurations
+- `--subnet-configs string` \[optional\] JSON string of map from Subnet id to its config file contents
+- `--upgrade-configs string` \[optional\] JSON string of map from chain id to its upgrade file contents
 
 #### Example[​](#example-15 "Direct link to heading")
 
@@ -507,12 +507,12 @@ avalanche-network-runner control restart-node node-name [options] [flags]
 
 #### Flags[​](#flags-4 "Direct link to heading")
 
-*   `--avalanchego-path string` AvalancheGo binary path
-*   `--chain-configs string` \[optional\] JSON string of map from chain id to its config file contents
-*   `--plugin-dir string` \[optional\] plugin directory
-*   `--subnet-configs string` \[optional\] JSON string of map from Subnet id to its config file contents
-*   `--upgrade-configs string` \[optional\] JSON string of map from chain id to its upgrade file contents
-*   `--whitelisted-subnets string` \[optional\] whitelisted Subnets (comma-separated)
+- `--avalanchego-path string` AvalancheGo binary path
+- `--chain-configs string` \[optional\] JSON string of map from chain id to its config file contents
+- `--plugin-dir string` \[optional\] plugin directory
+- `--subnet-configs string` \[optional\] JSON string of map from Subnet id to its config file contents
+- `--upgrade-configs string` \[optional\] JSON string of map from chain id to its upgrade file contents
+- `--whitelisted-subnets string` \[optional\] whitelisted Subnets (comma-separated)
 
 #### Example[​](#example-20 "Direct link to heading")
 
@@ -604,9 +604,9 @@ avalanche-network-runner control send-outbound-message node-name [options] [flag
 
 #### Flags[​](#flags-5 "Direct link to heading")
 
-*   `--message-bytes-b64 string` Message bytes in base64 encoding
-*   `--message-op uint32` Message operation type
-*   `--peer-id string` peer ID to send a message to
+- `--message-bytes-b64 string` Message bytes in base64 encoding
+- `--message-op uint32` Message operation type
+- `--peer-id string` peer ID to send a message to
 
 #### Example[​](#example-24 "Direct link to heading")
 
@@ -635,19 +635,19 @@ avalanche-network-runner control start [options] [flags]
 
 #### Flags[​](#flags-6 "Direct link to heading")
 
-*   `--avalanchego-path string` AvalancheGo binary path
-*   `--blockchain-specs string` \[optional\] JSON string of array of \[(VM name, genesis file path)\]
-*   `--chain-configs string` \[optional\] JSON string of map from chain id to its config file contents
-*   `--custom-node-configs global-node-config` \[optional\] custom node configs as JSON string of map, for each node individually. Common entries override global-node-config, but can be combined. Invalidates `number-of-nodes` (provide all node configs if used).
-*   `--dynamic-ports` true to assign dynamic ports
-*   `--global-node-config string` \[optional\] global node config as JSON string, applied to all nodes
-*   `--number-of-nodes uint32` number of nodes of the network (default 5)
-*   `--plugin-dir string` \[optional\] plugin directory
-*   `--reassign-ports-if-used` true to reassign default/given ports if already taken
-*   `--root-data-dir string` \[optional\] root data directory to store logs and configurations
-*   `--subnet-configs string` \[optional\] JSON string of map from Subnet id to its config file contents
-*   `--upgrade-configs string` \[optional\] JSON string of map from chain id to its upgrade file contents
-*   `--whitelisted-subnets string` \[optional\] whitelisted Subnets (comma-separated)
+- `--avalanchego-path string` AvalancheGo binary path
+- `--blockchain-specs string` \[optional\] JSON string of array of \[(VM name, genesis file path)\]
+- `--chain-configs string` \[optional\] JSON string of map from chain id to its config file contents
+- `--custom-node-configs global-node-config` \[optional\] custom node configs as JSON string of map, for each node individually. Common entries override global-node-config, but can be combined. Invalidates `number-of-nodes` (provide all node configs if used).
+- `--dynamic-ports` true to assign dynamic ports
+- `--global-node-config string` \[optional\] global node config as JSON string, applied to all nodes
+- `--number-of-nodes uint32` number of nodes of the network (default 5)
+- `--plugin-dir string` \[optional\] plugin directory
+- `--reassign-ports-if-used` true to reassign default/given ports if already taken
+- `--root-data-dir string` \[optional\] root data directory to store logs and configurations
+- `--subnet-configs string` \[optional\] JSON string of map from Subnet id to its config file contents
+- `--upgrade-configs string` \[optional\] JSON string of map from chain id to its upgrade file contents
+- `--whitelisted-subnets string` \[optional\] whitelisted Subnets (comma-separated)
 
 #### Example[​](#example-25 "Direct link to heading")
 
@@ -719,7 +719,7 @@ avalanche-network-runner control stream-status [options] [flags]
 
 #### Flags[​](#flags-7 "Direct link to heading")
 
-*   `--push-interval duration` interval that server pushes status updates to the client (default 5s)
+- `--push-interval duration` interval that server pushes status updates to the client (default 5s)
 
 #### Example[​](#example-28 "Direct link to heading")
 

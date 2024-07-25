@@ -1,22 +1,20 @@
 ---
-title: Teleporter Protocol
-sidebarTitle: Overview
+title: Overview
 ---
-<Callout type="info">
-    Dive deeper into Teleporter and kickstart your journey in building cross-chain dApps by enrolling in our [Teleporter course](https://academy.avax.network/course/teleporter).
 
+<Callout type="info">
+Dive deeper into Teleporter and kickstart your journey in building cross-chain dApps by enrolling in our [Teleporter course](https://academy.avax.network/course/teleporter).
 </Callout>
 
-
-*   [Teleporter Protocol](#teleporter-protocol)
-    *   [Overview](#overview)
-    *   [Data Flow](#data-flow)
-    *   [Properties](#properties)
-    *   [Fees](#fees)
-        *   [Message Receipts and Fee Redemption](#message-receipts-and-fee-redemption)
-    *   [Required Interface](#required-interface)
-    *   [Teleporter Contract Deployment](#teleporter-contract-deployment)
-    *   [Message Delivery and Execution](#message-delivery-and-execution)
+- [Teleporter Protocol](#teleporter-protocol)
+    - [Overview](#overview)
+    - [Data Flow](#data-flow)
+    - [Properties](#properties)
+    - [Fees](#fees)
+        - [Message Receipts and Fee Redemption](#message-receipts-and-fee-redemption)
+    - [Required Interface](#required-interface)
+    - [Teleporter Contract Deployment](#teleporter-contract-deployment)
+    - [Message Delivery and Execution](#message-delivery-and-execution)
 
 Overview[​](#overview "Direct link to heading")
 -----------------------------------------------
@@ -25,12 +23,12 @@ Teleporter is a messaging protocol built on top of [Avalanche Warp Messaging (AW
 
 The `ITeleporterMessenger` interface provides two primary methods:
 
-*   `sendCrossChainMessage`: called by contracts on the origin chain to initiate the sending of a message to a contract on another EVM instance.
-*   `receiveCrossChainMessage`: called by cross-chain relayers on the destination chain to deliver signed messages to the destination EVM instance.
+- `sendCrossChainMessage`: called by contracts on the origin chain to initiate the sending of a message to a contract on another EVM instance.
+- `receiveCrossChainMessage`: called by cross-chain relayers on the destination chain to deliver signed messages to the destination EVM instance.
 
 The `ITeleporterReceiver` interface provides a single method. All contracts that wish to receive Teleporter messages on the destination chain must implement this interface:
 
-*   `receiveTeleporterMessage`: called by the Teleporter contract on the destination chain to deliver a message to the destination contract.
+- `receiveTeleporterMessage`: called by the Teleporter contract on the destination chain to deliver a message to the destination contract.
 
 > Note: If a contract does not implement `ITeleporterReceiver`, but instead implements [fallback](https://docs.soliditylang.org/en/latest/contracts.html#fallback-function), the fallback function will be called when Teleporter attempts to perform message execution. The message execution is marked as failed if the fallback function reverts, otherwise it is marked as successfully executed.
 
@@ -59,13 +57,13 @@ Fees can be paid on a per message basis by specifing the ERC20 asset and amount 
 
 In order to confirm delivery of a Teleporter message from a source chain to a destination chain, a receipt is included in the next Teleporter message sent in the opposite direction, from the destination chain back to the source chain. This receipt contains the message ID of the original message, as well as the reward address that the delivering relayer specified. That reward address is then able to redeem the corresponding reward on the original chain by calling `redeemRelayerRewards`. The following example illustrates this flow:
 
-*   A Teleporter message is sent from Chain A to Chain B, with a relayer incentive of `10` `USDC`. This message is assigned the ID `1` by the Teleporter contract on Chain A.
-    *   On Chain A, this is done by calling `sendCrossChainMessage`, and providing the `USDC` contract address and amount in the function call.
-*   A relayer delivers the message on Chain B by calling `receiveCrossChainMessage` and providing its address, `0x123...`
-*   The Teleporter contract on Chain B stores the relayer address in a receipt for the message ID.
-*   Some time later, a separate Teleporter message is sent from Chain B to Chain A. The Teleporter contract on Chain B includes the receipt for the original message in this new message.
-*   When this new message is delivered on Chain A, the Teleporter contract on Chain A reads the receipt and attributes the rewards for delivering the original message (message ID `1`) to the address `0x123...`.
-*   Address `0x123...` may now call `redeemRelayerRewards` on Chain A, which transfers the `10` `USDC` to its address. If it tries to do this before the receipt is received on Chain A, the call will fail.
+- A Teleporter message is sent from Chain A to Chain B, with a relayer incentive of `10` `USDC`. This message is assigned the ID `1` by the Teleporter contract on Chain A.
+    - On Chain A, this is done by calling `sendCrossChainMessage`, and providing the `USDC` contract address and amount in the function call.
+- A relayer delivers the message on Chain B by calling `receiveCrossChainMessage` and providing its address, `0x123...`
+- The Teleporter contract on Chain B stores the relayer address in a receipt for the message ID.
+- Some time later, a separate Teleporter message is sent from Chain B to Chain A. The Teleporter contract on Chain B includes the receipt for the original message in this new message.
+- When this new message is delivered on Chain A, the Teleporter contract on Chain A reads the receipt and attributes the rewards for delivering the original message (message ID `1`) to the address `0x123...`.
+- Address `0x123...` may now call `redeemRelayerRewards` on Chain A, which transfers the `10` `USDC` to its address. If it tries to do this before the receipt is received on Chain A, the call will fail.
 
 It is possible for receipts to get "stuck" on the destination chain in the event that Teleporter traffic between two chains is skewed in one direction. In such a scenario, incoming messages on one chain may cause the rate at which receipts are generated to outpace the rate at which they are sent back to the other chain. To mitigate this, the method `sendSpecifiedReceipts` can be called to immediately send the receipts associated with the given message IDs back to the original chain.
 

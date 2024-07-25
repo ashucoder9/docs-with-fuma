@@ -11,26 +11,26 @@ Avalanche Permissioned Subnets can be turned into Elastic Subnets via the [`Tran
 
 `Subnet` has type `ids.ID` and it's the Subnet ID. `Subnet` is the ID of the `CreateSubnetTx` transaction that created the Subnet in the first place. The following constraints apply:
 
-*   `Subnet` must be different from `PrimaryNetworkID`.
+- `Subnet` must be different from `PrimaryNetworkID`.
 
 ### `AssetID`
 
 `AssetID` has type `ids.ID` and it's the ID of the asset to use when staking on the Subnet. The following constraints apply:
 
-*   `AssetID` must not be the `Empty ID`.
-*   `AssetID` must not be `AVAX ID`, the Primary Network asset.
+- `AssetID` must not be the `Empty ID`.
+- `AssetID` must not be `AVAX ID`, the Primary Network asset.
 
 ### `InitialSupply`
 
 `InitialSupply` has type `uint64` and it's the initial amount of `AssetID` transferred in the Elastic Subnet upon its transformation. Such amount is available for distributing staking rewards. The following constraints apply:
 
-*   `InitialSupply` must be larger than zero.
+- `InitialSupply` must be larger than zero.
 
 ### `MaximumSupply`
 
 `MaximumSupply` has type `uint64` and it's the maximum amount of `AssetID` that Subnet has available for staking and rewards at any time. The following constraints apply:
 
-*   `MaximumSupply` must be larger or equal to `InitialSupply`.
+- `MaximumSupply` must be larger or equal to `InitialSupply`.
 
 A Subnet supply can vary in time but it should be no larger than the configured maximum at any point in time, including at Subnet creation.
 
@@ -38,7 +38,7 @@ A Subnet supply can vary in time but it should be no larger than the configured 
 
 `MinConsumptionRate` has type `uint64` and it's the minimal rate a validator can earn if the `UptimeRequirement` is satisfied. If `StakingPeriod` == `MinStakeDuration`, the validator will earn the `MinConsumptionRate`. You can find more details about it in the [Reward Formula section](#reward-formula). The following constraints apply:
 
-*   `MinConsumptionRate` must be smaller or equal to `PercentDenominator`.
+- `MinConsumptionRate` must be smaller or equal to `PercentDenominator`.
 
 See [Notes on Percentages](#notes-on-percentages) section to understand `PercentDenominator` role.
 
@@ -46,8 +46,8 @@ See [Notes on Percentages](#notes-on-percentages) section to understand `Percent
 
 `MaxConsumptionRate` has type `uint64` and it's the maximal rate a validator can earn if the `UptimeRequirement` is satisfied. If `StakingPeriod` == `MaxStakeDuration` == `MintingPeriod`, the validator will earn the `MaxConsumptionRate`. You can find more details about it in the [Reward Formula section](#reward-formula). The following constraints apply:
 
-*   `MaxConsumptionRate` must be larger or equal to `MinConsumptionRate`.
-*   `MaxConsumptionRate` must be smaller or equal to `PercentDenominator`.
+- `MaxConsumptionRate` must be larger or equal to `MinConsumptionRate`.
+- `MaxConsumptionRate` must be smaller or equal to `PercentDenominator`.
 
 See [Notes on Percentages](#notes-on-percentages) section to understand `PercentDenominator` role.
 
@@ -55,28 +55,28 @@ See [Notes on Percentages](#notes-on-percentages) section to understand `Percent
 
 `MinValidatorStake` has type `uint64` and it's the minimum amount of funds required to become a validator. The following constraints apply:
 
-*   `MinValidatorStake` must be larger than zero
-*   `MinValidatorStake` must be smaller or equal to `InitialSupply`
+- `MinValidatorStake` must be larger than zero
+- `MinValidatorStake` must be smaller or equal to `InitialSupply`
 
 ### `MaxValidatorStake`
 
 `MaxValidatorStake` has type `uint64` and it's the maximum amount of funds a single validator can be allocated, including delegated funds. The following constraints apply:
 
-*   `MaxValidatorStake` must be larger or equal to `MinValidatorStake`
-*   `MaxValidatorStake` must be smaller or equal to `MaximumSupply`
+- `MaxValidatorStake` must be larger or equal to `MinValidatorStake`
+- `MaxValidatorStake` must be smaller or equal to `MaximumSupply`
 
 ### `MinStakeDuration`
 
 `MinStakeDuration` has type `uint32` and it's the minimum number of seconds a staker can stake for. The following constraints apply:
 
-*   `MinStakeDuration` must be larger than zero.
+- `MinStakeDuration` must be larger than zero.
 
 ### `MaxStakeDuration`
 
 `MaxStakeDuration` has type `uint32` and it's the maximum number of seconds a staker can stake for. The following constraints apply:
 
-*   `MaxStakeDuration` must be larger or equal to `MinStakeDuration`.
-*   `MaxStakeDuration` must be smaller or equal to `GlobalMaxStakeDuration`.
+- `MaxStakeDuration` must be larger or equal to `MinStakeDuration`.
+- `MaxStakeDuration` must be smaller or equal to `GlobalMaxStakeDuration`.
 
 `GlobalMaxStakeDuration` is defined in genesis and applies to both the Primary Network and all Subnets.
 
@@ -86,7 +86,7 @@ Its Mainnet value is 365x24xtime.Hour365 \\times 24 \\times time.Hour.
 
 `MinDelegationFee` has type `uint32` and it's the minimum fee rate a delegator must pay to its validator for delegating. `MinDelegationFee` is a percentage; the actual fee is calculated multiplying the fee rate for the delegator reward. The following constraints apply:
 
-*   `MinDelegationFee` must be smaller or equal to `PercentDenominator`.
+- `MinDelegationFee` must be smaller or equal to `PercentDenominator`.
 
 The `MinDelegationFee` rate applies to Primary Network as well. Its Mainnet value is 2%2\\%.
 
@@ -94,19 +94,19 @@ The `MinDelegationFee` rate applies to Primary Network as well. Its Mainnet valu
 
 `MinDelegatorStake` has type `uint64` and it's the minimum amount of funds required to become a delegator. The following constraints apply:
 
-*   `MinDelegatorStake` must be larger than zero.
+- `MinDelegatorStake` must be larger than zero.
 
 ### `MaxValidatorWeightFactor`
 
 `MaxValidatorWeightFactor` has type `uint8` and it's the factor which calculates the maximum amount of delegation a validator can receive. A value of 1 effectively disables delegation. You can find more details about it in the [Delegators Weight Checks section](#delegators-weight-checks). The following constraints apply:
 
-*   `MaxValidatorWeightFactor` must be larger than zero.
+- `MaxValidatorWeightFactor` must be larger than zero.
 
 ### `UptimeRequirement`
 
 `UptimeRequirement` has type `uint32` and it's the minimum percentage of its staking time that a validator must be online and responsive for to receive a reward. The following constraints apply:
 
-*   `UptimeRequirement` must be smaller or equal `PercentDenominator`.
+- `UptimeRequirement` must be smaller or equal `PercentDenominator`.
 
 See [Notes on Percentages](#notes-on-percentages) section to understand `PercentDenominator` role.
 
@@ -170,26 +170,26 @@ Note that setting MaxValidatorWeightFactorMaxValidatorWeightFactor to 1 disables
 
 It allows you to specify percentages up to 4 digital positions. To denominate your percentage in `PercentDenominator` just multiply it by `10_000`. For example:
 
-*   `100%` corresponds to `100 * 10_000 = 1_000_000`
-*   `1%` corresponds to `1* 10_000 = 10_000`
-*   `0.02%` corresponds to `0.002 * 10_000 = 200`
-*   `0.0007%` corresponds to `0.0007 * 10_000 = 7`
+- `100%` corresponds to `100 * 10_000 = 1_000_000`
+- `1%` corresponds to `1* 10_000 = 10_000`
+- `0.02%` corresponds to `0.002 * 10_000 = 200`
+- `0.0007%` corresponds to `0.0007 * 10_000 = 7`
 
 ## Primary Network Parameters on Mainnet
 
 An Elastic Subnet is free to pick any parameters affecting rewards, within the constraints specified above. For reference we list below Primary Network parameters on Mainnet:
 
-*   `AssetID = Avax`
-*   `InitialSupply = 240_000_000 Avax`
-*   `MaximumSupply = 720_000_000 Avax`.
-*   `MinConsumptionRate = 0.10 * reward.PercentDenominator`.
-*   `MaxConsumptionRate = 0.12 * reward.PercentDenominator`.
-*   `Minting Period = 365 * 24 * time.Hour`.
-*   `MinValidatorStake = 2_000 Avax`.
-*   `MaxValidatorStake = 3_000_000 Avax`.
-*   `MinStakeDuration = 2 * 7 * 24 * time.Hour`.
-*   `MaxStakeDuration = 365 * 24 * time.Hour`.
-*   `MinDelegationFee = 20000`, that is `2%`.
-*   `MinDelegatorStake = 25 Avax`.
-*   `MaxValidatorWeightFactor = 5`. This is a platformVM parameter rather than a genesis one, so it's shared across networks.
-*   `UptimeRequirement = 0.8`, that is `80%`.
+- `AssetID = Avax`
+- `InitialSupply = 240_000_000 Avax`
+- `MaximumSupply = 720_000_000 Avax`.
+- `MinConsumptionRate = 0.10 * reward.PercentDenominator`.
+- `MaxConsumptionRate = 0.12 * reward.PercentDenominator`.
+- `Minting Period = 365 * 24 * time.Hour`.
+- `MinValidatorStake = 2_000 Avax`.
+- `MaxValidatorStake = 3_000_000 Avax`.
+- `MinStakeDuration = 2 * 7 * 24 * time.Hour`.
+- `MaxStakeDuration = 365 * 24 * time.Hour`.
+- `MinDelegationFee = 20000`, that is `2%`.
+- `MinDelegatorStake = 25 Avax`.
+- `MaxValidatorWeightFactor = 5`. This is a platformVM parameter rather than a genesis one, so it's shared across networks.
+- `UptimeRequirement = 0.8`, that is `80%`.

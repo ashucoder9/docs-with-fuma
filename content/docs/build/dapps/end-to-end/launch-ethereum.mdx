@@ -26,19 +26,19 @@ You can access C-Chain through MetaMask, by defining a custom network. Go to Met
 
 #### **Avalanche Mainnet Settings:**[​](#avalanche-mainnet-settings "Direct link to heading")
 
-*   **Network Name**: Avalanche Mainnet C-Chain
-*   **New RPC URL**: [https://api.avax.network/ext/bc/C/rpc](https://api.avax.network/ext/bc/C/rpc)
-*   **ChainID**: `43114`
-*   **Symbol**: `AVAX`
-*   **Explorer**: [https://snowtrace.io/](https://snowtrace.io/)
+- **Network Name**: Avalanche Mainnet C-Chain
+- **New RPC URL**: [https://api.avax.network/ext/bc/C/rpc](https://api.avax.network/ext/bc/C/rpc)
+- **ChainID**: `43114`
+- **Symbol**: `AVAX`
+- **Explorer**: [https://snowtrace.io/](https://snowtrace.io/)
 
 #### **Fuji Testnet Settings:**[​](#fuji-testnet-settings "Direct link to heading")
 
-*   **Network Name**: Avalanche Fuji C-Chain
-*   **New RPC URL**: [https://api.avax-test.network/ext/bc/C/rpc](https://api.avax-test.network/ext/bc/C/rpc)
-*   **ChainID**: `43113`
-*   **Symbol**: `AVAX`
-*   **Explorer**: [https://testnet.snowtrace.io/](https://testnet.snowtrace.io/)
+- **Network Name**: Avalanche Fuji C-Chain
+- **New RPC URL**: [https://api.avax-test.network/ext/bc/C/rpc](https://api.avax-test.network/ext/bc/C/rpc)
+- **ChainID**: `43113`
+- **Symbol**: `AVAX`
+- **Explorer**: [https://testnet.snowtrace.io/](https://testnet.snowtrace.io/)
 
 In your application's web interface, you can [add Avalanche programmatically](/build/dapps/advanced-tutorials/add-network-pragmatically#metamask) so your users don't have to enter the network data manually.
 
@@ -153,10 +153,10 @@ Contract Verification[​](#contract-verification "Direct link to heading")
 
 Smart contract verification provides transparency for users interacting with smart contracts by publishing the source code, allowing everyone to attest that it really does what it claims to do. You can verify your smart contracts using the [C-Chain explorer](https://snowtrace.io/). The procedure is simple:
 
-*   navigate to your published contract address on the explorer
-*   on the `code` tab select `verify & publish`
-*   copy and paste the flattened source code and enter all the build parameters exactly as they are on the published contract
-*   click `verify & publish`
+- navigate to your published contract address on the explorer
+- on the `code` tab select `verify & publish`
+- copy and paste the flattened source code and enter all the build parameters exactly as they are on the published contract
+- click `verify & publish`
 
 If successful, the `code` tab will now have a green checkmark, and your users will be able to verify the contents of your contract. This is a strong positive signal that your users can trust your contracts, and it is strongly recommended for all production contracts.
 
@@ -169,9 +169,9 @@ Due to the nature of distributed apps, it is very hard to fix bugs once the appl
 
 Most popular are:
 
-*   [Slither](https://github.com/crytic/slither), here's a [tutorial](https://blog.trailofbits.com/2018/10/19/slither-a-solidity-static-analysis-framework/)
-*   [MythX](https://mythx.io/)
-*   [Mythril](https://github.com/ConsenSys/mythril)
+- [Slither](https://github.com/crytic/slither), here's a [tutorial](https://blog.trailofbits.com/2018/10/19/slither-a-solidity-static-analysis-framework/)
+- [MythX](https://mythx.io/)
+- [Mythril](https://github.com/ConsenSys/mythril)
 
 We highly recommend using at least one of them if professional contract security review is not possible. A more comprehensive look into secure development practices can be found [here](https://github.com/crytic/building-secure-contracts/blob/master/development-guidelines/workflow.md).
 

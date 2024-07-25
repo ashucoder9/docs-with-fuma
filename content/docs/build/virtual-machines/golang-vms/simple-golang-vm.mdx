@@ -920,9 +920,9 @@ type StaticService struct{}
 
 For each API method, there is:
 
-*   A struct that defines the method's arguments
-*   A struct that defines the method's return values
-*   A method that implements the API method, and is parameterized on the above 2 structs
+- A struct that defines the method's arguments
+- A struct that defines the method's return values
+- A method that implements the API method, and is parameterized on the above 2 structs
 
 This API method encodes a string to its byte representation using a given encoding scheme. It can be used to encode data that is then put in a block and proposed as the next block for this chain.
 
@@ -1029,10 +1029,10 @@ timestampvm.getBlock({id: string}) ->
     }
 ```
 
-*   `id` is the ID of the block being retrieved. If omitted from arguments, gets the latest block
-*   `data` is the base 58 (with checksum) representation of the block's 32 byte payload
-*   `timestamp` is the Unix timestamp when this block was created
-*   `parentID` is the block's parent
+- `id` is the ID of the block being retrieved. If omitted from arguments, gets the latest block
+- `data` is the base 58 (with checksum) representation of the block's 32 byte payload
+- `timestamp` is the Unix timestamp when this block was created
+- `parentID` is the block's parent
 
 ##### `getBlock` Example Call[​](#getblock-example-call "Direct link to heading")
 
@@ -1128,7 +1128,7 @@ Propose the next block on this blockchain.
 timestampvm.proposeBlock({data: string}) -> {success: bool}
 ```
 
-*   `data` is the base 58 (with checksum) representation of the proposed block's 32 byte payload.
+- `data` is the base 58 (with checksum) representation of the proposed block's 32 byte payload.
 
 ##### `proposeBlock` Example Call[​](#proposeblock-example-call "Direct link to heading")
 
@@ -1307,7 +1307,7 @@ That's it! That's the entire implementation of a VM which defines a blockchain-b
 
 In this tutorial, we learned:
 
-*   The `block.ChainVM` interface, which all VMs that define a linear chain must implement
-*   The `snowman.Block` interface, which all blocks that are part of a linear chain must implement
-*   The `rpcchainvm` type, which allows blockchains to run in their own processes.
-*   An actual implementation of `block.ChainVM` and `snowman.Block`.
+- The `block.ChainVM` interface, which all VMs that define a linear chain must implement
+- The `snowman.Block` interface, which all blocks that are part of a linear chain must implement
+- The `rpcchainvm` type, which allows blockchains to run in their own processes.
+- An actual implementation of `block.ChainVM` and `snowman.Block`.
