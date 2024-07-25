@@ -1,16 +1,33 @@
 import './global.css';
 import { RootProvider } from 'fumadocs-ui/provider';
-import { Inter } from 'next/font/google';
+import type { Viewport } from 'next';
+import { GeistSans } from 'geist/font/sans';
+import { GeistMono } from 'geist/font/mono';
 import type { ReactNode } from 'react';
+import { baseUrl, createMetadata } from '@/utils/metadata';
 
-const inter = Inter({
-  subsets: ['latin'],
+export const metadata = createMetadata({
+  title: {
+    template: '%s | Avalanche Academy',
+    default: 'Avalanche Academy',
+  },
+
+  // area for improvement: add page specific metadata
+  description: 'The Learning Platform for Avalanche Ecosystem',
+  metadataBase: baseUrl,
 });
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: dark)', color: '#0A0A0A' },
+    { media: '(prefers-color-scheme: light)', color: '#fff' },
+  ],
+};
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={inter.className} suppressHydrationWarning>
-      <body>
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`} suppressHydrationWarning>
+      <body className="flex min-h-screen flex-col">
         <RootProvider>{children}</RootProvider>
       </body>
     </html>

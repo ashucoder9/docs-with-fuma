@@ -2,8 +2,7 @@
   "title": "learn",
   "root": true,
   "pages": [
-    "---Avalanche Protocol---",
-    "what-is-avalanche",
+    "index",
     "avalanche-consensus",
     "avax-token",
     "---Multi-chain Architecture---",

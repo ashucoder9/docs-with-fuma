@@ -1,44 +1,119 @@
-import { getPage, getPages } from '@/app/source';
 import type { Metadata } from 'next';
+import { Card, Cards } from 'fumadocs-ui/components/card';
 import { DocsPage, DocsBody } from 'fumadocs-ui/page';
 import { notFound } from 'next/navigation';
+import { createMetadata } from '@/utils/metadata';
+import { utils, type Page } from '@/utils/source';
+import { ArrowUpRightIcon } from '@heroicons/react/20/solid';
 
-export default async function Page({
+interface Param {
+  slug: string[];
+}
+
+export const dynamicParams = false;
+
+export default function Page({
   params,
 }: {
-  params: { slug?: string[] };
-}) {
-  const page = getPage(params.slug);
+  params: Param;
+}): React.ReactElement {
+  const page = utils.getPage(params.slug);
 
-  if (page == null) {
-    notFound();
-  }
+  if (!page) notFound();
 
-  const MDX = page.data.exports.default;
+  const path = `content/course/${page.file.path}`;
 
   return (
-    <DocsPage toc={page.data.exports.toc} full={page.data.full}>
+    <DocsPage
+      toc={page.data.exports.toc}
+      lastUpdate={page.data.exports.lastModified}
+      tableOfContent={{
+        enabled: page.data.toc,
+        footer: (
+          <a
+            href={`https://github.com/ava-labs/avalanche-academy/blob/main/${path}`}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
+          >
+            Edit on Github <ArrowUpRightIcon className="size-5" />
+          </a>
+        ),
+      }}
+    >
+      <h1 className="text-3xl font-bold text-foreground sm:text-4xl">
+        {page.data.title}
+      </h1>
+      <p className="mb-8 text-lg text-muted-foreground">
+        {page.data.description}
+      </p>
       <DocsBody>
-        <h1>{page.data.title}</h1>
-        <MDX />
+        {page.data.index ? (
+          <Category page={page} />
+        ) : (
+          <page.data.exports.default />
+        )}
       </DocsBody>
     </DocsPage>
   );
 }
 
+function Category({ page }: { page: Page }): React.ReactElement {
+  const filtered = utils
+    .getPages()
+    .filter(
+      (item) =>
+        item.file.dirname === page.file.dirname && item.file.name !== 'index',
+    );
+
+  return (
+    <Cards>
+      {filtered.map((item) => (
+        <Card
+          key={item.url}
+          title={item.data.title}
+          description={item.data.description ?? 'No Description'}
+          href={item.url}
+        />
+      ))}
+    </Cards>
+  );
+}
+
 export async function generateStaticParams() {
-  return getPages().map((page) => ({
+  return utils.getPages().map((page) => ({
     slug: page.slugs,
   }));
 }
 
-export function generateMetadata({ params }: { params: { slug?: string[] } }) {
-  const page = getPage(params.slug);
+export function generateMetadata({ params }: { params: Param }): Metadata {
+  const page = utils.getPage(params.slug);
 
-  if (page == null) notFound();
+  if (!page) notFound();
 
-  return {
+  const description =
+    page.data.description ?? 'Learn how to build on Avalanche blockchain with Academy';
+
+  const imageParams = new URLSearchParams();
+  imageParams.set('title', page.data.title);
+  imageParams.set('description', description);
+
+  const image = {
+    alt: 'Banner',
+    url: `/api/og/${params.slug[0]}?${imageParams.toString()}`,
+    width: 1200,
+    height: 630,
+  };
+
+  return createMetadata({
     title: page.data.title,
-    description: page.data.description,
-  } satisfies Metadata;
+    description,
+    openGraph: {
+      url: `/docs/${page.slugs.join('/')}`,
+      images: image,
+    },
+    twitter: {
+      images: image,
+    },
+  });
 }

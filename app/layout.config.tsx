@@ -1,8 +1,8 @@
 import { type BaseLayoutProps, type DocsLayoutProps } from 'fumadocs-ui/layout';
 import { Title } from '@/app/layout.client';
-import { pageTree } from '@/app/source';
+import { utils } from '@/utils/source';
 import { RootToggle } from 'fumadocs-ui/components/layout/root-toggle';
-import { BlocksIcon, MailIcon, SproutIcon, SquareStackIcon } from 'lucide-react';
+import { MailIcon, SproutIcon, SquareGanttChart, IndentDecrease, Layers, MonitorCheck, Webhook } from 'lucide-react';
 
 // shared configuration
 export const baseOptions: BaseLayoutProps = {
@@ -14,35 +14,53 @@ export const baseOptions: BaseLayoutProps = {
 // docs layout configuration
 export const docsOptions: DocsLayoutProps = {
   ...baseOptions,
-  tree: pageTree,
+  tree: utils.pageTree,
   sidebar: {
     defaultOpenLevel: 0,
     banner: (
       <RootToggle
         options={[
           {
-            title: 'Learn',
-            description: '',
+            title: 'Avalanche Protocol',
+            description: 'Learn about Avalanche',
             icon: <SproutIcon />,
-            url: '/docs/learn/what-is-avalanche',
+            url: '/docs/learn',
           },
           {
-            title: 'Multi-Chain Architecture',
+            title: 'Smart Contracts',
+            description: 'Build Apps on Avalanche',
+            icon: <SquareGanttChart />,
+            url: '/docs/dapps',
+          },
+          {
+            title: 'Avalanche L1s',
             description: '',
-            icon: <SquareStackIcon />,
-            url: '/docs/api-reference',
+            icon: <Layers />,
+            url: '/docs/subnets',
+          },
+          {
+            title: 'Virtual Machines',
+            description: '',
+            icon: <IndentDecrease />,
+            url: '/docs/virtual-machines',
+          },
+          {
+            title: 'Nodes & Validators',
+            description: '',
+            icon: <MonitorCheck />,
+            url: '/docs/nodes',
           },
           {
             title: 'AWM & Teleporter',
             description: '',
             icon: <MailIcon />,
-            url: '/docs/build/cross-chain/avalanche-warp-messaging/overview',
+            url: '/docs/cross-chain',
           },
           {
-            title: 'Customizing EVM',
+            title: 'API Reference',
             description: '',
-            icon: <BlocksIcon />,
-            url: '/course/customizing-evm',
+            icon: <Webhook />,
+            url: '/docs/api-reference',
           },
         ]}
       />
