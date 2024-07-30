@@ -1,7 +1,8 @@
 ---
-title: Run an Avalanche Node with Amazon Web Services (AWS)
-sidebarTitle: Amazon Web Services
+title: Amazon Web Services
+description: Learn how to run a node on Amazon Web Services.
 ---
+
 Introduction[​](#introduction "Direct link to heading")
 -------------------------------------------------------
 
@@ -88,13 +89,13 @@ Click the **Next: Configure Instance Details** button in the bottom right-hand c
 
 The instance details can stay as their defaults.
 
-info
-
+<Callout type="info">
 When setting up a node as a validator, it is crucial to select the appropriate AWS instance type to ensure the node can efficiently process transactions and manage the network load. The recommended instance types are as follows:
 
 - For a minimal stake, start with a compute-optimized instance such as c6, c6i, c6a, c7 and similar.
 - Use a 2xlarge instance size for the minimal stake configuration.
 - As the staked amount increases, choose larger instance sizes to accommodate the additional workload. For every order of magnitude increase in stake, move up one instance size. For example, for a 20k AVAX stake, a 4xlarge instance is suitable.
+</Callout>
 
 ### Optional: Using Reserved Instances[​](#optional-using-reserved-instances "Direct link to heading")
 
@@ -173,7 +174,7 @@ Move the `.pem` file to `$HOME/.ssh` (where `.pem` files generally live) with:
 
 Add it to the SSH agent so that we can use it to SSH into your EC2 instance, and mark it as read-only.
 
-```
+```bash
 ssh-add ~/.ssh/avalanche.pem; chmod 400 ~/.ssh/avalanche.pem
 ```
 
@@ -189,7 +190,7 @@ You are now logged into the EC2 instance.
 
 If you have not already done so, update the instance to make sure it has the latest operating system and security updates:
 
-```
+```bash
 sudo apt update; sudo apt upgrade -y; sudo reboot
 ```
 
@@ -199,7 +200,7 @@ You're logged into the EC2 instance again. Now we'll need to set up our Avalanch
 
 Your AvalancheGo node should now be running and in the process of bootstrapping, which can take a few hours. To check if it's done, you can issue an API call using `curl`. If you're making the request from the EC2 instance, the request is:
 
-```
+```bash
 curl -X POST --data '{
     "jsonrpc":"2.0",
     "id"     :1,
@@ -212,7 +213,7 @@ curl -X POST --data '{
 
 Once the node is finished bootstrapping, the response will be:
 
-```
+```json
 {
     "jsonrpc": "2.0",
     "result": {
@@ -226,7 +227,7 @@ You can continue on, even if AvalancheGo isn't done bootstrapping.
 
 In order to make your node a validator, you'll need its node ID. To get it, run:
 
-```
+```bash
 curl -X POST --data '{
     "jsonrpc":"2.0",
     "id"     :1,
@@ -236,7 +237,7 @@ curl -X POST --data '{
 
 The response contains the node ID.
 
-```
+```json
 {"jsonrpc":"2.0","result":{"nodeID":"NodeID-DznHmm3o7RkmpLkWMn9NqafH66mqunXbM"},"id":1}
 ```
 
@@ -254,7 +255,7 @@ Now you're no longer connected to the EC2 instance; you're back on your local ma
 
 To copy the staking key and certificate to your machine, run the following command. As always, replace `PUBLICIP`.
 
-```
+```bash
 scp -r ubuntu@PUBLICIP:/home/ubuntu/.avalanchego/staking ~/aws_avalanche_backup
 ```
 
@@ -264,7 +265,7 @@ Now your staking key and certificate are in directory `~/aws_avalanche_backup` .
 
 AvalancheGo is an ongoing project and there are regular version upgrades. Most upgrades are recommended but not required. Advance notice will be given for upgrades that are not backwards compatible. To update your node to the latest version, SSH into your AWS instance as before and run the installer script again.
 
-```
+```bash
 ./avalanchego-installer.sh
 ```
 

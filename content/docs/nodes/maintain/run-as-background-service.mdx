@@ -1,16 +1,10 @@
 ---
-title: Run an Avalanche Node as a Background Service
-sidebarTitle: Run as a Background Service
+title: Run Avalanche Node in Background
 ---
-Overview[​](#overview "Direct link to heading")
------------------------------------------------
 
 This page demonstrates how to set up a `avalanchego.service` file to enable a manually deployed validator node to run in the background of a server instead of in the terminal directly.
 
-Prerequisites[​](#prerequisites "Direct link to heading")
----------------------------------------------------------
-
-- AvalancheGo installed
+Make sure that AvalancheGo is already installed on your machine.
 
 Steps[​](#steps "Direct link to heading")
 -----------------------------------------
@@ -19,22 +13,22 @@ Steps[​](#steps "Direct link to heading")
 
 Run this command in your terminal to create the `avalanchego.service` file
 
-```
+```bash
 sudo nano /etc/systemd/system/avalanchego.service
 ```
 
 Paste the following configuration into the `avalanchego.service` file
 
-_**Remember to modify the values of:**_
+Remember to modify the values of:
 
 - _**user=**_
 - _**group=**_
 - _**WorkingDirectory=**_
 - _**ExecStart=**_
 
-_**For those that you have configured on your Server**_
+For those that you have configured on your Server:
 
-```
+```toml
 [Unit]
 Description=Avalanche Node service
 After=network.target
@@ -61,7 +55,7 @@ Press **Ctrl + X** then **Y** then **Enter** to save and exit.
 
 Now, run:
 
-```
+```bash
 sudo systemctl daemon-reload
 ```
 
@@ -69,13 +63,13 @@ sudo systemctl daemon-reload
 
 Run this command in your terminal to create the `avalanchego.service` file
 
-```
+```bash
 sudo nano /etc/systemd/system/avalanchego.service
 ```
 
 Paste the following configuration into the `avalanchego.service` file
 
-```
+```toml
 [Unit]
 Description=Avalanche Node service
 After=network.target
@@ -101,7 +95,7 @@ Press **Ctrl + X** then **Y** then **Enter** to save and exit.
 
 Now, run:
 
-```
+```bash
 sudo systemctl daemon-reload
 ```
 
@@ -110,20 +104,20 @@ Start the Node[​](#start-the-node "Direct link to heading")
 
 This command makes your node start automatically in case of a reboot, run it:
 
-```
+```bash
 sudo systemctl enable avalanchego
 ```
 
 To start the node, run:
 
-```
+```bash
 sudo systemctl start avalanchego
 sudo systemctl status avalanchego
 ```
 
 Output:
 
-```
+```bash
 socopower@avalanche-node-01:~$ sudo systemctl status avalanchego
 ● avalanchego.service - Avalanche Node service
      Loaded: loaded (/etc/systemd/system/avalanchego.service; enabled; vendor p>
@@ -149,7 +143,6 @@ Aug 30 05:00:47 avalanche-node-01 avalanchego[2226]: [08-30|05:00:47.001] INFO
 
 To see the synchronization process, you can run the following command:
 
-```
+```bash
 sudo journalctl -fu avalanchego
-
 ```

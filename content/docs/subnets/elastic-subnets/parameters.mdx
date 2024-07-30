@@ -118,13 +118,13 @@ Assume that at the start of the staking period there is a SupplySupply amount of
 
 Then at the end of its staking period, a responsive Elastic Subnet validator receives a reward calculated as follows:
 
-```cobol
+```math
 Reward\=(MaximumSupply-Supply)*StakeSupply*StakingPeriodMintingPeriod*EffectiveConsumptionRateReward = \\left(MaximumSupply - Supply \\right) \\times \\frac{`Stake`}{Supply} \\times \\frac\{Staking Period}\{Minting Period} \\times EffectiveConsumptionRate
 ```
 
 where:
 
-```cobol
+```math
 MaximumSupply-Supply\=the number of tokens left to emit in the subnetMaximumSupply - Supply = \\text\{the number of tokens left to emit in the subnet} StakeSupply\=the individual's stake as a percentage of all available tokens in the network\\frac{`Stake`}{Supply} = \\text\{the individual's stake as a percentage of all available tokens in the network} StakingPeriodMintingPeriod\=time tokens are locked up divided bythe MintingPeriod\\frac{StakingPeriod}{MintingPeriod} = \\text\{time tokens are locked up divided by the $MintingPeriod$} MintingPeriod is one year as configured by the Primary Network).\\text\{$MintingPeriod$ is one year as configured by the Primary Network).} EffectiveConsumptionRate\=EffectiveConsumptionRate = MinConsumptionRatePercentDenominator*(1-StakingPeriodMintingPeriod)+MaxConsumptionRatePercentDenominator*StakingPeriodMintingPeriod\\frac{MinConsumptionRate}{PercentDenominator} \\times \\left(1- \\frac\{Staking Period}\{Minting Period}\\right) + \\frac{MaxConsumptionRate}{PercentDenominator} \\times \\frac\{Staking Period}\{Minting Period}
 ```
 
@@ -140,7 +140,7 @@ The larger StakingPeriodStakingPeriod is, the closer EffectiveConsumptionRateEff
 
 A staker achieves the maximum reward for its stake if StakingPeriodStakingPeriod = MintingPeriodMinting Period. The reward is:
 
-```cobol
+```math
 MaxReward\=(MaximumSupply-Supply)*StakeSupply*MaxConsumptionRatePercentDenominatorMax Reward = \\left(MaximumSupply - Supply \\right) \\times \\frac{`Stake`}{Supply} \\times \\frac{MaxConsumptionRate}{PercentDenominator}
 ```
 
@@ -154,7 +154,7 @@ There are bounds set of the maximum amount of delegators' stake that a validator
 
 The maximum weight MaxWeightMaxWeight a validator ValidatorValidator can have is:
 
-```cobol
+```math
 MaxWeight\=min(Validator.Weight*MaxValidatorWeightFactor,MaxValidatorStake) MaxWeight = \\min(Validator.Weight \\times MaxValidatorWeightFactor, MaxValidatorStake)
 ```
 

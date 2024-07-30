@@ -1,7 +1,8 @@
 ---
-title: System Requirements for Running an Avalanche Node
-sidebarTitle: System Requirements
+title: System Requirements
+description: This document provides information about the system requirements for running an AvalancheGo node.
 ---
+
 Hardware and Operating Systems[​](#hardware-and-operating-systems "Direct link to heading")
 -------------------------------------------------------------------------------------------
 
@@ -12,10 +13,10 @@ Avalanche is an incredibly lightweight protocol, so nodes can run on commodity h
 - Storage: 1 TiB SSD
 - OS: Ubuntu 20.04 or MacOS >= 12
 
-
 <Callout type="warning">
 Nodes which choose to use a HDD may get poor and random read/write latencies, therefore reducing performance and reliability. An SSD is strongly suggested.
 </Callout>
+
 Networking[​](#networking "Direct link to heading")
 ---------------------------------------------------
 
@@ -34,4 +35,3 @@ As there are too many models and router configurations, we cannot provide instru
 <Callout type="warning">
 A fully connected Avalanche node maintains and communicates over a couple of thousand of live TCP connections. For some low-powered and older home routers that might be too much to handle. If that is the case you may experience lagging on other computers connected to the same router, node getting benched, failing to sync and similar issues.
 </Callout>
-

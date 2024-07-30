@@ -1,9 +1,7 @@
 ---
-title: Run a Subnet Node
-sidebarTitle: Subnet Nodes
+title: Subnet Nodes
+description: Learn how to run an Avalanche node that tracks a Subnet.
 ---
-Introduction[​](#introduction "Direct link to heading")
--------------------------------------------------------
 
 This article describes how to run a node that tracks a Subnet. It requires building AvalancheGo, adding Virtual Machine binaries as plugins to your local data directory, and running AvalancheGo to track these binaries.
 
@@ -32,30 +30,24 @@ Note that as network usage increases, hardware requirements may change.
 3.  Set the [$GOPATH](https://github.com/golang/go/wiki/SettingGOPATH)
     
 4.  Create a directory in your `$GOPATH`
-    
+        
+    ```bash
+    mkdir -p $GOPATH/src/github.com/ava-labs
+    ```
 
-```
-mkdir -p $GOPATH/src/github.com/ava-labs
-```
+5.  In the `$GOPATH`, clone [AvalancheGo](https://github.com/ava-labs/avalanchego), the consensus engine and node implementation that is the core of the Avalanche Network.
 
-5.  Clone AvalancheGo
+    ```bash
+    cd $GOPATH/src/github.com/ava-labs
+    git clone https://github.com/ava-labs/avalanchego.git
+    ```
 
-In the `$GOPATH`, clone [AvalancheGo](https://github.com/ava-labs/avalanchego), the consensus engine and node implementation that is the core of the Avalanche Network.
+6.  From the `avalanchego` directory, run the build script
 
-```
-cd $GOPATH/src/github.com/ava-labs
-git clone https://github.com/ava-labs/avalanchego.git
-```
-
-6.  Run the Build Script
-
-From the `avalanchego` directory, run the build script
-
-```
-cd $GOPATH/src/github.com/ava-labs/avalanchego
-./scripts/build.sh
-
-```
+    ```bash
+    cd $GOPATH/src/github.com/ava-labs/avalanchego
+    ./scripts/build.sh
+    ```
 </Accordion>
 </Accordions>
 
@@ -65,7 +57,7 @@ After building AvalancheGo successfully,
 
 ### 1. Clone [Subnet-EVM](https://github.com/ava-labs/subnet-evm)
 
-```
+```bash
 cd $GOPATH/src/github.com/ava-labs
 git clone https://github.com/ava-labs/subnet-evm.git
 ```
@@ -74,7 +66,7 @@ git clone https://github.com/ava-labs/subnet-evm.git
 
 In the Subnet-EVM directory, run the build script, and save it in the “plugins” folder of your `.avalanchego` data directory. Name the plugin after the `VMID` of the Subnet you wish to track. The `VMID` of the WAGMI Subnet is the value beginning with “srEX...”.
 
-```
+```bash
 cd $GOPATH/src/github.com/ava-labs/subnet-evm
 ./scripts/build.sh ~/.avalanchego/plugins/srEXiWaHuhNyGwPUi444Tu47ZEDwxTWrbQiuD7FmgSAQ6X7Dy
 ```
@@ -92,7 +84,7 @@ VMID, Subnet ID, ChainID, and all other parameters can be found in the "Chain In
 
 Create a file named `config.json` and add a `track-subnets` field that is populated with the `SubnetID` you wish to track. The `SubnetID` of the WAGMI Subnet is the value beginning with “28nr...”.
 
-```
+```bash
 cd ~/.avalanchego
 echo '{"track-subnets": "28nrH5T2BMvNrWecFcV3mfccjs6axM1TVyqe79MCv2Mhs8kxiY"}' > config.json
 ```
@@ -101,7 +93,7 @@ echo '{"track-subnets": "28nrH5T2BMvNrWecFcV3mfccjs6axM1TVyqe79MCv2Mhs8kxiY"}' >
 
 Run AvalancheGo with the `—config-file` flag to start your node and ensure it tracks the Subnets included in the configuration file.
 
-```
+```bash
 cd $GOPATH/src/github.com/ava-labs/avalanchego
 ./build/avalanchego --config-file ~/.avalanchego/config.json --network-id=fuji
 ```
@@ -114,9 +106,8 @@ If you would prefer to track Subnets using a command line flag, you can instead 
 
 For example:
 
-```
+```bash
 ./build/avalanchego --track-subnets 28nrH5T2BMvNrWecFcV3mfccjs6axM1TVyqe79MCv2Mhs8kxiY --network-id=fuji
-
 ```
 </Accordion>
 </Accordions>
@@ -129,12 +120,13 @@ It may take a few hours for the node to fully [bootstrap](/nodes/run-a-node/manu
 
 When finished bootstrapping, the endpoint will be:
 
-```
+```bash
 localhost:9650/ext/bc/<BlockchainID>/rpc
 ```
 
 if run locally, or:
-```
+
+```bash
 XXX.XX.XX.XXX:9650/ext/bc/<BlockchainID>/rpc
 ```
 

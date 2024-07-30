@@ -1,7 +1,8 @@
 ---
-title: Launch an Avalanche Validator on AWS with One Click
-sidebarTitle: AWS Marketplace
+title: AWS Marketplace
+description: Learn how to run a node on AWS Marketplace.
 ---
+
 How to Launch an Avalanche Validator using AWS[​](#how-to-launch-an-avalanche-validator-using-aws "Direct link to heading")
 ---------------------------------------------------------------------------------------------------------------------------
 <iframe
@@ -36,7 +37,7 @@ Launch This Software[​](#launch-this-software "Direct link to heading")
 
 Here you can review the launch configuration details and follow the instructions to launch the Avalanche Validator Node. The changes are very minor. Leave the action as "Launch from Website." The EC2 Instance Type should remain `c5.2xlarge`. The primary change you'll need to make is to choose a keypair which will enable you to `ssh` into the newly created EC2 instance to run `curl` commands on the Validator node. You can search for existing Keypairs or you can create a new keypair and download it to your local machine. If you create a new keypair you'll need to move the keypair to the appropriate location, change the permissions and add it to the OpenSSH authentication agent. For example, on MacOS it would look similar to the following:
 
-```
+```bash
 # In this example we have a keypair called avalanche.pem which was downloaded from AWS to ~/Downloads/avalanche.pem
 # Confirm the file exists with the following command
 test -f ~/Downloads/avalanche.pem && echo "Avalanche.pem exists."
@@ -82,7 +83,7 @@ First, confirm that the node is syncing the Mainnet by running the `info.getNetw
 
 #### `info.getNetworkID` Request[​](#infogetnetworkid-request "Direct link to heading")
 
-```
+```bash
 curl -X POST --data '{
     "jsonrpc":"2.0",
     "id"     :1,
@@ -96,7 +97,7 @@ curl -X POST --data '{
 
 The returned `networkID` will be 1 which is the network ID for Mainnet.
 
-```
+```json
 {
   "jsonrpc": "2.0",
   "result": {
@@ -108,7 +109,7 @@ The returned `networkID` will be 1 which is the network ID for Mainnet.
 
 Now you want to edit `/etc/avalanchego/conf.json` and change the `"network-id"` property from `"mainnet"` to `"fuji"`. To see the contents of `/etc/avalanchego/conf.json` you can `cat` the file.
 
-```
+```bash
 cat /etc/avalanchego/conf.json
 {
   "api-keystore-enabled": false,
@@ -125,7 +126,7 @@ Edit that `/etc/avalanchego/conf.json` with your favorite text editor and change
 
 #### `info.getNetworkID` Request[​](#infogetnetworkid-request-1 "Direct link to heading")
 
-```
+```bash
 curl -X POST --data '{
     "jsonrpc":"2.0",
     "id"     :1,
@@ -139,7 +140,7 @@ curl -X POST --data '{
 
 The returned `networkID` will be 5 which is the network ID for Fuji.
 
-```
+```json
 {
   "jsonrpc": "2.0",
   "result": {
@@ -153,7 +154,7 @@ Next you run the `info.isBoostrapped` command to confirm if the Avalanche Valida
 
 ### `info.isBootstrapped` Request[​](#infoisbootstrapped-request "Direct link to heading")
 
-```
+```bash
 curl -X POST --data '{
     "jsonrpc":"2.0",
     "id"     :1,
@@ -168,7 +169,7 @@ Once the node is finished bootstrapping, the response will be:
 
 ### `info.isBootstrapped` Response[​](#infoisbootstrapped-response "Direct link to heading")
 
-```
+```json
 {
     "jsonrpc": "2.0",
     "result": {
@@ -185,7 +186,7 @@ When you're adding your node as a Validator on the Avalanche Mainnet you'll want
 
 Next, you want to get the NodeID which will be used to add the node as a Validator. To get the node's ID you call the `info.getNodeID` jsonrpc endpoint.
 
-```
+```bash
 curl --location --request POST 'http://127.0.0.1:9650/ext/info' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -201,7 +202,7 @@ curl --location --request POST 'http://127.0.0.1:9650/ext/info' \
 
 Take a note of the `nodeID` value which is returned as you'll need to use it in the next step when adding a validator via the Avalanche Web Wallet. In this case the `nodeID` is `NodeID-Q8Gfaaio9FAqCmZVEXDq9bFvNPvDi7rt5`
 
-```
+```json
 {
   "jsonrpc": "2.0",
   "result": {
@@ -247,15 +248,10 @@ You can follow the same steps for switching back to Mainnet.
 ### Adding the Validator[​](#adding-the-validator "Direct link to heading")
 
 <Callout type="info">
-
-- Node ID: A unique ID derived from each individual node's staker certificate. Use the `NodeID` which was returned in the `info.getNodeID` response. In this example it's `NodeID-Q8Gfaaio9FAqCmZVEXDq9bFvNPvDi7rt5`
-    
+- Node ID: A unique ID derived from each individual node's staker certificate. Use the `NodeID` which was returned in the `info.getNodeID` response. In this example it's `NodeID-Q8Gfaaio9FAqCmZVEXDq9bFvNPvDi7rt5`  
 - Staking End Date: Your AVAX tokens will be locked until this date.
-    
-- Stake Amount: The amount of AVAX to lock for staking. On Mainnet, the minimum required amount is 2,000 AVAX. On Testnet the minimum required amount is 1 AVAAX.
-    
-- Delegation Fee: You will claim this % of the rewards from the delegators on your node.
-    
+- Stake Amount: The amount of AVAX to lock for staking. On Mainnet, the minimum required amount is 2,000 AVAX. On Testnet the minimum required amount is 1 AVAAX.  
+- Delegation Fee: You will claim this % of the rewards from the delegators on your node.  
 - Reward Address: A reward address is the destination address of the accumulated staking rewards.
 </Callout>
 
@@ -306,7 +302,7 @@ As a last step you can call the `platform.getPendingvalidators` endpoint to conf
 
 ### `platform.getPendingValidators` Request[​](#platformgetpendingvalidators-request "Direct link to heading")
 
-```
+```bash
 curl --location --request POST 'https://api.avax-test.network/ext/bc/P' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -322,7 +318,7 @@ curl --location --request POST 'https://api.avax-test.network/ext/bc/P' \
 
 ### `platform.getPendingValidators` Response[​](#platformgetpendingvalidators-response "Direct link to heading")
 
-```
+```json
 {
   "jsonrpc": "2.0",
   "result": {
@@ -346,7 +342,7 @@ curl --location --request POST 'https://api.avax-test.network/ext/bc/P' \
 
 You can also pass in the `NodeID` as a string to the `nodeIDs` array in the request body.
 
-```
+```bash
 curl --location --request POST 'https://api.avax-test.network/ext/bc/P' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -362,7 +358,7 @@ curl --location --request POST 'https://api.avax-test.network/ext/bc/P' \
 
 This will filter the response by the `nodeIDs` array which will save you time by no longer requiring you to search through the entire response body for the NodeIDs.
 
-```
+```json
 {
   "jsonrpc": "2.0",
   "result": {
@@ -388,7 +384,7 @@ After 5 minutes the node will officially start validating the Avalanche Fuji tes
 
 ### `platform.getCurrentValidators` Request[​](#platformgetcurrentvalidators-request "Direct link to heading")
 
-```
+```bash
 curl --location --request POST 'https://api.avax-test.network/ext/bc/P' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -404,7 +400,7 @@ curl --location --request POST 'https://api.avax-test.network/ext/bc/P' \
 
 ### `platform.getCurrentValidators` Response[​](#platformgetcurrentvalidators-response "Direct link to heading")
 
-```
+```json
 {
   "jsonrpc": "2.0",
   "result": {

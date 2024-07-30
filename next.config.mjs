@@ -1,6 +1,13 @@
 import createMDX from 'fumadocs-mdx/config';
-
-const withMDX = createMDX();
+import rehypeKatex from 'rehype-katex';
+import remarkMath from 'remark-math';
+ 
+const withMDX = createMDX({
+  mdxOptions: {
+    remarkPlugins: [remarkMath],
+    rehypePlugins: (v) => [rehypeKatex, ...v],
+  },
+});
 
 /** @type {import('next').NextConfig} */
 const config = {

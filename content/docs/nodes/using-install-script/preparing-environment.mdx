@@ -1,8 +1,9 @@
 ---
-title: Run an Avalanche Node Using the Install Script
-sidebarTitle: Preparing Your Environment
-description: We have a shell (bash) script that installs AvalancheGo on your computer. This script sets up full, running node in a matter of minutes with minimal user input required. Script can also be used for unattended, automated installs.
+title: Preparing Your Environment
+description: Learn how to prepare your environment before using install script.
 ---
+
+We have a shell (bash) script that installs AvalancheGo on your computer. This script sets up full, running node in a matter of minutes with minimal user input required. Script can also be used for unattended, automated installs.
 
 System Requirements[​](#system-requirements "Direct link to heading")
 ---------------------------------------------------------------------
@@ -15,7 +16,6 @@ Avalanche is an incredibly lightweight protocol, so nodes can run on commodity h
 - OS: Ubuntu 20.04 or MacOS >= 12
 - Network: sustained 5Mbps up/down bandwidth
 
-
 <Callout type="warning">
 Using an HDD may result in poor and random read/write latencies, therefore reducing performance and reliability.
 </Callout>
@@ -23,6 +23,7 @@ Using an HDD may result in poor and random read/write latencies, therefore reduc
 <Callout type="info">
 Hardware requirements shall scale with the amount of AVAX staked on the node and/or network activity. Nodes with big stakes (100k+ AVAX) will need more powerful machines than listed, and will use more bandwidth as well.
 </Callout>
+
 This install script assumes:
 
 - AvalancheGo is not running and not already installed as a service
@@ -47,7 +48,7 @@ If your node is already running as a service, then you probably don't need this 
 
 If your node is running in the background (by running with `nohup`, for example) then find the process running the node by running `ps aux | grep avalanche`. This will produce output like:
 
-```
+```bash
 ubuntu  6834  0.0  0.0   2828   676 pts/1    S+   19:54   0:00 grep avalanche
 ubuntu  2630 26.1  9.4 2459236 753316 ?      Sl   Dec02 1220:52 /home/ubuntu/build/avalanchego
 ```
@@ -72,7 +73,6 @@ If your node is running on a cloud provider computer instance, it will have a st
 If you're running a node on a computer that is on a residential internet connection, you have a dynamic IP; that is, your IP will change periodically. The install script will configure the node appropriately for that situation. But, for a home connection, you will need to set up inbound port forwarding of port `9651` from the internet to the computer the node is installed on.
 
 As there are too many models and router configurations, we cannot provide instructions on what exactly to do, but there are online guides to be found (like [this](https://www.noip.com/support/knowledgebase/general-port-forwarding-guide/), or [this](https://www.howtogeek.com/66214/how-to-forward-ports-on-your-router/) ), and your service provider support might help too.
-
 
 <Callout type="warning">
 Please note that a fully connected Avalanche node maintains and communicates over a couple of thousand of live TCP connections. For some low-powered and older home routers that might be too much to handle. If that is the case you may experience lagging on other computers connected to the same router, node getting benched, failing to sync and similar issues.

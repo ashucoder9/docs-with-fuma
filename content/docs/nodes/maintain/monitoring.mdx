@@ -1,9 +1,7 @@
 ---
-title: Monitor an Avalanche Node
-sidebarTitle: Monitoring
+title: Monitoring
+description: Learn how to monitor an AvalancheGo node.
 ---
-Introduction[​](#introduction "Direct link to heading")
--------------------------------------------------------
 
 This tutorial demonstrates how to set up infrastructure to monitor an instance of [AvalancheGo](https://github.com/ava-labs/avalanchego). We will use:
 
@@ -13,7 +11,7 @@ This tutorial demonstrates how to set up infrastructure to monitor an instance o
 - [Grafana](https://grafana.com/) to visualize data on a dashboard.
 - A set of pre-made [Avalanche dashboards](https://github.com/ava-labs/avalanche-monitoring/tree/main/grafana/dashboards)
 
-Prerequisites:
+## Prerequisites:
 
 - A running AvalancheGo node
 - Shell access to the machine running the node
@@ -21,18 +19,16 @@ Prerequisites:
 
 This tutorial assumes you have Ubuntu 20.04 running on your node. Other Linux flavors that use `systemd` for running services and `apt-get` for package management might work but have not been tested. Community member has reported it works on Debian 10, might work on other Debian releases as well.
 
-### Caveat: Security[​](#caveat-security "Direct link to heading")
+### Caveat: Security
 
-
-<Callout type="warning">
 The system as described here **should not** be opened to the public internet. Neither Prometheus nor Grafana as shown here is hardened against unauthorized access. Make sure that both of them are accessible only over a secured proxy, local network, or VPN. Setting that up is beyond the scope of this tutorial, but exercise caution. Bad security practices could lead to attackers gaining control over your node! It is your responsibility to follow proper security practices.
-</Callout>
+
 Monitoring Installer Script[​](#monitoring-installer-script "Direct link to heading")
 -------------------------------------------------------------------------------------
 
 In order to make node monitoring easier to install, we have made a script that does most of the work for you. To download and run the script, log into the machine the node runs on with a user that has administrator privileges and enter the following command:
 
-```
+```bash
 wget -nd -m https://raw.githubusercontent.com/ava-labs/avalanche-monitoring/main/grafana/monitoring-installer.sh ;\
 chmod 755 monitoring-installer.sh;
 ```
@@ -41,13 +37,13 @@ This will download the script and make it executable.
 
 Script itself is run multiple times with different arguments, each installing a different tool or part of the environment. To make sure it downloaded and set up correctly, begin by running:
 
-```
+```bash
 ./monitoring-installer.sh --help
 ```
 
 It should display:
 
-```
+```bash
 Usage: ./monitoring-installer.sh [--1|--2|--3|--4|--5|--help]
 
 Options:
@@ -68,13 +64,13 @@ Step 1: Set up Prometheus [​](#step-1-set-up-prometheus- "Direct link to headi
 
 Run the script to execute the first step:
 
-```
+```bash
 ./monitoring-installer.sh --1
 ```
 
 It should produce output something like this:
 
-```
+```bash
 AvalancheGo monitoring installer
 --------------------------------
 STEP 1: Installing Prometheus
@@ -92,13 +88,13 @@ prometheus.tar.gz                           100%[===============================
 
 You may be prompted to confirm additional package installs, do that if asked. Script run should end with instructions on how to check that Prometheus installed correctly. Let's do that, run:
 
-```
+```bash
 sudo systemctl status prometheus
 ```
 
 It should output something like:
 
-```
+```bash
 ● prometheus.service - Prometheus
 Loaded: loaded (/etc/systemd/system/prometheus.service; enabled; vendor preset: enabled)
 Active: active (running) since Fri 2021-11-12 11:38:32 UTC; 17min ago
@@ -115,9 +111,9 @@ Nov 12 11:38:33 ip-172-31-36-200 prometheus[548]: ts=2021-11-12T11:38:33.773Z ca
 
 Note the `active (running)` status (press `q` to exit). You can also check Prometheus web interface, available on `http://your-node-host-ip:9090/`
 
-warning
-
+<Callout type="warning">
 You may need to do `sudo ufw allow 9090/tcp` if the firewall is on, and/or adjust the security settings to allow connections to port 9090 if the node is running on a cloud instance. For AWS, you can look it up [here](/nodes/run-a-node/on-third-party-services/amazon-web-services#create-a-security-group). If on public internet, make sure to only allow your IP to connect!
+</Callout>
 
 If everything is OK, let's move on.
 
@@ -126,13 +122,13 @@ Step 2: Install Grafana [​](#step-2-install-grafana- "Direct link to heading")
 
 Run the script to execute the second step:
 
-```
+```bash
 ./monitoring-installer.sh --2
 ```
 
 It should produce output something like this:
 
-```
+```bash
 AvalancheGo monitoring installer
 --------------------------------
 STEP 2: Installing Grafana
@@ -150,16 +146,16 @@ Get:6 https://packages.grafana.com/oss/deb stable InRelease [12.1 kB]
 
 To make sure it's running properly:
 
-```
+```bash
 sudo systemctl status grafana-server
 ```
 
 which should again show Grafana as `active`. Grafana should now be available at `http://your-node-host-ip:3000/` from your browser. Log in with username: admin, password: admin, and you will be prompted to set up a new, secure password. Do that.
 
-
 <Callout type="warning">
 You may need to do `sudo ufw allow 3000/tcp` if the firewall is on, and/or adjust the cloud instance settings to allow connections to port 3000. If on public internet, make sure to only allow your IP to connect!
 </Callout>
+
 Prometheus and Grafana are now installed, we're ready for the next step.
 
 Step 3: Set up `node_exporter` [​](#step-3-set-up-node_exporter- "Direct link to heading")
@@ -169,13 +165,13 @@ In addition to metrics from AvalancheGo, let's set up monitoring of the machine 
 
 Run the script to execute the third step:
 
-```
+```bash
 ./monitoring-installer.sh --3
 ```
 
 The output should look something like this:
 
-```
+```bash
 AvalancheGo monitoring installer
 --------------------------------
 STEP 3: Installing node_exporter
@@ -191,7 +187,7 @@ node_exporter-1.2.2.linux-arm64/LICENSE
 
 Again, we check that the service is running correctly:
 
-```
+```bash
 sudo systemctl status node_exporter
 ```
 
@@ -204,10 +200,9 @@ If the service is running, Prometheus, Grafana and `node_exporter` should all wo
 Make sure that all of them have `State` as `UP`.
 
 <Callout type="info">
-
 If you run your AvalancheGo node with TLS enabled on your API port, you will need to manually edit the `/etc/prometheus/prometheus.yml` file and change the `avalanchego` job to look like this:
 
-```
+```yml
 - job_name: "avalanchego"
   metrics_path: "/ext/metrics"
   scheme: "https"
@@ -219,6 +214,7 @@ If you run your AvalancheGo node with TLS enabled on your API port, you will nee
 
 Mind the spacing (leading spaces too)! You will need admin privileges to do that (use `sudo`). Restart Prometheus service afterwards with `sudo systemctl restart prometheus`.
 </Callout>
+
 All that's left to do now is to provision the data source and install the actual dashboards that will show us the data.
 
 Step 4: Dashboards [​](#step-4-dashboards- "Direct link to heading")
@@ -226,13 +222,13 @@ Step 4: Dashboards [​](#step-4-dashboards- "Direct link to heading")
 
 Run the script to install the dashboards:
 
-```
+```bash
 ./monitoring-installer.sh --4
 ```
 
 It will produce output something like this:
 
-```
+```bash
 AvalancheGo monitoring installer
 --------------------------------
 
@@ -265,7 +261,7 @@ Step 4 installs the basic set of dashboards that make sense to have on any node.
 
 Currently, there is only one additional dashboard: Subnets. If your node is running any Subnets, you may want to add this as well. Do:
 
-```
+```bash
 ./monitoring-installer.sh --5
 ```
 
@@ -279,13 +275,13 @@ To configure the dashboard and add any Subnets that your node is syncing, you wi
 
 The variable format is:
 
-```
+```bash
 Subnet name:<BlockchainID>
 ```
 
 and the separator between entries is a comma. Entries for Spaces and WAGMI look like:
 
-```
+```bash
 Spaces (Fuji) : 2ebCneCbwthjQ1rYT41nhd7M76Hc6YmosMAQrTFhBq8qeqh6tt, WAGMI (Fuji) : 2AM3vsuLoJdGBGqX2ibE8RGEq4Lg7g4bot6BT1Z7B9dH5corUD
 ```
 

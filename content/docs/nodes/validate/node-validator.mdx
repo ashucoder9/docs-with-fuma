@@ -1,6 +1,6 @@
 ---
-title: Add a Node to the Validator Set
-sidebarTitle: Node --> Validator
+title: Turn Node Into Validator
+description: This tutorial will show you how to add a node to the validator set of Primary Network on Avalanche.
 ---
 
 Introduction[​](#introduction "Direct link to heading")
@@ -30,7 +30,7 @@ First, we show you how to add your node as a validator by using [Core web](https
 
 Get your node's ID by calling [`info.getNodeID`](/api-reference/info-api#infogetnodeid):
 
-```
+```bash
 curl -X POST --data '{
     "jsonrpc":"2.0",
     "id"     :1,
@@ -40,7 +40,7 @@ curl -X POST --data '{
 
 The response has your node's ID:
 
-```
+```json
 {
   "jsonrpc": "2.0",
   "result": {
@@ -86,10 +86,9 @@ We can also add a node to the validator set using [AvalancheJS](/tooling/avalanc
 
 To use AvalancheJS, you can clone the repo:
 
-```
+```bash
 git clone https://github.com/ava-labs/avalanchejs.git
 ```
-
 
 <Callout type="info">
 The repository cloning method used is HTTPS, but SSH can be used too:
@@ -101,7 +100,7 @@ You can find more about SSH and how to use it [here](https://docs.github.com/en/
 
 or add it to an existing project:
 
-```
+```bash
 yarn add @avalabs/avalanchejs
 ```
 
@@ -119,13 +118,13 @@ We will use the [**`buildAddValidatorTx.ts`**](https://github.com/ava-labs/avala
 
 Locate this line in the file
 
-```
+```js
 const privKey: string = `${PrivateKeyPrefix}${DefaultLocalGenesisPrivateKey}`;
 ```
 
 and replace this with a private key that you control. You can use [this code to generate a new key](https://github.com/ava-labs/avalanchejs/blob/master/examples/platformvm/createKeypair.ts).
 
-```
+```js
 const privKey: string = "<YOUR-PRIVATE-KEY-HERE>";
 ```
 
@@ -133,7 +132,7 @@ const privKey: string = "<YOUR-PRIVATE-KEY-HERE>";
 
 The following settings work when using a local node started with [`--network-id=fuji`](/nodes/configure/configs--flags#network-id):
 
-```
+```js
 const ip: string = "localhost";
 const port: number = 9650;
 const protocol: string = "http";
@@ -142,7 +141,7 @@ const networkID: number = 5;
 
 However, to connect directly to the [Avalanche Fuji Testnet API server](/tooling/rpc-providers), the following changes are needed:
 
-```
+```js
 const ip: string = "api.avax-test.network";
 const port: number = 443;
 const protocol: string = "https";
@@ -195,7 +194,6 @@ Here's the mapping of `networkID` to bech32 HRP.
   5: "fuji",
   1337: "custom",
   12345: "local"
-
 ```
 </Accordion>
 </Accordions>
@@ -204,7 +202,7 @@ Here's the mapping of `networkID` to bech32 HRP.
 
 Next we need to specify the node's validation period and delegation fee.
 
-```
+```js
 const nodeID: string = "NodeID-7Xhw2mDxuDS44j42TCB6U5579esbSt3Lg";
 const startTime: BN = UnixNow().add(new BN(60 * 1));
 const endTime: BN = startTime.add(new BN(26300000));
@@ -229,14 +227,14 @@ To create your own start times, please follow the steps below:
 
 Locate this line in the file
 
-```
+```js
 const startTime: BN = UnixNow().add(new BN(60 * 1));
 const endTime: BN = startTime.add(new BN(26300000));
 ```
 
 Change `startTime` and `endTime` to new `BN` values, for example:
 
-```
+```js
 const startTime: BN = new BN(1654656829); // Wed Jun 08 2022 02:53:49 GMT+0000
 const endTime: BN = new BN(1662602029); // Thu Sep 08 2022 01:53:49 GMT+0000
 ```
@@ -253,7 +251,7 @@ Set the proper staking amount in calling `pchain.buildAddValidatorTx` by replaci
 
 By default, the example uses the variable `pAddressStrings` to define `toAddresses`, `fromAddresses`, `changeAddresses` and `rewardAddresses`:
 
-```
+```js
 const pAddressStrings: string[] = pchain.keyChain().getAddressStrings();
 ```
 
@@ -267,13 +265,13 @@ Now that we have made all of the necessary changes to the example script, it's t
 
 Run the command:
 
-```
+```bash
 ts-node examples/platformvm/buildAddValidatorTx.ts
 ```
 
 The response has the transaction ID.
 
-```
+```bash
 Success! TXID: 2ftDVwmss5eJk8HFsNVi6a3vWK9s3szZFhEeSY2HCS8xDb8Cra
 ```
 
@@ -283,7 +281,7 @@ We can check the transaction's status by running the example script: [`getTxStat
     
 2.  Locate this line in the file
     
-```
+```js
 const main = async (): Promise<any> => {
   const txID: string = "x1NLb9JaHkKTXvSRReVSsFwQ38mY7bfD1Ky1BPv721VhrpuSE"
   ...
@@ -292,7 +290,7 @@ const main = async (): Promise<any> => {
 
 and replace it with the _buildAddValidator_ TXID
 
-```
+```js
 const main = async (): Promise<any> => {
  const txID: string = "2ftDVwmss5eJk8HFsNVi6a3vWK9s3szZFhEeSY2HCS8xDb8Cra"
  ...
@@ -301,7 +299,7 @@ const main = async (): Promise<any> => {
 
 Run the command:
 
-```
+```bash
 ts-node examples/platformvm/getTxStatus.ts
 ```
 
@@ -311,13 +309,13 @@ The status should be `Committed`, meaning the transaction was successful.
 
 We can see if the node is now in the pending validator set for the Fuji network by using the example:[`getPendingValidators.ts`](https://github.com/ava-labs/avalanchejs/blob/master/examples/platformvm/getPendingValidators.ts). Just change the [network settings](#network-setting) to meet Fuji requirements and then run the script:
 
-```
+```bash
 ts-node examples/platformvm/getPendingValidators.ts
 ```
 
 The response should include the node we just added:
 
-```
+```json
 {
   "validators": [
     {
@@ -349,14 +347,14 @@ A validator's stake is never slashed, regardless of their behavior they will alw
 
 Locate this part of the code
 
-```
+```js
 let privKey: string = `${PrivateKeyPrefix}${DefaultLocalGenesisPrivateKey}`;
 pKeychain.importKey(privKey);
 ```
 
 and replace `privKey` with private keys that you control. To generate a new keypair, we can use the [`createKeypair.ts`](https://github.com/ava-labs/avalanchejs/blob/master/examples/platformvm/createKeypair.ts) example script along with [Fuji Network Settings](#network-setting).
 
-```
+```js
 let privKey: string =
   "PrivateKey-PY2dvfxzvBAe1a5nn7x23wmZMgAYJaS3XAZXzdUa22JtzUvKM";
 pKeychain.importKey(privKey);
@@ -372,7 +370,7 @@ const pAddressStrings: string[] = pchain.keyChain().getAddressStrings();
 
 This example would create a keychain with 4 addresses:
 
-```
+```js
   "P-fuji1jx644d9y00y5q4hz8cq4wr75a2erne2y4e32xc", // pAddressStrings[0]
   "P-fuji1wchdgdp94j8tszlpsp56qvgkvdn20svpmnm8qk", // pAddressStrings[1]
   "P-fuji1f36kkpy6yzd7ayrywxvvprns7qlrcu3hwqdya8", // pAddressStrings[2]
@@ -381,7 +379,7 @@ This example would create a keychain with 4 addresses:
 
 Now we can pass in each address according to its slot in the `pAddressStrings` array:
 
-```
+```js
 const unsignedTx: UnsignedTx = await pchain.buildAddValidatorTx(
   utxoSet,
   [pAddressStrings[0], pAddressStrings[1]], // toAddresses, one or more addresses

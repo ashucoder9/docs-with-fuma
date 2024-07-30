@@ -1,7 +1,7 @@
 ---
 title: Node Bootstrap
-sidebarTitle: "Bootstrapping: What to Expect"
 ---
+
 Node Bootstrap is the process where a node _securely_ downloads linear chain blocks to recreate the latest state of the chain locally.
 
 Bootstrap must guarantee that the local state of a node is in sync with the state of other valid nodes. Once bootstrap is completed, a node has the latest state of the chain and can verify new incoming transactions and reach consensus with other nodes, collectively moving forward the chains.
@@ -89,8 +89,7 @@ Starting from [AvalancheGo version 1.7.11](https://github.com/ava-labs/avalanche
 State sync is currently only available for the C-chain. The P-chain and X-chain currently bootstrap by downloading all blocks. Note that irrespective of the bootstrap method used (including state sync), each chain is still blocked on all other chains in its Subnet completing their bootstrap before continuing into normal operation.
 
 <Callout type="info">
-    There are no configs to state sync an archival node. If you need all the historical state then you must not use state sync and setup the config of the node for an archival node.
-
+There are no configs to state sync an archival node. If you need all the historical state then you must not use state sync and setup the config of the node for an archival node.
 </Callout>
 
 
@@ -103,7 +102,7 @@ If you got this far, you've hopefully gotten a better idea of what's going on wh
 
 Logs provide information about both container downloading and their execution for each chain. Here is an example
 
-```
+```bash
 [02-16|17:31:42.950] INFO <P Chain> bootstrap/bootstrapper.go:494 fetching blocks {"numFetchedBlocks": 5000, "numTotalBlocks": 101357, "eta": "2m52s"}
 [02-16|17:31:58.110] INFO <P Chain> bootstrap/bootstrapper.go:494 fetching blocks {"numFetchedBlocks": 10000, "numTotalBlocks": 101357, "eta": "3m40s"}
 [02-16|17:32:04.554] INFO <P Chain> bootstrap/bootstrapper.go:494 fetching blocks {"numFetchedBlocks": 15000, "numTotalBlocks": 101357, "eta": "2m56s"}

@@ -1,4 +1,5 @@
 import './global.css';
+import 'katex/dist/katex.css';
 import { RootProvider } from 'fumadocs-ui/provider';
 import type { Viewport } from 'next';
 import { GeistSans } from 'geist/font/sans';
