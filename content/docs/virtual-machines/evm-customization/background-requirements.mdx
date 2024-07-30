@@ -1,5 +1,6 @@
 ---
 title: Background and Requirements
+description: Learn about the background and requirements for customizing Ethereum Virtual Machine.
 ---
 
 This is a brief overview of what this tutorial will cover.
@@ -52,7 +53,6 @@ Set the `$GOPATH` environment variable properly for Go to look for Go Workspaces
 See [here](https://github.com/golang/go/wiki/SettingGOPATH) for instructions on setting the GOPATH based on system configurations.
 </Callout>
 
-
 As a few things will be installed into `$GOPATH/bin`, please make sure that `$GOPATH/bin` is in your `$PATH`, otherwise, you may get an error running the commands below. To do that, run the command: `export PATH=$PATH:$GOROOT/bin:$GOPATH/bin`
 
 Download the following prerequisites into your `$GOPATH`:
@@ -63,7 +63,7 @@ Download the following prerequisites into your `$GOPATH`:
 - Install [solc](https://github.com/ethereum/solc-js#usage-on-the-command-line)
 - Install [Node.js and NPM](https://nodejs.org/en/download) For easy copy paste, use the below commands:
 
-```
+```bash
 cd $GOPATH
 mkdir -p src/github.com/ava-labs
 cd src/github.com/ava-labs
@@ -71,22 +71,22 @@ cd src/github.com/ava-labs
 
 Clone the repository:
 
-<Tabs>
+<Tabs items={['Subnet-EVM', 'Precompile-EVM']}>
 <Tab value="Subnet-EVM">
-```
+```bash
 git clone git@github.com:ava-labs/subnet-evm.git
 ```
 
 Then run the following commands:
-```
+
+```bash
 git clone git@github.com:ava-labs/avalanchego.git
 curl -sSfL https://raw.githubusercontent.com/ava-labs/avalanche-network-runner/main/scripts/install.sh | sh -s
 npm install -g solc
 ```
 </Tab>
-
 <Tab value="Precompile-EVM">
-```
+```bash
 git clone git@github.com:ava-labs/precompile-evm.git
 ```
 
@@ -94,7 +94,7 @@ Alternatively you can use it as a template repo from github.
 
 Then run the following commands:
 
-```
+```bash
 git clone git@github.com:ava-labs/avalanchego.git
 curl -sSfL https://raw.githubusercontent.com/ava-labs/avalanche-network-runner/main/scripts/install.sh | sh -s
 npm install -g solc
@@ -106,7 +106,7 @@ npm install -g solc
 
 You can inspect example pull request for the complete code.
 
-<Tabs>
+<Tabs items={['Subnet-EVM', 'Precompile-EVM']}>
   <Tab value="Subnet-EVM">
     [Subnet-EVM Hello World Pull Request](https://github.com/ava-labs/subnet-evm/pull/565/)
   </Tab>

@@ -1,16 +1,15 @@
 ---
-title: Executing Your Test Cases
-description: In this section, we will go over how to be able to execute the test cases you wrote last section.
+title: Executing Test Cases
+description: In this section, we will go over how to be able to execute the test cases you wrote in the last section.
 ---
 
-Adding the Test Genesis File[​](#adding-the-test-genesis-file "Direct link to heading")
----------------------------------------------------------------------------------------
+## Adding the Test Genesis File
 
 To run our e2e contract tests, we will need to create a Subnet that has the `Hello World` precompile activated, so we will copy and paste the below genesis file into: `/tests/precompile/genesis/hello_world.json`.
 
 Note: it's important that this has the same name as the HardHat test file we created previously.
 
-```
+```json
 {
   "config": {
     "chainId": 99999,
@@ -62,7 +61,7 @@ Note: it's important that this has the same name as the HardHat test file we cre
 
 Adding this to our genesis enables our HelloWorld precompile at the very first block (timestamp 0), with `0x8db97C7cEcE249c2b98bDC0226Cc4C2A57BF52FC` as the admin address.
 
-```
+```json
 {
   "helloWorldConfig": {
     "blockTimestamp": 0,
@@ -71,25 +70,24 @@ Adding this to our genesis enables our HelloWorld precompile at the very first b
 }
 ```
 
-Declaring the HardHat E2E Test[​](#declaring-the-hardhat-e2e-test "Direct link to heading")
--------------------------------------------------------------------------------------------
+## Declaring the HardHat E2E Test
 
 Now that we have declared the HardHat test and corresponding `genesis.json` file. The last step to running the e2e test is to declare the new test in `/tests/precompile/solidity/suites.go`.
 
 At the bottom of the file you will see the following code commented out:
 
-```
-	// ADD YOUR PRECOMPILE HERE
-	/*
-  ginkgo.It("your precompile", ginkgo.Label("Precompile"), ginkgo.Label("YourPrecompile"), func() {
-    ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
-    defer cancel()
+```go title="suites.go"
+// ADD YOUR PRECOMPILE HERE
+/*
+ginkgo.It("your precompile", ginkgo.Label("Precompile"), ginkgo.Label("YourPrecompile"), func() {
+  ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
+  defer cancel()
 
-    // Specify the name shared by the genesis file in ./tests/precompile/genesis/{your_precompile}.json
-    // and the test file in ./contracts/tests/{your_precompile}.ts
-    blockchainID := subnetsSuite.GetBlockchainID("{your_precompile}")
-    runDefaultHardhatTests(ctx, blockchainID, "{your_precompile}")
-	*/
+  // Specify the name shared by the genesis file in ./tests/precompile/genesis/{your_precompile}.json
+  // and the test file in ./contracts/tests/{your_precompile}.ts
+  blockchainID := subnetsSuite.GetBlockchainID("{your_precompile}")
+  runDefaultHardhatTests(ctx, blockchainID, "{your_precompile}")
+*/
 ```
 
 `runDefaultHardhatTests` will run the default Hardhat test command and use the default genesis path. If you want to use a different test command and genesis path than the defaults, you can use the `utils.CreateSubnet` and `utils.RunTestCMD`. See how they were used with default params [here](https://github.com/ava-labs/subnet-evm/blob/helloworld-official-tutorial-v2/tests/utils/subnet.go#L113)
@@ -98,20 +96,19 @@ You should copy and paste the ginkgo `It` node and update from `{your_precompile
 
 After modifying the `It` node, it should look like the following (you can copy and paste this directly if you prefer):
 
-```
-  ginkgo.It("hello world", ginkgo.Label("Precompile"), ginkgo.Label("HelloWorld"), func() {
-    ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
-    defer cancel()
+```go
+ginkgo.It("hello world", ginkgo.Label("Precompile"), ginkgo.Label("HelloWorld"), func() {
+  ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
+  defer cancel()
 
-    blockchainID := subnetsSuite.GetBlockchainID("hello_world")
-    runDefaultHardhatTests(ctx, blockchainID, "hello_world")
-  })
+  blockchainID := subnetsSuite.GetBlockchainID("hello_world")
+  runDefaultHardhatTests(ctx, blockchainID, "hello_world")
+})
 ```
 
 Now that we've set up the new ginkgo test, we can run the ginkgo test that we want by using the `GINKGO_LABEL_FILTER`. This environment variable is passed as a flag to Ginkgo in `./scripts/run_ginkgo.sh` and restricts what tests will run to only the tests with a matching label.
 
-Running E2E Tests[​](#running-e2e-tests "Direct link to heading")
------------------------------------------------------------------
+## Running E2E Tests
 
 Before we start testing, we will need to build the AvalancheGo binary and the custom Subnet-EVM binary.
 
@@ -119,20 +116,20 @@ Precompile-EVM bundles Subnet-EVM and runs it under the hood in the [`plugins/ma
 
 You should have cloned [AvalancheGo](https://github.com/ava-labs/avalanchego) within your `$GOPATH` in the [Background and Requirements](/build/virtual-machines/evm-customization/background--requirements) section, so you can build AvalancheGo with the following command:
 
-```
+```bash
 cd $GOPATH/src/github.com/ava-labs/avalanchego
 ./scripts/build.sh
 ```
 
 Once you've built AvalancheGo, you can confirm that it was successful by printing the version:
 
-```
+```bash
 ./build/avalanchego --version
 ```
 
 This should print something like the following (if you are running AvalancheGo v1.9.7):
 
-```
+```bash
 avalanchego/1.11.0 [database=v1.4.5, rpcchainvm=33, commit=c60f7d2dd10c87f57382885b59d6fb2c763eded7, go=1.21.7]
 ```
 
@@ -142,85 +139,82 @@ Please note that the RPCChainVM version of AvalancheGo and Subnet-EVM must match
 
 Once we've built AvalancheGo, we can navigate back to the repo and build the binary:
 
-<Tabs>
-  <Tab value="Subnet-EVM">
-```
+<Tabs items={['Subnet-EVM', 'Precompile-EVM']}>
+<Tab value="Subnet-EVM">
+```bash
 cd $GOPATH/src/github.com/ava-labs/subnet-evm
 ./scripts/build.sh
 ```
 
-This will build the Subnet-EVM binary and place it in AvalancheGo's `build/plugins` directory by default at the file path:
-
-`$GOPATH/src/github.com/ava-labs/avalanchego/build/plugins/srEXiWaHuhNyGwPUi444Tu47ZEDwxTWrbQiuD7FmgSAQ6X7Dy`
+This will build the Subnet-EVM binary and place it in AvalancheGo's `build/plugins` directory by default at the file path: `$GOPATH/src/github.com/ava-labs/avalanchego/build/plugins/srEXiWaHuhNyGwPUi444Tu47ZEDwxTWrbQiuD7FmgSAQ6X7Dy`
 
 To confirm that the Subnet-EVM binary is compatible with AvalancheGo, you can run the same version command and confirm the RPCChainVM version matches:
 
-```
+```bash
 $GOPATH/src/github.com/ava-labs/avalanchego/build/plugins/srEXiWaHuhNyGwPUi444Tu47ZEDwxTWrbQiuD7FmgSAQ6X7Dy --version
 ```
 
 This should give similar output:
 
-```
+```bash
 Subnet-EVM/v0.6.1 [AvalancheGo=v1.11.1, rpcchainvm=33]
-
 ```
-  </Tab>
-  <Tab value="Precompile-EVM">
-
-```
+</Tab>
+<Tab value="Precompile-EVM">
+```bash
 cd $GOPATH/src/github.com/ava-labs/precompile-evm
-./scripts/build.sh```
-This will build the Precompile-EVM binary and place it in AvalancheGo's `build/plugins` directory by default at the file path:
-
-`$GOPATH/src/github.com/ava-labs/avalanchego/build/plugins/srEXiWaHuhNyGwPUi444Tu47ZEDwxTWrbQiuD7FmgSAQ6X7Dy`
-
-To confirm that the Precompıle-EVM binary is compatible with AvalancheGo, you can run the same version command and confirm the RPCChainVM version matches:
-
+./scripts/build.sh
 ```
-$GOPATH/src/github.com/ava-labs/avalanchego/build/plugins/srEXiWaHuhNyGwPUi444Tu47ZEDwxTWrbQiuD7FmgSAQ6X7Dy --version```
+
+This will build the Precompile-EVM binary and place it in AvalancheGo's `build/plugins` directory by default at the file path: `$GOPATH/src/github.com/ava-labs/avalanchego/build/plugins/srEXiWaHuhNyGwPUi444Tu47ZEDwxTWrbQiuD7FmgSAQ6X7Dy`
+
+To confirm that the Precompile-EVM binary is compatible with AvalancheGo, you can run the same version command and confirm the RPCChainVM version matches:
+
+```bash
+$GOPATH/src/github.com/ava-labs/avalanchego/build/plugins/srEXiWaHuhNyGwPUi444Tu47ZEDwxTWrbQiuD7FmgSAQ6X7Dy --version
+```
+
 This should give similar output:
 
-```
+```bash
 Precompile-EVM/v0.2.0 Subnet-EVM/v0.6.1 [AvalancheGo=v1.11.1, rpcchainvm=33]
 ```
-  </Tab>
+</Tab>
 </Tabs>
+
 If the RPCChainVM Protocol version printed out does not match the one used in AvalancheGo then Subnet-EVM will not be able to talk to AvalancheGo and the blockchain will not start. You can find the compatibility table for AvalancheGo and Subnet-EVM [here](https://github.com/ava-labs/subnet-evm#avalanchego-compatibility).
 
 The `build/plugins` directory will later be used as the `AVALANCHEGO_PLUGIN_PATH`.
 
-### Running Ginkgo Tests[​](#running-ginkgo-tests "Direct link to heading")
+### Running Ginkgo Tests
 
 To run ONLY the HelloWorld precompile test, run the command:
- 
 
-<Tabs>
-  <Tab value="Subnet-EVM">
-```
+<Tabs items={['Subnet-EVM', 'Precompile-EVM']}>
+<Tab value="Subnet-EVM">
+```bash
 cd $GOPATH/src/github.com/ava-labs/subnet-evm
 ```
-  </Tab>
-  <Tab value="Precompile-EVM">
-```
+</Tab>
+<Tab value="Precompile-EVM">
+```bash
 cd $GOPATH/src/github.com/ava-labs/precompile-evm
 ```
-  </Tab>
-
+</Tab>
 </Tabs>
-
-
 
 use `GINKGO_LABEL_FILTER` env var to filter the test:
 
-```
+```bash
 GINKGO_LABEL_FILTER=HelloWorld ./scripts/run_ginkgo.sh
 ```
 
 You will first see the node starting up in the `BeforeSuite` section of the precompile test:
 
-```
-$ GINKGO_LABEL_FILTER=HelloWorld ./scripts/run_ginkgo.sh
+```bash
+GINKGO_LABEL_FILTER=HelloWorld ./scripts/run_ginkgo.sh
+
+# output
 Using branch: hello-world-tutorial-walkthrough
 building precompile.test
 # github.com/ava-labs/subnet-evm/tests/precompile.test
@@ -249,7 +243,7 @@ INFO [01-27|10:33:51.002] Executing                                cmd="./script
 
 After the `BeforeSuite` completes successfully, it will skip all but the `HelloWorld` labeled precompile test:
 
-```
+```bash
 S [SKIPPED]
 [Precompiles]
 /Users/avalabs/go/src/github.com/ava-labs/subnet-evm/tests/precompile/solidity/suites.go:26
@@ -286,7 +280,7 @@ Compilation finished successfully
 
 Finally, you will see the load test being skipped as well:
 
-```
+```bash
 Running Suite: subnet-evm small load simulator test suite - /Users/avalabs/go/src/github.com/ava-labs/subnet-evm
 ======================================================================================================================
 Random Seed: 1674833658
@@ -307,8 +301,7 @@ PASS
 Looks like the tests are passing!
 
 <Callout type="info">
-    If your tests failed, please retrace your steps. Most likely the error is that the precompile was not enabled and some code is missing. Try running `npm install` in the contracts directory to ensure that hardhat and other packages are installed.
+If your tests failed, please retrace your steps. Most likely the error is that the precompile was not enabled and some code is missing. Try running `npm install` in the contracts directory to ensure that hardhat and other packages are installed.
 
 You may also use the [official tutorial implementation](https://github.com/ava-labs/subnet-evm/tree/helloworld-official-tutorial-v2) to double-check your work as well.
 </Callout>
-

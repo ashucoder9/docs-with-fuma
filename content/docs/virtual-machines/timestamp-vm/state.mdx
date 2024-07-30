@@ -1,19 +1,19 @@
 ---
-title: State in TimestampVM
-sidebarTitle: State
+title: State
+description: Learn about the state within the context of TimestampVM.
 ---
+
 Blockchains can be defined as follows:
 
 > A linked-list where each list element consists of a block
 
 Implementations of blockchains, while adhering to the functionality above from a white-box perspective, are defined much more like databases than regular linked lists themselves. In fact, this is what TimestampVM utilizes! By utilizing a general database, TimestampVM is able to store blocks (and thus, store its blockchain) while also being able to store additional data such as pending blocks.
 
-State Definition[​](#state-definition "Direct link to heading")
----------------------------------------------------------------
+## State Definition
 
 Below is the definition of the `State` struct which is used to maintain the state of the TimestampVM:
 
-```js
+```rust
 /// Manages block and chain states for this Vm, both in-memory and persistent.
 #[derive(Clone)]
 pub struct State {
@@ -43,14 +43,11 @@ Therefore, when building a Rust-based VM (or a VM in any supported language), th
 - An `Arc` pointer so that whenever we clone the `State` structure, the cloned versions of `db` and `verified_blocks` are still pointing to the same data structures in memory. This allows for multiple Blocks to share the same `db` and `verified_blocks`
 - A read/write lock (that is, `RwLock`) so that we safely utilize concurrency in our VM
 
-`State` Functions[​](#state-functions "Direct link to heading")
----------------------------------------------------------------
+## `State` Functions
 
 Below are the functions associated with the `State` struct:
 
-
-
-```swift timestampvm/src/state/mod.rs
+```rust title="timestampvm/src/state/mod.rs"
 impl State {
     /// Persists the last accepted block Id to state.
     /// # Errors

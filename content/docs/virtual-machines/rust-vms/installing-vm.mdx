@@ -1,6 +1,6 @@
 ---
-title: Installing a VM
-sidebarTitle: Installing Your VM
+title: Installing Your VM
+description: Learn how to install your VM on your node.
 ---
 
 AvalancheGo searches for and registers VM plugins under the `plugins` [directory](/nodes/configure/configs--flags#--plugin-dir-string).
@@ -9,21 +9,19 @@ To install the virtual machine onto your node, you need to move the built virtua
 
 Copy the binary into the plugins directory.
 
-```
+```bash
 cp -n <path to your binary> $GOPATH/src/github.com/ava-labs/avalanchego/build/plugins/
 ```
 
-Node Is Not Running[​](#node-is-not-running "Direct link to heading")
----------------------------------------------------------------------
+## Node Is Not Running
 
 If your node isn't running yet, you can install all virtual machines under your `plugin` directory by starting the node.
 
-Node Is Already Running[​](#node-is-already-running "Direct link to heading")
------------------------------------------------------------------------------
+## Node Is Already Running
 
 Load the binary with the `loadVMs` API.
 
-```
+```bash
 curl -sX POST --data '{
     "jsonrpc":"2.0",
     "id"     :1,
@@ -34,7 +32,7 @@ curl -sX POST --data '{
 
 Confirm the response of `loadVMs` contains the newly installed virtual machine `tGas3T58KzdjcJ32c6GpePhtqo9rrHJ1oR9wFBtCcMgaosthX`. You'll see this virtual machine as well as any others that weren't already installed previously in the response.
 
-```
+```json
 {
   "jsonrpc": "2.0",
   "result": {

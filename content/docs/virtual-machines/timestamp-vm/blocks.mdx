@@ -1,15 +1,15 @@
 ---
-title: Blocks in TimestampVM 
-sidebarTitle: Blocks
+title: Blocks
+descscription: Learn about the Block data structure in TimestampVM.
 ---
+
 In this section, we will examine the Block data structure. In contrast to the design choice of the TimestampVM state (which was mostly in control of the implementers), blocks in TimestampVM must adhere to the SnowmanVM Block Interface.
 
-SnowmanVM.Block Interface[​](#snowmanvmblock-interface "Direct link to heading")
---------------------------------------------------------------------------------
+## SnowmanVM.Block Interface
 
 TimestampVM is designed to be used in tandem with the Snowman Consensus Engine. In particular, this relationship is defined by the usage of blocks - TimestampVM will produce blocks which the Snowman Consensus Engine will use and eventually mark as accepted or rejected. Therefore, the Snowman Consensus Engine requires for all blocks to have the following interface:
 
-```swift
+```go
 type Block interface {
 	choices.Decidable
 
@@ -43,12 +43,11 @@ type Block interface {
 }
 ```
 
-Implementing the Block Data Structure[​](#implementing-the-block-data-structure "Direct link to heading")
----------------------------------------------------------------------------------------------------------
+## Implementing the Block Data Structure
 
 With the above in mind, we now examine the block data structure:
 
-```swift
+```rust
 /// Represents a block, specific to [`Vm`](crate::vm::Vm).
 #[serde_as]
 #[derive(Serialize, Deserialize, Clone, Derivative, Default)]
@@ -84,16 +83,15 @@ pub struct Block {
 
 Notice above that many of the fields of the `Block` struct store the information required to implement the `Snowman.Block` interface we saw previously. Tying the concept of Blocks back to the VM State, notice the last field `state` within the `Block` struct. This is where the `Block` struct stores a copy of the `State` struct from the previous section (and since each field of the `State` struct is wrapped in an `Arc` pointer, this implies that `Block` is really just storing a reference to both the `db` and `verified_blocks` data structures).
 
-`Block` Functions[​](#block-functions "Direct link to heading")
----------------------------------------------------------------
+## `Block` Functions
 
 In this section, we examine some of the functions associated with the `Block` struct:
 
-### `verify`[​](#verify "Direct link to heading")
+### `verify`
 
 This function verifies that a block is valid and stores it in memory. Note that a verified block does not mean that it has been accepted - rather, a verified block is eligible to be accepted.
 
-```swift
+```rust
 /// Verifies [`Block`](Block) properties (e.g., heights),
 /// and once verified, records it to the [`State`](crate::state::State).
 /// # Errors
@@ -162,11 +160,11 @@ pub async fn verify(&mut self) -> io::Result<()> {
 }
 ```
 
-### `reject`[​](#reject "Direct link to heading")
+### `reject`
 
 When called by the Snowman Consensus Engine, this tells the VM that the particular block has been rejected.
 
-```swift
+```rust
 /// Mark this [`Block`](Block) rejected and updates [`State`](crate::state::State) accordingly.
 /// # Errors
 /// Returns an error if the state can't be updated.
@@ -181,11 +179,11 @@ pub async fn reject(&mut self) -> io::Result<()> {
 }
 ```
 
-### `accept`[​](#accept "Direct link to heading")
+### `accept`
 
 When called by the Snowman Consensus Engine, this tells the VM that the particular block has been rejected.
 
-```swift
+```rust
 /// Mark this [`Block`](Block) accepted and updates [`State`](crate::state::State) accordingly.
 /// # Errors
 /// Returns an error if the state can't be updated.
@@ -199,5 +197,4 @@ pub async fn accept(&mut self) -> io::Result<()> {
     self.state.remove_verified(&self.id()).await;
     Ok(())
 }
-
 ```

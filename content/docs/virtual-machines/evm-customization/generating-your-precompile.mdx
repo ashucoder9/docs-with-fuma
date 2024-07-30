@@ -1,35 +1,35 @@
 ---
 title: Generating Your Precompile
+description: In this section, we will go over the process for automatically generating the template code which you can configure accordingly for your stateful precompile.
 ---
-In this section, we will go over the process for automatically generating the template code which you can configure accordingly for your stateful precompile.
 
-First, we must create the Solidity interface that we want our precompile to implement. This will be the HelloWorld Interface. It will have two simple functions, `sayHello()`, `setGreeting()` and an event `GreetingChanged` These two functions will demonstrate the getting and setting respectively of a value stored in the precompile's state space.
+First, we must create the Solidity interface that we want our precompile to implement. This will be the HelloWorld Interface. It will have two simple functions, `sayHello()`, `setGreeting()` and an event `GreetingChanged`. These two functions will demonstrate the getting and setting respectively of a value stored in the precompile's state space.
 
 The `sayHello()` function is a `view` function, meaning it does not modify the state of the precompile and returns a string result. The `setGreeting()` function is a state changer function, meaning it modifies the state of the precompile. The `HelloWorld` interface inherits `IAllowList` interface to use the allow list functionality.
 
 For this tutorial, we will be working in a new branch in Subnet-EVM/Precompile-EVM repo.
 
-<Tabs>
-  <Tab value="Subnet-EVM">
-```
+<Tabs items={['Subnet-EVM', 'Precompile-EVM']}>
+<Tab value="Subnet-EVM">
+```bash
 cd $GOPATH/src/github.com/ava-labs/subnet-evm
 ```
 
 Then checkout to a new branch:
 
-```
+```bash
 git checkout -b hello-world-stateful-precompile
 ```
 
 We will start off in this directory `./contracts/`:
 
-```
+```bash
 cd contracts/
 ```
 
 Create a new file called `IHelloWorld.sol` and copy and paste the below code:
 
-```
+```solidity title="contracts/IHelloWorld.sol"
 // (c) 2022-2023, Ava Labs, Inc. All rights reserved.
 // See the file LICENSE for licensing terms.
 
@@ -57,7 +57,7 @@ Now we have an interface that our precompile can implement! Let's create an [ABI
 
 In the same directory, let's run:
 
-```
+```bash
 solc --abi ./contracts/interfaces/IHelloWorld.sol -o ./abis
 ```
 
@@ -197,16 +197,16 @@ Now that we have an ABI for the precompile gen tool to interact with, we can run
 
 Let's go back to the root of the repository and run the PrecompileGen script helper:
 
-
-```
+```bash
 cd ..
 ```
 
 Both of these Subnet-EVM and Precompile-EVM have the same `generate_precompile.sh` script. The one in Precompile-EVM installs the script from Subnet-EVM and runs it.
 
-```
-$ ./scripts/generate_precompile.sh --help
+```bash
+./scripts/generate_precompile.sh --help
 
+# output
 Using branch: precompile-tutorial
 NAME:
 precompilegen - subnet-evm precompile generator tool
@@ -245,30 +245,31 @@ Now let's generate the precompile template files!
 </Tab>
 
 <Tab value="Precompile-EVM">
-```
+```bash
 cd $GOPATH/src/github.com/ava-labs/precompile-evm
 ```
+
 Then checkout to a new branch:
 
-```
+```bash
 git checkout -b hello-world-stateful-precompile
 ```
 
 We will start off in this directory `./contracts/`:
 
-```
+```bash
 cd contracts/
 ```
 
 For Precompile-EVM interfaces and other contracts in Subnet-EVM can be accessible through `@avalabs/subnet-evm-contracts` package. This is already added to the `package.json` file. You can install it by running `npm install`. In order to import `IAllowList` interface, you can use the following import statement:
 
-```
+```solidity
 import "@avalabs/subnet-evm-contracts/contracts/interfaces/IAllowList.sol";
 ```
 
 The full file looks like this:
 
-```
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.8.0;
 import "@avalabs/subnet-evm-contracts/contracts/interfaces/IAllowList.sol";
@@ -292,18 +293,13 @@ Now we have an interface that our precompile can implement! Let's create an ABI 
 
 In Precompile-EVM we import contracts from `@avalabs/subnet-evm-contracts` package. In order to generate the ABI in Precompile-EVM we need to include the `node_modules` folder to find imported contracts with following flags:
 
-- `--abi`
-    - ABI specification of the contracts.
-- `--base-path path`
-    - Use the given path as the root of the source tree instead of the root of the filesystem.
-- `--include-path path`
-    - Make an additional source directory available to the default import callback. Use this option if you want to import contracts whose location is not fixed in relation to your main source tree; for example third-party libraries installed using a package manager. Can be used multiple times. Can only be used if base path has a non-empty value.
-- `--output-dir path`
-    - If given, creates one file per output component and contract/file at the specified directory.
-- `--overwrite`
-    - Overwrite existing files (used together with` --output-dir`).
+- `--abi`: ABI specification of the contracts.
+- `--base-path path`: Use the given path as the root of the source tree instead of the root of the filesystem.
+- `--include-path path`: Make an additional source directory available to the default import callback. Use this option if you want to import contracts whose location is not fixed in relation to your main source tree; for example third-party libraries installed using a package manager. Can be used multiple times. Can only be used if base path has a non-empty value.
+- `--output-dir path`: If given, creates one file per output component and contract/file at the specified directory.
+- `--overwrite`: Overwrite existing files (used together with` --output-dir`).
 
-```
+```bash
 solc --abi ./contracts/interfaces/IHelloWorld.sol -o ./abis --base-path . --include-path ./node_modules
 ```
 
@@ -443,15 +439,16 @@ Now that we have an ABI for the precompile gen tool to interact with, we can run
 
 Let's go back to the root of the repository and run the PrecompileGen script helper:
 
-```
+```bash
 cd ..
 ```
 
 Both of these Subnet-EVM and Precompile-EVM have the same generate_precompile.sh script. The one in Precompile-EVM installs the script from Subnet-EVM and runs it.
 
-```
-$ ./scripts/generate_precompile.sh --help
+```bash
+./scripts/generate_precompile.sh --help
 
+# output
 Using branch: precompile-tutorial
 NAME:
 precompilegen - subnet-evm precompile generator tool
@@ -486,14 +483,14 @@ COPYRIGHT:
 Copyright 2013-2022 The go-ethereum Authors
 ```
 Now let's generate the precompile template files!
-  </Tab>
+</Tab>
 </Tabs>
 
-<Tabs>
-  <Tab value="Subnet-EVM">
-    In Subnet-EVM precompile implementations reside under the `./precompile/contracts` directory. Let's generate our precompile template in the `./precompile/contracts/helloworld` directory, where `helloworld` is the name of the Go package we want to generate the precompile into.
+<Tabs items={['Subnet-EVM', 'Precompile-EVM']}>
+<Tab value="Subnet-EVM">
+In Subnet-EVM precompile implementations reside under the `./precompile/contracts` directory. Let's generate our precompile template in the `./precompile/contracts/helloworld` directory, where `helloworld` is the name of the Go package we want to generate the precompile into.
 
-```
+```bash
 ./scripts/generate_precompile.sh --abi ./contracts/abis/IHelloWorld.abi --type HelloWorld --pkg helloworld
 ```
 
@@ -525,13 +522,12 @@ Modifying code outside of these areas should be done with caution and with a dee
 15- Run your e2e precompile Solidity tests with './scripts/run_ginkgo.sh`
 ```
 
-Let's follow these steps and create our HelloWorld precompile!
+Let's follow these steps and create our HelloWorld precompile.
 </Tab>
 <Tab value="Precompile-EVM">
-
 For Precompile-EVM we don't need to put files under a deep directory structure. We can just generate the precompile template under its own directory via `--out ./helloworld` flag.
 
-```
+```bash
 ./scripts/generate_precompile.sh --abi ./contracts/abis/IHelloWorld.abi --type HelloWorld --pkg helloworld --out ./helloworld
 ```
 
@@ -564,5 +560,5 @@ Modifying code outside of these areas should be done with caution and with a dee
 ```
 
 Let's follow these steps and create our HelloWorld precompile!
-  </Tab>
+</Tab>
 </Tabs>
