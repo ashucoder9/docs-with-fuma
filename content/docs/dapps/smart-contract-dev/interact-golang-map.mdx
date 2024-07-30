@@ -1,53 +1,50 @@
 ---
-title: Interact with a Solidity Smart Contract from a Golang Application
-sidebarTitle: Interact from a Golang Application
+title: Interact from Golang App
+description: Interact with a smart contract from your Golang-based application.
 ---
+
 `abigen` is a tool provided by the Go Ethereum (Geth) client that generates Go bindings for Solidity smart contracts. Developers would need to use Abigen when they want to interact with a smart contract written in Solidity from a Go programming language application. It enables developers to easily call functions and access data from Solidity contracts in a Go application. This tutorial demonstrates how to compile a solidity contract into Golang to deploy and call contracts programmatically.
 
-How to Build[​](#how-to-build "Direct link to heading")
--------------------------------------------------------
+## How to Build
 
 Download the solidity compiler from [solc-bin](https://github.com/ethereum/solc-bin).
 
 Copy the appropriate compiler into your current path. ~/bin/ is a common path in most Linux distributions.
 
-```
-# cp linux-amd64/solc-linux-amd64-v0.8.9+commit.e5eed63a ~/bin
+```bash
+cp linux-amd64/solc-linux-amd64-v0.8.9+commit.e5eed63a ~/bin
 ```
 
-Ensure solc can run.
+Ensure solc is properly installed by checking its version.
 
-```
-# solc --version
-solc, the solidity compiler commandline interface
-Version: 0.8.9+commit.e5eed63a.Linux.g++
+```bash
+solc --version
 ```
 
 Clone Coreth and Build Abigen.
 
-```
-# git clone [email protected]:ava-labs/coreth.git
-# cd coreth/
-# go build -o abigen cmd/abigen/*.go
-# cp abigen ~/bin
+```bash
+git clone [email protected]:ava-labs/coreth.git
+cd coreth/
+go build -o abigen cmd/abigen/*.go
+cp abigen ~/bin
 ```
 
 Compile a contract.
 
-```
-# abigen --sol counter.sol --pkg main --out counter.go
+```bash
+abigen --sol counter.sol --pkg main --out counter.go
 ```
 
 This will produce `counter.go` suitable to interact with contract.
 
-Example Code[​](#example-code "Direct link to heading")
--------------------------------------------------------
+## Example Code
 
 Setup the connection to `avalanchego`, then deploy, call, and fetch values from the contract.
 
 Abigen offers more features for complicated contracts, the following is provided as an example to get started using the basic contract
 
-```js
+```solidity
 package main
 
 import (
@@ -172,5 +169,4 @@ func main() {
 
 	log.Println("storageValue", storageValue)
 }
-
 ```

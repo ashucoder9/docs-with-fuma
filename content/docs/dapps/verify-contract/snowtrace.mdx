@@ -1,15 +1,13 @@
 ---
-title: Verify Smart Contracts on the C-Chain Explorer 
-sidebarTitle: on Snowtrace
+title: Using Snowtrace
+description: Learn how to verify a contract on the Avalanche C-chain using Snowtrace.
 ---
-The C-Chain Explorer supports verifying smart contracts, allowing users to review it.
 
-The Mainnet C-Chain Explorer is [here](https://snowtrace.io/) and the Fuji Testnet Explorer is [here.](https://testnet.snowtrace.io/)
+The C-Chain Explorer supports verifying smart contracts, allowing users to review it. The Mainnet C-Chain Explorer is [here](https://snowtrace.io/) and the Fuji Testnet Explorer is [here.](https://testnet.snowtrace.io/)
 
 If you have issues, contact us on [Discord](https://chat.avalabs.org/).
 
-Steps[​](#steps "Direct link to heading")
------------------------------------------
+## Steps
 
 Navigate to the _Contract_ tab at the Explorer page for your contract's address.
 
@@ -25,18 +23,14 @@ Click _Verify & Publish_ to enter the smart contract verification page.
 
 The C-Chain Explorer can fetch constructor arguments automatically for simple smart contracts. More complicated contracts might require you to pass in special constructor arguments. Smart contracts with complicated constructors [may have validation issues](/build/dapps/smart-contract-dev/verify-contract/snowtrace#caveats). You can try this [online ABI encoder](https://abi.hashex.org/).
 
-Requirements[​](#requirements "Direct link to heading")
--------------------------------------------------------
+## Requirements
 
 - **IMPORTANT** Contracts should be verified on Testnet before being deployed to Mainnet to ensure there are no issues.
-- Contracts must be flattened.
-    - Includes will not work.
-- Contracts should be compile-able in [Remix](https://remix.ethereum.org/).
-    - A flattened contract with `pragma experimental ABIEncoderV2` (as an example) can create unusual binary and/or constructor blobs. This might cause validation issues.
+- Contracts must be flattened. Includes will not work.
+- Contracts should be compile-able in [Remix](https://remix.ethereum.org/). A flattened contract with `pragma experimental ABIEncoderV2` (as an example) can create unusual binary and/or constructor blobs. This might cause validation issues.
 - The C-Chain Explorer **only** validates [solc JavaScript](https://github.com/ethereum/solc-bin) and only supports [Solidity](https://docs.soliditylang.org/) contracts.
 
-Libraries[​](#libraries "Direct link to heading")
--------------------------------------------------
+## Libraries
 
 The compile bytecode will identify if there are external libraries. If you released with Remix, you will also see multiple transactions created.
 
@@ -66,12 +60,11 @@ You can also see references in the byte code in the form `__$75f20d36....$__`. T
 
 Example [online converter](https://emn178.github.io/online-tools/keccak_256.html): `contracts/Storage.sol:MathUtils` => `75f20d361629befd780a5bd3159f017ee0f8283bdb6da80805f83e829337fd12`
 
-Examples[​](#examples "Direct link to heading")
------------------------------------------------
+## Examples
 
 - [SwapFlashLoan](https://testnet.snowtrace.io/address/0x12DF75Fed4DEd309477C94cE491c67460727C0E8/contracts)
 
-SwapFlashLoan uses swaputils and mathutils:
+SwapFlashLoan uses `swaputils` and `mathutils`:
 
 - [SwapUtils](https://testnet.snowtrace.io/address/0x6703e4660E104Af1cD70095e2FeC337dcE034dc1/contracts)
 
@@ -79,35 +72,32 @@ SwapUtils requires mathutils:
 
 - [MathUtils](https://testnet.snowtrace.io/address/0xbA21C84E4e593CB1c6Fe6FCba340fa7795476966/contracts)
 
-Caveats[​](#caveats "Direct link to heading")
----------------------------------------------
+## Caveats
 
-### SPDX License Required[​](#spdx-license-required "Direct link to heading")
+### SPDX License Required
 
 An SPDX must be provided.
 
-```
+```solidity
 // SPDX-License-Identifier: ...
 ```
 
-### `keccak256` Strings Processed[​](#keccak256-strings-processed "Direct link to heading")
+### `keccak256` Strings Processed
 
 The C-Chain Explorer interprets all keccak256(...) strings, even those in comments. This can cause issues with constructor arguments.
 
-```
+```solidity
 /// keccak256("1");
 keccak256("2");
 ```
 
 This could cause automatic constructor verification failures. If you receive errors about constructor arguments they can be provided in ABI hex encoded form on the contract verification page.
 
-### Solidity Constructors[​](#solidity-constructors "Direct link to heading")
+### Solidity Constructors
 
-Constructors and inherited constructors can cause problems verifying the constructor arguments.
+Constructors and inherited constructors can cause problems verifying the constructor arguments. Example:
 
-example:
-
-```
+```solidity
 abstract contract Parent {
   constructor () {
     address msgSender = ...;
@@ -125,4 +115,4 @@ contract Main is Parent {
 }
 ```
 
-If you receive errors about constructor arguments they can be provided in ABI hex encoded form on the contract verification page.
+If you receive errors about constructor arguments, they can be provided in ABI hex encoded form on the contract verification page.

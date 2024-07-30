@@ -1,51 +1,49 @@
 ---
-title: Deploy a Smart Contract on Avalanche Using Remix and Core
-sidebarTitle: Deploy with Remix IDE
+title: Deploy with Remix IDE
+description: Learn how to deploy smart contracts on Avalanche using Remix and Core Wallet.
 ---
-Introduction[​](#introduction "Direct link to heading")
--------------------------------------------------------
 
-Avalanche's Primary Network is a Subnet that has three chains: P-Chain, X-Chain, and C-Chain. The C-Chain is an instance of the Ethereum Virtual Machine powered by Avalanche's Snowman consensus protocol. The [C-Chain RPC](/api-reference/c-chain/api) can do anything a typical Ethereum client can by using the Ethereum-standard RPC calls. The immediate benefits of using the C-Chain rather than Ethereum are all of the benefits of using Avalanche. These properties that could considerably improve the performance of Dapps and the user experience.
+Avalanche's Primary Network is a Subnet that has three chains: P-Chain, X-Chain, and C-Chain. The C-Chain is an instance of the Ethereum Virtual Machine powered by Avalanche's Snowman consensus protocol. The [C-Chain RPC](/api-reference/c-chain/api) can do anything a typical Ethereum client can by using the Ethereum-standard RPC calls.
+
+The immediate benefits of using the C-Chain rather than Ethereum are all of the benefits of using Avalanche. These properties that could considerably improve the performance of Dapps and the user experience.
 
 Today, we will deploy and test a smart contract on Avalanche using Remix and Core Wallet.
 
-Step 1: Setting up Core[​](#step-1-setting-up-core "Direct link to heading")
-----------------------------------------------------------------------------
+## Setting up Core
 
 If you don't already have a Core wallet, follow this [guide](https://support.avax.network/en/articles/6100129-core-extension-how-do-i-create-a-new-wallet) to create a new wallet.
 
 If you want to use the **Avalanche C-Chain**, it can be selected from the networks list.
 
-To switch to the **Fuji test network**, go to Settings, select Advanced, and then turn Testnet Mode on.
+To switch to the **Fuji test network**, go to **Settings**, select **Advanced**, and then toggle Testnet Mode to **ON**.
 
 ![](/images/remix1.png)
-**Local Testnet (Avalanche Network Runner) Settings:** [(Avalanche Network Runner Tutorial)](/tooling/avalanche-network-runner/introduction)
+
+### Local Testnet Settings
 
 - **Network Name**: Avalanche Local C-Chain
-- **New RPC URL**: [http://127.0.0.1:34890/ext/bc/C/rpc](http://127.0.0.1:34890/ext/bc/C/rpc) (Note: the port number should match your local setting which can be different from 34890.)
+- **New RPC URL**: http://127.0.0.1:34890/ext/bc/C/rpc (Note: the port number should match your local setting which can be different from 34890.)
 - **ChainID**: `43112`
 - **Symbol**: `AVAX`
 - **Explorer**: N/A
 
-Step 2: Funding Your C-Chain Address[​](#step-2-funding-your-c-chain-address "Direct link to heading")
-------------------------------------------------------------------------------------------------------
+## Funding Your C-Chain Address
 
-### **Using Core web**[​](#using-core-web "Direct link to heading")
+### Using Core Web
 
 On the Mainnet, you can use [Core web](https://core.app/) to transfer funds from the X-Chain to your C-Chain address. The process is simple, as explained in this [tutorial](https://support.avax.network/en/articles/8133713-core-web-how-do-i-make-cross-chain-transfers-in-core-stake). Please note that you will need [Core wallet](https://join.core.app/extension) connected to Core web for making cross-chain transfers. Core wallet can be used on test and local networks, too. This wallet is available for [mobile](https://support.avax.network/en/articles/6115608-core-mobile-where-can-i-download-core-mobile-to-my-phone) too.
 
-### **Using Test Network Faucet**[​](#using-test-network-faucet "Direct link to heading")
+### Using Testnet Faucet
 
 For funding on the test network, Avalanche has a [Faucet](https://faucet.avax.network/) that drips test tokens to the address of your choice. If you already have an AVAX balance greater than zero on Mainnet, paste your C-Chain address there, and request test tokens. Otherwise, please request a faucet coupon on [Guild](https://guild.xyz/avalanche). Admins and mods on the official [Discord](https://discord.com/invite/RwXY7P6) can provide testnet AVAX if developers are unable to obtain it from the other two options.
 
-### Funding on Local Testnet[​](#funding-on-local-testnet "Direct link to heading")
+### Funding on Local Testnet
 
-On a local network, you can easily fund your addresses by following [this](/build/subnets/build-first-subnet#importing-the-test-private-key).
+On a local network, you can easily fund your addresses by following [this](/build/subnets/build-first-subnet#importing-the-test-private-key) guide.
 
-Step 3: Connect Core and Deploy a Smart Contract Using Remix[​](#step-3-connect-core-and-deploy-a-smart-contract-using-remix "Direct link to heading")
-------------------------------------------------------------------------------------------------------------------------------------------------------
+## Connect Core & Deploy Smart Contract Using Remix
 
-Open [Remix](https://remix.ethereum.org/) -> Select Solidity
+Open [Remix](https://remix.ethereum.org/) &rarr; Select Solidity
 
 ![](/images/remix2.png)
 

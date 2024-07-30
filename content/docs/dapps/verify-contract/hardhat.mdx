@@ -1,7 +1,8 @@
 ---
-title: Verifying Smart Contracts Using Hardhat and Snowtrace
-sidebarTitle: Using HardHat
+title: Using HardHat
+description: Learn how to verify a smart contract using Hardhat.
 ---
+
 This tutorial assumes that the contract was deployed using Hardhat and that all Hardhat dependencies are properly installed.
 
 After deploying a smart contract one can verify the smart contract on Snowtrace in three steps:
@@ -10,41 +11,32 @@ After deploying a smart contract one can verify the smart contract on Snowtrace 
 2.  Clean up the flattened contract
 3.  Verify using the Snowtrace GUI
 
-Flatten a Smart Contract using Hardhat[​](#flatten-a-smart-contract-using-hardhat "Direct link to heading")
------------------------------------------------------------------------------------------------------------
+## Flatten Smart Contract using Hardhat
 
-To flatten the contract run the command: `npx hardhat flatten <path-to-contract> >> <flat-contract-name>.sol`
+To flatten the contract, run the command: `npx hardhat flatten <path-to-contract> >> <flat-contract-name>.sol`
 
-Clean up the flattened Smart Contract[​](#clean-up-the-flattened-smart-contract "Direct link to heading")
----------------------------------------------------------------------------------------------------------
+## Cleanup the Flattened Smart Contract
 
 Some clean-up may be necessary to get the code to compile properly in the Snowtrace Contract Verifier
 
 - Remove all but the top SPDX license.
-    
-    - If the contract uses multiple SPDX licenses, use both licenses by adding AND: `SPDX-License-Identifier: MIT AND BSD-3-Clause`
+- If the contract uses multiple SPDX licenses, use both licenses by adding **AND**: `SPDX-License-Identifier: MIT AND BSD-3-Clause`
 
-Verify the Smart Contract using Snowtrace UI[​](#verify-the-smart-contract-using-snowtrace-ui "Direct link to heading")
------------------------------------------------------------------------------------------------------------------------
+## Verify Smart Contract using Snowtrace UI
 
 Snowtrace is currently working on a new user interface (UI) for smart contract verification. Meanwhile, you may consider using their API for a seamless smart contract verification experience.
 
-Verify the Smart Contract Programmatically Using APIs[​](#verify-the-smart-contract-programmatically-using-apis "Direct link to heading")
------------------------------------------------------------------------------------------------------------------------------------------
+## Verify Smart Contract Programmatically Using APIs
 
 Ensure you have Postman or any other API platform installed on your computer (or accessible through online services), along with your contract's source code and the parameters utilized during deployment.
 
-Here is the API call URL to use for a POST request:
+Here is the API call URL to use for a POST request: `https://api.snowtrace.io/api?module=contract&action=verifysourcecode`
 
-`https://api.snowtrace.io/api?module=contract&action=verifysourcecode`
-
-Please note that this URL is specifically configured for verifying contracts on the Avalanche C-Chain Mainnet. If you intend to verify on the Fuji Testnet, use:
-
-`https://api-testnet.snowtrace.io/api?module=contract&action=verifysourcecode`
+Please note that this URL is specifically configured for verifying contracts on the Avalanche C-Chain Mainnet. If you intend to verify on the Fuji Testnet, use: `https://api-testnet.snowtrace.io/api?module=contract&action=verifysourcecode`
 
 Here's the body of the API call with the required parameters:
 
-```go
+```json
 {
   "contractaddress": "YOUR_CONTRACT_ADDRESS",
   "sourceCode": "YOUR_FLATTENED_SOURCE_CODE",
@@ -60,8 +52,7 @@ Here's the body of the API call with the required parameters:
 }
 ```
 
-Verifying with Hardhat-Verify[​](#verifying-with-hardhat-verify "Direct link to heading")
------------------------------------------------------------------------------------------
+## Verifying with Hardhat-Verify
 
 This part of the tutorial assumes that the contract was deployed using Hardhat and that all Hardhat dependencies are properly installed to include `'@nomiclabs/hardhat-etherscan'`.
 
@@ -69,15 +60,15 @@ You will need to create a `.env.json` with your _Wallet Seed Phrase_. You don't 
 
 Example `.env.json`:
 
-```go
+```json title=".env.json"
 {
   "MNEMONIC": "your-wallet-seed-phrase",
 }
 ```
 
-Below is a sample `hardhat.config.ts` used for deployment and verification (See LN 45: `etherscan`)
+Below is a sample `hardhat.config.ts` used for deployment and verification:
 
-```go
+```ts title="hardhat.config.ts"
 import { task } from "hardhat/config"
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers"
 import { BigNumber } from "ethers"
@@ -171,21 +162,19 @@ export default {
 
 Once the contract is deployed, verify with hardhat verify by running the following:
 
-```go
+```bash
 npx hardhat verify <contract address> <arguments> --network <network>
 ```
 
 Example:
 
-```go
+```bash
 npx hardhat verify 0x3972c87769886C4f1Ff3a8b52bc57738E82192D5 MockNFT Mock ipfs://QmQ2RFEmZaMds8bRjZCTJxo4DusvcBdLTS6XuDbhp5BZjY 100 --network fuji
 ```
 
-You can also verify contracts programmatically via script
+You can also verify contracts programmatically via script. Example:
 
-Example:
-
-```go
+```ts title="verify.ts"
 import console from "console"
 const hre = require("hardhat")
 
@@ -212,21 +201,13 @@ main()
 
 First create your script, then execute it via hardhat by running the following:
 
-```go
-npx hardhat run scripts/<scriptname.ts> --network <network>
+```bash
+npx hardhat run scripts/verify.ts --network fuji
 ```
 
-Example:
+Verifying via terminal will not allow you to pass an array as an argument, however, you can do this when verifying via script by including the array in your _Constructor Arguments_. Example: 
 
-```go
-npx hardhat run scripts/5-verifyNFT.ts --network fuji
-```
-
-Verifying via terminal will not allow you to pass an array as an argument, however, you can do this when verifying via script by including the array in your _Constructor Arguments_
-
-Example: (see LN13 `_custodians`, LN 30 `_custodians`)
-
-```go
+```ts
 import console from "console"
 const hre = require("hardhat")
 

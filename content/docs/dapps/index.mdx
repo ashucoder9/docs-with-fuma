@@ -1,29 +1,12 @@
 ---
-title: 🔗 Dapps Quick Links
-sidebarTitle: 🔗 Quick Links
+title: Introduction
+description: Learn about the Avalanche C-Chain.
 ---
 
-| Smart Contract Development                                                                      |                                                                                                                                                      |
-|-------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [💰 Get Test Funds](build/dapps/smart-contract-dev/get-test-funds)                               | How to get a "drip" of test AVAX from the Fuji testnet faucet                                                                                        |
-| [Deploy with Remix IDE](build/dapps/smart-contract-dev/deploy-with-remix-ide)                   | Learn how to deploy and test a smart contract on Avalanche using Remix and Core                                                                      |
-| [Create an ERC-20 Token](build/dapps/smart-contract-dev/erc-20-token)                           | Create a mintable ERC-20 token                                                                                                                       |
-| [Deploy an NFT Collection](build/dapps/smart-contract-dev/deploy-nft-collection/deploy-erc-721) | Walkthrough deploying a basic ERC-721 (NFT) smart contract on the Avalanche Network                                                                  |
-| [Developer Toolchains](build/dapps/smart-contract-dev/toolchains/hardhat)                       | Best practices regarding writing, testing and deployment of smart contracts to Avalanche's C-Chain using common Toolchains like Hardhat and Foundry. |
-| [Call a Smart Contract with Golang](build/dapps/smart-contract-dev/interact-golang-map)         | Compile a solidity contract into Golang to deploy and call contracts programmatically                                                                |
+Avalanche is a [network of networks](/learn/primary-network). One of the chains running on Avalanche Primary Network is an EVM fork called the C-Chain (contract chain).
 
-***
+C-Chain runs a fork of [`go-ethereum`](https://geth.ethereum.org/docs/rpc/server) called [`coreth`](https://github.com/ava-labs/coreth) that has the networking and consensus portions replaced with Avalanche equivalents. What's left is the Ethereum VM, which runs Solidity smart contracts and manages data structures and blocks on the chain.
 
-| Advanced Tutorials                                                                       |                                                                                                                       |
-|------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|
-| [Manually Adjust Gas Prices](build/dapps/advanced-tutorials/manually-adjust-gas-price)   | Adjust the priority fee and max fee cap during high network activity                                                  |
-| [Dynamic Gas Fees](build/dapps/advanced-tutorials/dynamic-gas-fees)                      | Send transactions with dynamic fee settings to adjust their priority fee and max fee cap in response to network state |
-| [Add Network Programmatically](build/dapps/advanced-tutorials/add-network-pragmatically) | Integrate Avalanche Network with your Dapp                                                                            |
-| [Exchange Integration](build/dapps/advanced-tutorials/exchange-integration)              | Integrate an exchange with the EVM-Compatible Avalanche C-Chain                                                       |
+As a result, you get a blockchain that can run all the Solidity smart contracts from Ethereum, but with much greater transaction bandwidth and instant finality that [Avalanche's revolutionary consensus](/learn/avalanche-consensus) enables.
 
-***
-
-| End-to-End Walkthroughs                                           |                                                                                                                                                                              |
-|-------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [Fuji Workflow](build/dapps/end-to-end/fuji-workflow)             | Walkthrough of necessary development activities for a bare-bones decentralized application                                                                                   |
-| [Launch an Ethereum Dapp](build/dapps/end-to-end/launch-ethereum) | Launch any new or existing Solidity dapp on Avalanche C-Chain the same as Ethereum, while benefiting from the security, speed, and interoperability of the Avalanche Network |
+Coreth is loaded as a plugin into [AvalancheGo](https://github.com/ava-labs/avalanchego), the client node application used to run Avalanche network. Any Dapp deployed to Avalanche C-Chain will be running the same as on Ethereum, just faster and cheaper.
