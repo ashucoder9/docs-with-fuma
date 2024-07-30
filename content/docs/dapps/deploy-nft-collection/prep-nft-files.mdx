@@ -1,7 +1,8 @@
 ---
-title: Preparing NFT Files for an ERC721 Smart Contract
-sidebarTitle: Prep NFT Files
+title: Prepare NFT Files
+description: Learn how to prepare your NFT files.
 ---
+
 The first step of setting up an NFT smart contract is having your NFT files ready to use. In this example, the files will get uploaded to [Pinata](https://www.pinata.cloud/), a pinning service that prevents files from being garbage collected on IPFS. If you don't already have an account, please create one.
 
 Preparing the Images[​](#preparing-the-images "Direct link to heading")
@@ -43,7 +44,7 @@ Now that we have the image uploaded and its URL, we can create the matching meta
 
 Where this NFT is going to be an ERC-721, we know we can use metadata standards often found on Marketplaces such as [Joepegs.com](https://joepegs.com/). The .json file below is an example of what the [metadata](https://docs.opensea.io/docs/metadata-standards#metadata-structure) should look like.
 
-```
+```json
 {
   "name": "",
   "tokenId": 0,
@@ -63,7 +64,7 @@ The `attributes` field isn't quite as important here, but if you were uploading 
 
 Below is an example of how you'd fill out the fields in the metadata file.
 
-```
+```json
 {
   "name": "Cool Photography",
   "tokenId": 0,

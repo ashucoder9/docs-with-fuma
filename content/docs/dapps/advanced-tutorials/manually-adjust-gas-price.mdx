@@ -1,11 +1,11 @@
 ---
-title: Adjusting Gas Price During High Network Activity
-description: Sometimes during periods of high network activity, transactions either remain pending for a very long duration or instantly get a failed transaction notification. This may confuse and frustrate users, especially if they don't understand why their transactions are not getting accepted.
-sidebarTitle: Manually Adjust Gas Price
+title: Manually Adjust Gas Price
+description: Learn how to manually adjust gas price using MetaMask.
 ---
 
-Probable Reasons You Are Here[​](#probable-reasons-you-are-here "Direct link to heading")
------------------------------------------------------------------------------------------
+Sometimes during periods of high network activity, transactions either remain pending for a very long duration or instantly get a failed transaction notification. This may confuse and frustrate users, especially if they don't understand why their transactions are not getting accepted.
+
+## Probable Reasons You Are Here
 
 - Your transaction has stalled, and you don't know what to do
 - Your transaction has failed, with an error - `transaction underpriced`
@@ -14,8 +14,7 @@ Probable Reasons You Are Here[​](#probable-reasons-you-are-here "Direct link t
 
 If these are your reasons for being here, then you can either go through this entire section, for a better understanding of the scenario or directly skip to the [solution](#adjusting-gas-fees-before-submitting-the-transaction).
 
-Good to Know Keywords and Concepts[​](#good-to-know-keywords-and-concepts "Direct link to heading")
----------------------------------------------------------------------------------------------------
+## Good to Know Keywords and Concepts
 
 The amount of computation used by a transaction is measured in units of `gas`. Each unit of gas is paid for in AVAX at the `gas price` for the transaction. The `gas price` of the transaction is determined by the parameters of the transaction and the `base fee` of the block that it is included in.
 
@@ -47,7 +46,6 @@ EffectiveTip = min(MaxFeeCap - BaseFee, GasTipCap)
 
 Consider the following examples (here Gwei or nAVAX is one-billionth of AVAX) -
 
-
 |Transaction|Max Fee Cap|Gas tip cap|Base price|Effective tip|Total price|
 |-----------|-----------|-----------|----------|-------------|-----------|
 |1          |50 Gwei    |0 Gwei     |25 Gwei   |0 Gwei       |25 Gwei    |
@@ -56,11 +54,9 @@ Consider the following examples (here Gwei or nAVAX is one-billionth of AVAX) -
 |A          |50 Gwei    |10 Gwei    |40 Gwei   |10 Gwei      |50 Gwei    |
 |B          |40 Gwei    |40 Gwei    |40 Gwei   |0 Gwei       |40 Gwei    |
 
-
 Look at transactions **A** and **B** (the bottom two transactions). In these scenarios, it looks like transaction B is paying a higher tip, however, this depends on the base fee of the block where the transactions are included. The effective tip of A is more than that of B. So, if both of these transaction competes for being included in the next block, then the validators would prioritize transaction A since it pays a higher effective tip.
 
-Why My Transaction is on Hold or Failing?[​](#why-my-transaction-is-on-hold-or-failing "Direct link to heading")
-----------------------------------------------------------------------------------------------------------------
+## Why My Transaction is on Hold or Failing?
 
 If your transaction is failing and giving an error - `transaction underpriced`, then the max fee cap of your transaction must be less than the minimum base price that the network supports (as of now, it's 25 nAVAX or Gwei). Although the base fee is automatically estimated in wallets like Core or MetaMask, you can try increasing the max fee cap in the wallet.
 
@@ -70,8 +66,7 @@ Another reason your transaction may get stuck in pending, is that the max fee ca
 
 These fee adjustments can be made through wallets like Core or MetaMask.
 
-Adjusting Gas Fees Before Submitting the Transaction[​](#adjusting-gas-fees-before-submitting-the-transaction "Direct link to heading")
----------------------------------------------------------------------------------------------------------------------------------------
+## Adjusting Gas Fees Before Submitting the Transaction
 
 You may not need to edit the gas fees on normal days. This is only required if there is heavy congestion on the network, and the base fees are frequently fluctuating.
 

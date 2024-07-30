@@ -1,22 +1,18 @@
 ---
-title: Sending Transactions with Dynamic Fees using JavaScript
-sidebarTitle: Dynamic Gas Fees
+title: Dynamic Gas Fees
+description: Learn how to send transactions with dynamic fees using JavaScript.
 ---
-Overview[​](#overview "Direct link to heading")
------------------------------------------------
 
 The objective of this document is to provide and explain sending transactions with dynamic fees using JavaScript. Make sure you have followed [the tutorial on adjusting the dynamic fees using MetaMask](/build/dapps/advanced-tutorials/manually-adjust-gas-price). There, we have explained the key concepts related to dynamic fees and EIP1559 type of transactions.
 
-Prerequisites[​](#prerequisites "Direct link to heading")
----------------------------------------------------------
+## Prerequisites
 
 - Basic familiarity with [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript).
 - Basic familiarity with [Node.js](https://nodejs.org/en) and [npm](https://www.npmjs.com/).
 - Basic familiarity with [the Avalanche C-Chain](/api-reference/c-chain/api) network and [EVM compatibility](https://ethereum.org/en/developers/docs/evm/)
 - Basic understanding of [dynamic fee transactions](/build/dapps/advanced-tutorials/manually-adjust-gas-price#good-to-know-keywords-and-concepts)
 
-Installing Dependencies[​](#installing-dependencies "Direct link to heading")
------------------------------------------------------------------------------
+## Installing Dependencies
 
 Open the terminal and install the following dependencies in a new folder.
 
@@ -24,23 +20,21 @@ Open the terminal and install the following dependencies in a new folder.
 - avalanche
 - dotenv
 
-```
+```bash
 npm install ethers avalanche dotenv
 ```
 
-Setting up Environment and Project[​](#setting-up-environment-and-project "Direct link to heading")
----------------------------------------------------------------------------------------------------
+## Setting up Environment and Project
 
 To send a transaction we need to sign it using our private key. But private key should not be hard coded in the code, rather must be fetched through some environment variables. Make a `.env` file in the root folder with the following content.
 
-```
+```bash
 PRIVATEKEY=<YOUR_PRIVATE_KEY>
 ```
 
 Now make a new file `app.js` in the root folder, which will be our main and only file with the `sendAvax()` function. Follow the rest of the tutorial by understanding and pasting the provided snippets sequentially in the `app.js` file.
 
-Importing Dependencies and Private Key[​](#importing-dependencies-and-private-key "Direct link to heading")
------------------------------------------------------------------------------------------------------------
+## Importing Dependencies and Private Key
 
 ```rust
 const ethers = require("ethers");
@@ -50,8 +44,7 @@ require("dotenv").config();
 const privateKey = process.env.PRIVATEKEY;
 ```
 
-Setting up HTTP Provider Connected with Fuji Network[​](#setting-up-http-provider-connected-with-fuji-network "Direct link to heading")
----------------------------------------------------------------------------------------------------------------------------------------
+## Setting up HTTP Provider
 
 Using the HTTP provider, we will connect to one of the nodes on the Fuji network. Using this provider we will send the signed transaction to the network. You can also connect to Mainnet using the URL - `https://api.avax.network/ext/bc/C/rpc`
 
@@ -61,8 +54,7 @@ const nodeURL = "https://api.avax-test.network/ext/bc/C/rpc";
 const HTTPSProvider = new ethers.providers.JsonRpcProvider(nodeURL);
 ```
 
-Setting up C-Chain APIs for Estimating Base and Priority Fees[​](#setting-up-c-chain-apis-for-estimating-base-and-priority-fees "Direct link to heading")
----------------------------------------------------------------------------------------------------------------------------------------------------------
+## Setup C-Chain APIs to Estimate Fees
 
 To estimate the max fee and max priority fee on the network, we will be using C-Chain APIs. We can use the C-Chain through an AvalancheJS instance connected to the network as shown below.
 
@@ -78,19 +70,7 @@ const avalanche = new Avalanche(
 const cchain = avalanche.CChain();
 ```
 
-Setting up Wallet[​](#setting-up-wallet "Direct link to heading")
------------------------------------------------------------------
-
-A wallet is required for signing transactions with your private key and thus making it valid.
-
-```
-// For signing an unsigned transaction
-const wallet = new ethers.Wallet(privateKey);
-const address = wallet.address;
-```
-
-Function for Estimating Max Fee and Max Priority Fee[​](#function-for-estimating-max-fee-and-max-priority-fee "Direct link to heading")
----------------------------------------------------------------------------------------------------------------------------------------
+### Function for Estimating Max Fee and Max Priority Fee
 
 The function `calcFeeData()` estimates the max fee and max priority fee per gas according to network activity using the C-Chain APIs. This function returns max fee and max priority fee per gas in units of `nAVAX` or `gwei` (1 AVAX = 10^9 gwei).
 
@@ -121,8 +101,17 @@ const calcFeeData = async (
 
 Actual API returns base fee and priority fee in units of `wei` which is one-billionth of a billionth of `AVAX` (1 AVAX = 10^18 wei).
 
-Function to Create, Sign and Send Transaction[​](#function-to-create-sign-and-send-transaction "Direct link to heading")
-------------------------------------------------------------------------------------------------------------------------
+## Setting up Wallet
+
+A wallet is required for signing transactions with your private key and thus making it valid.
+
+```javascript
+// For signing an unsigned transaction
+const wallet = new ethers.Wallet(privateKey);
+const address = wallet.address;
+```
+
+## Function to Create, Sign and Send Transaction
 
 The function `sendAvax()` takes 4 arguments -
 
@@ -185,8 +174,7 @@ const sendAvax = async (
 
 This function calculates transaction hash from the signed transaction and logs on the console, the URL for transaction status on the Snowtrace explorer.
 
-Calling the `sendAVAX()` Function[​](#calling-the-sendavax-function "Direct link to heading")
----------------------------------------------------------------------------------------------
+## Calling the `sendAVAX()` Function
 
 There are various ways to call this function. We may or may not pass the optional arguments like max fee and max priority fee. It is recommended to set the max fee as the maximum price per gas that you are willing to pay for a transaction, no matter how high or low the base fee will be, as at max you will only be charged the provided max fee, along with a small priority fee above the base fee.
 
@@ -197,10 +185,7 @@ If you do not pass these arguments, then it will automatically estimate the max 
 sendAvax("0.01", "0x856EA4B78947c3A5CD2256F85B2B147fEBDb7124", 100, 2);
 ```
 
-**This function should not be used without a max fee per gas. As you will have to pay the estimated price, even if it is higher than your budget.**
-
-There could be the following cases -
-
+This function should not be used without a max fee per gas. As you will have to pay the estimated price, even if it is higher than your budget. There could be the following cases:
 
 |    Max Fee    | Max Priority Fee |                                                                                                                  Comment                                                                                                                  |
 |:-------------:|:----------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -214,8 +199,7 @@ You will get the following output on the successful submission of the signed tra
 View transaction with nonce 25: https://testnet.snowtrace.io/tx/0xd5b92b85beaf283fbaeeefb95c9a17a6b346a05b6f9687f2d6e421aa79243b35
 ```
 
-Reissuance of Stuck Transaction[​](#reissuance-of-stuck-transaction "Direct link to heading")
----------------------------------------------------------------------------------------------
+## Reissuance of Stuck Transaction
 
 Sometimes during high network activity, all transactions couldn't make it to the latest blocks for a long time, due to relatively lower effective tip than the other transactions in the pool. We can either re-issue the same transaction with a higher priority fee or cancel the transaction. To re-issue the stuck transaction, you can send a new one with same amount and data but higher priority fee and same nonce value as the stuck transaction. The transaction with lower effective tip will automatically be rejected (due to same nonce), and you do not need to worry about it. You can also cancel the stuck transaction, by keeping the amount to 0, with a higher priority fee and same nonce. Let's say, the above transaction with a nonce value of 25 has stuck. You can then re-issue a new transaction with same nonce, but higher priority fee this time.
 
@@ -227,7 +211,6 @@ sendAvax("0.01", "0x856EA4B78947c3A5CD2256F85B2B147fEBDb7124", 100, 10, 25);
 sendAvax("0", "0x856EA4B78947c3A5CD2256F85B2B147fEBDb7124", 100, 10, 25);
 ```
 
-Conclusion[​](#conclusion "Direct link to heading")
----------------------------------------------------
+## Conclusion
 
 You have learned about creating, signing, and sending transactions with dynamic fee parameters to the C-Chain of Avalanche network using JavaScript. It also explained, how to re-issue or cancel a stuck transaction, by sending a transaction with the same nonce. This tutorial points out the recommended way for choosing max fee cap and max priority fee cap for transactions and can also work as a general guide for all the EVM-based chains.

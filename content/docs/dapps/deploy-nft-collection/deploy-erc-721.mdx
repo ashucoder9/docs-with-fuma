@@ -1,8 +1,11 @@
 ---
-title: Deploy an ERC-721 NFT Collection on Avalanche
-sidebarTitle: Deploy an ERC-721
+title: Deploy ERC-721 Contract
+description: Learn how to deploy an ERC-721 contract on the Avalanche C-chain.
 ---
-This tutorial will start you with a basic [ERC-721 (NFT)](https://eips.ethereum.org/EIPS/eip-721) smart contract on the Avalanche Network, regardless of your previous development experience. We'll deploy our NFT on the Avalanche Fuji Testnet and view it on the Snowtrace Testnet Explorer. Note that these aren't transferable to the Mainnet. However, once you feel comfortable launching your project, you can do so on Avalanche Mainnet and list it on an NFT marketplace.
+
+This tutorial will start you with a basic [ERC-721 (NFT)](https://eips.ethereum.org/EIPS/eip-721) smart contract on the Avalanche Network, regardless of your previous development experience. We'll deploy our NFT on the Avalanche Fuji Testnet and view it on the Snowtrace Testnet Explorer.
+
+Note that these aren't transferable to the Mainnet. However, once you feel comfortable launching your project, you can do so on the Avalanche Mainnet and list it on an NFT marketplace.
 
 The following tools will be used during this tutorial:
 
@@ -14,13 +17,10 @@ The following tools will be used during this tutorial:
 - [Snowtrace Testnet Explorer](https://testnet.snowtrace.io/): To view the deployed smart contract.
 
 <Callout type="warning">
-    DISCLAIMER: This Solidity smart contract tutorial is for demonstration purposes only. Users should consider proper precautions, error handling, and safeguards for production use. No one at Ava Labs is responsible for your development, and you must take full responsibility for ensuring your code is secure.
-
+This Solidity smart contract tutorial is for demonstration purposes only. Users should consider proper precautions, error handling, and safeguards for production use. No one at Ava Labs is responsible for your development, and you must take full responsibility for ensuring your code is secure.
 </Callout>
 
-
-Preparing Your NFT Files[​](#preparing-your-nft-files "Direct link to heading")
--------------------------------------------------------------------------------
+## Preparing Your NFT Files
 
 The first step of setting up an NFT smart contract is having your NFT files ready to use. In this example, the files will get uploaded to Pinata, a pinning service that prevents files from being garbage collected on IPFS.
 
@@ -28,10 +28,9 @@ If you're unfamiliar with the process of uploading image and metadata files to a
 
 Once the image and metadata files are ready, we can prepare to deploy a smart contract.
 
-Preparing Your Environment[​](#preparing-your-environment "Direct link to heading")
------------------------------------------------------------------------------------
+## Preparing Your Environment
 
-### Core Extension[​](#core-extension "Direct link to heading")
+### Core Extension
 
 You'll need the Core Extension installed on whatever browser you're using to be able to fund the deployment of the smart contract. If you've not done so already, download Core and enable Testnet Mode. To do that, go to **Settings** and click on **Advanced**.
 
@@ -44,26 +43,20 @@ Here, turn on the **Testnet Mode** feature. This will automatically make Core sw
 <Callout type="info">
 If you are using other wallets, like Core or MetaMask, you can add the Fuji Testnet using the following specs:
 
-**Network Name:** Avalanche C-Chain
-**New RPC URL:** [https://api.avax-test.network/ext/bc/C/rpc](https://api.avax-test.network/ext/bc/C/rpc)
-**ChainID:** `43113`
-**Symbol:** AVAX
-**Explorer:** [`https://testnet.snowtrace.io`](https://testnet.snowtrace.io)
+- **Network Name**: Avalanche C-Chain
+- **New RPC URL**: [https://api.avax-test.network/ext/bc/C/rpc](https://api.avax-test.network/ext/bc/C/rpc)
+- **ChainID**: `43113`
+- **Symbol**: AVAX
+- **Explorer**: [`https://testnet.snowtrace.io`](https://testnet.snowtrace.io)
 </Callout>
 
-
-
-
-
-
-### Getting Testnet Funds[​](#getting-testnet-funds "Direct link to heading")
+### Getting Testnet Funds
 
 Because we're deploying on the Fuji Network, you'll need to get AVAX on the Fuji network. Avalanche has a [Faucet](https://faucet.avax.network/) that drips test tokens to the address of your choice. If you already have an AVAX balance greater than zero on Mainnet, paste your C-Chain address there, and request test tokens. Otherwise, please request a faucet coupon on [Guild](https://guild.xyz/avalanche). Admins and mods on the official [Discord](https://discord.com/invite/RwXY7P6) can provide testnet AVAX if developers are unable to obtain it from the other two options.
 
 ![Avalanche Faucet](/images/nft-collection3.png)
 
-Creating the Smart Contract[​](#creating-the-smart-contract "Direct link to heading")
--------------------------------------------------------------------------------------
+## Creating the Smart Contract
 
 To create the smart contract, we're going to use [Open Zeppelin](https://docs.openzeppelin.com/). Open Zeppelin is a key tool for building smart contracts quickly and easily. While we're only scratching the surface in this tutorial, ample documentation is available on their website for you to read when you want to build more complex contracts.
 
@@ -86,10 +79,8 @@ Next, we'll want to check the `Mintable` and `Auto Increment Ids` boxes. This wi
 This automatically checks the `Ownable` button, which gives the `safeMint` function the `onlyOwner` modifier. This modifier indicates that only the owner of the smart contract will be able to successfully call the function.
 
 <Callout type="info">
-    This modifier should be removed when creating a smart contract for a public mint. Otherwise, users wouldn't be able to successfully mint the NFTs when calling the `safeMint` function. This tutorial only handles the owner's wallet address, so it is being left in.
-
+This modifier should be removed when creating a smart contract for a public mint. Otherwise, users wouldn't be able to successfully mint the NFTs when calling the `safeMint` function. This tutorial only handles the owner's wallet address, so it is being left in.
 </Callout>
-
 
 Now, our contract is a little more populated:
 
@@ -103,8 +94,7 @@ At this point, our smart contract is ready. At the top, you can click `Open in R
 
 ![Contract Wizard Open Remix](/images/nft-collection7.png)
 
-Deploying the Smart Contract with Remix[​](#deploying-the-smart-contract-with-remix "Direct link to heading")
--------------------------------------------------------------------------------------------------------------
+## Deploying the Smart Contract with Remix
 
 [Remix IDE](https://remix.ethereum.org/) is a solidity compiler that allows you to edit, compile, and deploy your smart contract. This will prevent you from needing to download any other coding environments at this stage.
 
@@ -144,8 +134,7 @@ You'll now see [your contract information on Snowtrace](https://testnet.snowtrac
 
 ![Snowtrace](/images/nft-collection16.png)
 
-Minting an NFT[​](#minting-an-nft "Direct link to heading")
------------------------------------------------------------
+## Minting an NFT
 
 Now that you've deployed the contract, you can mint the NFT. Go back to the Remix IDE tab and click on your contract to expand its information. A list of functions will appear that you can interact with.
 
@@ -154,6 +143,7 @@ Now that you've deployed the contract, you can mint the NFT. Go back to the Remi
 The only function you're interested in is the `safeMint` function. Click the drop-down arrow for the function to expand the address field.
 
 ![](/images/nft-collection18.png)
+
 Now, copy your Core address and paste it into this address field. This will send the NFT to your address when the mint function is called. After, hit `transact`.
 
 This will reopen Core and ask you to verify the transaction. Click `Confirm` to mint your NFT.
@@ -170,8 +160,7 @@ By clicking on the [TX Hash](https://testnet.snowtrace.io/tx/0x8b698ac72bd20b2a6
 
 ![Snowtrace Transaction](/images/nft-collection21.png)
 
-Mainnet[​](#mainnet "Direct link to heading")
----------------------------------------------
+## On Mainnet
 
 All of the above steps can be used on Mainnet except the following changes:
 
