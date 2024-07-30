@@ -26,17 +26,21 @@ Originally, transactions could only set a single parameter to define how much th
 
 With the introduction of dynamic fees, legacy style transactions that only have a single `gas price` parameter can lead to both delayed transactions and overpaying for transactions. Dynamic fee transactions are the solution! For more info, read [this](/api-reference/standards/guides/transaction-fees#dynamic-fee-transactions).
 
-For the dynamic fee algorithm, when a block is produced or verified, we look over the past 10s to see how much gas has been consumed within that window (with an added charge for each block produced in that window) to determine the current network utilization. This window has a target utilization, which is currently set to `15M` gas units. Lastly, there is an added charge if a block is produced faster than the target rate of block production. Currently, the target rate of block production is one block every two seconds, so if a new block is produced one second after its parent, then there is an additional surcharge added into the base fee calculation.
+For the dynamic fee algorithm, when a block is produced or verified, we look over the past 10s to see how much gas has been consumed within that window (with an added charge for each block produced in that window) to determine the current network utilization. This window has a target utilization, which is currently set to `15M` gas units.
+
+Lastly, there is an added charge if a block is produced faster than the target rate of block production. Currently, the target rate of block production is one block every two seconds, so if a new block is produced one second after its parent, then there is an additional surcharge added into the base fee calculation.
 
 Base price could increase, decrease, or remain the same depending upon the amount of activity on the network in the most recent window. If the total gas in the last few blocks of the window is more, less or the same than the target gas, then the base price will increase, decrease, or remain the same, respectively.
 
 When estimating the base fee for users, we simply look at the currently preferred block and calculate what the base fee would be for a block built on top of that block immediately.
 
-Along with a gas limit, users can now pass 2 values in dynamic fee transactions
+Along with a gas limit, users can now pass 2 values in dynamic fee transactions: `gas fee cap` and `gas tip cap`.
 
-- `gas fee cap` and `gas tip cap`.
+The maximum price per unit of gas, that the user is willing to pay for their transaction is called `gas fee cap`. If the base price for a block is more than the gas fee cap, then the transaction will remain in the transaction pool until the base fee has been changed to be less than or equal to the provided gas fee cap.
 
-The maximum price per unit of gas, that the user is willing to pay for their transaction is called `gas fee cap`. If the base price for a block is more than the gas fee cap, then the transaction will remain in the transaction pool until the base fee has been changed to be less than or equal to the provided gas fee cap (note: the transaction pool limits the number of pending transactions, so if the number of pending transactions exceeds the configured cap then the transactions with the lowest fees may be evicted from the transaction pool and need to be re-issued).
+<Callout>
+The transaction pool limits the number of pending transactions, so if the number of pending transactions exceeds the configured cap then the transactions with the lowest fees may be evicted from the transaction pool and need to be re-issued.
+</Callout>
 
 `Gas tip cap` is the maximum price per unit of gas, that the user is willing to pay above the base price to prioritize their transaction. But the tip is capped by both the gas tip cap as well as the gas fee cap. The actual tip paid above the `base fee` of the block is known as the `effective gas tip`.
 
@@ -54,7 +58,9 @@ Consider the following examples (here Gwei or nAVAX is one-billionth of AVAX) -
 |A          |50 Gwei    |10 Gwei    |40 Gwei   |10 Gwei      |50 Gwei    |
 |B          |40 Gwei    |40 Gwei    |40 Gwei   |0 Gwei       |40 Gwei    |
 
-Look at transactions **A** and **B** (the bottom two transactions). In these scenarios, it looks like transaction B is paying a higher tip, however, this depends on the base fee of the block where the transactions are included. The effective tip of A is more than that of B. So, if both of these transaction competes for being included in the next block, then the validators would prioritize transaction A since it pays a higher effective tip.
+Look at transactions **A** and **B** (the bottom two transactions). In these scenarios, it looks like transaction B is paying a higher tip, however, this depends on the base fee of the block where the transactions are included.
+
+The effective tip of A is more than that of B. So, if both of these transaction competes for being included in the next block, then the validators would prioritize transaction A since it pays a higher effective tip.
 
 ## Why My Transaction is on Hold or Failing?
 
