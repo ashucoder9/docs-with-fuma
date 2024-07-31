@@ -1,11 +1,11 @@
 ---
-title: Deploy Subnets on Production Infrastructure
-sidebarTitle: On Production Infrastructure
+title: On Production Infrastructure
+descdescription: Learn how to deploy a Subnet on production infrastructure.
 ---
-Introduction[​](#introduction "Direct link to heading")
--------------------------------------------------------
 
-After architecting your Subnet environment on the [local machine](/build/subnets/deploy-a-subnet/local-network), proving the design and testing it out on [the Fuji Testnet](/build/subnets/deploy-a-subnet/fuji-testnet), eventually you will need to deploy your Subnet to production environment. Running a Subnet in production is much more involved than local and Testnet deploys, as your Subnet will have to take care of real world usage, maintaining uptime, upgrades and all of that in a potentially adversarial environment. The purpose of this document is to point out a set of general considerations and propose potential solutions to them.
+After architecting your Subnet environment on the [local machine](/build/subnets/deploy-a-subnet/local-network), proving the design and testing it out on [the Fuji Testnet](/build/subnets/deploy-a-subnet/fuji-testnet), eventually you will need to deploy your Subnet to production environment.
+
+Running a Subnet in production is much more involved than local and Testnet deploys, as your Subnet will have to take care of real world usage, maintaining uptime, upgrades and all of that in a potentially adversarial environment. The purpose of this document is to point out a set of general considerations and propose potential solutions to them.
 
 The architecture of the environment your particular Subnet will use will be greatly influenced by the type of load and activity your Subnet is designed to support so your solution will most likely differ from what we propose here. Still, it might be useful to follow along, to build up the intuition for the type of questions you will need to consider.
 
@@ -85,7 +85,7 @@ Once you have the nodes set up you are ready to deploy the actual Subnet. Right 
 
 Instructions for deployment by Avalanche-CLI can be found [here](/build/subnets/deploy-a-subnet/avalanche-mainnet).
 
-### Ledger HW Wallet[​](#ledger-hw-wallet "Direct link to heading")
+### Ledger Hardware Wallet[​](#ledger-hw-wallet "Direct link to heading")
 
 When creating the Subnet, you will be required to have a private key that will control the administrative functions of the Subnet (adding validators, managing the configuration). Needless to say, whoever has this private key has complete control over the Subnet and the way it runs. Therefore, protecting that key is of the utmost operational importance. Which is why we strongly recommend using a hardware wallet such as a [Ledger HW Wallet](https://www.ledger.com/) to store and access that private key.
 
@@ -115,7 +115,7 @@ To have a node start syncing the Subnet, you need to add the `--track-subnets` c
 
 An example of a node config syncing two Subnets:
 
-```
+```json
 {
   "public-ip-resolution-service": "opendns",
   "http-host": "",
@@ -131,7 +131,7 @@ So, name the VM plugin binary as the `VMID` of the Subnet chain and place it in 
 
 After you have tracked the Subnet and placed the VM binary in the correct directory, your node is ready to start syncing with the Subnet. Restart the node and monitor the log output. You should notice something similar to:
 
-```
+```bash
 Jul 30 18:26:31 node-fuji avalanchego[1728308]: [07-30|18:26:31.422] INFO chains/manager.go:262 creating chain:
 Jul 30 18:26:31 node-fuji avalanchego[1728308]:     ID: 2ebCneCbwthjQ1rYT41nhd7M76Hc6YmosMAQrTFhBq8qeqh6tt
 Jul 30 18:26:31 node-fuji avalanchego[1728308]:     VMID:srEXiWaHuhNyGwPUi444Tu47ZEDwxTWrbQiuD7FmgSAQ6X7Dy
@@ -139,7 +139,7 @@ Jul 30 18:26:31 node-fuji avalanchego[1728308]:     VMID:srEXiWaHuhNyGwPUi444Tu4
 
 That means the node has detected the Subnet, and is attempting to initialize it and start bootstrapping the Subnet. It might take some time (if there are already transactions on the Subnet), and eventually it will finish the bootstrap with a message like:
 
-```
+```bash
 Jul 30 18:27:21 node-fuji avalanchego[1728308]: [07-30|18:27:21.055] INFO <2ebCneCbwthjQ1rYT41nhd7M76Hc6YmosMAQrTFhBq8qeqh6tt Chain> snowman/transitive.go:333 consensus starting with J5wjmotMCrM2DKxeBTBPfwgCPpvsjtuqWNozLog2TomTjSuGK as the last accepted block
 ```
 
@@ -167,5 +167,3 @@ Hopefully, by reading this document you have a better picture of the requirement
 Keep in mind, running a Subnet in production is not a one-and-done kind of situation, it is in fact running a fleet of servers 24/7. And as with any real time service, you should have a robust logging, monitoring and alerting systems to constantly check the nodes and Subnet health and alert you if anything out of the ordinary happens.
 
 If you have any questions, doubts or would like to chat, please check out our [Discord server](https://chat.avax.network/), where we host a dedicated `#subnet-chat` channel dedicated to talking about all things Subnet.
-
-We hope to see you there!
