@@ -1,7 +1,6 @@
 ---
-title: How to Deploy a Subnet on a Local Network
-sidebarTitle: On a Local Network
-description: This how-to guide focuses on taking an already created Subnet configuration and deploying it to a local Avalanche network.
+title: On a Local Network
+description: This guide focuses on taking an already created Subnet configuration and deploying it on a local Avalanche network.
 ---
 
 ## Prerequisites
@@ -15,21 +14,27 @@ In the following commands, make sure to substitute the name of your Subnet confi
 
 To deploy your Subnet, run
 
-`avalanche subnet deploy <subnetName>`
+```bash
+avalanche subnet deploy <subnetName>
+```
 
-and select `Local Network` to deploy on. Alternatively, you can bypass this prompt by providing the `--local` flag. For example:
+and, select `Local Network` to deploy on. Alternatively, you can bypass this prompt by providing the `--local` flag. For example:
 
-`avalanche subnet deploy <subnetName> --local`
+```bash
+avalanche subnet deploy <subnetName> --local
+```
 
 The command may take a couple minutes to run.
 
-Note: If you run `bash` on your shell and are running Avalanche-CLI on ARM64 on Mac, you will require Rosetta 2 to be able to deploy Subnets locally. You can download Rosetta 2 using `softwareupdate --install-rosetta` .
+<Callout type="info">
+If you run `bash` on your shell and are running Avalanche-CLI on ARM64 on Mac, you will require Rosetta 2 to be able to deploy Subnets locally. You can download Rosetta 2 using `softwareupdate --install-rosetta` .
+</Callout>
 
 ### Results
 
 If all works as expected, the command output should look something like this:
 
-```
+```bash
 > avalanche subnet deploy mySubnet
 ✔ Local Network
 Deploying [mySubnet] to Local Network
@@ -78,4 +83,8 @@ You may deploy multiple Subnets concurrently, but you can't deploy the same Subn
 
 To redeploy the Subnet, you first need to wipe the Subnet state. This permanently deletes all data from all locally deployed Subnets. To do so, run: ```avalanche network clean```
 
-You are now free to redeploy your Subnet with: ```avalanche subnet deploy <subnetName> --local```
+You are now free to redeploy your Subnet with:
+
+```bash
+avalanche subnet deploy <subnetName> --local
+```
