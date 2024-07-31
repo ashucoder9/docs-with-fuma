@@ -1,11 +1,11 @@
 ---
-title: How to Upgrade Your Precompiles and Subnet-EVM for Durango
-sidebarTitle: Durango Upgrade
+title: Durango Upgrade
+description: Learn how to upgrade your Subnet-EVM and precompiles for the Durango network upgrade.
 ---
-Introduction[​](#introduction "Direct link to heading")
--------------------------------------------------------
 
-Durango will be activated on the Avalanche Mainnet at 11 AM ET (4 PM UTC) on Wednesday, March 6th, 2024. Subnet-EVM introduces a set of new features and backwards-incompatible changes with the Durango network upgrade. This guide will walk you through the process of upgrading your Subnet-EVM and precompiles for the Durango network upgrade. The Durango network upgrade introduces new features and improvements to the Avalanche platform and Subnet-EVM. This guide will help you ensure that your Subnet-EVM and precompiles are compatible with the Durango network upgrade.
+Durango will be activated on the Avalanche Mainnet at 11 AM ET (4 PM UTC) on Wednesday, March 6th, 2024. Subnet-EVM introduces a set of new features and backwards-incompatible changes with the Durango network upgrade. This guide will walk you through the process of upgrading your Subnet-EVM and precompiles for the Durango network upgrade.
+
+The Durango network upgrade introduces new features and improvements to the Avalanche platform and Subnet-EVM. This guide will help you ensure that your Subnet-EVM and precompiles are compatible with the Durango network upgrade.
 
 Note: Subnet-EVM already performs these upgrades in native stateful precompiles. This guide is for users who have custom precompiles and need to upgrade them for Durango.
 
@@ -15,8 +15,7 @@ Durango introduces following changes to Subnet-EVM:
 - Events in Precompiles
 - Manager Role
 - Non-Strict Mode
-- Shanghai Upgrade [(ACP-24)](https://github.com/avalanche-foundation/ACPs/blob/main/ACPs/24-shanghai-eips.md)
-    - Shangai Upgrade will be activated with Durango without any further modification in Subnet-EVM.
+- [Shanghai Upgrade from ACP-24](https://github.com/avalanche-foundation/ACPs/blob/main/ACPs/24-shanghai-eips.md) will be activated with Durango without any further modification in Subnet-EVM.
 
 Avalanche Warp Messaging[​](#avalanche-warp-messaging "Direct link to heading")
 -------------------------------------------------------------------------------
@@ -43,7 +42,7 @@ Events above are already introduced and handled in Subnet-EVM native precompiles
 
 Generally you will generate an `event.go` file in addition to your existing precompile files. You need to implement how to emit your events and your events' gas costs, as in [hello world example](/build/virtual-machines/evm-customization/defining-precompile#event-file). In this guide we will use the hello world example to demonstrate how to emit custom events. The event that will be introduced is:
 
-```
+```go
 event GreetingChanged(address indexed sender, string oldGreeting, string newGreeting)
 ```
 
@@ -51,9 +50,13 @@ It will be emitted when the greeting is changed in the hello world precompile. Y
 
 #### Adjusting Gas Costs[​](#adjusting-gas-costs "Direct link to heading")
 
-Adjusting gas costs for your custom events is very important. Emitted events are written to state and consume resources. You should make sure you're charging the right amount of gas before emitting your event. `precompilegen` tool automatically generates a scaffold for your gas calculations, however you should review and adjust the gas costs according to your needs, especially if you're using any arbitrary size data in your events. Gas cost function for the event `GreetingChanged(address indexed sender, string oldGreeting, string newGreeting)` looks like this:
+Adjusting gas costs for your custom events is very important. Emitted events are written to state and consume resources. You should make sure you're charging the right amount of gas before emitting your event.
 
-```
+`precompilegen` tool automatically generates a scaffold for your gas calculations, however you should review and adjust the gas costs according to your needs, especially if you're using any arbitrary size data in your events.
+
+Gas cost function for the event `GreetingChanged(address indexed sender, string oldGreeting, string newGreeting)` looks like this:
+
+```go
 func GetGreetingChangedEventGasCost(data GreetingChangedEventData) uint64 {
 	gas := contract.LogGas // base gas cost
 
@@ -79,7 +82,9 @@ func GetGreetingChangedEventGasCost(data GreetingChangedEventData) uint64 {
 }
 ```
 
-We have charged the base gas cost, topics gas cost and data gas cost for the old and new greeting. Topic gas cost includes 2 topics, one for the signature hash of the event and the other for the indexed sender argument. Data gas cost is calculated according to the data type and size. If you're not using any arbitrary size data in your events, you can define it as a constant.
+We have charged the base gas cost, topics gas cost and data gas cost for the old and new greeting. Topic gas cost includes 2 topics, one for the signature hash of the event and the other for the indexed sender argument.
+
+Data gas cost is calculated according to the data type and size. If you're not using any arbitrary size data in your events, you can define it as a constant.
 
 #### Durango Activation Check[​](#durango-activation-check "Direct link to heading")
 
@@ -87,7 +92,7 @@ After completing defining your custom events, you need to pack your events, char
 
 You can use the `contract.IsDurangoActivated` function to check if the Durango network upgrade is activated. For Hello World example, we will be changing `setGreeting` function starting [here](https://github.com/ava-labs/subnet-evm/blob/helloworld-official-tutorial-v2/precompile/contracts/helloworld/contract.go#L187) via following:
 
-```
+```go
 if contract.IsDurangoActivated(accessibleState) {
  ...
 }
@@ -99,7 +104,7 @@ Note: this activation won't be needed if you plan to deploy your custom precompi
 
 Event packers and unpackers will be automatically generated with the `precompilegen` tool. You can use these packers and unpackers to pack and unpack your custom events. For hello world example:
 
-```
+```go
 if remainingGas, err = contract.DeductGas(remainingGas, contract.ReadGasCostPerSlot); err != nil {
   return nil, 0, err
 }
@@ -121,7 +126,7 @@ This will first charge gas for fetching the old greeting from the state fetch an
 
 After packing the event data, you can charge the event gas and emit your custom events using the `stateDB.AddLog` function. For hello world example it starts [here](https://github.com/ava-labs/subnet-evm/blob/helloworld-official-tutorial-v2/precompile/contracts/helloworld/contract.go#L203-L214):
 
-```
+```go
 // Charge the gas for emitting the event.
 eventGasCost := GetGreetingChangedEventGasCost(eventData)
 if remainingGas, err = contract.DeductGas(remainingGas, eventGasCost); err != nil {
@@ -144,7 +149,7 @@ Durango introduces a new role called the manager role. The manager role is a mid
 
 If you have any precompile using AllowList, you can issue a call to `setManager` in your precompile to appoint new Manager accounts. For upgrades or new precompiles with AllowList config you can use `managerAddresses` as follow:
 
-```
+```json
 {
   "feeManagerConfig": {
     "blockTimestamp": 0,
@@ -162,7 +167,7 @@ Strict mode unpacking prevents using extra padded bytes in inputs. This created 
 
 For Hello world example we were using this `UnpackSetGreetingInput` with strict mode enabled before:
 
-```
+```go
 func UnpackSetGreetingInput(input []byte) (string, error) {
   // This function was using strict mode unpacking by default.
 	res, err := HelloWorldABI.UnpackInput("setGreeting", input)
@@ -174,9 +179,11 @@ func UnpackSetGreetingInput(input []byte) (string, error) {
 }
 ```
 
-In order to handle extra padded bytes, Subnet-EVM will start using non-strict mode with Durango in `Input Unpackers`. However since this change will be non-backward compatible you need to ensure that this will only be activated after the Durango network upgrade. You can use the `contract.IsDurangoActivated` function to check if the Durango network upgrade is activated. Now we will using this function to start using non-strict mode unpacking:
+In order to handle extra padded bytes, Subnet-EVM will start using non-strict mode with Durango in `Input Unpackers`. However since this change will be non-backward compatible you need to ensure that this will only be activated after the Durango network upgrade.
 
-```
+You can use the `contract.IsDurangoActivated` function to check if the Durango network upgrade is activated. Now we will using this function to start using non-strict mode unpacking:
+
+```go
 // UnpackSetGreetingInput attempts to unpack [input] into the string type argument
 // assumes that [input] does not include selector (omits first 4 func signature bytes)
 // if [useStrictMode] is true, it will return an error if the length of [input] is not [common.HashLength]
@@ -199,7 +206,7 @@ func UnpackSetGreetingInput(input []byte, useStrictMode bool) (string, error) {
 
 To call this function in `setGreeting` we should use Durango activation as follows [here](https://github.com/ava-labs/subnet-evm/blob/helloworld-official-tutorial-v2/precompile/contracts/helloworld/contract.go#L159-L167):
 
-```
+```go
 // do not use strict mode after Durango
 useStrictMode := !contract.IsDurangoActivated(accessibleState)
 // attempts to unpack [input] into the arguments to the SetGreetingInput.
@@ -213,4 +220,6 @@ if err != nil {
 
 This will ensure that non-strict mode unpacking is used after Durango activation.
 
-Note: This should not impose any critical issue for your custom precompiles. If you want to keep using the old strict mode and keep the backward compatibility you can use `true` for the `useStrictMode` parameter. However if your precompile is mainly used from other deployed contracts (Solidity) you should do this transition in order to increase the compatibility of your precompile.
+This should not impose any critical issue for your custom precompiles. If you want to keep using the old strict mode and keep the backward compatibility you can use `true` for the `useStrictMode` parameter.
+
+However if your precompile is mainly used from other deployed contracts (Solidity) you should do this transition in order to increase the compatibility of your precompile.

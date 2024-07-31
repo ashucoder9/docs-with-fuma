@@ -11,7 +11,7 @@ Subnet-EVM has some additional APIs that are not available in Coreth.
 
 Subnet-EVM comes with an API request for getting fee config at a specific block. You can use this API to check your activated fee config.
 
-**Signature:**
+**Signature**:
 
 ```
 eth_feeConfig([blk BlkNrOrHash]) -> {feeConfig: json}
@@ -19,7 +19,7 @@ eth_feeConfig([blk BlkNrOrHash]) -> {feeConfig: json}
 
 - `blk` is the block number or hash at which to retrieve the fee config. Defaults to the latest block if omitted.
 
-**Example Call:**
+**Example Call**:
 
 ```
 curl -X POST --data '{
@@ -32,7 +32,7 @@ curl -X POST --data '{
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/2ebCneCbwthjQ1rYT41nhd7M76Hc6YmosMAQrTFhBq8qeqh6tt/rpc
 ```
 
-**Example Response:**
+**Example Response**:
 
 ```
 {
@@ -59,13 +59,13 @@ curl -X POST --data '{
 
 `eth_getChainConfig` returns the Chain Config of the blockchain. This API is enabled by default with `internal-blockchain` namespace.
 
-This API exists on the C-Chain as well, but in addition to the normal Chain Config returned by the C-Chain `eth_getChainConfig` on `subnet-evm` additionally returns the upgrade config, which specifies network upgrades activated after the genesis. **Signature:**
+This API exists on the C-Chain as well, but in addition to the normal Chain Config returned by the C-Chain `eth_getChainConfig` on `subnet-evm` additionally returns the upgrade config, which specifies network upgrades activated after the genesis. **Signature**:
 
 ```
 eth_getChainConfig({}) -> {chainConfig: json}
 ```
 
-**Example Call:**
+**Example Call**:
 
 ```
 curl -X POST --data '{
@@ -76,7 +76,7 @@ curl -X POST --data '{
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/Nvqcm33CX2XABS62iZsAcVUkavfnzp1Sc5k413wn5Nrf7Qjt7/rpc
 ```
 
-**Example Response:**
+**Example Response**:
 
 ```
 {
@@ -144,7 +144,7 @@ curl -X POST --data '{
 
 `eth_getActivePrecompilesAt` returns activated precompiles at a specific timestamp. If no timestamp is provided it returns the latest block timestamp. This API is enabled by default with `internal-blockchain` namespace.
 
-**Signature:**
+**Signature**:
 
 ```
 eth_getActivePrecompilesAt([timestamp uint]) -> {precompiles: []Precompile}
@@ -152,7 +152,7 @@ eth_getActivePrecompilesAt([timestamp uint]) -> {precompiles: []Precompile}
 
 - `timestamp` specifies the timestamp to show the precompiles active at this time. If omitted it shows precompiles activated at the latest block timestamp.
 
-**Example Call:**
+**Example Call**:
 
 ```
 curl -X POST --data '{
@@ -163,7 +163,7 @@ curl -X POST --data '{
 }'  -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/Nvqcm33CX2XABS62iZsAcVUkavfnzp1Sc5k413wn5Nrf7Qjt7/rpc
 ```
 
-**Example Response:**
+**Example Response**:
 
 ```
 {

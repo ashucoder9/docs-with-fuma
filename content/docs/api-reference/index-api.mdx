@@ -46,7 +46,7 @@ Methods[​](#methods "Direct link to heading")
 
 Get container by ID.
 
-**Signature:**
+**Signature**:
 
 ```
 index.getContainerByID({
@@ -61,12 +61,12 @@ index.getContainerByID({
 }
 ```
 
-**Request:**
+**Request**:
 
 - `id` is the container's ID
 - `encoding` is `"hex"` only.
 
-**Response:**
+**Response**:
 
 - `id` is the container's ID
 - `bytes` is the byte representation of the container
@@ -74,7 +74,7 @@ index.getContainerByID({
 - `encoding` is `"hex"` only.
 - `index` is how many containers were accepted in this index before this one
 
-**Example Call:**
+**Example Call**:
 
 ```
 curl --location --request POST 'localhost:9650/ext/index/X/tx' \
@@ -90,7 +90,7 @@ curl --location --request POST 'localhost:9650/ext/index/X/tx' \
 }'
 ```
 
-**Example Response:**
+**Example Response**:
 
 ```
 {
@@ -110,7 +110,7 @@ curl --location --request POST 'localhost:9650/ext/index/X/tx' \
 
 Get container by index. The first container accepted is at index 0, the second is at index 1, etc.
 
-**Signature:**
+**Signature**:
 
 ```
 index.getContainerByIndex({
@@ -125,12 +125,12 @@ index.getContainerByIndex({
 }
 ```
 
-**Request:**
+**Request**:
 
 - `index` is how many containers were accepted in this index before this one
 - `encoding` is `"hex"` only.
 
-**Response:**
+**Response**:
 
 - `id` is the container's ID
 - `bytes` is the byte representation of the container
@@ -138,7 +138,7 @@ index.getContainerByIndex({
 - `index` is how many containers were accepted in this index before this one
 - `encoding` is `"hex"` only.
 
-**Example Call:**
+**Example Call**:
 
 ```
 curl --location --request POST 'localhost:9650/ext/index/X/tx' \
@@ -154,7 +154,7 @@ curl --location --request POST 'localhost:9650/ext/index/X/tx' \
 }'
 ```
 
-**Example Response:**
+**Example Response**:
 
 ```
 {
@@ -180,7 +180,7 @@ Returns the transactions at index \[`startIndex`\], \[`startIndex+1`\], ... , \[
 - If we run out of transactions, returns the ones fetched before running out.
 - `numToFetch` must be in `[0,1024]`.
 
-**Signature:**
+**Signature**:
 
 ```
 index.getContainerRange({
@@ -196,13 +196,13 @@ index.getContainerRange({
 }
 ```
 
-**Request:**
+**Request**:
 
 - `startIndex` is the beginning index
 - `numToFetch` is the number of containers to fetch
 - `encoding` is `"hex"` only.
 
-**Response:**
+**Response**:
 
 - `id` is the container's ID
 - `bytes` is the byte representation of the container
@@ -210,7 +210,7 @@ index.getContainerRange({
 - `encoding` is `"hex"` only.
 - `index` is how many containers were accepted in this index before this one
 
-**Example Call:**
+**Example Call**:
 
 ```
 curl --location --request POST 'localhost:9650/ext/index/X/tx' \
@@ -227,7 +227,7 @@ curl --location --request POST 'localhost:9650/ext/index/X/tx' \
 }'
 ```
 
-**Example Response:**
+**Example Response**:
 
 ```
 {
@@ -249,7 +249,7 @@ curl --location --request POST 'localhost:9650/ext/index/X/tx' \
 
 Get a container's index.
 
-**Signature:**
+**Signature**:
 
 ```
 index.getIndex({
@@ -260,16 +260,16 @@ index.getIndex({
 }
 ```
 
-**Request:**
+**Request**:
 
 - `id` is the ID of the container to fetch
 - `encoding` is `"hex"` only.
 
-**Response:**
+**Response**:
 
 - `index` is how many containers were accepted in this index before this one
 
-**Example Call:**
+**Example Call**:
 
 ```
 curl --location --request POST 'localhost:9650/ext/index/X/tx' \
@@ -285,7 +285,7 @@ curl --location --request POST 'localhost:9650/ext/index/X/tx' \
 }'
 ```
 
-**Example Response:**
+**Example Response**:
 
 ```
 {
@@ -301,7 +301,7 @@ curl --location --request POST 'localhost:9650/ext/index/X/tx' \
 
 Get the most recently accepted container.
 
-**Signature:**
+**Signature**:
 
 ```
 index.getLastAccepted({
@@ -315,18 +315,18 @@ index.getLastAccepted({
 }
 ```
 
-**Request:**
+**Request**:
 
 - `encoding` is `"hex"` only.
 
-**Response:**
+**Response**:
 
 - `id` is the container's ID
 - `bytes` is the byte representation of the container
 - `timestamp` is the time at which this node accepted the container
 - `encoding` is `"hex"` only.
 
-**Example Call:**
+**Example Call**:
 
 ```
 curl --location --request POST 'localhost:9650/ext/index/X/tx' \
@@ -341,7 +341,7 @@ curl --location --request POST 'localhost:9650/ext/index/X/tx' \
 }'
 ```
 
-**Example Response:**
+**Example Response**:
 
 ```
 {
@@ -361,7 +361,7 @@ curl --location --request POST 'localhost:9650/ext/index/X/tx' \
 
 Returns true if the container is in this index.
 
-**Signature:**
+**Signature**:
 
 ```
 index.isAccepted({
@@ -372,16 +372,16 @@ index.isAccepted({
 }
 ```
 
-**Request:**
+**Request**:
 
 - `id` is the ID of the container to fetch
 - `encoding` is `"hex"` only.
 
-**Response:**
+**Response**:
 
 - `isAccepted` displays if the container has been accepted
 
-**Example Call:**
+**Example Call**:
 
 ```
 curl --location --request POST 'localhost:9650/ext/index/X/tx' \
@@ -397,7 +397,7 @@ curl --location --request POST 'localhost:9650/ext/index/X/tx' \
 }'
 ```
 
-**Example Response:**
+**Example Response**:
 
 ```
 {

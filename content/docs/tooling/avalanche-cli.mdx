@@ -20,13 +20,13 @@ This command requires the node's BLS key and proof of possession key, more infor
 
 To get a node's BLS key and proof of possession key, call info.getNodeID API as shown [here](/api-reference/info-api#infogetnodeid)
 
-**Usage:**
+**Usage**:
 
 ```
 avalanche primary addValidator [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
     --nodeID string                 the node ID of the validator
@@ -59,13 +59,13 @@ To add the validator to the Subnet's allow list, you first need to provide the s
 
 This command currently only works on Subnets deployed to either the Fuji Testnet or Mainnet.
 
-**Usage:**
+**Usage**:
 
 ```
 avalanche subnet addValidator [subnetName] [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
     --default-validator-params   use default weight/start/duration params for subnet validator
@@ -92,13 +92,13 @@ avalanche subnet addValidator [subnetName] [flags]
 
 This command removes a node as a validator in a Subnet.
 
-**Usage:**
+**Usage**:
 
 ```
 avalanche subnet removeValidator [subnetName] [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
     --fuji                                  remove validator in existing fuji deployment (alias for `testnet`)
@@ -119,13 +119,13 @@ The `subnet changeOwner` changes the owner of the deployed Subnet.
 
 This command currently only works on Subnets deployed to Devnet, Fuji or Mainnet.
 
-**Usage:**
+**Usage**:
 
 ```
   avalanche subnet changeOwner [subnetName] [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
     --control-keys strings       addresses that may make subnet changes
@@ -150,13 +150,13 @@ This command currently only works on Subnets deployed to Devnet, Fuji or Mainnet
 
 AvalancheGo nodes support several different configuration files. Subnets have their own Subnet config which applies to all chains/VMs in the Subnet. Each chain within the Subnet can have its own chain config. This command allows you to set both config files.
 
-**Usage:**
+**Usage**:
 
 ```
 avalanche subnet configure [subnetName] [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
     --chain-config string            path to the chain configuration
@@ -173,13 +173,13 @@ The tool supports deploying Subnet-EVM and custom VMs. You can create a custom, 
 
 By default, running the command with a `subnetName` that already exists causes the command to fail. If you'd like to overwrite an existing configuration, pass the `-f` flag.
 
-**Usage:**
+**Usage**:
 
 ```
 avalanche subnet create [subnetName] [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
     --custom                          use a custom VM template
@@ -206,13 +206,13 @@ avalanche subnet create [subnetName] [flags]
 
 The `subnet delete` command deletes an existing Subnet configuration.
 
-**Usage:**
+**Usage**:
 
 ```
 avalanche subnet delete [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
 -h, --help help for delete
@@ -226,13 +226,13 @@ At the end of the call, the command prints the RPC URL you can use to interact w
 
 Avalanche-CLI only supports deploying an individual Subnet once per network. Subsequent attempts to deploy the same Subnet to the same network (local, Fuji, Mainnet) aren't allowed. If you'd like to redeploy a Subnet locally for testing, you must first call [avalanche network clean](#network-clean) to reset all deployed chain state. Subsequent local deploys redeploy the chain with fresh state. You can deploy the same Subnet to multiple networks, so you can take your locally tested Subnet and deploy it on Fuji or Mainnet.
 
-**Usage:**
+**Usage**:
 
 ```
 avalanche subnet deploy [subnetName] [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
     --avalanchego-path string      use this avalanchego binary path
@@ -261,13 +261,13 @@ avalanche subnet deploy [subnetName] [flags]
 
 The `subnet describe` command prints the details of a Subnet configuration to the console. By default, the command prints a summary of the configuration. By providing the `--genesis` flag, the command instead prints out the raw genesis file.
 
-**Usage:**
+**Usage**:
 
 ```
 avalanche subnet describe [subnetName] [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
 -g, --genesis   Print the genesis to the console directly instead of the summary
@@ -280,13 +280,13 @@ The `subnet export` command write the details of an existing Subnet deploy to a 
 
 The command prompts for an output path. You can also provide one with the `--output` flag.
 
-**Usage:**
+**Usage**:
 
 ```
 avalanche subnet export [subnetName] [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
 -h, --help            help for export
@@ -303,13 +303,13 @@ This command supports importing from a file created on another computer, or impo
 
 To import from a file, you can optionally provide the path as a command-line argument. Alternatively, running the command without any arguments triggers an interactive wizard. To import from a repository, go through the wizard. By default, an imported Subnet doesn't overwrite an existing Subnet with the same name. To allow overwrites, provide the `--force` flag.
 
-**Usage:**
+**Usage**:
 
 ```
 avalanche subnet import file [subnetPath] [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
     --branch string   the repo branch to use if downloading a new repo
@@ -325,13 +325,13 @@ The `subnet import public` command imports a Subnet configuration from a running
 
 The genesis file should be available from the disk for this to work. By default, an imported Subnet doesn't overwrite an existing Subnet with the same name. To allow overwrites, provide the `--force` flag.
 
-**Usage:**
+**Usage**:
 
 ```
 avalanche subnet import public [subnetPath] [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
     --custom                     use a custom VM template
@@ -357,13 +357,13 @@ After you update your validator's config, you need to restart your validator man
 
 This command currently only supports Subnets deployed on the Fuji Testnet and Mainnet.
 
-**Usage:**
+**Usage**:
 
 ```
 avalanche subnet join [subnetName] [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
     --avalanchego-config string   file path of the avalanchego config file
@@ -384,13 +384,13 @@ avalanche subnet join [subnetName] [flags]
 
 The `subnet list` command prints the names of all created Subnet configurations. Without any flags, it prints some general, static information about the Subnet. With the `--deployed` flag, the command shows additional information including the VMID, BlockchainID and SubnetID.
 
-**Usage:**
+**Usage**:
 
 ```
 avalanche subnet list [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
     --deployed   show additional deploy information
@@ -401,13 +401,13 @@ avalanche subnet list [flags]
 
 The `subnet publish` command publishes the Subnet's VM to a repository.
 
-**Usage:**
+**Usage**:
 
 ```
 avalanche subnet publish [subnetName] [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
     --alias string              We publish to a remote repo, but identify the repo locally under a user-provided alias (e.g. myrepo).
@@ -423,13 +423,13 @@ avalanche subnet publish [subnetName] [flags]
 
 The `subnet stats` command prints validator statistics for the given Subnet.
 
-**Usage:**
+**Usage**:
 
 ```
 avalanche subnet stats [subnetName] [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
     --fuji fuji         print stats on fuji (alias for `testnet`)
@@ -442,7 +442,7 @@ avalanche subnet stats [subnetName] [flags]
 
 The `subnet vmid` command prints the virtual machine ID (VMID) for the given Subnet.
 
-**Usage:**
+**Usage**:
 
 ```
 avalanche subnet vmid [subnetName]
@@ -455,13 +455,13 @@ Elastic Subnet[​](#elastic-subnet "Direct link to heading")
 
 This command transforms your permissioned Subnet into an Elastic Subnet (NOTE: this action is irreversible).
 
-**Usage:**
+**Usage**:
 
 ```
 avalanche subnet elastic [subnetName] [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
     --default                               If true, use default elastic subnet config values
@@ -488,13 +488,13 @@ avalanche subnet elastic [subnetName] [flags]
 
 This command adds a node as a permissionless validator in an Elastic Subnet.
 
-**Usage:**
+**Usage**:
 
 ```
 avalanche subnet join [subnetName] --elastic [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
     --fuji                                  add permissionless validator in existing fuji deployment (alias for `testnet`)
@@ -514,13 +514,13 @@ avalanche subnet join [subnetName] --elastic [flags]
 
 This command delegates stake to a permissionless validator in an Elastic Subnet.
 
-**Usage:**
+**Usage**:
 
 ```
 avalanche subnet addPermissionlessDelegator [subnetName] [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
     --fuji                                  add permissionless delegator in existing fuji deployment (alias for `testnet`)
@@ -549,13 +549,13 @@ For public networks (Fuji Testnet or Mainnet), to complete this process, you mus
 
 After you update your validator's configuration, you need to restart your validator manually. If you provide the `--avalanchego-chain-config-dir` flag, this command attempts to write the upgrade file at that path. Refer to [this doc](/nodes/configure/configs--flags#subnet-chain-configs) for related documentation.
 
-**Usage:**
+**Usage**:
 
 ```
 avalanche subnet upgrade apply [subnetName] [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
     --avalanchego-chain-config-dir string   avalanchego's chain config file directory (default "/Users/connor/.avalanchego/chains")
@@ -573,13 +573,13 @@ avalanche subnet upgrade apply [subnetName] [flags]
 
 Export the upgrade bytes file to a location of choice on disk.
 
-**Usage:**
+**Usage**:
 
 ```
 avalanche subnet upgrade export [subnetName] [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
     --force                     If true, overwrite a possibly existing file without prompting
@@ -591,13 +591,13 @@ avalanche subnet upgrade export [subnetName] [flags]
 
 The `subnet upgrade generate` command builds a new upgrade.json file to customize your Subnet. It guides the user through the process using an interactive wizard.
 
-**Usage:**
+**Usage**:
 
 ```
 avalanche subnet upgrade generate [subnetName] [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
 -h, --help   help for generate
@@ -607,13 +607,13 @@ avalanche subnet upgrade generate [subnetName] [flags]
 
 Import the upgrade bytes file into the local environment.
 
-**Usage:**
+**Usage**:
 
 ```
 avalanche subnet upgrade import [subnetName] [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
 -h, --help                      help for import
@@ -624,13 +624,13 @@ avalanche subnet upgrade import [subnetName] [flags]
 
 Print the upgrade.json file content.
 
-**Usage:**
+**Usage**:
 
 ```
 avalanche subnet upgrade print [subnetName] [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ### Subnet Upgrade VM[​](#subnet-upgrade-vm "Direct link to heading")
 
@@ -638,13 +638,13 @@ The `subnet upgrade vm` command enables the user to upgrade their Subnet's VM bi
 
 The command walks the user through an interactive wizard. The user can skip the wizard by providing command line flags.
 
-**Usage:**
+**Usage**:
 
 ```
 avalanche subnet upgrade export [subnetName] [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
     --deployed   show additional deploy information
@@ -668,13 +668,13 @@ The `node create` command sets up a validator on a cloud server of your choice. 
 
 The created node will be part of group of validators called `<clusterName>` and users can call node commands with `<clusterName>` so that the command will apply to all nodes in the cluster.
 
-**Usage:**
+**Usage**:
 
 ```
   avalanche node create [clusterName] [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
     --alternative-key-pair-name string         key pair name to use if default one generates conflicts
@@ -715,25 +715,25 @@ The `node devnet` command suite provides a collection of commands related to dev
 
 The `node devnet deploy` command deploys a Subnet into a devnet cluster, creating Subnet and blockchain TXs for it. It saves the deploy info both locally and remotely.
 
-**Usage:**
+**Usage**:
 
 ```
   avalanche node devnet deploy [clusterName] [subnetName] [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ### Node Devnet Wiz[​](#node-devnet-wiz "Direct link to heading")
 
 The `node devnet wiz` command creates a devnet and deploys, sync and validate a Subnet into it. It creates the Subnet if so needed.
 
-**Usage:**
+**Usage**:
 
 ```
   avalanche node devnet wiz [clusterName] [subnetName] [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
     --alternative-key-pair-name string         key pair name to use if default one generates conflicts
@@ -785,13 +785,13 @@ The `node devnet wiz` command creates a devnet and deploys, sync and validate a 
 </Callout>
 The `node list` command lists all clusters together with their nodes.
 
-**Usage:**
+**Usage**:
 
 ```
   avalanche node list [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ### Node Ssh[​](#node-ssh "Direct link to heading")
 
@@ -801,13 +801,13 @@ The `node list` command lists all clusters together with their nodes.
 </Callout>
 The `node ssh` command execute a given command using ssh on all nodes in the cluster. If no command is given, just prints the ssh command line to be used to connect to each node.
 
-**Usage:**
+**Usage**:
 
 ```
   avalanche node ssh [clusterName] [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
 -h, --help            help for status
@@ -823,13 +823,13 @@ The `node status` command gets the bootstrap status of all nodes in a cluster wi
 
 To get the bootstrap status of a node with a Subnet, use the `--subnet` flag.
 
-**Usage:**
+**Usage**:
 
 ```
   avalanche node status [clusterName] [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
 -h, --help            help for status
@@ -846,13 +846,13 @@ The `node stop` command stops a running node in cloud server
 
 Note that a stopped node may still incur cloud server storage fees.
 
-**Usage:**
+**Usage**:
 
 ```
   avalanche node stop [clusterName] [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
     --authorize-access   authorize CLI to release cloud resources
@@ -868,13 +868,13 @@ Note that a stopped node may still incur cloud server storage fees.
 </Callout>
 The `node sync` command enables all nodes in a cluster to be bootstrapped to a Subnet. You can check the Subnet bootstrap status by calling avalanche `node status <clusterName> --subnet <subnetName>`
 
-**Usage:**
+**Usage**:
 
 ```
   avalanche node sync [clusterName] [subnetName] [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ### Node Update[​](#node-update "Direct link to heading")
 
@@ -892,13 +892,13 @@ The `node update` command suite provides a collection of commands for nodes to u
 </Callout>
 The `node update subnet` command updates all nodes in a cluster with latest Subnet configuration and You can check the updated Subnet bootstrap status by calling avalanche `node status <clusterName> --subnet <subnetName>`
 
-**Usage:**
+**Usage**:
 
 ```
   avalanche node update subnet [clusterName] [subnetName] [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
 -h, --help   help for subnet
@@ -920,13 +920,13 @@ The `node validate` command suite provides a collection of commands for nodes to
 </Callout>
 The `node validate primary` command enables all nodes in a cluster to be validators of Primary Network.
 
-**Usage:**
+**Usage**:
 
 ```
   avalanche node validate primary [clusterName] [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
 -f, --fuji testnet              set up validator in fuji (alias to testnet
@@ -948,13 +948,13 @@ The `node validate primary` command enables all nodes in a cluster to be validat
 </Callout>
 The `node validate subnet` command enables all nodes in a cluster to be validators of a Subnet. If the command is run before the nodes are Primary Network validators, the command will first make the nodes Primary Network validators before making them Subnet validators. If The command is run before the nodes are bootstrapped on the Primary Network, the command will fail. You can check the bootstrap status by calling `avalanche node status <clusterName>`. If The command is run before the nodes are synced to the Subnet, the command will fail. You can check the Subnet sync status by calling `avalanche node status <clusterName> --subnet <subnetName>`.
 
-**Usage:**
+**Usage**:
 
 ```
   avalanche node validate subnet [clusterName] [subnetName] [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
     --default-validator-params   use default weight/start/duration params for subnet validator
@@ -985,13 +985,13 @@ Nodes created by `Avalanche-CLI` are protected by Cloud Security Group and only 
 
 Secure SSH protocol is used to communicate with cloud instances. `node whitelist` command authorizes SSH public key on all nodes in the cluster if --ssh params is specified. Please keep your SSH private keys safe and secure, only share public keys to grant shell access to cloud instances running `avalanchego`.
 
-**Usage:**
+**Usage**:
 
 ```
   avalanche node whitelist <clusterName> [--ip <IP>] [--ssh "<sshPubKey>"] [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
   -h, --help         help for whitelist
@@ -1009,7 +1009,7 @@ The `node export` command exports cluster configuration including their nodes to
 
 Exported cluster configuration without secrets it can be imported by another user using `node import` command.
 
-**Usage:**
+**Usage**:
 
 ```
   avalanche node export [clusterName] [flags]
@@ -1031,7 +1031,7 @@ The `node import` command imports cluster configuration and cluster nodes from a
 
 This command is useful with `node whitelist` command. With your SSH public key and IP whitelisted by cluster owner you will be able to execute commands and use `avalanche-cli` to manage this cluster. Please note, that this imported cluster will be considered as EXTERNAL by `avalanche-cli` so some commands affecting cloud nodes like `node create` or `node destroy` will be not applicable for it.
 
-**Usage:**
+**Usage**:
 
 ```
   avalanche node import [clusterName] [flags]
@@ -1051,7 +1051,7 @@ The `node resize` command can be used to resize cluster instance size and/or siz
 
 Please note that disk resize operation can affect disk performance during cloud operation to resize it. Please note that instance resize operation will replace cluster instances one by one, which might affect cluster stability.
 
-**Usage:**
+**Usage**:
 
 ```
   avalanche node resize [clusterName] [flags]
@@ -1076,13 +1076,13 @@ This network currently supports multiple, concurrently deployed Subnets.
 
 The `network clean` command shuts down your local, multi-node network. All deployed Subnets shutdown and delete their state. You can restart the network by deploying a new Subnet configuration.
 
-**Usage:**
+**Usage**:
 
 ```
 avalanche network clean [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
     --hard   Also clean downloaded avalanchego and plugin binaries
@@ -1095,13 +1095,13 @@ The `network start` command starts a local, multi-node Avalanche network on your
 
 By default, the command loads the default snapshot. If you provide the `--snapshot-name` flag, the network loads that snapshot instead. The command fails if the local network is already running.
 
-**Usage:**
+**Usage**:
 
 ```
 avalanche network start [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
     --avalanchego-path string      use this avalanchego binary path
@@ -1114,13 +1114,13 @@ avalanche network start [flags]
 
 The `network status` command prints whether or not a local Avalanche network is running and some basic stats about the network.
 
-**Usage:**
+**Usage**:
 
 ```
 avalanche network status [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
 -h, --help   help for status
@@ -1132,13 +1132,13 @@ The `network stop` command shuts down your local, multi-node network.
 
 All deployed Subnets shutdown gracefully and save their state. If you provide the `--snapshot-name` flag, the network saves its state under this named snapshot. You can reload this snapshot with `network start --snapshot-name <snapshotName>`. Otherwise, the network saves to the default snapshot, overwriting any existing state. You can reload the default snapshot with `network start`.
 
-**Usage:**
+**Usage**:
 
 ```
 avalanche network stop [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
 -h, --help                   help for stop
@@ -1154,13 +1154,13 @@ The `transaction` command suite provides all of the utilities required to sign m
 
 The `transaction commit` command commits a transaction by submitting it to the P-Chain.
 
-**Usage:**
+**Usage**:
 
 ```
 avalanche transaction commit [subnetName] [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
 -h, --help                       help for commit
@@ -1171,13 +1171,13 @@ avalanche transaction commit [subnetName] [flags]
 
 The `transaction sign` command signs a multisig transaction.
 
-**Usage:**
+**Usage**:
 
 ```
 avalanche transaction sign [subnetName] [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
 -h, --help                       help for sign
@@ -1202,13 +1202,13 @@ The command works by generating a secp256 key and storing it with the provided `
 
 If you'd like to import an existing key instead of generating one from scratch, provide the `--file` flag.
 
-**Usage:**
+**Usage**:
 
 ```
 avalanche key create [keyName] [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
     --file string   import the key from an existing key file
@@ -1222,13 +1222,13 @@ The `key delete` command deletes an existing signing key.
 
 To delete a key, provide the `keyName`. The command prompts for confirmation before deleting the key. To skip the confirmation, provide the `--force` flag.
 
-**Usage:**
+**Usage**:
 
 ```
 avalanche key delete [keyName] [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
 -f, --force   delete the key without confirmation
@@ -1241,11 +1241,11 @@ The `key export` command exports a created signing key. You can use an exported 
 
 By default, the tool writes the hex encoded key to stdout. If you provide the `--output` flag, the command writes the key to a file of your choosing.
 
-**Usage:**
+**Usage**:
 
 `avalanche key export [keyName] [flags]`
 
-**Flags:**
+**Flags**:
 
 ```
 -h, --help            help for export
@@ -1256,13 +1256,13 @@ By default, the tool writes the hex encoded key to stdout. If you provide the `-
 
 The `key list` command prints information for all stored signing keys or for the ledger addresses associated to certain indices.
 
-**Usage:**
+**Usage**:
 
 ```
 avalanche key list [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
 -a, --all-networks    list all network addresses
@@ -1283,13 +1283,13 @@ avalanche key list [flags]
 
 The `key transfer` command allows to transfer funds between stored keys or ledger addresses.
 
-**Usage:**
+**Usage**:
 
 ```
 avalanche key transfer [options] [flags]
 ```
 
-**Flags:**
+**Flags**:
 
 ```
 -o, --amount float                 amount to send or receive (AVAX units)

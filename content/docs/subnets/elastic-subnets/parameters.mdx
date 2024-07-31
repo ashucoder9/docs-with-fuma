@@ -1,9 +1,11 @@
 ---
-title: Elastic Subnets Parameters
-sidebarTitle: Parameters
+title: Parameters
+description: Learn about the different parameters of Elastic Subnets.
 ---
 
-Avalanche Permissioned Subnets can be turned into Elastic Subnets via the [`TransformSubnetTx`](/api-reference/standards/guides/banff-changes#transformsubnettx) transaction. `TransformSubnetTx` specifies a set of structural parameters for the Elastic Subnet. This reference describes these structural parameters and illustrates the constraints they must satisfy.
+Avalanche Permissioned Subnets can be turned into Elastic Subnets via the `TransformSubnetTx` transaction. `TransformSubnetTx` specifies a set of structural parameters for the Elastic Subnet.
+
+This reference document describes these structural parameters and illustrates the constraints they must satisfy.
 
 ## Elastic Subnet Parameters
 
@@ -36,7 +38,9 @@ A Subnet supply can vary in time but it should be no larger than the configured 
 
 ### `MinConsumptionRate`
 
-`MinConsumptionRate` has type `uint64` and it's the minimal rate a validator can earn if the `UptimeRequirement` is satisfied. If `StakingPeriod` == `MinStakeDuration`, the validator will earn the `MinConsumptionRate`. You can find more details about it in the [Reward Formula section](#reward-formula). The following constraints apply:
+`MinConsumptionRate` has type `uint64` and it's the minimal rate a validator can earn if the `UptimeRequirement` is satisfied. If `StakingPeriod` == `MinStakeDuration`, the validator will earn the `MinConsumptionRate`.
+
+You can find more details about it in the [Reward Formula section](#reward-formula). The following constraints apply:
 
 - `MinConsumptionRate` must be smaller or equal to `PercentDenominator`.
 
@@ -44,7 +48,9 @@ See [Notes on Percentages](#notes-on-percentages) section to understand `Percent
 
 ### `MaxConsumptionRate`
 
-`MaxConsumptionRate` has type `uint64` and it's the maximal rate a validator can earn if the `UptimeRequirement` is satisfied. If `StakingPeriod` == `MaxStakeDuration` == `MintingPeriod`, the validator will earn the `MaxConsumptionRate`. You can find more details about it in the [Reward Formula section](#reward-formula). The following constraints apply:
+`MaxConsumptionRate` has type `uint64` and it's the maximal rate a validator can earn if the `UptimeRequirement` is satisfied. If `StakingPeriod` == `MaxStakeDuration` == `MintingPeriod`, the validator will earn the `MaxConsumptionRate`.
+
+You can find more details about it in the [Reward Formula section](#reward-formula). The following constraints apply:
 
 - `MaxConsumptionRate` must be larger or equal to `MinConsumptionRate`.
 - `MaxConsumptionRate` must be smaller or equal to `PercentDenominator`.
@@ -80,7 +86,7 @@ See [Notes on Percentages](#notes-on-percentages) section to understand `Percent
 
 `GlobalMaxStakeDuration` is defined in genesis and applies to both the Primary Network and all Subnets.
 
-Its Mainnet value is 365x24xtime.Hour365 \\times 24 \\times time.Hour.
+Its Mainnet value is $365 \times 24 \times time.Hour$.
 
 ### `MinDelegationFee`
 
@@ -88,7 +94,7 @@ Its Mainnet value is 365x24xtime.Hour365 \\times 24 \\times time.Hour.
 
 - `MinDelegationFee` must be smaller or equal to `PercentDenominator`.
 
-The `MinDelegationFee` rate applies to Primary Network as well. Its Mainnet value is 2%2\\%.
+The `MinDelegationFee` rate applies to Primary Network as well. Its Mainnet value is $2\%$.
 
 ### `MinDelegatorStake`
 
@@ -112,39 +118,61 @@ See [Notes on Percentages](#notes-on-percentages) section to understand `Percent
 
 ## Reward Formula
 
-Consider an Elastic Subnet validator which stakes a StakeStake amount `AssetID` for StakingPeriodStakingPeriod seconds.
+Consider an Elastic Subnet validator which stakes a $Stake$ amount `AssetID` for $StakingPeriod$ seconds.
 
-Assume that at the start of the staking period there is a SupplySupply amount of `AssetID` in the Subnet. The maximum amount of Subnet asset is MaximumSupplyMaximumSupply `AssetID`.
+Assume that at the start of the staking period there is a $Supply$ amount of `AssetID` in the Subnet. The maximum amount of Subnet asset is $MaximumSupply$ `AssetID`.
 
 Then at the end of its staking period, a responsive Elastic Subnet validator receives a reward calculated as follows:
 
-```math
-Reward\=(MaximumSupply-Supply)*StakeSupply*StakingPeriodMintingPeriod*EffectiveConsumptionRateReward = \\left(MaximumSupply - Supply \\right) \\times \\frac{`Stake`}{Supply} \\times \\frac\{Staking Period}\{Minting Period} \\times EffectiveConsumptionRate
-```
+$$
+Reward = \left(MaximumSupply - Supply \right) \times \frac{Stake}{Supply} \times \frac{Staking Period}{Minting Period} \times EffectiveConsumptionRate
+$$
 
-where:
+where,
 
-```math
-MaximumSupply-Supply\=the number of tokens left to emit in the subnetMaximumSupply - Supply = \\text\{the number of tokens left to emit in the subnet} StakeSupply\=the individual's stake as a percentage of all available tokens in the network\\frac{`Stake`}{Supply} = \\text\{the individual's stake as a percentage of all available tokens in the network} StakingPeriodMintingPeriod\=time tokens are locked up divided bythe MintingPeriod\\frac{StakingPeriod}{MintingPeriod} = \\text\{time tokens are locked up divided by the $MintingPeriod$} MintingPeriod is one year as configured by the Primary Network).\\text\{$MintingPeriod$ is one year as configured by the Primary Network).} EffectiveConsumptionRate\=EffectiveConsumptionRate = MinConsumptionRatePercentDenominator*(1-StakingPeriodMintingPeriod)+MaxConsumptionRatePercentDenominator*StakingPeriodMintingPeriod\\frac{MinConsumptionRate}{PercentDenominator} \\times \\left(1- \\frac\{Staking Period}\{Minting Period}\\right) + \\frac{MaxConsumptionRate}{PercentDenominator} \\times \\frac\{Staking Period}\{Minting Period}
-```
+$$
+MaximumSupply - Supply = \text{the number of tokens left to emit in the subnet}
+$$
 
-Note that StakingPeriodStakingPeriod is the staker's entire staking period, not just the staker's uptime, that is the aggregated time during which the staker has been responsive. The uptime comes into play only to decide whether a staker should be rewarded; to calculate the actual reward only the staking period duration is taken into account.
+$$
+\frac{Stake}{Supply} = \text{the individual's stake as a percentage of all available tokens in the network}
+$$
 
-EffectiveConsumptionRateEffectiveConsumptionRate is the rate at which the validator is rewarded based on StakingPeriodStakingPeriod selection.
+$$
+\frac{StakingPeriod}{MintingPeriod} = \text{time tokens are locked up divided by the $MintingPeriod$}
+$$
 
-MinConsumptionRateMinConsumptionRate and MaxConsumptionRateMaxConsumptionRate bound EffectiveConsumptionRateEffectiveConsumptionRate:
+$$
+\text{$MintingPeriod$ is one year as configured by the Primary Network).}
+$$
 
-MinConsumptionRate≤EffectiveConsumptionRate≤MaxConsumptionRateMinConsumptionRate \\leq EffectiveConsumptionRate \\leq MaxConsumptionRate
+$$
+EffectiveConsumptionRate =
+$$
 
-The larger StakingPeriodStakingPeriod is, the closer EffectiveConsumptionRateEffectiveConsumptionRate is to MaxConsumptionRateMaxConsumptionRate. The smaller StakingPeriodStakingPeriod is, the closer EffectiveConsumptionRateEffectiveConsumptionRate is to MinConsumptionRateMinConsumptionRate.
+$$
+\frac{MinConsumptionRate}{PercentDenominator} \times \left(1- \frac{Staking Period}{Minting Period}\right) + \frac{MaxConsumptionRate}{PercentDenominator} \times \frac{Staking Period}{Minting Period}
+$$
 
-A staker achieves the maximum reward for its stake if StakingPeriodStakingPeriod = MintingPeriodMinting Period. The reward is:
+Note that $StakingPeriod$ is the staker's entire staking period, not just the staker's uptime, that is the aggregated time during which the staker has been responsive. The uptime comes into play only to decide whether a staker should be rewarded; to calculate the actual reward only the staking period duration is taken into account.
 
-```math
-MaxReward\=(MaximumSupply-Supply)*StakeSupply*MaxConsumptionRatePercentDenominatorMax Reward = \\left(MaximumSupply - Supply \\right) \\times \\frac{`Stake`}{Supply} \\times \\frac{MaxConsumptionRate}{PercentDenominator}
-```
+$EffectiveConsumptionRate$ is the rate at which the validator is rewarded based on $StakingPeriod$ selection.
 
-Note that this formula is the same as the reward formula at the top of this section because EffectiveConsumptionRateEffectiveConsumptionRate = MaxConsumptionRateMaxConsumptionRate.
+$MinConsumptionRate$ and $MaxConsumptionRate$ bound $EffectiveConsumptionRate$:
+
+$$
+MinConsumptionRate \leq EffectiveConsumptionRate \leq MaxConsumptionRate
+$$
+
+The larger $StakingPeriod$ is, the closer $EffectiveConsumptionRate$ is to $MaxConsumptionRate$. The smaller $StakingPeriod$ is, the closer $EffectiveConsumptionRate$ is to $MinConsumptionRate$.
+
+A staker achieves the maximum reward for its stake if $StakingPeriod$ = $Minting Period$. The reward is:
+
+$$
+Max Reward = \left(MaximumSupply - Supply \right) \times \frac{Stake}{Supply} \times \frac{MaxConsumptionRate}{PercentDenominator}
+$$
+
+Note that this formula is the same as the reward formula at the top of this section because $EffectiveConsumptionRate$ = $MaxConsumptionRate$.
 
 The reward formula above is used in the Primary Network to calculate stakers reward. For reference, you can find Primary network parameters in [the section below](#primary-network-parameters-on-mainnet).
 
@@ -152,17 +180,17 @@ The reward formula above is used in the Primary Network to calculate stakers rew
 
 There are bounds set of the maximum amount of delegators' stake that a validator can receive.
 
-The maximum weight MaxWeightMaxWeight a validator ValidatorValidator can have is:
+The maximum weight $MaxWeight$ a validator $Validator$ can have is:
 
-```math
-MaxWeight\=min(Validator.Weight*MaxValidatorWeightFactor,MaxValidatorStake) MaxWeight = \\min(Validator.Weight \\times MaxValidatorWeightFactor, MaxValidatorStake)
-```
+$$
+MaxWeight = \min(Validator.Weight \times MaxValidatorWeightFactor, MaxValidatorStake)
+$$
 
-where MaxValidatorWeightFactorMaxValidatorWeightFactor and MaxValidatorStakeMaxValidatorStake are the Elastic Subnet Parameters described above.
+where $MaxValidatorWeightFactor$ and $MaxValidatorStake$ are the Elastic Subnet Parameters described above.
 
-A delegator won't be added to a validator if the combination of their weights and all other validator's delegators' weight is larger than MaxWeightMaxWeight. Note that this must be true at any point in time.
+A delegator won't be added to a validator if the combination of their weights and all other validator's delegators' weight is larger than $MaxWeight$. Note that this must be true at any point in time.
 
-Note that setting MaxValidatorWeightFactorMaxValidatorWeightFactor to 1 disables delegation since the MaxWeight\=Validator.WeightMaxWeight = Validator.Weight.
+Note that setting $MaxValidatorWeightFactor$ to 1 disables delegation since the $MaxWeight = Validator.Weight$.
 
 ## Notes on Percentages
 

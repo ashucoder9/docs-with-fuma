@@ -30,7 +30,7 @@ Adding a New Subnet[​](#adding-a-new-subnet "Direct link to heading")
 
 You can also integrate a new Subnet on the live [faucet](https://faucet.avax.network/) with just a few lines of configuration parameters. All you have to do is make a PR on the [Avalanche Faucet](https://github.com/ava-labs/avalanche-faucet) git repository with the Subnet's information. The following parameters are required.
 
-```
+```json
 {
     "ID": string,
     "NAME": string,
@@ -78,15 +78,14 @@ You can also deploy and build your faucet by using the [Avalanche Faucet](https:
 
 Clone this repository at your preferred location.
 
-```
+```bash
 git clone https://github.com/ava-labs/avalanche-faucet
 ```
 
 <Callout type="info">
-
 The repository cloning method used is HTTPS, but SSH can be used too:
 
-`git clone [[email protected]](https://docs.avax.network/cdn-cgi/l/email-protection):ava-labs/avalanche-faucet.git`
+`git clone [[email protected]](https://docs.avax.network/cdn-cgi/l/email-protection):ava-labs/avalanche-faucet.git`
 
 You can find more about SSH and how to use it [here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/about-ssh).
 </Callout>
@@ -95,7 +94,7 @@ You can find more about SSH and how to use it [here](https://docs.github.com/en/
 
 We need to configure our application with the server API endpoints and CAPTCHA site keys. All the client-side configurations are there in the `client/src/config.json` file. Since there are no secrets on the client-side, we do not need any environment variables. Update the config files according to your need.
 
-```
+```json
 {
   "banner": "/banner.png",
   "apiBaseEndpointProduction": "/api/",
@@ -126,7 +125,7 @@ Setup the environment variable with your private key and reCAPTCHA secret. Make 
 
 If you have funds on the same address on every chain, then you can specify them with the single variable`PK`. But if you have funds on different addresses on different chains, then you can provide each of the private keys against the ID of the chain, as shown below.
 
-```
+```bash
 C="C chain private key"
 WAGMI="Wagmi chain private key"
 PK="Sender Private Key with Funds in it"
@@ -139,7 +138,7 @@ CAPTCHA_SECRET="Google reCAPTCHA Secret"
 
 You can create a faucet server for any EVM chain by making changes in the `config.json` file. Add your chain configuration as shown below in the `evmchains` object. Configuration for Fuji's C-Chain and WAGMI chain is shown below for example.
 
-```
+```json
 "evmchains": [
     {
         "ID": "C",
@@ -189,7 +188,7 @@ This server will expose the following APIs
 
 The `/health` API will always return a response with a `200` status code. This endpoint can be used to know the health of the server.
 
-```
+```bash
 curl http://localhost:8000/health
 ```
 
@@ -199,13 +198,13 @@ Response
 
 This API will be used for fetching the faucet address.
 
-```
+```bash
 curl http://localhost:8000/api/faucetAddress?chain=C
 ```
 
-It will give the following response
+It will give the following response:
 
-```
+```bash
 0x3EA53fA26b41885cB9149B62f0b7c0BAf76C78D4
 ```
 
@@ -213,37 +212,37 @@ It will give the following response
 
 This API will be used for fetching the faucet address.
 
-```
+```bash
 curl http://localhost:8000/api/getBalance?chain=C
 ```
-
-It will give the following response
 
 #### Send Token[​](#send-token "Direct link to heading")
 
 This API endpoint will handle token requests from users. It will return the transaction hash as a receipt of the faucet drip.
 
-```
+```bash
 curl -d '{
-        "address": "0x3EA53fA26b41885cB9149B62f0b7c0BAf76C78D4"
-        "chain": "C"
+    "address": "0x3EA53fA26b41885cB9149B62f0b7c0BAf76C78D4"
+    "chain": "C"
 }' -H 'Content-Type: application/json' http://localhost:8000/api/sendToken
 ```
 
-Send token API requires a CAPTCHA response token that is generated using the CAPTCHA site key on the client-side. Since we can't generate and pass this token while making a curl request, we have to disable the CAPTCHA verification for testing purposes. You can find the steps to disable it in the next sections. The response is shown below
+Send token API requires a CAPTCHA response token that is generated using the CAPTCHA site key on the client-side.
 
-```
+Since we can't generate and pass this token while making a curl request, we have to disable the CAPTCHA verification for testing purposes. You can find the steps to disable it in the next sections. The response is shown below
+
+```json
 {
     "message": "Transaction successful on Avalanche C Chain!",
     "txHash": "0x3d1f1c3facf59c5cd7d6937b3b727d047a1e664f52834daf20b0555e89fc8317"
 }
 ```
 
-### Rate Limiters (Important)[​](#rate-limiters-important "Direct link to heading")
+### Rate Limiters[​](#rate-limiters-important "Direct link to heading")
 
 The rate limiters are applied on the global (all endpoints) as well as on the `/api/sendToken` API. These can be configured from the `config.json` file. Rate limiting parameters for chains are passed in the chain configuration as shown above.
 
-```
+```json
 "GLOBAL_RL": {
     "ID": "GLOBAL",
     "RATELIMIT": {
@@ -276,12 +275,14 @@ Therefore it is advised to the users, to avoid using any proxy for accessing app
 
 So, if you want to deploy this faucet, and have some reverse proxies in between, then you should configure this inside the `GLOBAL_RL` key of the `config.json` file. If this is not configured properly, then the users might get rate-limited very frequently, since the server-side proxy's IP addresses are being viewed as the client's IP. You can verify this in the code [here](https://github.com/ava-labs/avalanche-faucet/blob/23eb300635b64130bc9ce10d9e894f0a0b3d81ea/middlewares/rateLimiter.ts#L25).
 
-```
+```json
 "GLOBAL_RL": {
     "ID": "GLOBAL",
     "RATELIMIT": {
         "REVERSE_PROXIES": 4,
         ...
+    }
+}
 ```
 
 ![faucet 7](/images/faucet3.png)
@@ -296,9 +297,9 @@ You can disable these CAPTCHA verifications and rate limiters for testing the pu
 
 ### Disabling Rate Limiters[​](#disabling-rate-limiters "Direct link to heading")
 
-Comment or remove these 2 lines from the `server.ts` file
+Comment or remove these two lines from the `server.ts` file
 
-```
+```ts title="server.ts"
 new RateLimiter(app, [GLOBAL_RL]);
 new RateLimiter(app, evmchains);
 ```
@@ -337,7 +338,7 @@ Follow the steps to run this application in a Docker container.
 
 Docker images can be served as the built versions of our application, that can be used to deploy on Docker container.
 
-```
+```bash
 docker build . -t faucet-image
 ```
 
@@ -345,7 +346,7 @@ docker build . -t faucet-image
 
 Now we can create any number of containers using the above `faucet` image. We also have to supply the `.env` file or the environment variables with the secret keys to create the container. Once the container is created, these variables and configurations will be persisted and can be easily started or stopped with a single command.
 
-```
+```bash
 docker run -p 3000:8000 --name faucet-container --env-file ../.env faucet-image
 ```
 
@@ -357,7 +358,7 @@ This will start our faucet application in a Docker container at port 3000 (port 
 
 You can easily stop the container using the following command
 
-```
+```bash
 docker stop faucet-container
 ```
 
@@ -365,7 +366,7 @@ docker stop faucet-container
 
 To restart the container, use the following command
 
-```
+```bash
 docker start faucet-container
 ```
 
@@ -404,12 +405,8 @@ This is not just it. Using the buttons shown below, you can go to the Subnet exp
 
 Errors are not expected, but if you are facing some of the errors shown, then you could try troubleshooting as shown below. If none of the troubleshooting works, reach us through [Discord](https://discord.com/channels/578992315641626624/).
 
-- **Too many requests. Please try again after X minutes** This is a rate-limiting message. Every Subnet can set its drop limits. The above message suggests that you have reached your drop limit, that is the number of times you could request coins within the window of X minutes. You should try requesting after X minutes. If you are facing this problem, even when you are requesting for the first time in the window, you may be behind some proxy, Wi-Fi, or VPN service that is also being used by some other user.
-    
-- **CAPTCHA verification failed! Try refreshing** We are using v3 of [Google's reCAPTCHA](https://developers.google.com/recaptcha/docs/v3). This version uses scores between 0 and 1 to rate the interaction of humans with the site, with 0 being the most suspicious one. You do not have to solve any puzzle or mark the **I am not a Robot** checkbox. The score will be automatically calculated. We want our users to score at least 0.3 to use the faucet. This is configurable, and we will update the threshold after having broader data. But if you are facing this issue, then you can try refreshing your page, disabling ad-blockers, or switching off any VPN. You can follow this [guide](https://2captcha.com/blog/google-doesnt-accept-recaptcha-answers) to get rid of this issue.
-    
-- **Internal RPC error! Please try after sometime** This is an internal error in the Subnet's node, on which we are making an RPC for sending transactions. A regular check will update the RPC's health status every 30 seconds (default) or whatever is set in the configuration. This may happen only in rare scenarios and you cannot do much about it, rather than waiting.
-    
-- **Timeout of 10000ms exceeded** There could be many reasons for this message. It could be an internal server error, or the request didn't receive by the server, slow internet, etc. You could try again after some time, and if the problem persists, then you should raise this issue on our [Discord](https://discord.com/channels/578992315641626624/) server.
-    
-- **Couldn't see any transaction status on explorer** The transaction hash that you get for each drop is pre-computed using the expected nonce, amount, and receiver's address. Though transactions on Avalanche are near-instant, the explorer may take time to index those transactions. You should wait for a few more seconds, before raising any issue or reaching out to us.
+1. **Too many requests. Please try again after X minutes**: This is a rate-limiting message. Every Subnet can set its drop limits. The above message suggests that you have reached your drop limit, that is the number of times you could request coins within the window of X minutes. You should try requesting after X minutes. If you are facing this problem, even when you are requesting for the first time in the window, you may be behind some proxy, Wi-Fi, or VPN service that is also being used by some other user.  
+2. **CAPTCHA verification failed! Try refreshing**: We are using v3 of [Google's reCAPTCHA](https://developers.google.com/recaptcha/docs/v3). This version uses scores between 0 and 1 to rate the interaction of humans with the site, with 0 being the most suspicious one. You do not have to solve any puzzle or mark the **I am not a Robot** checkbox. The score will be automatically calculated. We want our users to score at least 0.3 to use the faucet. This is configurable, and we will update the threshold after having broader data. But if you are facing this issue, then you can try refreshing your page, disabling ad-blockers, or switching off any VPN. You can follow this [guide](https://2captcha.com/blog/google-doesnt-accept-recaptcha-answers) to get rid of this issue.   
+3. **Internal RPC error! Please try after sometime**: This is an internal error in the Subnet's node, on which we are making an RPC for sending transactions. A regular check will update the RPC's health status every 30 seconds (default) or whatever is set in the configuration. This may happen only in rare scenarios and you cannot do much about it, rather than waiting.  
+4. **Timeout of 10000ms exceeded**: There could be many reasons for this message. It could be an internal server error, or the request didn't receive by the server, slow internet, etc. You could try again after some time, and if the problem persists, then you should raise this issue on our [Discord](https://discord.com/channels/578992315641626624/) server.
+5. **Couldn't see any transaction status on explorer**: The transaction hash that you get for each drop is pre-computed using the expected nonce, amount, and receiver's address. Though transactions on Avalanche are near-instant, the explorer may take time to index those transactions. You should wait for a few more seconds, before raising any issue or reaching out to us.

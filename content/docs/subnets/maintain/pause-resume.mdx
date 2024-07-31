@@ -1,29 +1,30 @@
 ---
-title: How to Pause and Resume Local Subnets
-sidebarTitle: Pause and Resume
+title: Pause and Resume
 description: If you've deployed a Subnet locally, you can preserve and restore the state of your deployed Subnets.
 ---
 
 Stopping the Local Network[​](#stopping-the-local-network "Direct link to heading")
 -----------------------------------------------------------------------------------
 
-To gracefully stop a running local network while preserving state, run
+To gracefully stop a running local network while preserving state, run:
 
-When restarted, all of your deployed Subnets resume where they left off.
+```bash
+avalanche network stop
 
-```
-> avalanche network stop
+# output
 Network stopped successfully.
 ```
 
+When restarted, all of your deployed Subnets resume where they left off.
+
 ### Resuming the Local Network[​](#resuming-the-local-network "Direct link to heading")
 
-To resume a stopped network, run
+To resume a stopped network, run:
 
-The network resumes with the same state it paused with.
+```bash
+avalanche network start
 
-```
-> avalanche network start
+# output
 Starting previously deployed and stopped snapshot
 Booting Network. Wait until healthy...
 ...............
@@ -43,16 +44,22 @@ Network ready to use. Local network node endpoints:
 +-------+----------+------------------------------------------------------------------------------------+
 ```
 
+The network resumes with the same state it paused with.
+
 Checking Network Status[​](#checking-network-status "Direct link to heading")
 -----------------------------------------------------------------------------
 
-If you'd like to determine whether or not a local Avalanche network is running on your machine, run
+If you'd like to determine whether or not a local Avalanche network is running on your machine, run:
+
+```bash
+avalanche network status
+```
 
 ### Example Call[​](#example-call "Direct link to heading")
 
 If the local network is running, the command prints something like
 
-```
+```bash
 Requesting network status...
 Network is Up. Network information:
 ==================================================================================================
@@ -74,17 +81,16 @@ Endpoint at node2 for blockchain "SPqou41AALqxDquEycNYuTJmRvZYbfoV9DYApDJVXKXuwV
 Endpoint at node3 for blockchain "SPqou41AALqxDquEycNYuTJmRvZYbfoV9DYApDJVXKXuwVFPz": http://127.0.0.1:9654/ext/bc/SPqou41AALqxDquEycNYuTJmRvZYbfoV9DYApDJVXKXuwVFPz/rpc
 ```
 
-If the network isn't running, the command instead prints
+If the network isn't running, the command instead prints:
 
-```
+```bash
 Requesting network status...
 No local network running
 ```
 
 or
 
-```
+```bash
 Requesting network status...
 Error: timed out trying to contact backend controller, it is most probably not running
-
 ```

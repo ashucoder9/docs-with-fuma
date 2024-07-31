@@ -80,7 +80,7 @@ Testnet: U8iRqJoiJm8xZHAacmvYyZVwqQx6uDNtQeP3CQ6fcgQk3JqnK
 
 For finding the `assetID` of other assets, please note that `avax.getUTXOs` and `avax.getAtomicTx` return the `assetID` in their output.
 
-**Signature:**
+**Signature**:
 
 ```
 eth_getAssetBalance({
@@ -94,7 +94,7 @@ eth_getAssetBalance({
 - `blk` is the block number or hash at which to retrieve the balance
 - `assetID` id of the asset for which the balance is requested
 
-**Example Call:**
+**Example Call**:
 
 ```
 curl -X POST --data '{
@@ -109,7 +109,7 @@ curl -X POST --data '{
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/C/rpc
 ```
 
-**Example Response:**
+**Example Response**:
 
 ```
 {
@@ -123,11 +123,11 @@ curl -X POST --data '{
 
 Get the base fee for the next block.
 
-**Signature:**
+**Signature**:
 
 `result` is the hex value of the base fee for the next block.
 
-**Example Call:**
+**Example Call**:
 
 ```
 curl -X POST --data '{
@@ -138,7 +138,7 @@ curl -X POST --data '{
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/C/rpc
 ```
 
-**Example Response:**
+**Example Response**:
 
 ```
 {
@@ -152,7 +152,7 @@ curl -X POST --data '{
 
 Get the priority fee needed to be included in a block.
 
-**Signature:**
+**Signature**:
 
 ```
 eth_maxPriorityFeePerGas() -> {}
@@ -160,7 +160,7 @@ eth_maxPriorityFeePerGas() -> {}
 
 `result` is hex value of the priority fee needed to be included in a block.
 
-**Example Call:**
+**Example Call**:
 
 ```
 curl -X POST --data '{
@@ -171,7 +171,7 @@ curl -X POST --data '{
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/C/rpc
 ```
 
-**Example Response:**
+**Example Response**:
 
 ```
 {
@@ -187,13 +187,13 @@ For more information on dynamic fees see the [C-Chain section of the transaction
 
 `eth_getChainConfig` returns chain config. This API is enabled by default with `internal-eth` namespace.
 
-**Signature:**
+**Signature**:
 
 ```
 eth_getChainConfig({}) -> {chainConfig: json}
 ```
 
-**Example Call:**
+**Example Call**:
 
 ```
 curl -X POST --data '{
@@ -204,7 +204,7 @@ curl -X POST --data '{
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/C/rpc
 ```
 
-**Example Response:**
+**Example Response**:
 
 ```
 {
@@ -253,7 +253,7 @@ Not recommended for use on Mainnet. See warning notice in [Keystore API](/api-re
 
 \Export an asset from the C-Chain to X-Chain or P-Chain. If exporting to the X-Chain, you must call the X-Chain's [`avm.import`](/api-reference/x-chain/api#avmimport).
 
-**Signature:**
+**Signature**:
 
 ```
 avax.export({
@@ -273,7 +273,7 @@ avax.export({
 - `username` is the user that controls the address that transaction will be sent from.
 - `password` is `username`‘s password.
 
-**Example Call:**
+**Example Call**:
 
 ```
 curl -X POST --data '{
@@ -290,7 +290,7 @@ curl -X POST --data '{
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/C/avax
 ```
 
-**Example Response:**
+**Example Response**:
 
 ```
 {
@@ -312,7 +312,7 @@ Not recommended for use on Mainnet. See warning notice in [Keystore API](/api-re
 
 Send AVAX from the C-Chain to X-Chain or P-Chain. If exporting to the X-Chain, you must call the X-Chain's [`avm.import`](/api-reference/x-chain/api#avmimport) with assetID `AVAX` on the X-Chain to complete the transfer.
 
-**Signature:**
+**Signature**:
 
 ```
 avax.exportAVAX({
@@ -324,7 +324,7 @@ avax.exportAVAX({
 }) -> {txID: string}
 ```
 
-**Request:**
+**Request**:
 
 - `to` is X-Chain or P-Chain address the asset is sent to.
 - `amount` is the amount of the asset to send.
@@ -332,11 +332,11 @@ avax.exportAVAX({
 - `username` is the user that controls the address that transaction will be sent from.
 - `password` is `username`‘s password.
 
-**Response:**
+**Response**:
 
 - `txID` is the TXID of the completed ExportTx.
 
-**Example Call:**
+**Example Call**:
 
 ```
 curl -X POST --data '{
@@ -354,7 +354,7 @@ curl -X POST --data '{
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/C/avax
 ```
 
-**Example Response:**
+**Example Response**:
 
 ```
 {
@@ -374,7 +374,7 @@ Not recommended for use on Mainnet. See warning notice in [Keystore API](/api-re
 </Callout>
 Get the private key that controls a given address. The returned private key can be added to a user with `avax.importKey`.
 
-**Signature:**
+**Signature**:
 
 ```
 avax.exportKey({
@@ -384,17 +384,17 @@ avax.exportKey({
 }) -> {privateKey: string}
 ```
 
-**Request:**
+**Request**:
 
 - `username` must control `address`.
 - `address` is the address for which you want to export the corresponding private key. It should be in hex format.
 
-**Response:**
+**Response**:
 
 - `privateKey` is the CB58 encoded string representation of the private key that controls `address`. It has a `PrivateKey-` prefix and can be used to import a key via `avax.importKey`.
 - `privateKeyHex` is the hex string representation of the private key that controls `address`. It can be used to import an account into Core or other wallets, like MetaMask.
 
-**Example Call:**
+**Example Call**:
 
 ```
 curl -X POST --data '{
@@ -409,7 +409,7 @@ curl -X POST --data '{
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/C/avax
 ```
 
-**Example Response:**
+**Example Response**:
 
 ```
 {
@@ -426,7 +426,7 @@ curl -X POST --data '{
 
 Gets a transaction by its ID. Optional encoding parameter to specify the format for the returned transaction. Can only be `hex` when a value is provided.
 
-**Signature:**
+**Signature**:
 
 ```
 avax.getAtomicTx({
@@ -439,18 +439,18 @@ avax.getAtomicTx({
 }
 ```
 
-**Request:**
+**Request**:
 
 - `txID` is the transaction ID. It should be in cb58 format.
 - `encoding` is the encoding format to use. Can only be `hex` when a value is provided.
 
-**Response:**
+**Response**:
 
 - `tx` is the transaction encoded to `encoding`.
 - `encoding` is the `encoding`.
 - `blockHeight` is the height of the block which the transaction was included in.
 
-**Example Call:**
+**Example Call**:
 
 ```
 curl -X POST --data '{
@@ -464,7 +464,7 @@ curl -X POST --data '{
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/C/avax
 ```
 
-**Example Response:**
+**Example Response**:
 
 ```
 {
@@ -482,7 +482,7 @@ curl -X POST --data '{
 
 Get the status of an atomic transaction sent to the network.
 
-**Signature:**
+**Signature**:
 
 ```
 avax.getAtomicTxStatus({txID: string}) -> {
@@ -498,7 +498,7 @@ avax.getAtomicTxStatus({txID: string}) -> {
 - `Dropped`: The transaction was dropped by this node because it thought the transaction invalid
 - `Unknown`: The transaction hasn't been seen by this node
 
-**Example Call:**
+**Example Call**:
 
 ```
 curl -X POST --data '{
@@ -511,7 +511,7 @@ curl -X POST --data '{
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/C/avax
 ```
 
-**Example Response:**
+**Example Response**:
 
 ```
 {
@@ -528,7 +528,7 @@ curl -X POST --data '{
 
 Gets the UTXOs that reference a given address.
 
-**Signature:**
+**Signature**:
 
 ```
 avax.getUTXOs(
@@ -612,7 +612,7 @@ Not recommended for use on Mainnet. See warning notice in [Keystore API](/api-re
 
 Finalize the transfer of a non-AVAX or AVAX from X-Chain or P-Chain to the C-Chain.
 
-**Signature:**
+**Signature**:
 
 ```
 avax.import({
@@ -624,7 +624,7 @@ avax.import({
 }) -> {txID: string}
 ```
 
-**Request:**
+**Request**:
 
 - `to` is the address the asset is sent to. This must be the same as the `to` argument in the corresponding call to the X-Chain's or P-Chain's `export`.
 - `sourceChain` is the ID or alias of the chain the asset is being imported from. To import funds from the X-Chain, use `"X"`; for the P-Chain, use `"P"`.
@@ -632,11 +632,11 @@ avax.import({
 - `username` is the user that controls the address that transaction will be sent from.
 - `password` is `username`‘s password.
 
-**Response:**
+**Response**:
 
 - `txID` is the ID of the completed ImportTx.
 
-**Example Call:**
+**Example Call**:
 
 ```
 curl -X POST --data '{
@@ -652,7 +652,7 @@ curl -X POST --data '{
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/C/avax
 ```
 
-**Example Response:**
+**Example Response**:
 
 ```
 {
@@ -673,7 +673,7 @@ Not recommended for use on Mainnet. See warning notice in [Keystore API](/api-re
 
 Finalize a transfer of AVAX from the X-Chain or P-Chain to the C-Chain.
 
-**Signature:**
+**Signature**:
 
 ```
 avax.importAVAX({
@@ -685,7 +685,7 @@ avax.importAVAX({
 }) -> {txID: string}
 ```
 
-**Request:**
+**Request**:
 
 - `to` is the address the AVAX is sent to. It should be in hex format.
 - `sourceChain` is the ID or alias of the chain the AVAX is being imported from. To import funds from the X-Chain, use `"X"`; for the P-Chain, use `"P"`.
@@ -693,11 +693,11 @@ avax.importAVAX({
 - `username` is the user that controls the address that transaction will be sent from.
 - `password` is `username`‘s password.
 
-**Response:**
+**Response**:
 
 - `txID` is the ID of the completed ImportTx.
 
-**Example Call:**
+**Example Call**:
 
 ```
 curl -X POST --data '{
@@ -713,7 +713,7 @@ curl -X POST --data '{
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/C/avax
 ```
 
-**Example Response:**
+**Example Response**:
 
 ```
 {
@@ -732,7 +732,7 @@ Not recommended for use on Mainnet. See warning notice in [Keystore API](/api-re
 </Callout>
 Give a user control over an address by providing the private key that controls the address.
 
-**Signature:**
+**Signature**:
 
 ```
 avax.importKey({
@@ -742,15 +742,15 @@ avax.importKey({
 }) -> {address: string}
 ```
 
-**Request:**
+**Request**:
 
 - Add `privateKey` to `username`'s set of private keys.
 
-**Response:**
+**Response**:
 
 - `address` is the address `username` now controls with the private key. It will be in hex format.
 
-**Example Call:**
+**Example Call**:
 
 ```
 curl -X POST --data '{
@@ -765,7 +765,7 @@ curl -X POST --data '{
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/C/avax
 ```
 
-**Example Response:**
+**Example Response**:
 
 ```
 {
@@ -781,7 +781,7 @@ curl -X POST --data '{
 
 Send a signed transaction to the network. `encoding` specifies the format of the signed transaction. Can only be `hex` when a value is provided.
 
-**Signature:**
+**Signature**:
 
 ```
 avax.issueTx({
@@ -792,7 +792,7 @@ avax.issueTx({
 }
 ```
 
-**Example Call:**
+**Example Call**:
 
 ```
 curl -X POST --data '{
@@ -807,7 +807,7 @@ curl -X POST --data '{
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/C/avax
 ```
 
-**Example Response:**
+**Example Response**:
 
 ```
 {
@@ -830,7 +830,7 @@ This API can be used for debugging. Note that the Admin API is disabled by defau
 
 Sets the log level of the C-Chain.
 
-**Signature:**
+**Signature**:
 
 ```
 admin.setLogLevel({level:string}) -> {}
@@ -838,7 +838,7 @@ admin.setLogLevel({level:string}) -> {}
 
 - `level` is the log level to be set.
 
-**Example Call:**
+**Example Call**:
 
 ```
 curl -X POST --data '{
@@ -851,7 +851,7 @@ curl -X POST --data '{
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/C/admin
 ```
 
-**Example Response:**
+**Example Response**:
 
 ```
 {
@@ -865,13 +865,13 @@ curl -X POST --data '{
 
 Starts a CPU profile.
 
-**Signature:**
+**Signature**:
 
 ```
 admin.startCPUProfiler() -> {}
 ```
 
-**Example Call:**
+**Example Call**:
 
 ```
 curl -X POST --data '{
@@ -882,7 +882,7 @@ curl -X POST --data '{
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/C/admin
 ```
 
-**Example Response:**
+**Example Response**:
 
 ```
 {
@@ -896,13 +896,13 @@ curl -X POST --data '{
 
 Stops and writes a CPU profile.
 
-**Signature:**
+**Signature**:
 
 ```
 admin.stopCPUProfiler() -> {}
 ```
 
-**Example Call:**
+**Example Call**:
 
 ```
 curl -X POST --data '{
@@ -913,7 +913,7 @@ curl -X POST --data '{
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/C/admin
 ```
 
-**Example Response:**
+**Example Response**:
 
 ```
 {
@@ -927,13 +927,13 @@ curl -X POST --data '{
 
 Runs and writes a memory profile.
 
-**Signature:**
+**Signature**:
 
 ```
 admin.memoryProfile() -> {}
 ```
 
-**Example Call:**
+**Example Call**:
 
 ```
 curl -X POST --data '{
@@ -944,7 +944,7 @@ curl -X POST --data '{
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/C/admin
 ```
 
-**Example Response:**
+**Example Response**:
 
 ```
 {
@@ -958,13 +958,13 @@ curl -X POST --data '{
 
 Runs a mutex profile writing to the `coreth_performance_c` directory.
 
-**Signature:**
+**Signature**:
 
 ```
 admin.lockProfile() -> {}
 ```
 
-**Example Call:**
+**Example Call**:
 
 ```
 curl -X POST --data '{
@@ -975,7 +975,7 @@ curl -X POST --data '{
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/C/admin
 ```
 
-**Example Response:**
+**Example Response**:
 
 ```
 {

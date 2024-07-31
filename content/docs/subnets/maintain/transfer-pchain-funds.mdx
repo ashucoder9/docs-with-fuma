@@ -1,7 +1,8 @@
 ---
-title: How to Use Avalanche-CLI to Transfer P-Chain Funds
-sidebarTitle: Transfer P-Chain Funds
+title: Transfer P-Chain Funds
+desscription:  Learn how to transfer P-Chain funds using Avalanche CLI.
 ---
+
 Transferring funds between P-Chain wallets becomes necessary in certain situations:
 
 1.  Funds need to be sent to the Subnet control key, which might have a zero balance due to fee payments. The Subnet control key requires funding to ensure proper support for Subnet operations.
@@ -10,13 +11,10 @@ Transferring funds between P-Chain wallets becomes necessary in certain situatio
 To enable direct transfers between P-Chain addresses, use the command `avalanche key transfer`. This operation involves a series of import/export actions with the P-Chain and X-Chain. The fee for this operation is four times the typical import operation fee, which comes out to 0.004 AVAX. You can find more information about fees [here](/api-reference/standards/guides/transaction-fees).
 
 <Callout type="info">
-  The `key transfer` command can also be applied to the stored keys managed by the CLI. It enables moving funds from one stored key to another, and from a ledger to a stored key or the other way.
+The `key transfer` command can also be applied to the stored keys managed by the CLI. It enables moving funds from one stored key to another, and from a ledger to a stored key or the other way.
 
 This how-to guide focuses on transferring funds between ledger accounts.
-
 </Callout>
-
-
 
 Prerequisites[​](#prerequisites "Direct link to heading")
 ---------------------------------------------------------
@@ -24,7 +22,7 @@ Prerequisites[​](#prerequisites "Direct link to heading")
 - [`Avalanche-CLI`](/tooling/guides/install-avalanche-cli) installed
 - Multiple Ledger devices [configured for Avalanche](/build/subnets/deploy-a-subnet/avalanche-mainnet#setting-up-your-ledger)
 
-Example: Sending All Funds From One Ledger to Another[​](#example-sending-all-funds-from-one-ledger-to-another "Direct link to heading")
+Sending All Funds From One Ledger to Another[​](#example-sending-all-funds-from-one-ledger-to-another "Direct link to heading")
 ----------------------------------------------------------------------------------------------------------------------------------------
 
 - Source address: ledger A, index 2 (the web wallet shows 4.5 AVAX for this ledger)
@@ -38,13 +36,13 @@ After confirming with a web wallet that 4.5 AVAX is available on p-chain address
 
 With the avalanche app running, execute:
 
-```
+```bash
 avalanche key list --mainnet --ledger 0,1,2,3,4,5
 ```
 
 To see p-chain addresses and balances for the first 6 indices in the ledger derived owner addresses.
 
-```
+```bash
 +--------+---------+-------------------------+-----------------------------------------------+---------+---------+
 |  KIND  |  NAME   |          CHAIN          |                    ADDRESS                    | BALANCE | NETWORK |
 +--------+---------+-------------------------+-----------------------------------------------+---------+---------+
@@ -72,11 +70,10 @@ For the transfer command, it is also needed to know the target p-chain address. 
 
 With the ledger B connected and the avalache app running, execute:
 
-```
+```bash
 avalanche key list --mainnet --ledger 0
-```
 
-```
+# output
 +--------+---------+-------------------------+-----------------------------------------------+---------+---------+
 |  KIND  |  NAME   |          CHAIN          |                    ADDRESS                    | BALANCE | NETWORK |
 +--------+---------+-------------------------+-----------------------------------------------+---------+---------+
@@ -98,9 +95,13 @@ Note that the sending ledger pays all the fees.
 
 Then start the command:
 
+```bash
+avalanche key transfer
+```
+
 First step is to specify the network. `Mainnet` in this case:
 
-```
+```bash
 Use the arrow keys to navigate: ↓ ↑ → ←
 ? Network to use:
   ▸ Mainnet
@@ -110,7 +111,7 @@ Use the arrow keys to navigate: ↓ ↑ → ←
 
 Next, the step of the transfer must be specified. Send in this case:
 
-```
+```bash
 ? Step of the transfer:
   ▸ Send
     Receive
@@ -118,7 +119,7 @@ Next, the step of the transfer must be specified. Send in this case:
 
 Next, the key source for the sender address. That is, the key that is going to sign the sending transactions. Select `Use ledger`:
 
-```
+```bash
 ? Which key source should be used to  for the sender address?:
     Use stored key
   ▸ Use ledger
@@ -126,21 +127,25 @@ Next, the key source for the sender address. That is, the key that is going to s
 
 Next, the ledger index is asked for. Input `2`:
 
+```bash
+✗ Ledger index to use: 2
+```
+
 Next, the amount to be sent is asked for:
 
-```
+```bash
 ✗ Amount to send (AVAX units): 4.496
 ```
 
 The, the target address is required:
 
-```
+```bash
 ✗ Receiver address: P-avax1r4aceznjkz8ch4pmpqrmkq4f3sl952mdrdt6xm
 ```
 
 After that, a confirmation message is printed. Read carefully and choose `Yes`:
 
-```
+```bash
 this operation is going to:
 - send 4.496000000 AVAX from P-avax10an3cucdfqru984pnvv6y0rspvvclz63e523m0 to target address P-avax1r4aceznjkz8ch4pmpqrmkq4f3sl952mdrdt6xm
 - take a fee of 0.004000000 AVAX from source address P-avax10an3cucdfqru984pnvv6y0rspvvclz63e523m0
@@ -153,6 +158,10 @@ Use the arrow keys to navigate: ↓ ↑ → ←
 
 After this, the first part is completed:
 
+```bash
+Issuing ExportTx P -> X
+```
+
 ### Receive the Transfer[​](#receive-the-transfer "Direct link to heading")
 
 In this step, Ledger B signs the transaction to receive the funds. It imports the funds on the X-Chain before exporting them back to the desired P-Chain address.
@@ -161,9 +170,13 @@ Connect ledger B and execute avalanche app.
 
 Then start the command:
 
+```bash
+avalanche key transfer
+```
+
 Specify the `Mainnet` network:
 
-```
+```bash
 Use the arrow keys to navigate: ↓ ↑ → ←
 ? Network to use:
   ▸ Mainnet
@@ -173,7 +186,7 @@ Use the arrow keys to navigate: ↓ ↑ → ←
 
 Next, the step of the transfer must be specified. Receive in this case:
 
-```
+```bash
 ? Step of the transfer:
     Send
   ▸ Receive
@@ -181,7 +194,7 @@ Next, the step of the transfer must be specified. Receive in this case:
 
 Then, select Ledger as the key source that is going to sign the receiver operations.
 
-```
+```bash
 ? Which key source should be used to  for the receiver address?:
     Use stored key
   ▸ Use ledger
@@ -189,15 +202,19 @@ Then, select Ledger as the key source that is going to sign the receiver operati
 
 Next, the ledger index is asked for. Input `0`:
 
+```bash
+✗ Ledger index to use: 0
+```
+
 Next, the amount to receive is asked for:
 
-```
+```bash
 ✗ Amount to send (AVAX units): 4.496
 ```
 
 After that, a confirmation message is printed. Select `Yes`:
 
-```
+```bash
 this operation is going to:
 - receive 4.496000000 AVAX at target address P-avax1r4aceznjkz8ch4pmpqrmkq4f3sl952mdrdt6xm:
 
@@ -209,7 +226,7 @@ Use the arrow keys to navigate: ↓ ↑ → ←
 
 Finally, the second part of the operation is executed and the transfer is completed.
 
-```
+```bash
 Issuing ImportTx P -> X
 Issuing ExportTx X -> P
 Issuing ImportTx X -> P
@@ -219,13 +236,13 @@ Issuing ImportTx X -> P
 
 First verify ledger A accounts. Connect ledger A and open the avalanche app:
 
-```
+```bash
 avalanche key list --mainnet --ledger 0,1,2,3,4,5
 ```
 
 With result:
 
-```
+```bash
 +--------+---------+-------------------------+-----------------------------------------------+---------+---------+
 |  KIND  |  NAME   |          CHAIN          |                    ADDRESS                    | BALANCE | NETWORK |
 +--------+---------+-------------------------+-----------------------------------------------+---------+---------+
@@ -243,15 +260,15 @@ With result:
 +--------+---------+-------------------------+-----------------------------------------------+---------+---------+
 ```
 
-Next, verify ledger B accounts. Connect ledger B and open the avalanche app:
+Next, verify ledger B accounts. Connect ledger B and open the Avalanche app:
 
-```
+```bash
 avalanche key list --mainnet --ledger 0,1,2,3,4,5
 ```
 
 With result:
 
-```
+```bash
 +--------+---------+-------------------------+-----------------------------------------------+---------+---------+
 |  KIND  |  NAME   |          CHAIN          |                    ADDRESS                    | BALANCE | NETWORK |
 +--------+---------+-------------------------+-----------------------------------------------+---------+---------+
@@ -275,13 +292,13 @@ As a multi step operation, the receiving part of the transfer can have intermedi
 
 The CLI is going to capture errors and provide the user with a recovery message of the kind:
 
-```
+```bash
 ERROR: restart from this step by using the same command with extra arguments: --receive-recovery-step 1
 ```
 
 If this happen, the receiving operation should be started the same way, choosing the same options, but adding the extra suggested parameter:
 
-```
+```bash
 avalanche key transfer --receive-recovery-step 1
 ```
 

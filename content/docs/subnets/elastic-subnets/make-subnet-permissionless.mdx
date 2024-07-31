@@ -1,7 +1,8 @@
 ---
-title: How to Transform a Permissioned Subnet into an Elastic Subnet
-sidebarTitle: Make Subnet Permissionless
+title: Make Subnet Permissionless
+description: Learn how to transform a Permissioned Subnet into an Elastic Subnet.
 ---
+
 Elastic Subnets are permissionless Subnets. More information can be found [here](/build/subnets/elastic-subnets/parameters).
 
 This how-to guide focuses on taking an already created permissioned Subnet and transforming it to an elastic (or permissionless) Subnet.
@@ -17,11 +18,13 @@ Getting Started[​](#getting-started "Direct link to heading")
 
 In the following commands, make sure to substitute the name of your Subnet configuration for `<subnetName>`.
 
-To transform your permissioned Subnet into an Elastic Subnet (NOTE: this action is irreversible), run
+To transform your permissioned Subnet into an Elastic Subnet (NOTE: this action is irreversible), run:
 
-`avalanche subnet elastic <subnetName>`
+```bash
+avalanche subnet elastic <subnetName>
+```
 
-and select the network that you want to transform the Subnet on. Alternatively, you can bypass this prompt by providing the `--local`, `--fuji`, or `--mainnet` flag.
+and, select the network that you want to transform the Subnet on. Alternatively, you can bypass this prompt by providing the `--local`, `--fuji`, or `--mainnet` flag.
 
 Provide the name and the symbol for the permissionless Subnet's native token. You can also bypass this prompt by providing the `--tokenName` and `--tokenSymbol` flags.
 
@@ -50,9 +53,11 @@ Adding Permissionless Validators to Elastic Subnet[​](#adding-permissionless-v
 
 If you are running this command on local network, you will need to first remove permissioned validators (by running `avalanche subnet removeValidator <subnetName>`) so that you can have a list of local nodes to choose from to be added as a permissionless validator in the Elastic Subnet.
 
-To add permissionless validators to an Elastic Subnet, run
+To add permissionless validators to an Elastic Subnet, run:
 
-`avalanche subnet join <subnetName> --elastic`
+```bash
+avalanche subnet join <subnetName> --elastic
+```
 
 You will be prompted with which node you would like to add as a permissionless validator. You can skip this prompt by using `--nodeID` flag.
 
@@ -63,9 +68,11 @@ Next, select when the validator will start validating and how long it will be va
 Adding Permissionless Delegator to a Permissionless Validator in Elastic Subnet[​](#adding-permissionless-delegator-to-a-permissionless-validator-in-elastic-subnet "Direct link to heading")
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-To add permissionless delegators, run
+To add permissionless delegators, run:
 
-`avalanche subnet addPermissionlessDelegator <subnetName>`
+```bash
+avalanche subnet addPermissionlessDelegator <subnetName>
+```
 
 You will be prompted with which Subnet validator you would like to delegate to. You can skip this prompt by using `--nodeID` flag.
 

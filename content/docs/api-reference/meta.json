@@ -2,6 +2,7 @@
   "title": "api-reference",
   "root": true,
   "pages": [
+    "index",
     "---Platform Chain---",
     "...p-chain",
     "---Exchange Chain---",

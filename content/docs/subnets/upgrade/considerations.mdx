@@ -1,20 +1,20 @@
 ---
-title: Key Considerations When Upgrading a Subnet
-sidebarTitle: Considerations
+title: Considerations
+description: Learn about some of the key considerations while upgrading your Subnet.
 ---
+
 In the course of Subnet operation, you will inevitably need to upgrade or change some part of the software stack that is running your Subnet. If nothing else, you will have to upgrade the AvalancheGo node client. Same goes for the VM plugin binary that is used to run the blockchain on your Subnet, which is most likely the [Subnet-EVM](https://github.com/ava-labs/subnet-evm), the Subnet implementation of the Ethereum virtual machine.
 
 Node and VM upgrades usually don't change the way your Subnet functions, instead they keep your Subnet in sync with the rest of the network, bringing security, performance and feature upgrades. Most upgrades are optional, but all of them are recommended, and you should make optional upgrades part of your routine Subnet maintenance. Some upgrades will be mandatory, and those will be clearly communicated as such ahead of time, you need to pay special attention to those.
 
 Besides the upgrades due to new releases, you also may want to change the configuration of the VM, to alter the way Subnet runs, for various business or operational needs. These upgrades are solely the purview of your team, and you have complete control over the timing of their roll out. Any such change represents a **network upgrade** and needs to be carefully planned and executed.
 
-
 <Callout type="warning">
-Network Upgrades Permanently Change the Rules of Your Subnet.
+Network Upgrades Permanently Change the Rules of Your Subnet. Procedural mistakes or a botched upgrade can halt your Subnet or lead to data loss!
 
-Procedural mistakes or a botched upgrade can halt your Subnet or lead to data loss!
+When performing a Subnet upgrade, every single validator on the Subnet will need to perform the identical upgrade.
 
-When performing a Subnet upgrade, every single validator on the Subnet will need to perform the identical upgrade. If you are coordinating a network upgrade, you must schedule advance notice to every Subnet validator so that they have time to perform the upgrade prior to activation. Make sure you have direct line of communication to all your validators!
+If you are coordinating a network upgrade, you must schedule advance notice to every Subnet validator so that they have time to perform the upgrade prior to activation. Make sure you have direct line of communication to all your validators!
 </Callout>
 
 This tutorial will guide you through the process of doing various Subnet upgrades and changes. We will point out things to watch out for and precautions you need to be mindful about.
@@ -29,10 +29,8 @@ Subnets can operate normally only if validators representing 80% or more of the 
 You as a Subnet operator need to ensure that whatever you do, at least 80% of the validators' cumulative weight is connected and working at all times.
 
 <Callout type="info">
-    It is mandatory that the cumulative weight of all validators in the Subnet must be at least the value of [`snow-sample-size`](/nodes/configure/configs--flags#--snow-sample-size-int) (default 20). For example, if there is only one validator in the Subnet, its weight must be at least `snow-sample-size` . Hence, when assigning weight to the nodes, always use values greater than 20. Recall that a validator's weight can't be changed while it is validating, so take care to use an appropriate value.
-
+It is mandatory that the cumulative weight of all validators in the Subnet must be at least the value of [`snow-sample-size`](/nodes/configure/configs--flags#--snow-sample-size-int) (default 20). For example, if there is only one validator in the Subnet, its weight must be at least `snow-sample-size` . Hence, when assigning weight to the nodes, always use values greater than 20. Recall that a validator's weight can't be changed while it is validating, so take care to use an appropriate value.
 </Callout>
-
 
 Upgrading Subnet Validator Nodes[​](#upgrading-subnet-validator-nodes "Direct link to heading")
 -----------------------------------------------------------------------------------------------
@@ -56,31 +54,29 @@ In the future, VM upgrades will be handled by the [Avalanche-CLI tool](https://g
 
 Go to the [releases page](https://github.com/ava-labs/subnet-evm/releases) of the Subnet-EVM repository. Locate the latest version, and copy link that corresponds to the OS and architecture of the machine the node is running on (`darwin` = Mac, `amd64` = Intel/AMD processor, `arm64` = Arm processor). Log into the machine where the node is running and download the archive, using `wget` and the link to the archive, like this:
 
-```
+```bash
 wget https://github.com/ava-labs/subnet-evm/releases/download/v0.2.9/subnet-evm_0.2.9_linux_amd64.tar.gz
 ```
 
 This will download the archive to the machine. Unpack it like this (use the correct filename, of course):
 
-```
+```bash
 tar xvf subnet-evm_0.2.9_linux_amd64.tar.gz
 ```
 
 This will unpack and place the contents of the archive in the current directory, file `subnet-evm` is the plugin binary. You need to stop the node now (if the node is running as a service, use `sudo systemctl stop avalanchego` command). You need to place that file into the plugins directory where the AvalancheGo binary is located. If the node is installed using the install script, the path will be `~/avalanche-node/plugins` Instead of the `subnet-evm` filename, VM binary needs to be named as the VM ID of the chain on the Subnet. For example, for the [WAGMI Subnet](https://subnets-test.avax.network/wagmi) that VM ID is `srEXiWaHuhNyGwPUi444Tu47ZEDwxTWrbQiuD7FmgSAQ6X7Dy`. So, the command to copy the new plugin binary would look like:
 
-```
+```bash
 cp subnet-evm ~/avalanche-node/plugins/srEXiWaHuhNyGwPUi444Tu47ZEDwxTWrbQiuD7FmgSAQ6X7Dy
 ```
 
 <Callout type="warning">
-    Make sure you use the correct VM ID, otherwise, your VM will not get updated and your Subnet may halt.
-
+Make sure you use the correct VM ID, otherwise, your VM will not get updated and your Subnet may halt.
 </Callout>
-
 
 After you do that, you can start the node back up (if running as service do `sudo systemctl start avalanchego`). You can monitor the log output on the node to check that everything is OK, or you can use the [info.getNodeVersion()](/api-reference/info-api#infogetnodeversion) API to check the versions. Example output would look like:
 
-```
+```json
 {
   "jsonrpc": "2.0",
   "result": {

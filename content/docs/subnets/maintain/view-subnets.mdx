@@ -1,9 +1,12 @@
 ---
-title: How to View Your Created Subnets
-sidebarTitle: View Subnets
+title: View Subnets
+description: Learn how to view Subnets deployed using Avalanche-CLI.
 ---
-```
-> avalanche subnet list
+
+```bash
+avalanche subnet list
+
+# output
 +-------------+-------------+----------+---------------------------------------------------+------------+-----------+
 |   SUBNET    |    CHAIN    | CHAIN ID |                       VM ID                       |    TYPE    | FROM REPO |
 +-------------+-------------+----------+---------------------------------------------------+------------+-----------+
@@ -13,8 +16,10 @@ sidebarTitle: View Subnets
 
 To see detailed information about your deployed Subnets, add the `--deployed` flag:
 
-```
-> avalanche subnet list --deployed
+```bash
+avalanche subnet list --deployed
+
+# output
 +-------------+-------------+---------------------------------------------------+---------------+-----------------------------------------------------------------+---------+
 |   SUBNET    |    CHAIN    |                       VM ID                       | LOCAL NETWORK |                          FUJI (TESTNET)                         | MAINNET |
 +-------------+-------------+---------------------------------------------------+---------------+-----------------------------------------------------------------+---------+
@@ -24,9 +29,10 @@ To see detailed information about your deployed Subnets, add the `--deployed` fl
 +-------------+-------------+---------------------------------------------------+---------------+-----------------------------------------------------------------+---------+
 ```
 
-```
-> avalanche subnet describe firstsubnet
+```bash
+avalanche subnet describe firstsubnet
 
+#output
  _____       _        _ _
 |  __ \     | |      (_) |
 | |  | | ___| |_ __ _ _| |___
@@ -110,8 +116,10 @@ No precompiles set
 
 If you'd like to see the raw genesis file, supply the `--genesis` flag to the describe command:
 
-```
-> avalanche subnet describe firstsubnet --genesis
+```bash
+avalanche subnet describe firstsubnet --genesis
+
+# output
 {
     "config": {
         "chainId": 12345,
@@ -167,5 +175,4 @@ If you'd like to see the raw genesis file, supply the `--genesis` flag to the de
     "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
     "baseFeePerGas": null
 }
-
 ```

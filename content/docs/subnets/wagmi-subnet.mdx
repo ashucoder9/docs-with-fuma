@@ -1,11 +1,7 @@
 ---
 title: WAGMI Subnet
-sidebarTitle: "Case Study: WAGMI Subnet"
-description: "The WAGMI (We're All Going to Make It) Subnet is a high throughput testbed for EVM (Ethereum Virtual Machine) optimizations. It is parameterized to run at a factor more capacity than Fuji/Mainnet C-Chain and will is used to experiment with release candidates before included in an official Coreth release."
+description: Learn about the WAGMI Subnet in this detailed case study.
 ---
-
-Overview[​](#overview "Direct link to heading")
------------------------------------------------
 
 This is one of the first cases of using Avalanche Subnets as a proving ground for changes in a production VM (Coreth). Many underestimate how useful the isolation of Subnets is for performing complex VM testing on a live network (without impacting the stability of the primary network).
 
@@ -27,20 +23,16 @@ The genesis file of WAGMI can be found [here](https://github.com/ava-labs/public
 
 ### Adding WAGMI to Core[​](#adding-wagmi-to-core "Direct link to heading")
 
-```
 - Network Name: WAGMI
 - RPC URL: [https://subnets.avax.network/wagmi/wagmi-chain-testnet/rpc]
 - WS URL: wss://subnets.avax.network/wagmi/wagmi-chain-testnet/ws
 - Chain ID: 11111
 - Symbol: WGM
 - Explorer: [https://subnets.avax.network/wagmi/wagmi-chain-testnet/explorer]
-```
 
 <Callout type="info">
-    This can be used with other wallets too, such as MetaMask.
-
+This can be used with other wallets too, such as MetaMask.
 </Callout>
-
 
 Case Study: WAGMI Upgrades[​](#case-study-wagmi-upgrades "Direct link to heading")
 ----------------------------------------------------------------------------------
@@ -57,14 +49,14 @@ Instead of hard coding the timing of network upgrades in client code like most E
 
 Detailed description of how to do this can be found in [Customize a Subnet](/build/subnets/manage-subnets/upgrade/customize-subnet#network-upgrades-enabledisable-precompiles) tutorial. Here's a summary:
 
-- Network Upgrade utilizes existing precompiles on the Subnet-EVM:
+1. Network Upgrade utilizes existing precompiles on the Subnet-EVM:
     - ContractDeployerAllowList, for restricting smart contract deployers
     - TransactionAllowList, for restricting who can submit transactions
     - NativeMinter, for minting native coins
     - FeeManager, for configuring dynamic fees
     - RewardManager, for enabling block rewards
-- Each of these precompiles can be individually enabled or disabled at a given timestamp as a network upgrade, or any of the parameters governing its behavior changed.
-- These upgrades must be specified in a file named `upgrade.json` placed in the same directory where [`config.json`](/build/subnets/manage-subnets/upgrade/customize-subnet#avalanchego-chain-configs) resides: `{chain-config-dir}/{blockchainID}/upgrade.json`.
+2. Each of these precompiles can be individually enabled or disabled at a given timestamp as a network upgrade, or any of the parameters governing its behavior changed.
+3. These upgrades must be specified in a file named `upgrade.json` placed in the same directory where [`config.json`](/build/subnets/manage-subnets/upgrade/customize-subnet#avalanchego-chain-configs) resides: `{chain-config-dir}/{blockchainID}/upgrade.json`.
 
 ### Preparation[​](#preparation "Direct link to heading")
 
@@ -76,7 +68,7 @@ For the second upgrade, on February 24, 2024, we had another announcement on [X]
 
 The content of the `upgrade.json` is:
 
-```
+```json
 {
   "precompileUpgrades": [
     {
@@ -112,7 +104,7 @@ We place the `upgrade.json` file in the chain config directory, which in our cas
 
 When the node restarts, AvalancheGo reads the contents of the JSON file and passes it into Subnet-EVM. We see a log of the chain configuration that includes the updated precompile upgrade. It looks like this:
 
-```
+```bash
 INFO [02-22|18:27:06.473] <2ebCneCbwthjQ1rYT41nhd7M76Hc6YmosMAQrTFhBq8qeqh6tt Chain> github.com/ava-labs/subnet-evm/core/blockchain.go:335: Upgrade Config: {"precompileUpgrades":[{"feeManagerConfig":{"adminAddresses":["0x6f0f6da1852857d7789f68a28bba866671f3880d"],"blockTimestamp":1660658400}},{"contractNativeMinterConfig":{"adminAddresses":["0x6f0f6da1852857d7789f68a28bba866671f3880d"],"managerAddresses":["0xadfa2910dc148674910c07d18df966a28cd21331"],"blockTimestamp":1708696800}}]}
 ```
 
