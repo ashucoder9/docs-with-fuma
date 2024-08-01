@@ -141,14 +141,14 @@ function Features(): React.ReactElement {
         description="We provide a suite of tools to make your development experience as smooth as possible."
       >
       <div className="mt-8 flex flex-col gap-4">
-        <Link href="/docs/toolings/cli" className="rounded-xl border bg-fd-background p-4 shadow-lg transition-colors hover:bg-fd-muted">
+        <Link href="/docs/toolings/cli" className="rounded-xl border bg-fd-background p-4 shadow-lg transition-colors hover:bg-accent">
             <Terminal />
             <h3 className="font-semibold">Avalanche CLI</h3>
             <p className="text-sm text-fd-muted-foreground">
               Command line interface for everything Avalanche.
             </p>
         </Link>
-        <Link href="https://github.com/ava-labs/avalanche-starter-kit" className="rounded-xl border bg-fd-background p-4 shadow-lg transition-colors hover:bg-fd-muted">
+        <Link href="https://github.com/ava-labs/avalanche-starter-kit" className="rounded-xl border bg-fd-background p-4 shadow-lg transition-colors hover:bg-accent">
           <Cable />
           <h3 className="font-semibold">Avalanche Starter Kit</h3>
           <p className="text-sm text-fd-muted-foreground">
