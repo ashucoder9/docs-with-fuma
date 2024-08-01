@@ -54,3 +54,29 @@ svg.lucide {
 .bg-primary\/10 {
     background-color: #1f66f41a;
 }
+
+.text-xs {
+  font-size: 0.7rem;
+}
+
+h2.text-sm.font-medium {
+  color: #737373;
+}
+
+.mb-2.inline-flex.size-7.items-center.justify-center.rounded-full.bg-fd-primary.font-medium.text-fd-primary-foreground {
+  background-color: #000;
+  color: #fff;
+}
+
+.text-fd-muted-foreground {
+  color: #737373;
+}
+
+.hide-icons svg.lucide.lucide-folder, svg.lucide.lucide-folder-open {
+    display: none;
+}
+
+.hover\:bg-accent:hover {
+  --tw-bg-opacity: 1;
+  background-color: hsl(212.99deg 45.23% 89.66%);
+}

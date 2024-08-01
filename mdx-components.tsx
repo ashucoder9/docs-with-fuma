@@ -3,6 +3,7 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
 import { Step, Steps } from 'fumadocs-ui/components/steps';
 import { Callout } from 'fumadocs-ui/components/callout';
 import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Cards, Card } from 'fumadocs-ui/components/card';
 import { TypeTable } from 'fumadocs-ui/components/type-table';
 import defaultComponents from 'fumadocs-ui/mdx';
 import {
@@ -29,6 +30,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     Tabs,
     Tab,
+    Cards,
+    Card,
     Callout,
     TypeTable,
     Step,
