@@ -3,11 +3,12 @@ import type { LucideIcon } from 'lucide-react';
 import {
   CpuIcon,
   BadgeDollarSign,
-  Globe, MailIcon, SproutIcon, SquareGanttChart, IndentDecrease, Layers, MonitorCheck, Settings, Terminal, Cable, Webhook
+  Globe, MailIcon, SproutIcon, SquareGanttChart, IndentDecrease, Layers, MonitorCheck, Settings, Terminal, Cable, Webhook, ArrowUpRight
 } from 'lucide-react';
 import Link from 'next/link';
 import type { HTMLAttributes, ReactNode } from 'react';
 import { cn } from '@/utils/cn';
+import { buttonVariants } from '@/components/ui/button';
 import { CodeBlock } from '@/components/code-block';
 import { File, Files, Folder } from 'fumadocs-ui/components/files';
 import { DeployBlockchainAnimation } from './page.client';
@@ -161,8 +162,17 @@ function Features(): React.ReactElement {
         icon={Webhook}
         subheading="APIs"
         heading="API References for anything Avalanche."
-        description="Well documented and interactive API documentation"
+        description="Well documented APIs for the Avalanche Network. You can also try out the interactive Glacier API playground."
       >
+        <div className="flex flex-row flex-wrap gap-2 py-4">
+          <Link href="/docs/api-reference" className={cn(buttonVariants())}>
+            API Docs
+          </Link>
+          <Link href="https://glacier.docs.avacloud.io/reference/getting-started-with-your-api" className={cn(buttonVariants())}>
+            Try Glacier API Playground <ArrowUpRight style={{width: 18, height: 18, color: 'inherit'}}/>
+          </Link>
+        </div>
+      <div className="col-span-full mx-auto h-[200px] py-12"><img src="./logo.png"/></div>
       </Feature>
     </div>
   );
