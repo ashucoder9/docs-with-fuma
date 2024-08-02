@@ -1,0 +1,26 @@
+{
+  "title": "API Playground",
+  "root": true,
+  "pages": [
+    "index",
+    "---C-Chain APIs---",
+    "c-rpc",
+    "c-avax",
+    "c-admin",
+    "---X-Chain APIs---",
+    "x",
+    "avm",
+    "x-wallet",
+    "---Index APIs---",
+    "p-block",
+    "x-block",
+    "c-block",
+    "---Standard APIs---",
+    "p",
+    "info",
+    "keystore",
+    "metrics",
+    "admin",
+    "health"
+  ]
+}
