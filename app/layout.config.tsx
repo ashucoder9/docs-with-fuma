@@ -2,7 +2,7 @@ import { type BaseLayoutProps, type DocsLayoutProps } from 'fumadocs-ui/layout';
 import { Title } from '@/app/layout.client';
 import { utils } from '@/utils/source';
 import { RootToggle } from 'fumadocs-ui/components/layout/root-toggle';
-import { MailIcon, SproutIcon, SquareGanttChart, IndentDecrease, Layers, MonitorCheck, Webhook } from 'lucide-react';
+import { MailIcon, SproutIcon, SquareGanttChart, IndentDecrease, Layers, MonitorCheck, Webhook, FileJson } from 'lucide-react';
 
 // shared configuration
 export const baseOptions: BaseLayoutProps = {
@@ -57,10 +57,16 @@ export const docsOptions: DocsLayoutProps = {
             url: '/docs/cross-chain',
           },
           {
-            title: 'API Guides',
+            title: 'API Docs',
             description: 'Avalanche API References',
             icon: <Webhook />,
             url: '/docs/api-reference',
+          },
+          {
+            title: 'API Playground',
+            description: 'Interact with Avalanche APIs',
+            icon: <FileJson />,
+            url: '/docs/api-playground',
           },
         ]}
       />
