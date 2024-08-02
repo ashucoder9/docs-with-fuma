@@ -8,7 +8,7 @@ import {
 import { TerminalIcon } from 'lucide-react';
 
 export function DeployBlockchainAnimation(): React.ReactElement {
-  const installCmd = 'avalanche subnet deploy MyBlockchain';
+  const installCmd = 'avalanche blockchain deploy MyBlockchain';
   const tickTime = 100;
   const timeCommandEnter = installCmd.length;
   const timeCommandRun = timeCommandEnter + 3;
