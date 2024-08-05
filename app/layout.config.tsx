@@ -6,8 +6,10 @@ import { MailIcon, SproutIcon, SquareGanttChart, IndentDecrease, Layers, Monitor
 
 // shared configuration
 export const baseOptions: BaseLayoutProps = {
+  githubUrl: 'https://github.com/ava-labs/avalanche-docs',
   nav: {
     title: <Title />,
+    transparentMode: 'top',
   },
 };
 

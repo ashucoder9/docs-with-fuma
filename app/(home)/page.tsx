@@ -3,7 +3,7 @@ import type { LucideIcon } from 'lucide-react';
 import {
   CpuIcon,
   BadgeDollarSign,
-  Globe, MailIcon, SproutIcon, SquareGanttChart, IndentDecrease, Layers, MonitorCheck, Settings, Terminal, Cable, Webhook, ArrowUpRight
+  Globe, MailIcon, SproutIcon, SquareGanttChart, IndentDecrease, Layers, MonitorCheck, Settings, Terminal, Cable, Webhook, ArrowUpRight, Command
 } from 'lucide-react';
 import Link from 'next/link';
 import type { HTMLAttributes, ReactNode } from 'react';
@@ -23,6 +23,18 @@ export default function HomePage(): React.ReactElement {
       <main className="container relative max-w-[1100px] px-2 py-4 lg:py-16">
         <div style={{ background: 'repeating-linear-gradient(to bottom, transparent, hsl(var(--secondary)/.2) 500px, transparent 1000px)' }}>
           <div className="relative">
+            <Command
+              className="absolute -left-2 -top-2 z-10 size-4 xl:scale-[200%]"
+              stroke="none"
+              fill="currentColor"
+              style={{color: "currentColor"}}
+            />
+            <Command
+              className="absolute -bottom-2 -right-2 z-10 size-4 xl:scale-[200%]"
+              stroke="none"
+              fill="currentColor"
+              style={{color: "currentColor"}}
+            />
             <Hero />
           </div>
           <Introduction />
@@ -85,7 +97,9 @@ function Highlight({
 
 function Hero(): React.ReactElement {
   return (
-    <div className="container relative z-[2] flex flex-col items-center overflow-hidden border-x border-t bg-fd-background px-6 pt-12 text-center md:py-16">
+    <div className="container relative z-[2] flex flex-col items-center overflow-hidden border-x border-t bg-fd-background px-6 pt-12 text-center md:py-16" style={{
+    backgroundImage: "radial-gradient(ellipse at top, transparent 60%, hsl(var(--primary) / 0.2)), linear-gradient(to bottom, transparent 30%, hsl(var(--primary) / 0.2)), linear-gradient(to bottom, hsl(var(--background)) 40%, transparent)"
+    }}>
       <h1 className="mb-6 text-center text-4xl font-semibold md:text-5xl">
         Avalanche Docs
       </h1>
