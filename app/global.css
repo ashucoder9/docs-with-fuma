@@ -64,7 +64,7 @@ h2.text-sm.font-medium {
 }
 
 .mb-2.inline-flex.size-7.items-center.justify-center.rounded-full.bg-fd-primary.font-medium.text-fd-primary-foreground {
-  background-color: #000;
+  background-color: hsl(0deg 0% 49.74%);
   color: #fff;
 }
 
