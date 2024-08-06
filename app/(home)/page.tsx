@@ -59,7 +59,7 @@ function Highlights(): React.ReactElement {
         Utilize the Avalanche tech stack to build your own L1 blockchain.
       </Highlight>
       <Highlight icon={IndentDecrease} heading="Virtual Machines" link="/docs/virtual-machines">
-        Learn how to customize the EVM or build your a complete new virtual machines.
+        Learn how to customize the EVM or build new virtual machines from scratch.
       </Highlight>
       <Highlight icon={MonitorCheck} heading="Nodes & Validators" link="/docs/nodes">
         Become an active participant in the network by running a node or validator.
