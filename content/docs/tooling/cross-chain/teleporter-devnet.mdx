@@ -1,6 +1,5 @@
 ---
-title: How to Deploy Teleporter Enabled Subnets on a Devnet
-sidebarTitle: Teleporter on a Devnet
+title: Teleporter on Devnet
 description: This how-to guide focuses on deploying Teleporter-enabled Subnets to a Devnet.
 ---
 
@@ -33,7 +32,7 @@ Let's use the `devnet wiz` command to create a devnet `<devnetName>` and deploy 
 
 The devnet will be created in the `us-east-1` region of AWS, and will consist of 5 validators only.
 
-```
+```bash
 avalanche node devnet wiz <devnetName> <subnet1> --aws --node-type default --region us-east-1 --num-validators 5 --num-apis 0 --enable-monitoring=false --default-validator-params 
 
 Creating the devnet...
@@ -81,7 +80,7 @@ Checking Devnet Configuration and Relayer Logs[​](#checking-devnet-configurati
 
 Execute `node list` command to get a list of the devnet nodes:
 
-```
+```bash
 avalanche node list
 
 Cluster "<devnetName>" (Devnet)
@@ -96,7 +95,7 @@ Notice that, in this case, `i-0f1815c016b555fcc` was set as Relayer. This host c
 
 To view the Relayer logs, the following command can be used:
 
-```
+```bash
 avalanche node ssh i-0f1815c016b555fcc "journalctl -u awm-relayer --no-pager"
 
   [Node i-0f1815c016b555fcc (NodeID-91PGQ7keavfSV1XVFva2WsQXWLWZqqqKe) 67.202.23.231 [Validator,Relayer]]
@@ -133,7 +132,7 @@ Let's use the `devnet wiz` command again to deploy `<subnet2>`.
 
 When deploying Subnet `<subnet2>`, the two Teleporter contracts will not be deployed to C-Chain in Local Network as they have already been deployed when we deployed the first Subnet.
 
-```
+```bash
 avalanche node devnet wiz <devnetName> <subnet2> --default-validator-params 
 
 Adding subnet into existing devnet <devnetName>...
@@ -170,7 +169,7 @@ Verify Teleporter Is Successfully Set Up[​](#verify-teleporter-is-successfully
 
 To verify that Teleporter is successfully, let's send a couple of cross messages:
 
-```
+```bash
 avalanche teleporter msg C-Chain subnet1 "Hello World" --cluster <devnetName>
 
 Delivering message "this is a message" to source subnet "C-Chain" (2EfJg86if9Ka5Ag73JRfoqWz4EGuFwtemaNf4XiBBpUW4YngS6)
@@ -178,7 +177,7 @@ Waiting for message to be received at destination subnet subnet "subnet1" (fqcM2
 Message successfully Teleported!
 ```
 
-```
+```bash
 avalanche teleporter msg subnet2 subnet1 "Hello World" --cluster <devnetName>
 
 Delivering message "this is a message" to source subnet "subnet2" (29WP91AG7MqPUFEW2YwtKnsnzVrRsqcWUpoaoSV1Q9DboXGf4q)
@@ -203,7 +202,7 @@ By executing `subnet describe` on a Teleporter enabled Subnet, the following rel
 
 Let's get the information for `<subnet1>`:
 
-```
+```bash
 avalanche subnet describe <subnet1>
 
  _____       _        _ _
@@ -244,7 +243,6 @@ avalanche subnet describe <subnet1>
 | Cluster <devnetName> Teleporter| 0xb623C4495220C603D0A939D32478F55891a61750                                             |
 | Registry Address               |                                                                                        |
 +--------------------------------+----------------------------------------------------------------------------------------+
-
 ...
 ```
 
@@ -252,7 +250,7 @@ avalanche subnet describe <subnet1>
 
 Similar information can be found for C-Chain by using `primary describe`:
 
-```
+```bash
 avalanche primary describe --cluster <devnetName>
 
    _____       _____ _           _         _____
@@ -292,13 +290,12 @@ Controlling Relayer Execution[​](#controlling-relayer-execution "Direct link t
 
 CLI provides two commands to remotely control Relayer execution:
 
-```
+```bash
 avalanche teleporter relayer stop --cluster <devnetName>
 ✓ Remote AWM Relayer on i-0f1815c016b555fcc successfully stopped
 ```
 
-```
+```bash
 avalanche teleporter relayer start --cluster <devnetName>
 ✓ Remote AWM Relayer on i-0f1815c016b555fcc successfully started
-
 ```

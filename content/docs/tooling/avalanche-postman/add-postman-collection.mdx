@@ -1,6 +1,7 @@
 ---
-title: Setting up Postman
+title: Adding Postman Collection
 ---
+
 We have made a Postman collection for Avalanche, that includes all the public API calls that are available on an [AvalancheGo instance](https://github.com/ava-labs/avalanchego/releases/), including environment variables, allowing developers to quickly issue commands to a node and see the response, without having to copy and paste long and complicated `curl` commands.
 
 [Link to GitHub](https://github.com/ava-labs/avalanche-postman-collection/)
@@ -37,7 +38,7 @@ We're ready to import the collection. On the top-left corner of the Workspaces t
 
 There, in the URL input field paste the link below to the collection:
 
-```
+```bash
 https://raw.githubusercontent.com/ava-labs/avalanche-postman-collection/master/Avalanche.postman_collection.json
 ```
 
@@ -49,7 +50,7 @@ Postman will recognize the format of the file content and offer to import the fi
 
 Next, we have to import the environment variables. Again, on the top-left corner of the Workspaces tab select `Import` and switch to `Link` tab. This time, paste the link below to the environment JSON:
 
-```
+```bash
 https://raw.githubusercontent.com/ava-labs/avalanche-postman-collection/master/Example-Avalanche-Environment.postman_environment.json
 ```
 

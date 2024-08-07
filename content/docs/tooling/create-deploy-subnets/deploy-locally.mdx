@@ -1,7 +1,8 @@
 ---
-title: How to Deploy a Subnet on a Local Network
-sidebarTitle: Deploy on a Local Network
+title: Deploy on Local Network
+description: This guide shows you how to deploy a Subnet to a local Avalanche network.
 ---
+
 This how-to guide focuses on taking an already created Subnet configuration and deploying it to a local Avalanche network.
 
 Prerequisites[​](#prerequisites "Direct link to heading")
@@ -15,13 +16,17 @@ Deploying Subnets Locally[​](#deploying-subnets-locally "Direct link to headin
 
 In the following commands, make sure to substitute the name of your Subnet configuration for `<subnetName>`.
 
-To deploy your Subnet, run
+To deploy your Subnet, run:
 
-`avalanche subnet deploy <subnetName>`
+```bash
+avalanche subnet deploy <subnetName>
+```
 
 and select `Local Network` to deploy on. Alternatively, you can bypass this prompt by providing the `--local` flag. For example:
 
-`avalanche subnet deploy <subnetName> --local`
+```bash
+avalanche subnet deploy <subnetName> --local
+```
 
 The command may take a couple minutes to run.
 
@@ -31,7 +36,7 @@ Note: If you run `bash` on your shell and are running Avalanche-CLI on ARM64 on 
 
 If all works as expected, the command output should look something like this:
 
-```
+```bash
 > avalanche subnet deploy mySubnet
 ✔ Local Network
 Deploying [mySubnet] to Local Network
@@ -83,7 +88,6 @@ To redeploy the Subnet, you first need to wipe the Subnet state. This permanentl
 
 You are now free to redeploy your Subnet with
 
-```
+```bash
 avalanche subnet deploy <subnetName> --local
-
 ```

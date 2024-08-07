@@ -1,5 +1,6 @@
 ---
-title: Configure a Node to Validate a Subnet with Avalanche-CLI
+title: Validate a Subnet
+description: This page demonstrates how to configure nodes to validate an Avalanche Subnet.
 ---
 
 This page demonstrates how to configure nodes to validate an Avalanche Subnet. Subnet Validation via Avalanche-CLI is currently only supported on Fuji and Devnet.
@@ -25,7 +26,7 @@ Before the nodes can be Subnet Validators, the nodes need to first sync with the
 
 To have all nodes in cluster `clusterName` sync with Subnet `subnetName`, run:
 
-```
+```bash
 avalanche node sync <clusterName> <subnetName>
 ```
 
@@ -35,7 +36,7 @@ Wait until nodes are successfully `Syncing` with the Subnet before running the n
 
 To check sync status, run `avalanche node status <clusterName> --subnet <subnetName>`. Once the node is finished syncing, the response will be:
 
-```
+```bash
 All nodes in cluster `clusterName` are synced to Subnet `subnetName`
 ```
 
@@ -46,7 +47,7 @@ Once the nodes have synced, we can now have the nodes be Subnet Validators.
 
 To have the nodes be Subnet Validators, run:
 
-```
+```bash
 avalanche node validate subnet <clusterName> <subnetName>
 ```
 
@@ -54,7 +55,7 @@ avalanche node validate subnet <clusterName> <subnetName>
 
 The wizard will ask us how we want to pay for the transaction fees. Choose `Use stored key` for Fuji:
 
-```
+```bash
  Which key source should be used to pay transaction fees?:
   ▸ Use stored key
     Use ledger
@@ -62,7 +63,7 @@ The wizard will ask us how we want to pay for the transaction fees. Choose `Use 
 
 Once you have selected the key to pay with, choose how many AVAX you would like to stake in the validator. Default is the minimum amount of AVAX that can be staked in a Fuji Network Validator. More info regarding minimum staking amount in different networks can be found [here](/nodes/validate/how-to-stake#fuji-testnet).
 
-```
+```bash
  What stake weight would you like to assign to the validator?:
   ▸ Default (1.00 AVAX)
     Custom
@@ -70,7 +71,7 @@ Once you have selected the key to pay with, choose how many AVAX you would like 
 
 Next, choose how long the node will be validating for:
 
-```
+```bash
  How long should your validator validate for?:
   ▸ Minimum staking duration on primary network
     Custom
@@ -84,7 +85,7 @@ We will then proceed with adding the node as a Subnet Validator. Similar to addi
 
 Once that is completed, you will be asked what stake you would like to assign the Subnet Validator:
 
-```
+```bash
  What stake weight would you like to assign to the validator?:
   ▸ Default (20)
     Custom
@@ -98,7 +99,6 @@ Once the start time that you chose for the node to be a Subnet Validator has ela
 
 You should see:
 
-```
+```bash
 All nodes in cluster `clusterName` are validators to Subnet `subnetName`
-
 ```

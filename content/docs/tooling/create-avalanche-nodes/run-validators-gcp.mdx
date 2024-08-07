@@ -1,9 +1,9 @@
 ---
-title: Run an Avalanche Validator on GCP with One Avalanche-CLI Command
-sidebarTitle: Run Avalanche on GCP
+title: Run Validator on GCP
+description: This page demonstrates how to deploy Avalanche validators on GCP using just one Avalanche-CLI command.
 ---
-This page demonstrates how to deploy Avalanche validators on GCP using just one Avalanche-CLI command.
 
+This page demonstrates how to deploy Avalanche validators on GCP using just one Avalanche-CLI command.
 
 <Callout type="info">
 Currently, only Fuji network and Devnets are supported.
@@ -26,14 +26,13 @@ Before we begin, you will need to:
 
 To create Avalanche validators, run:
 
-```
+```bash
 avalanche node create <clusterName>
 ```
 
 The created nodes will be part of cluster `clusterName` and all avalanche node commands applied to cluster `clusterName` will apply to all nodes in the cluster.
 
 <Callout type="info">
-
 Please note that running a validator on GCP will incur costs.
 
 Ava Labs is not responsible for the cost incurred from running an Avalanche validator on cloud services via Avalanche-CLI.
@@ -48,7 +47,7 @@ Instance type can be specified via `--node-type` parameter or via interactive me
 
 The command will ask which region you want to set up your cloud server in:
 
-```
+```bash
 Which Google Region do you want to set up your node(s) in?:
   ▸ us-east1
     us-central1
@@ -58,7 +57,7 @@ Which Google Region do you want to set up your node(s) in?:
 
 The command will next ask whether you want to set up monitoring for your nodes. 
 
-```
+```bash
   Do you want to set up a separate instance to host monitoring? (This enables you to monitor all your set up instances in one dashboard): 
   ▸ Yes
     No

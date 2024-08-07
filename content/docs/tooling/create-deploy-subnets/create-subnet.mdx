@@ -1,7 +1,8 @@
 ---
-title: Build Your First Subnet
-sidebarTitle: Create a Subnet
+title: Create a Subnet
+description: This page demonstrates how to create a Subnet using Avalanche-CLI.
 ---
+
 This tutorial walks you through the process of using Avalanche-CLI to create a Subnet, deploy it to a local network, and connect to it with Core wallet.
 
 The first step of learning Subnet development is learning to use [Avalanche-CLI](https://github.com/ava-labs/avalanche-cli).
@@ -11,7 +12,7 @@ Installation[​](#installation "Direct link to heading")
 
 The fastest way to install the latest Avalanche-CLI binary is by running the install script:
 
-```
+```bash
 curl -sSfL https://raw.githubusercontent.com/ava-labs/avalanche-cli/main/scripts/install.sh | sh -s
 ```
 
@@ -32,9 +33,11 @@ This tutorials teaches you how to create an Ethereum Virtual Machine (EVM) based
 
 The Subnet command suite provides a collection of tools for developing and deploying Subnets.
 
-The Subnet Creation Wizard walks you through the process of creating your Subnet. To get started, first pick a name for your Subnet. This tutorial uses `mySubnet`, but feel free to substitute that with any name you like. Once you've picked your name, run
+The Subnet Creation Wizard walks you through the process of creating your Subnet. To get started, first pick a name for your Subnet. This tutorial uses `mySubnet`, but feel free to substitute that with any name you like. Once you've picked your name, run:
 
-`avalanche subnet create mySubnet`
+```bash
+avalanche subnet create mySubnet
+```
 
 The following sections walk through each question in the wizard.
 
@@ -83,9 +86,11 @@ You've successfully created your first Subnet configuration. Now it's time to de
 Deploying Subnets Locally[​](#deploying-subnets-locally "Direct link to heading")
 ---------------------------------------------------------------------------------
 
-To deploy your Subnet, run
+To deploy your Subnet, run:
 
-`avalanche subnet deploy mySubnet`
+```bash
+avalanche subnet deploy mySubnet
+```
 
 Make sure to substitute the name of your Subnet if you used a different one than `mySubnet`.
 
@@ -97,7 +102,7 @@ Note: If you run `bash` on your shell and are running Avalanche-CLI on ARM64 on 
 
 If all works as expected, the command output should look something like this:
 
-```
+```bash
 > avalanche subnet deploy mySubnet
 ✔ Local Network
 Deploying [mySubnet] to Local Network
@@ -141,11 +146,11 @@ Interacting with Your Subnet[​](#interacting-with-your-subnet "Direct link to 
 
 You can use the value provided by `Browser Extension connection details` to connect to your Subnet with Core, MetaMask, or any other wallet.
 
-
 <Callout type="info">
 To allow API calls from other machines, use `--http-host=0.0.0.0` in the config.
 </Callout>
-```
+
+```bash
 Browser Extension connection details (any node URL from above works):
 RPC URL:          http://127.0.0.1:9650/ext/bc/SPqou41AALqxDquEycNYuTJmRvZYbfoV9DYApDJVXKXuwVFPz/rpc
 Funded address:   0x8db97C7cEcE249c2b98bDC0226Cc4C2A57BF52FC with 1000000 (10^18) - private key: 56289e99c94b6912bfc12adc093c9b51124f0dc54ac7a766b2bc5ccf558d8027
@@ -159,14 +164,15 @@ This tutorial uses Core.
 ### Importing the Test Private Key[​](#importing-the-test-private-key "Direct link to heading")
 
 <Callout type="warning">
-
 This address derives from a well-known private key. Anyone can steal funds sent to this address. Only use it on development networks that only you have access to. If you send production funds to this address, attackers may steal them instantly.
 </Callout>
+
 First, you need to import your airdrop private key into Core.
 
 In the Accounts screen, select the `Imported` tab. Click on `Import private key`.
 
 ![](/images/create-subnet1.png)
+
 Here, enter the private key. Import the well-known private key `0x56289e99c94b6912bfc12adc093c9b51124f0dc54ac7a766b2bc5ccf558d8027`.
 
 ![](/images/create-subnet2.png)
