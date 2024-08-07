@@ -1,27 +1,30 @@
 ---
 title: Subnet-EVM API
-sidebarTitle: API
 ---
-[Subnet-EVM](https://github.com/ava-labs/subnet-evm) APIs are identical to [Coreth](/api-reference/c-chain/api) C-Chain APIs, except Avalanche Specific APIs starting with `avax`. Subnet-EVM also supports standard Ethereum APIs as well. For more information about Coreth APIs see [GitHub](https://github.com/ava-labs/coreth).
+
+[Subnet-EVM](https://github.com/ava-labs/subnet-evm) APIs are identical to
+[Coreth](/reference/avalanchego/c-chain/api.md) C-Chain APIs, except Avalanche Specific APIs
+starting with `avax`. Subnet-EVM also supports standard Ethereum APIs as well. For more
+information about Coreth APIs see [GitHub](https://github.com/ava-labs/coreth).
 
 Subnet-EVM has some additional APIs that are not available in Coreth.
 
-`eth_feeConfig`[​](#eth_feeconfig "Direct link to heading")
------------------------------------------------------------
+## `eth_feeConfig`
 
-Subnet-EVM comes with an API request for getting fee config at a specific block. You can use this API to check your activated fee config.
+Subnet-EVM comes with an API request for getting fee config at a specific block. You can use this
+API to check your activated fee config.
 
-**Signature**:
+**Signature:**
 
-```
+```bash
 eth_feeConfig([blk BlkNrOrHash]) -> {feeConfig: json}
 ```
 
 - `blk` is the block number or hash at which to retrieve the fee config. Defaults to the latest block if omitted.
 
-**Example Call**:
+**Example Call:**
 
-```
+```bash
 curl -X POST --data '{
     "jsonrpc": "2.0",
     "method": "eth_feeConfig",
@@ -32,9 +35,9 @@ curl -X POST --data '{
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/2ebCneCbwthjQ1rYT41nhd7M76Hc6YmosMAQrTFhBq8qeqh6tt/rpc
 ```
 
-**Example Response**:
+**Example Response:**
 
-```
+```json
 {
   "jsonrpc": "2.0",
   "id": 1,
@@ -54,20 +57,22 @@ curl -X POST --data '{
 }
 ```
 
-`eth_getChainConfig`[​](#eth_getchainconfig "Direct link to heading")
----------------------------------------------------------------------
+## `eth_getChainConfig`
 
-`eth_getChainConfig` returns the Chain Config of the blockchain. This API is enabled by default with `internal-blockchain` namespace.
+`eth_getChainConfig` returns the Chain Config of the blockchain. This API is enabled by default with
+`internal-blockchain` namespace.
 
-This API exists on the C-Chain as well, but in addition to the normal Chain Config returned by the C-Chain `eth_getChainConfig` on `subnet-evm` additionally returns the upgrade config, which specifies network upgrades activated after the genesis. **Signature**:
+This API exists on the C-Chain as well, but in addition to the normal Chain Config returned by the
+C-Chain `eth_getChainConfig` on `subnet-evm` additionally returns the upgrade config, which specifies
+network upgrades activated after the genesis. **Signature:**
 
-```
+```bash
 eth_getChainConfig({}) -> {chainConfig: json}
 ```
 
-**Example Call**:
+**Example Call:**
 
-```
+```bash
 curl -X POST --data '{
     "jsonrpc":"2.0",
     "id"     :1,
@@ -76,9 +81,9 @@ curl -X POST --data '{
 }' -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/Nvqcm33CX2XABS62iZsAcVUkavfnzp1Sc5k413wn5Nrf7Qjt7/rpc
 ```
 
-**Example Response**:
+**Example Response:**
 
-```
+```json
 {
   "jsonrpc": "2.0",
   "id": 1,
@@ -139,22 +144,25 @@ curl -X POST --data '{
 }
 ```
 
-`eth_getActivePrecompilesAt`[​](#eth_getactiveprecompilesat "Direct link to heading")
--------------------------------------------------------------------------------------
+## `eth_getActivePrecompilesAt`
 
-`eth_getActivePrecompilesAt` returns activated precompiles at a specific timestamp. If no timestamp is provided it returns the latest block timestamp. This API is enabled by default with `internal-blockchain` namespace.
+**DEPRECATED—instead use** [`eth_getActiveRulesAt`](#eth_getactiveprecompilesat).
 
-**Signature**:
+`eth_getActivePrecompilesAt` returns activated precompiles at a specific timestamp. If no
+timestamp is provided it returns the latest block timestamp. This API is enabled by default with
+`internal-blockchain` namespace.
 
-```
+**Signature:**
+
+```bash
 eth_getActivePrecompilesAt([timestamp uint]) -> {precompiles: []Precompile}
 ```
 
 - `timestamp` specifies the timestamp to show the precompiles active at this time. If omitted it shows precompiles activated at the latest block timestamp.
 
-**Example Call**:
+**Example Call:**
 
-```
+```bash
 curl -X POST --data '{
     "jsonrpc": "2.0",
     "method": "eth_getActivePrecompilesAt",
@@ -163,9 +171,9 @@ curl -X POST --data '{
 }'  -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/Nvqcm33CX2XABS62iZsAcVUkavfnzp1Sc5k413wn5Nrf7Qjt7/rpc
 ```
 
-**Example Response**:
+**Example Response:**
 
-```
+```json
 {
   "jsonrpc": "2.0",
   "id": 1,
@@ -184,5 +192,67 @@ curl -X POST --data '{
     }
   }
 }
+```
 
+## `eth_getActiveRulesAt`
+
+`eth_getActiveRulesAt` returns activated rules (precompiles, upgrades) at a specific timestamp. If no
+timestamp is provided it returns the latest block timestamp. This API is enabled by default with
+`internal-blockchain` namespace.
+
+**Signature:**
+
+```bash
+eth_getActiveRulesAt([timestamp uint]) -> {rules: json}
+```
+
+- `timestamp` specifies the timestamp to show the rules active at this time. If omitted it shows rules activated at the latest block timestamp.
+
+**Example Call:**
+
+```bash
+curl -X POST --data '{
+    "jsonrpc": "2.0",
+    "method": "eth_getActiveRulesAt",
+    "params": [],
+    "id": 1
+}'  -H 'content-type:application/json;' 127.0.0.1:9650/ext/bc/Nvqcm33CX2XABS62iZsAcVUkavfnzp1Sc5k413wn5Nrf7Qjt7/rpc
+```
+
+**Example Response:**
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "ethRules": {
+      "IsHomestead": true,
+      "IsEIP150": true,
+      "IsEIP155": true,
+      "IsEIP158": true,
+      "IsByzantium": true,
+      "IsConstantinople": true,
+      "IsPetersburg": true,
+      "IsIstanbul": true,
+      "IsCancun": true
+    },
+    "avalancheRules": {
+      "IsSubnetEVM": true,
+      "IsDurango": true,
+      "IsEUpgrade": true
+    },
+    "precompiles": {
+      "contractNativeMinterConfig": {
+        "timestamp": 0
+      },
+      "rewardManagerConfig": {
+        "timestamp": 1712918700
+      },
+      "warpConfig": {
+        "timestamp": 1714158045
+      }
+    }
+  }
+}
 ```
