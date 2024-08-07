@@ -2,7 +2,7 @@ import { type BaseLayoutProps, type DocsLayoutProps } from 'fumadocs-ui/layout';
 import { Title } from '@/app/layout.client';
 import { utils } from '@/utils/source';
 import { RootToggle } from 'fumadocs-ui/components/layout/root-toggle';
-import { MailIcon, SproutIcon, SquareGanttChart, IndentDecrease, Layers, MonitorCheck, Webhook } from 'lucide-react';
+import { MailIcon, SproutIcon, SquareGanttChart, IndentDecrease, Layers, MonitorCheck, Settings, Webhook } from 'lucide-react';
 
 // shared configuration
 export const baseOptions: BaseLayoutProps = {
@@ -57,6 +57,12 @@ export const docsOptions: DocsLayoutProps = {
             description: 'AWM and Teleporter',
             icon: <MailIcon />,
             url: '/docs/cross-chain',
+          },
+          {
+            title: 'Toolings',
+            description: 'CLI, Scripts, and More',
+            icon: <Settings />,
+            url: '/docs/tooling',
           },
           {
             title: 'API Docs',

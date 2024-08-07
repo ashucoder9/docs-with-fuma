@@ -1,0 +1,11 @@
+{
+  "title": "Toolings",
+  "root": true,
+  "pages": [
+    "---Toolings---",
+    "index",
+    "---Command Line---",
+    "avalanche-cli",
+    "...guides"
+  ]
+}
