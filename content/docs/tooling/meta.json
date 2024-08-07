@@ -2,8 +2,7 @@
   "title": "Toolings",
   "root": true,
   "pages": [
-    "index",
-    "---Command Line---",
+    "---Avalanche CLI---",
     "avalanche-cli",
     "guides",
     "create-deploy-subnets",

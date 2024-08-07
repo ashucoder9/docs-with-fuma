@@ -62,7 +62,7 @@ export const docsOptions: DocsLayoutProps = {
             title: 'Toolings',
             description: 'CLI, Scripts, and More',
             icon: <Settings />,
-            url: '/docs/tooling',
+            url: '/docs/tooling/avalanche-cli',
           },
           {
             title: 'API Docs',
