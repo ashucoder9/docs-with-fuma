@@ -6,6 +6,7 @@ const withMDX = createMDX({
   mdxOptions: {
     remarkPlugins: [remarkMath],
     rehypePlugins: (v) => [rehypeKatex, ...v],
+    lastModifiedTime: 'git',
   },
 });
 
