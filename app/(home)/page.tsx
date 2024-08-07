@@ -207,7 +207,7 @@ function Feature({
 }): React.ReactElement {
   return (
     <div
-      className={cn('border-l border-t px-6 py-12 md:py-16', className)}
+      className={cn('border-l border-t px-6 py-12', className)}
       {...props}
     >
       <div className="mb-4 inline-flex items-center gap-2 text-sm font-medium text-fd-muted-foreground">
