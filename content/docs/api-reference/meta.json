@@ -15,7 +15,7 @@
     "keystore-api",
     "metrics-api",
     "avalanche-go-configs-flags",
-    "---Subnet EVM---",
+    "---Avalanche Subnets---",
     "subnet-evm-api",
     "---Miscellaneous---",
     "standards",

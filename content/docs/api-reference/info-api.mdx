@@ -622,13 +622,10 @@ info.uptime({
 }
 ```
 
-- `subnetID` is the Subnet to get the uptime of. If not provided, returns the uptime of the node on the primary network.
-    
+- `subnetID` is the Subnet to get the uptime of. If not provided, returns the uptime of the node on the primary network.   
 - `rewardingStakePercentage` is the percent of stake which thinks this node is above the uptime requirement.
-    
 - `weightedAveragePercentage` is the stake-weighted average of all observed uptimes for this node.
     
-
 **Example Call**:
 
 ```
@@ -676,5 +673,4 @@ curl -X POST --data '{
     "weightedAveragePercentage": "72.4074"
   }
 }
-
 ```
