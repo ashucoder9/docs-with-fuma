@@ -108,7 +108,7 @@ If the block is produced at the target rate, the block gas cost will stay the sa
 
 If it is produced faster/slower, the block gas cost will be increased/decreased by the step value for each second faster/slower than the target block rate accordingly.
 
-<Callout type="info">
+<Callout title="Note">
 If the `blockGasCostStep` is set to a very large number, it effectively requires block production to go no faster than the `targetBlockRate`. For example, if a block is produced two seconds faster than the target block rate, the block gas cost will increase by `2 * blockGasCostStep`.
 </Callout>
 
@@ -844,11 +844,11 @@ With the initial configurations, precompiles can immediately activate their effe
 
 Notice that there is no `adminAddresses` field in the configuration. This means that there will be no admin addresses to manage the fee structure with this precompile. The precompile will simply update the fee configuration to the specified fee config when it activates on the `blockTimestamp` `1668950000`.
 
-<Callout type="info">
+<Callout title="Note">
 It's still possible to add `adminAddresses` or `enabledAddresses` along with these initial configurations. In this case, the precompile will be activated with the initial configuration, and admin/enabled addresses can access to the precompiled contract normally.
 </Callout>
 
-<Callout type="info">
+<Callout title="Note">
 If you want to change the precompile initial configuration, you will need to first disable it then activate the precompile again with the new configuration.
 </Callout>
 

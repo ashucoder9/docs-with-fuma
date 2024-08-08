@@ -85,7 +85,7 @@ cd $GOPATH/src/github.com/ava-labs/avalanchego
 ./build/avalanchego --network-id=fuji
 ```
 
-<Callout type="info">
+<Callout title="Note">
 To kill the node, press `Ctrl + C`.
 </Callout>
 
@@ -188,7 +188,7 @@ Please note that a fully connected Avalanche node maintains and communicates ove
 </Accordion>
 </Accordions>
 
-<Callout type="info">
+<Callout title="Note">
 To be able to make API calls to your node from other machines, include the argument `--http-host=` when starting the node.
 </Callout>
 
@@ -219,7 +219,7 @@ curl -X POST --data '{
 
 If this returns `true`, the chain is bootstrapped; otherwise, it returns `false`. If you make other API calls to a chain that is not done bootstrapping, it will return `API call rejected because chain is not done bootstrapping`. If you are still experiencing issues please contact us on [Discord.](https://chat.avalabs.org/)
 
-<Callout type="info">
+<Callout title="Note">
 The 3 chains will bootstrap in the following order: P-chain, X-chain, C-chain.
 </Callout>
 

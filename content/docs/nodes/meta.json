@@ -2,9 +2,7 @@
   "title": "Nodes",
   "root": true,
   "pages": [
-    "---Nodes---",
     "index",
-    "system-requirements",
     "---Run A Node---",
     "run-a-node/manually",
     "using-install-script",

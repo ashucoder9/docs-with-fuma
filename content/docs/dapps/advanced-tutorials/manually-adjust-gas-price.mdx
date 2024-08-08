@@ -38,7 +38,7 @@ Along with a gas limit, users can now pass 2 values in dynamic fee transactions:
 
 The maximum price per unit of gas, that the user is willing to pay for their transaction is called `gas fee cap`. If the base price for a block is more than the gas fee cap, then the transaction will remain in the transaction pool until the base fee has been changed to be less than or equal to the provided gas fee cap.
 
-<Callout>
+<Callout title="Note">
 The transaction pool limits the number of pending transactions, so if the number of pending transactions exceeds the configured cap then the transactions with the lowest fees may be evicted from the transaction pool and need to be re-issued.
 </Callout>
 

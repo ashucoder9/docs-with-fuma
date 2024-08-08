@@ -87,7 +87,7 @@ Download Pre-Built Binary[​](#download-pre-built-binary "Direct link to headin
 
 If you want to download a pre-built binary instead of building it yourself, go to our [releases page](https://github.com/ava-labs/avalanchego/releases), and select the release you want (probably the latest one.)
 
-<Callout type="info">
+<Callout title="Note">
 If you have a node, you can subscribe to the [avalanche notify service](/nodes/maintain/enroll-in-avalanche-notify) with your node ID to be notified about new releases.
 
 In addition, or if you don't have a node ID, you can get release notifications from github. To do so, you can go to our [repository](https://github.com/ava-labs/avalanchego) and look on the top-right corner for the **Watch** option. After you click on it, select **Custom**, and then **Releases**. Press **Apply** and it is done.
@@ -147,7 +147,7 @@ First clone our GitHub repo (you can skip this step if you've done this before):
 git clone https://github.com/ava-labs/avalanchego.git
 ```
 
-<Callout type="info">
+<Callout title="Note">
 The repository cloning method used is HTTPS, but SSH can be used too:
 
 `git clone [[email protected]](https://docs.avax.network/cdn-cgi/l/email-protection):ava-labs/avalanchego.git`
@@ -167,7 +167,7 @@ Pull the latest code:
 git pull
 ```
 
-<Callout type="info">
+<Callout title="Note">
 If the master branch has not been updated with the latest release tag, you can get to it directly via first running `git fetch --all --tags` and then `git checkout --force tags/<tag>` (where `<tag>` is the latest release tag; for example `v1.3.2`) instead of `git pull`.
 
 Note that your local copy will be in a 'detached HEAD' state, which is not an issue if you do not make changes to the source that you want push back to the repository (in which case you should check out to a branch and to the ordinary merges).
@@ -183,7 +183,7 @@ git rev-parse HEAD
 
 and check that the first 7 characters printed match the Latest commit field on our [GitHub](https://github.com/ava-labs/avalanchego).
 
-<Callout type="info">
+<Callout title="Note">
 If you used the `git checkout tags/<tag>` then these first 7 characters should match commit hash of that tag.
 </Callout>
 

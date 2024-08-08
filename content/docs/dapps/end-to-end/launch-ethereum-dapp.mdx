@@ -121,7 +121,7 @@ functionality, you need to disable C-Chain pruning, which is enabled by default
 to conserve disk space. To preserve full historical state, include
 `"pruning-enabled": false` in the C-Chain config file.
 
-<Callout>
+<Callout title="Note">
 After changing the flag to disable the database pruning, you will need to run
 the bootstrap process again, as the node will not backfill any already pruned
 and missing data.
@@ -137,7 +137,7 @@ appropriate EVM APIs in the config file by including the `eth-apis` value in
 your C-Chain config file to include the `debug`, `debug-tracer`, and
 `internal-debug` APIs.
 
-<Callout>
+<Callout title="Note">
 Including the `eth-apis` in the config flag overrides the defaults, so you need
 to include the default APIs as well!
 </Callout>

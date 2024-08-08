@@ -20,7 +20,7 @@ Vertex -> Block Indexing[​](#vertex---block-indexing "Direct link to heading")
 Before Cortina, indexing the X-Chain required polling the `/ext/index/X/vtx` endpoint to fetch new vertices. During the Cortina activation, a “stop vertex” will be produced using a [new codec version](https://github.com/ava-labs/avalanchego/blob/c27721a8da1397b218ce9e9ec69839b8a30f9860/snow/engine/avalanche/vertex/codec.go#L17-L18) that will contain no transactions. This new vertex type will be the [same format](https://github.com/ava-labs/avalanchego/blob/c27721a8da1397b218ce9e9ec69839b8a30f9860/snow/engine/avalanche/vertex/stateless_vertex.go#L95-L102) as previous vertices. To ensure historical data can still be accessed in Cortina, the `/ext/index/X/vtx` will remain accessible even though it will no longer be populated with chain data.
 
 
-<Callout type="info">
+<Callout title="Note">
 The index for the X-chain tx and vtx endpoints will never increase again. The index for the X-chain blocks will increase as new blocks are added.
 </Callout>
 
@@ -87,7 +87,7 @@ Deprecated API Calls[​](#deprecated-api-calls "Direct link to heading")
 This long-term deprecation effort will better align usage of AvalancheGo with its purpose, to be a minimal and efficient runtime that supports only what is required to validate the Primary Network and Subnets. Integrators should make plans to migrate to tools and services that are better optimized for serving queries over Avalanche Network state and avoid keeping any keys on the node itself.
 
 
-<Callout type="info">
+<Callout title="Note">
 This deprecation ONLY applies to APIs that AvalancheGo exposes over the HTTP port. Transaction types with similar names to these APIs are NOT being deprecated.
 </Callout>
 - ipcs

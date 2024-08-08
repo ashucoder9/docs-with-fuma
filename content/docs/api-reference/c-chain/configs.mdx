@@ -100,7 +100,7 @@ Specifies the directory for the Admin API to use to store CPU/Mem/Lock Profiles.
 Use the `eth-apis` field to specify the exact set of below services to enable on your node. If this field is not set, then the default list will be: `["eth","eth-filter","net","web3","internal-eth","internal-blockchain","internal-transaction"]`.
 
 
-<Callout type="info">
+<Callout title="Note">
 The names used in this configuration flag have been updated in Coreth `v0.8.14`. The previous names containing `public-` and `private-` are deprecated. While the current version continues to accept deprecated values, they may not be supported in future updates and updating to the new values is recommended.
 
 The mapping of deprecated values and their updated equivalent follows:
@@ -124,7 +124,7 @@ The mapping of deprecated values and their updated equivalent follows:
 </Callout>
 
 
-<Callout type="info">
+<Callout title="Note">
 If you populate this field, it will override the defaults so you must include every service you wish to enable.
 </Callout>
 ### `eth`[​](#eth "Direct link to heading")
@@ -632,7 +632,7 @@ _Boolean_
 
 If `true`, database pruning of obsolete historical data will be enabled. This reduces the amount of data written to disk, but does not delete any state that is written to the disk previously. This flag should be set to `false` for nodes that need access to all data at historical roots. Pruning will be done only for new data. Defaults to `false` in v1.4.9, and `true` in subsequent versions.
 
-<Callout type="info">
+<Callout title="Note">
     If a node is ever run with `pruning-enabled` as `false` (archival mode), setting `pruning-enabled` to `true` will result in a warning and the node will shut down. This is to protect against unintentional misconfigurations of an archival node.
 
 To override this and switch to pruning mode, in addition to `pruning-enabled: true`, `allow-missing-tries` should be set to `true` as well.

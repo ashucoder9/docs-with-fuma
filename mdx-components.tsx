@@ -16,10 +16,12 @@ import { Popup, PopupContent, PopupTrigger } from 'fumadocs-ui/twoslash/popup';
 import YouTube from '@/components/youtube';
 import Gallery from '@/components/gallery';
 import { cn } from './utils/cn';
+import { BadgeCheck } from 'lucide-react';
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     ...defaultComponents,
+    BadgeCheck,
     Popup,
     PopupContent,
     PopupTrigger,

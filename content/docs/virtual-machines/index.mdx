@@ -38,7 +38,7 @@ In order to install a VM, its binary must be installed in the `AvalancheGo` plug
 
 Each VM runs as a separate process from AvalancheGo and communicates with `AvalancheGo` using gRPC calls. This functionality is enabled by **RPCChainVM**, a special VM which wraps around other VM implementations and bridges the VM and AvalancheGo, establishing a standardized communication protocol between them.
 
-<Callout type="info">
+<Callout title="Note">
 During VM creation, handshake messages are exchanged via **RPCChainVM** between AvalancheGo and the VM installation. Ensure matching **RPCChainVM** protocol versions to avoid errors, by updating your VM or using a [different version of AvalancheGo](https://github.com/ava-labs/AvalancheGo/releases).
 
 Note that some VMs may not support the latest protocol version.

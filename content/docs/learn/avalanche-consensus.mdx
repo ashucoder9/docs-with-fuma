@@ -22,7 +22,7 @@ Key Features Include:
 
 Consensus protocols in the Avalanche family operate through repeated sub-sampled voting. When a node is determining whether a [transaction](http://support.avalabs.org/en/articles/4587384-what-is-a-transaction) should be accepted, it asks a small, random subset of [validator nodes](http://support.avalabs.org/en/articles/4064704-what-is-a-blockchain-validator) for their preference. Each queried validator replies with the transaction that it prefers, or thinks should be accepted.
 
-<Callout type="info">
+<Callout title="Note">
 Consensus will never include a transaction that is determined to be **invalid**. For example, if you were to submit a transaction to send 100 AVAX to a friend, but your wallet only has 2 AVAX, this transaction is considered **invalid** and will not participate in consensus.
 </Callout>
 
@@ -42,7 +42,7 @@ When a transaction has no conflicts, finalization happens very quickly. When con
 
 Avalanche Consensus guarantees that if any honest validator accepts a transaction, all honest validators will come to the same conclusion.
 
-<Callout type="info">
+<Callout title="Note">
 For a great visualization, check out [this demo](https://tedyin.com/archive/snow-bft-demo/#/snow).
 </Callout>
 

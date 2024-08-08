@@ -40,7 +40,7 @@ Here, turn on the **Testnet Mode** feature. This will automatically make Core sw
 
 ![Settings image 2](/images/nft-collection2.png)
 
-<Callout type="info">
+<Callout title="Note">
 If you are using other wallets, like Core or MetaMask, you can add the Fuji Testnet using the following specs:
 
 - **Network Name**: Avalanche C-Chain
@@ -78,7 +78,7 @@ Next, we'll want to check the `Mintable` and `Auto Increment Ids` boxes. This wi
 
 This automatically checks the `Ownable` button, which gives the `safeMint` function the `onlyOwner` modifier. This modifier indicates that only the owner of the smart contract will be able to successfully call the function.
 
-<Callout type="info">
+<Callout title="Note">
 This modifier should be removed when creating a smart contract for a public mint. Otherwise, users wouldn't be able to successfully mint the NFTs when calling the `safeMint` function. This tutorial only handles the owner's wallet address, so it is being left in.
 </Callout>
 

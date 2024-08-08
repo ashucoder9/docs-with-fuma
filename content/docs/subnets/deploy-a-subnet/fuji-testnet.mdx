@@ -3,7 +3,7 @@ title: On Fuji Testnet
 description: Learn how to deploy a Subnet on the Fuji Testnet.
 ---
 
-<Callout type="info">
+<Callout title="Note">
 This document describes how to use the new Avalanche-CLI to deploy a Subnet on `Fuji`.
 </Callout>
 
@@ -66,7 +66,7 @@ The response should look something like:
 
 That portion that says, `NodeID-5mb46qkSBj81k9g9e4VFjGGSbaaSLFRzD` is the NodeID, the entire thing. The user is going to need this ID in the later section when calling [addValidator](#add-a-validator).
 
-<Callout type="info">
+<Callout title="Note">
 With more data on `Fuji`, it may take a while to bootstrap `Fuji` Testnet from scratch. You can use [State-Sync](/nodes/configure/chain-configs/c-chain#state-sync-enabled) to shorten the time for bootstrapping.
 </Callout>
 
@@ -373,7 +373,7 @@ go run main.go subnet list --deployed
 Deploy the Subnet[​](#deploy-the-subnet "Direct link to heading")
 -----------------------------------------------------------------
 
-<Callout type="info">
+<Callout title="Note">
 To deploy the Subnet, you will need some testnet AVAX on the P-chain.
 </Callout>
 
@@ -468,7 +468,7 @@ Request to Join a Subnet as a Validator[​](#request-to-join-a-subnet-as-a-vali
 
 The new Subnet created in the previous steps doesn't have any dedicated validators yet. To request permission to validate a Subnet, the following steps are required:
 
-<Callout type="info">
+<Callout title="Note">
 Before a node can be a validator on a Subnet, the node is required to already be a validator on the primary network, which means that your node has **fully bootstrapped**.
 
 If the validator is within 24 hours of expiring on the primary network, it can't be added to the Subnet.
@@ -722,7 +722,7 @@ To connect Core (or MetaMask) with your blockchain on the new Subnet running on 
 - Symbol: TST
 ```
 
-<Callout type="info">
+<Callout title="Note">
 Unless you deploy your Subnet on other nodes, you aren't going to be able to use other nodes, including the public API server `https://api.avax-test.network/`, to connect to Core.
 </Callout>
 

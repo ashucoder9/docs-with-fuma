@@ -25,7 +25,7 @@ To have a json-RPC endpoint, `/ext/bc/subnetId/rpc` exposed by AvalancheGo, you 
 
 You can and should use a tool like `buf` to generate the (Client/Server) code from the interfaces as stated in the [Avalanche module](https://buf.build/ava-labs/avalanche)'s page.
 
-<Callout type="info">
+<Callout title="Note">
 There are _server_ and _client_ interfaces to implement. AvalancheGo calls the _server_ interfaces exposed by your VM and your VM calls the _client_ interfaces exposed by AvalancheGo.
 </Callout>
 

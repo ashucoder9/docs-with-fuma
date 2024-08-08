@@ -431,7 +431,7 @@ func setGreeting(accessibleState contract.AccessibleState, caller common.Address
 }
 ```
 
-<Callout>
+<Callout title="Note">
 Precompile events introduced with Durango. In this example we assumed that the `HelloWorld` precompile contract has been deployed before Durango.
 
 If this is a new precompile and it will be deployed after Durango, you can activate it immediately by removing the Durango if condition (`contract.IsDurangoActivated(accessibleState)`).
