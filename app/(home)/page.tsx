@@ -179,7 +179,7 @@ function Features(): React.ReactElement {
         description="Well documented APIs for the Avalanche Network. You can also try out the interactive Glacier API playground."
       >
         <div className="flex flex-row flex-wrap gap-2 py-4">
-          <Link href="/docs/api-reference" className={cn(buttonVariants())}>
+          <Link href="/docs/api-reference/p-chain/api" className={cn(buttonVariants())}>
             API Docs
           </Link>
           <Link href="https://glacier.docs.avacloud.io/reference/getting-started-with-your-api" className={cn(buttonVariants())}>

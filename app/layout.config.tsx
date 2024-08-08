@@ -68,7 +68,7 @@ export const docsOptions: DocsLayoutProps = {
             title: 'API Docs',
             description: 'Avalanche API References',
             icon: <Webhook />,
-            url: '/docs/api-reference',
+            url: '/docs/api-reference/p-chain/api',
           }
         ]}
       />
