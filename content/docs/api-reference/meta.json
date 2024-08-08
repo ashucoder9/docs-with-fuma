@@ -3,12 +3,10 @@
   "root": true,
   "pages": [
     "index",
-    "---Platform Chain---",
-    "...p-chain",
-    "---Exchange Chain---",
-    "...x-chain",
-    "---Contract Chain---",
-    "...c-chain",
+    "---AvalancheGo---",
+    "p-chain",
+    "x-chain",
+    "c-chain",
     "---Other AvalancheGo References---",
     "admin-api",
     "health-api",
@@ -19,8 +17,8 @@
     "avalanche-go-configs-flags",
     "---Subnet EVM---",
     "subnet-evm-api",
-    "---Standards---",
-    "...standards",
+    "---Miscellaneous---",
+    "standards",
     "rpc-providers",
     "install-script"
   ]
