@@ -179,10 +179,10 @@ curl -X POST --data '{
 
 ### `avm.createAddress`[​](#avmcreateaddress "Direct link to heading")
 
-<Callout type="warning">
+<Callout type="warn">
     Deprecated as of [v1.9.12](https://github.com/ava-labs/avalanchego/releases/tag/v1.9.12).
 </Callout>
-<Callout type="warning">
+<Callout type="warn">
 Not recommended for use on Mainnet. See warning notice in [Keystore API](/api-reference/keystore-api).
 </Callout>
 Create a new address controlled by the given user.
@@ -223,11 +223,11 @@ curl -X POST --data '{
 ```
 
 ### `avm.createFixedCapAsset`[​](#avmcreatefixedcapasset "Direct link to heading")
-<Callout type="warning">
+<Callout type="warn">
     Deprecated as of [v1.9.12](https://github.com/ava-labs/avalanchego/releases/tag/v1.9.12).
 </Callout>
 
-<Callout type="warning">
+<Callout type="warn">
 Not recommended for use on Mainnet. See warning notice in [Keystore API](/api-reference/keystore-api).
 </Callout>
 Create a new fixed-cap, fungible asset. A quantity of it is created at initialization and then no more is ever created. The asset can be sent with `avm.send`.
@@ -306,11 +306,11 @@ curl -X POST --data '{
 
 ### `avm.createNFTAsset`[​](#avmcreatenftasset "Direct link to heading")
 
-<Callout type="warning">
+<Callout type="warn">
     Deprecated as of [v1.9.12](https://github.com/ava-labs/avalanchego/releases/tag/v1.9.12).
 </Callout>
 
-<Callout type="warning">
+<Callout type="warn">
 Not recommended for use on Mainnet. See warning notice in [Keystore API](/api-reference/keystore-api).
 </Callout>
 Create a new non-fungible asset. No units of the asset exist at initialization. Minters can mint units of this asset using `avm.mintNFT`.
@@ -386,11 +386,11 @@ curl -X POST --data '{
 
 ### `avm.createVariableCapAsset`[​](#avmcreatevariablecapasset "Direct link to heading")
 
-<Callout type="warning">
+<Callout type="warn">
     Deprecated as of [v1.9.12](https://github.com/ava-labs/avalanchego/releases/tag/v1.9.12).
 </Callout>
 
-<Callout type="warning">
+<Callout type="warn">
 Not recommended for use on Mainnet. See warning notice in [Keystore API](/api-reference/keystore-api).
 </Callout>
 Create a new variable-cap, fungible asset. No units of the asset exist at initialization. Minters can mint units of this asset using `avm.mint`.
@@ -476,11 +476,11 @@ curl -X POST --data '{
 
 ### `avm.export`[​](#avmexport "Direct link to heading")
 
-<Callout type="warning">
+<Callout type="warn">
     Deprecated as of [v1.9.12](https://github.com/ava-labs/avalanchego/releases/tag/v1.9.12).
 </Callout>
 
-<Callout type="warning">
+<Callout type="warn">
 Not recommended for use on Mainnet. See warning notice in [Keystore API](/api-reference/keystore-api).
 </Callout>
 Send an asset from the X-Chain to the P-Chain or C-Chain.
@@ -556,11 +556,11 @@ curl -X POST --data '{
 
 ### `avm.exportKey`[​](#avmexportkey "Direct link to heading")
 
-<Callout type="warning">
+<Callout type="warn">
     Deprecated as of [v1.9.12](https://github.com/ava-labs/avalanchego/releases/tag/v1.9.12).
 </Callout>
 
-<Callout type="warning">
+<Callout type="warn">
 Not recommended for use on Mainnet. See warning notice in [Keystore API](/api-reference/keystore-api).
 </Callout>
 Get the private key that controls a given address. The returned private key can be added to a user with [`avm.importKey`](/api-reference/x-chain/api#avmimportkey).
@@ -606,7 +606,7 @@ curl -X POST --data '{
 ```
 
 ### `avm.getAddressTxs`[​](#avmgetaddresstxs "Direct link to heading")
-<Callout type="warning">
+<Callout type="warn">
     Deprecated as of [v1.9.12](https://github.com/ava-labs/avalanchego/releases/tag/v1.9.12).
 </Callout>
 
@@ -676,7 +676,7 @@ curl -X POST --data '{
 ```
 
 ### `avm.getAllBalances`[​](#avmgetallbalances "Direct link to heading")
-<Callout type="warning">
+<Callout type="warn">
     Deprecated as of [v1.9.12](https://github.com/ava-labs/avalanchego/releases/tag/v1.9.12).
 </Callout>
 
@@ -788,7 +788,7 @@ curl -X POST --data '{
 ```
 
 ### `avm.getBalance`[​](#avmgetbalance "Direct link to heading")
-<Callout type="warning">
+<Callout type="warn">
     Deprecated as of [v1.9.12](https://github.com/ava-labs/avalanchego/releases/tag/v1.9.12).
 </Callout>
 
@@ -1108,7 +1108,7 @@ The above output can be consumed after Unix time `locktime` by a transaction tha
 ### `avm.getTxStatus`[​](#avmgettxstatus "Direct link to heading")
 
 
-<Callout type="warning">
+<Callout type="warn">
 Deprecated as of **v1.10.0**.
 </Callout>
 Get the status of a transaction sent to the network.
@@ -1310,11 +1310,11 @@ This gives response:
 
 ### `avm.import`[​](#avmimport "Direct link to heading")
 
-<Callout type="warning">
+<Callout type="warn">
     Deprecated as of [v1.9.12](https://github.com/ava-labs/avalanchego/releases/tag/v1.9.12).
 </Callout>
 
-<Callout type="warning">
+<Callout type="warn">
 Not recommended for use on Mainnet. See warning notice in [Keystore API](/api-reference/keystore-api).
 </Callout>
 Finalize a transfer of an asset from the P-Chain or C-Chain to the X-Chain.
@@ -1365,11 +1365,11 @@ curl -X POST --data '{
 
 ### `avm.importKey`[​](#avmimportkey "Direct link to heading")
 
-<Callout type="warning">
+<Callout type="warn">
     Deprecated as of [v1.9.12](https://github.com/ava-labs/avalanchego/releases/tag/v1.9.12).
 </Callout>
 
-<Callout type="warning">
+<Callout type="warn">
 Not recommended for use on Mainnet. See warning notice in [Keystore API](/api-reference/keystore-api).
 </Callout>
 Give a user control over an address by providing the private key that controls the address.
@@ -1456,11 +1456,11 @@ curl -X POST --data '{
 
 ### `avm.listAddresses`[​](#avmlistaddresses "Direct link to heading")
 
-<Callout type="warning">
+<Callout type="warn">
     Deprecated as of [v1.9.12](https://github.com/ava-labs/avalanchego/releases/tag/v1.9.12).
 </Callout>
 
-<Callout type="warning">
+<Callout type="warn">
 Not recommended for use on Mainnet. See warning notice in [Keystore API](/api-reference/keystore-api).
 </Callout>
 List addresses controlled by the given user.
@@ -1502,11 +1502,11 @@ curl -X POST --data '{
 
 ### `avm.mint`[​](#avmmint "Direct link to heading")
 
-<Callout type="warning">
+<Callout type="warn">
     Deprecated as of [v1.9.12](https://github.com/ava-labs/avalanchego/releases/tag/v1.9.12).
 </Callout>
 
-<Callout type="warning">
+<Callout type="warn">
 Not recommended for use on Mainnet. See warning notice in [Keystore API](/api-reference/keystore-api).
 </Callout>
 Mint units of a variable-cap asset created with [`avm.createVariableCapAsset`](/api-reference/x-chain/api#avmcreatevariablecapasset).
@@ -1570,11 +1570,11 @@ curl -X POST --data '{
 
 ### `avm.mintNFT`[​](#avmmintnft "Direct link to heading")
 
-<Callout type="warning">
+<Callout type="warn">
     Deprecated as of [v1.9.12](https://github.com/ava-labs/avalanchego/releases/tag/v1.9.12).
 </Callout>
 
-<Callout type="warning">
+<Callout type="warn">
 Not recommended for use on Mainnet. See warning notice in [Keystore API](/api-reference/keystore-api).
 </Callout>
 Mint non-fungible tokens which were created with [`avm.createNFTAsset`](/api-reference/x-chain/api#avmcreatenftasset).
@@ -1641,11 +1641,11 @@ curl -X POST --data '{
 
 ### `avm.send`[​](#avmsend "Direct link to heading")
 
-<Callout type="warning">
+<Callout type="warn">
     Deprecated as of [v1.9.12](https://github.com/ava-labs/avalanchego/releases/tag/v1.9.12).
 </Callout>
 
-<Callout type="warning">
+<Callout type="warn">
 Not recommended for use on Mainnet. See warning notice in [Keystore API](/api-reference/keystore-api).
 </Callout>
 Send a quantity of an asset to an address.
@@ -1707,11 +1707,11 @@ curl -X POST --data '{
 
 ### `avm.sendMultiple`[​](#avmsendmultiple "Direct link to heading")
 
-<Callout type="warning">
+<Callout type="warn">
     Deprecated as of [v1.9.12](https://github.com/ava-labs/avalanchego/releases/tag/v1.9.12).
 </Callout>
 
-<Callout type="warning">
+<Callout type="warn">
 Not recommended for use on Mainnet. See warning notice in [Keystore API](/api-reference/keystore-api).
 </Callout>
 Sends multiple transfers of `amount` of `assetID`, to a specified address from a list of owned addresses.
@@ -1783,11 +1783,11 @@ curl -X POST --data '{
 
 ### `avm.sendNFT`[​](#avmsendnft "Direct link to heading")
 
-<Callout type="warning">
+<Callout type="warn">
     Deprecated as of [v1.9.12](https://github.com/ava-labs/avalanchego/releases/tag/v1.9.12).
 </Callout>
 
-<Callout type="warning">
+<Callout type="warn">
 Not recommended for use on Mainnet. See warning notice in [Keystore API](/api-reference/keystore-api).
 </Callout>
 Send a non-fungible token.
@@ -1852,7 +1852,7 @@ This call is made to the wallet API endpoint:
 
 `/ext/bc/X/wallet`
 
-<Callout type="warning">
+<Callout type="warn">
     Deprecated as of [v1.9.12](https://github.com/ava-labs/avalanchego/releases/tag/v1.9.12).
 </Callout>
 
@@ -1897,7 +1897,7 @@ curl -X POST --data '{
 ### `wallet.send`[​](#walletsend "Direct link to heading")
 
 
-<Callout type="warning">
+<Callout type="warn">
 Not recommended for use on Mainnet. See warning notice in [Keystore API](/api-reference/keystore-api).
 </Callout>
 Send a quantity of an asset to an address and assume the TX will be accepted so that future calls can use the modified UTXO set.
@@ -1906,7 +1906,7 @@ This call is made to the wallet API endpoint:
 
 `/ext/bc/X/wallet`
 
-<Callout type="warning">
+<Callout type="warn">
     Deprecated as of [v1.9.12](https://github.com/ava-labs/avalanchego/releases/tag/v1.9.12).
 </Callout>
 
@@ -1969,7 +1969,7 @@ curl -X POST --data '{
 ### `wallet.sendMultiple`[​](#walletsendmultiple "Direct link to heading")
 
 
-<Callout type="warning">
+<Callout type="warn">
 Not recommended for use on Mainnet. See warning notice in [Keystore API](/api-reference/keystore-api).
 </Callout>
 Send multiple transfers of `amount` of `assetID`, to a specified address from a list of owned of addresses and assume the TX will be accepted so that future calls can use the modified UTXO set.
@@ -1979,7 +1979,7 @@ This call is made to the wallet API endpoint:
 `/ext/bc/X/wallet`
 
 
-<Callout type="warning">
+<Callout type="warn">
 Endpoint deprecated as of [**v1.9.12**](https://github.com/ava-labs/avalanchego/releases/tag/v1.9.12).
 </Callout>
 **Signature**:
@@ -2056,7 +2056,7 @@ This call is made to the events API endpoint:
 `/ext/bc/X/events`
 
 
-<Callout type="warning">
+<Callout type="warn">
 Endpoint deprecated as of [**v1.9.12**](https://github.com/ava-labs/avalanchego/releases/tag/v1.9.12).
 </Callout>
 #### **Golang Example**[​](#golang-example "Direct link to heading")

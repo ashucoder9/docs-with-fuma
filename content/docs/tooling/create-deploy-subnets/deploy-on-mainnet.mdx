@@ -3,7 +3,7 @@ title: Deploy on Mainnet
 description: CLI commands for deploying a Subnet on Mainnet.
 ---
 
-<Callout type="warning">
+<Callout type="warn">
 Deploying a Subnet to Mainnet has many risks. Doing so safely requires a laser focus on security. This tutorial does its best to point out common pitfalls, but there may be other risks not discussed here.
 
 This tutorial is an educational resource and provides no guarantees that following it results in a secure deployment. Additionally, this tutorial takes some shortcuts that aid the understanding of the deployment process at the expense of security. The text highlights these shortcuts and they shouldn't be used for a production deployment.
@@ -30,7 +30,7 @@ Prerequisites[​](#prerequisites "Direct link to heading")
 - A [Ledger](https://www.ledger.com/) device
 - You've [created a Subnet configuration](/build/subnets/build-first-subnet#create-your-subnet-configuration) and fully tested a [Fuji Testnet Subnet deployment](/build/subnets/deploy-a-subnet/fuji-testnet)
 
-<Callout type="warning">
+<Callout type="warn">
 Although only one validator is strictly required to run a Subnet, running with less than five validators is extremely dangerous and guarantees network downtime. Plan to support at least five validators in your production network.
 </Callout>
 
@@ -136,7 +136,7 @@ The first Ledger address must have the funds to issue the transactions broadcast
 
 This tutorial creates a permissioned Subnet. As such, you must specify which P-Chain addresses can control the Subnet. These addresses are known as `Control Keys`. The CLI can automatically set your Ledger's address as the sole control key or the user may specify a custom list.
 
-<Callout type="warning">
+<Callout type="warn">
 In production Subnets, you should always use multiple control keys running in a multisig configuration. This tutorial uses a single control key for illustrative purposes only.
 
 For instructions on controlling your Subnet with a multisig, see the [Multisig Deployment Tutorial](/build/subnets/deploy-a-subnet/multisig-auth).
@@ -327,7 +327,7 @@ take effect.
 Add a Validator[​](#add-a-validator "Direct link to heading")
 -------------------------------------------------------------
 
-<Callout type="warning">
+<Callout type="warn">
 If the `join` command isn't successfully completed before `addValidator` is completed, the Subnet could experience degraded performance or even halt.
 </Callout>
 
@@ -379,7 +379,7 @@ Note, this ID is intentionally modified to prevent replication.
 
 Select 30 as the stake weight.
 
-<Callout type="warning">
+<Callout type="warn">
 The stake weight of all your validators should sum to at least 100.
 </Callout>
 

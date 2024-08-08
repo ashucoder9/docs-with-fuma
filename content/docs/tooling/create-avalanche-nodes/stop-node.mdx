@@ -3,7 +3,7 @@ title: Terminate All Nodes
 description: This page provides instructions for terminating cloud server nodes created by Avalanche-CLI.
 ---
 
-<Callout type="warning">
+<Callout type="warn">
 ALPHA WARNING: This command is currently in experimental mode. Proceed at your own risk.
 </Callout>
 
@@ -16,7 +16,7 @@ To terminate all nodes in a cluster, run:
 avalanche node destroy <clusterName>
 ```
 
-<Callout type="warning">
+<Callout type="warn">
 ALPHA WARNING: This command will delete all files associated with the cloud servers in the cluster. This includes the downloaded `staker.crt` and `staker.key` files in your local `.avalanche-cli` directory (which are used to back up your node). More info about node backup can be found [here](https://docs.avax.network/nodes/maintain/node-backup-and-restore).
 </Callout>
 

@@ -208,7 +208,7 @@ With `allowFeeRecipients` enabled, your validators can specify their addresses t
 }
 ```
 
-<Callout type="warning">
+<Callout type="warn">
 If `allowFeeRecipients` feature is enabled on the Subnet, but a validator doesn't specify a "feeRecipient", the fees will be burned in blocks it produces.
 </Callout>
 
@@ -296,7 +296,7 @@ The `Stateful Precompile` contract powering the `ContractDeployerAllowList` adhe
 - If you attempt to deploy a contract but you are not an `Admin` not a `Enabled`, you will see something like: ![deploy fail](/images/customize2.png)
 - If you call `readAllowList(addr)` then you can read the current role of `addr`, which will return a uint256 with a value of 0, 1, or 2, corresponding to the roles `None`, `Enabled`, and `Admin` respectively.
 
-<Callout type="warning">
+<Callout type="warn">
 If you remove all of the admins from the allow list, it will no longer be possible to update the allow list without modifying the Subnet-EVM to schedule a network upgrade.
 </Callout>
 
@@ -340,7 +340,7 @@ The `Stateful Precompile` contract powering the `TxAllowList` adheres to the [Al
 - If you attempt to submit a transaction but you are not an `Admin`, `Manager` or not `Enabled`, you will see something like: `cannot issue transaction from non-allow listed address` 
 - If you call `readAllowList(addr)` then you can read the current role of `addr`, which will return a `uint256` with a value of 0, 1, 2 or 3 corresponding to the roles `None`, `Allowed`, `Admin` and `Manager` respectively.
 
-<Callout type="warning">
+<Callout type="warn">
 If you remove all of the admins and managers from the allow list, it will no longer be possible to update the allow list without modifying the Subnet-EVM to schedule a network upgrade.
 </Callout>
 
@@ -403,7 +403,7 @@ interface INativeMinter is IAllowList {
 
 Note that this uses `IAllowList` interface directly, meaning that it uses the same `AllowList` interface functions like `readAllowList` and `setAdmin`, `setManager`, `setEnabled`, `setNone`. For more information see [AllowList Solidity interface](#allowlist-interface).
 
-<Callout type="warning">
+<Callout type="warn">
 EVM does not prevent overflows when storing the address balance. Overflows in balance opcodes are handled by setting the balance to maximum. However the same won't apply for API calls. If you try to mint more than the maximum balance, API calls will return the overflowed hex-balance. This can break external tooling. Make sure the total supply of native coins is always less than 2^256-1.
 </Callout>
 
@@ -683,7 +683,7 @@ Warp Precompile enabled cross-subnet communication between other Subnets and pri
 
 If you want to use Warp messaging in an existing Subnet-EVM chain, you should coordinate an upgrade with `upgrade.json`. See [Network Upgrades: Enable/Disable Precompiles](#network-upgrades-enabledisable-precompiles) for more information.
 
-<Callout type="warning">
+<Callout type="warn">
 Currently Warp Precompile can only be activated in Mainnet after Durango occurs. Durango in Mainnet is set at 11 AM ET (4 PM UTC) on Wednesday, March 6th, 2024. If you plan to use Warp messaging in your own Subnet-EVM chain in Mainnet you should upgrade to `[[email protected]](https://docs.avax.network/cdn-cgi/l/email-protection)` or later and coordinate your precompile upgrade. Warp Config's "blockTimestamp" must be set after `1709740800`, Durango date (11 AM ET (4 PM UTC) on Wednesday, March 6th, 2024).
 </Callout>
 
@@ -695,7 +695,7 @@ Subnet-EVM contains example contracts for precompiles under `/contracts`. It's a
 Network Upgrades: Enable/Disable Precompiles[​](#network-upgrades-enabledisable-precompiles "Direct link to heading")
 ---------------------------------------------------------------------------------------------------------------------
 
-<Callout type="warning">
+<Callout type="warn">
 Performing a network upgrade requires coordinating the upgrade network-wide. A network upgrade changes the rule set used to process and verify blocks, such that any node that upgrades incorrectly or fails to upgrade by the time that upgrade goes into effect may become out of sync with the rest of the network.
 
 Any mistakes in configuring network upgrades or coordinating them on validators may cause the network to halt and recovering may be difficult.
@@ -720,7 +720,7 @@ The content of the `upgrade.json` should be formatted according to the following
 }
 ```
 
-<Callout type="warning">
+<Callout type="warn">
 An invalid `blockTimestamp` in an upgrade file results the update failing. The `blockTimestamp` value should be set to a valid Unix timestamp value which is in the _future_ relative to the _head of the chain_. If the node encounters a `blockTimestamp` which is in the past, it will fail on startup.
 </Callout>
 
@@ -743,7 +743,7 @@ Each item in `precompileUpgrades` must specify exactly one precompile to enable 
 
 Enabling and disabling a precompile is a network upgrade and should always be done with caution.
 
-<Callout type="warning">
+<Callout type="warn">
 For safety, you should always treat `precompileUpgrades` as append-only.
 
 As a last resort measure, it is possible to abort or reconfigure a precompile upgrade that has not been activated since the chain is still processing blocks using the prior rule set.
@@ -896,7 +896,7 @@ With `allowFeeRecipients` enabled, validators can specify their addresses to col
 }
 ```
 
-<Callout type="warning">
+<Callout type="warn">
 If `allowFeeRecipients` or `RewardManager` precompile is enabled on the Subnet, but a validator doesn't specify a "feeRecipient", the fees will be burned in blocks it produces.
 </Callout>
 
@@ -907,7 +907,7 @@ Subnet-EVM allows the network operators to specify a modification to state that 
 
 This provides a last resort path to updating non-upgradeable contracts via a network upgrade (for example, to fix issues when you are running your own blockchain).
 
-<Callout type="warning">
+<Callout type="warn">
 This should only be used as a last resort alternative to forking `subnet-evm` and specifying the network upgrade in code.
 
 Using a network upgrade to modify state is not part of normal operations of the EVM. You should ensure the modifications do not invalidate any of the assumptions of deployed contracts or cause incompatibilities with downstream infrastructure such as block explorers.
@@ -921,7 +921,7 @@ The following three state modifications are supported:
 - `storage`: modifies the specified storage slots to the specified values. Keys and values must be 32 bytes specified in hex, with a `0x` prefix.
 - `code`: modifies the code stored in the specified account. The code must _only_ be the runtime portion of a code. The code must start with a `0x` prefix.
 
-<Callout type="warning">
+<Callout type="warn">
 If modifying the code, _only_ the runtime portion of the bytecode should be provided in `upgrades.json`. Do not use the bytecode that would be used for deploying a new contract, as this includes the constructor code as well. Refer to your compiler's documentation for information on how to find the runtime portion of the contract you wish to modify.
 </Callout>
 
@@ -991,7 +991,7 @@ INFO [03-22|14:04:48.288] <fPypUHjNvJqBKXBx2LEoJ9u5b8rRxMtEhb4v2QEDQejEiTtMG Cha
 
 This means your node is lock and loaded for the new Durango activation. After the new timestamp is reached, your node will activate Durango and start processing transactions with the new Durango features.
 
-<Callout type="warning">
+<Callout type="warn">
 Nodes running non-compatible version (running pre-Durango version after Durango activation), should be updated to most recent version of Subnet-EVM (v0.6.3+) and must have the new upgrade.json to reschedule the Durango activation. Running a new version without the rescheduling upgrade.json might create a fork in the network.
 
 All of network nodes, even ones correctly upgraded to Durango and running the correct version since Durango activation, should be restarted with the new upgrade.json to reschedule the Durango activation. This is a network-wide operation and should be coordinated with all network nodes.
