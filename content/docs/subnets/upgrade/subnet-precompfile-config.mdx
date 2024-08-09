@@ -7,7 +7,7 @@ You can customize Subnet-EVM based Subnets after deployment by enabling and disa
 
 This document describes how to perform such network upgrades. It's specific for Subnet-EVM upgrades.
 
-The document [Upgrade a Subnet](/docs/subnets/manage-subnets/upgrade/considerations) describes all the background information required regarding Subnet upgrades.
+The document [Upgrade a Subnet](/docs/subnets/upgrade/considerations) describes all the background information required regarding Subnet upgrades.
 
 <Callout type="warn">
 It's very important that you have read and understood the previously linked document. Failing to do so can potentially grind your network to a halt.
@@ -18,7 +18,7 @@ This tutorial assumes that you have already [installed](/docs/tooling/guides/ins
 Generate the Upgrade File[​](#generate-the-upgrade-file "Direct link to heading")
 ---------------------------------------------------------------------------------
 
-The [Precompiles](/docs/subnets/manage-subnets/upgrade/customize-subnet#network-upgrades-enabledisable-precompiles) documentation describes what files the network upgrade requires, and where to place them.
+The [Precompiles](/docs/subnets/upgrade/customize-subnet#network-upgrades-enabledisable-precompiles) documentation describes what files the network upgrade requires, and where to place them.
 
 To generate a valid `upgrade.json` file, run:
 
@@ -71,11 +71,11 @@ Use the arrow keys to navigate: ↓ ↑ → ←
     Transaction Allow List
 ```
 
-Refer to [Precompiles](/docs/subnets/manage-subnets/upgrade/customize-subnet#precompiles) for a description of available precompiles and how to configure them.
+Refer to [Precompiles](/docs/subnets/upgrade/customize-subnet#precompiles) for a description of available precompiles and how to configure them.
 
 Make sure you understand precompiles thoroughly and how to configure them before attempting to continue.
 
-For every precompile in the list, the wizard guides you to provide correct information by prompting relevant questions. For the sake of this tutorial, select `Transaction Allow List`. The document [Restricting Who Can Submit Transactions](/docs/subnets/manage-subnets/upgrade/customize-subnet#restricting-who-can-submit-transactions) describes what this precompile is about.
+For every precompile in the list, the wizard guides you to provide correct information by prompting relevant questions. For the sake of this tutorial, select `Transaction Allow List`. The document [Restricting Who Can Submit Transactions](/docs/subnets/upgrade/customize-subnet#restricting-who-can-submit-transactions) describes what this precompile is about.
 
 ```bash
 ✔ Transaction Allow List
