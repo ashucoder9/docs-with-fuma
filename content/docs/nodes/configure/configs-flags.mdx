@@ -32,9 +32,9 @@ Example JSON config file:
 ```
 
 <Callout title="Tip" icon = {<BadgeCheck className="size-5 text-card" fill="green" />} >
-[Install Script](/nodes/run/with-installer/installing-avalanchego.md) creates the
+[Install Script](/docs/nodes/run/with-installer/installing-avalanchego.md) creates the
 node config file at `~/.avalanchego/configs/node.json`. No default file is
-created if [AvalancheGo is built from source](/nodes/run/node-manually.md), you
+created if [AvalancheGo is built from source](/docs/nodes/run/node-manually.md), you
 would need to create it manually if needed.
 </Callout>
 
@@ -185,7 +185,7 @@ them into the VM on initialization.
 #### `--chain-config-dir` (string)
 
 Specifies the directory that contains chain configs, as described
-[here](/nodes/configure/chain-configs/chain-config-flags.md). Defaults to `$HOME/.avalanchego/configs/chains`.
+[here](/docs/nodes/configure/chain-configs/chain-config-flags.md). Defaults to `$HOME/.avalanchego/configs/chains`.
 If this flag is not provided and the default directory does not exist,
 AvalancheGo will not exit since custom configs are optional. However, if the
 flag is set, the specified folder must exist, or AvalancheGo will exit with an
@@ -213,10 +213,10 @@ The chain configuration is intended to provide optional configuration parameters
 and the VM will use default values if nothing is passed in.
 
 Full reference for all configuration options for some standard chains can be
-found in a separate [chain config flags](/nodes/configure/chain-configs/chain-config-flags.md) document.
+found in a separate [chain config flags](/docs/nodes/configure/chain-configs/chain-config-flags.md) document.
 
 Full reference for `subnet-evm` upgrade configuration can be found in a separate
-[Customize a Subnet](/build/subnet/upgrade/customize-a-subnet.md) document.
+[Customize a Subnet](/docs/build/subnet/upgrade/customize-a-subnet.md) document.
 
 #### `--chain-config-content` (string)
 
@@ -1358,7 +1358,7 @@ GiB).
 
 #### `--plugin-dir` (string)
 
-Sets the directory for [VM plugins](/build/vm/intro.md). The default value is `$HOME/.avalanchego/plugins`.
+Sets the directory for [VM plugins](/docs/build/vm/intro.md). The default value is `$HOME/.avalanchego/plugins`.
 
 ### Virtual Machine (VM) Configs
 

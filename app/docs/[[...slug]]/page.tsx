@@ -21,7 +21,7 @@ export default function Page({
 
   if (!page) notFound();
 
-  const path = `content/course/${page.file.path}`;
+  const path = `content/docs/${page.file.path}`;
 
   return (
     <DocsPage
