@@ -1,24 +1,99 @@
-# docs
+# Avalanche Developer Docs
 
-This is a Next.js application generated with
-[Create Fumadocs](https://github.com/fuma-nama/fumadocs).
+<div align="center">
+  <img src="public/logo.png?raw=true">
+</div>
 
-Run development server:
+## Overview
+
+This repository contains the contents for the Avalanche Developer Docs
+deployed at [https://docs.avax.network](https://docs.avax.network).
+
+## Contributing
+
+Contributing to the docs site is a great way to get involved with the Avalanche dev community!
+Here's how to get started:
+
+### Quick Fixes
+
+For small typos or corrections, it is easy to contribute without the need to clone/fork the
+repository. Simply:
+
+- Find the page you want to edit.
+- Click on the "Edit on GitHub" button in the right sidebar
+- Make the changes and Hit "Commit changes ..."
+- Edit the `commit message` to describe the change in 4 or less words, and include any extra details in the description
+- Hit "Sign off and commit changes" to raise a PR with your proposed changes
+
+### New Content or Extensive Changes
+
+To propose new docs or large edits to our existing pages, follow the steps accordingly:
+
+- **Ava Labs Github Organization Members:** Clone the repo
+  `git clone https://github.com/ava-labs/avalanche-docs.git`
+- **External Contributors:** Fork the repo via GitHub's GUI
+- Checkout to a new branch `git checkout -b <your-name/branch-name>`
+- Make changes on your branch
+- `git add .`
+- **`yarn dev` to ensure the build passes**
+- `git commit -m "some commit message"`
+- `git push`
+- Head to [GitHub](https://github.com/ava-labs/avalanche-docs) and open a new pull request
+
+### Structure and Syntax
+
+- Docs are located in the [docs](content/docs) directory.
+- Our style guide can be found [here](style-guide.md).
+- All image files should be included under [public images folder](public/images).
+
+### Pull Request (PR)
+
+- All PRs should be made against the `master` branch.
+- Following a successful build, Vercel will deploy your branch where you can verify your changes.
+- Once your PR is merged into `master`, [https://docs.avax.network/](https://docs.avax.network/) will be updated with your changes.
+
+### Installation
 
 ```bash
-npm run dev
-# or
-pnpm dev
-# or
-yarn dev```
-Open http://localhost:3000 with your browser to see the result.
+yarn install
+```
 
-## Learn More
+### Local Development
 
-To learn more about Next.js and Fumadocs, take a look at the following
-resources:
+```bash
+yarn run start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js
-  features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [Fumadocs](https://fumadocs.vercel.app) - learn about Fumadocs
+This command starts a local development server and opens up a browser window. Most changes are
+reflected live without having to restart the server.
+
+### Build
+
+```bash
+next build
+```
+
+This command generates static content into the `.next` directory and can be rendered using Next server.
+
+## New or Missing Content Requests
+
+_The information I am requesting is related to a specific project, i.e. AvalancheGo, AvalancheNetworkRunner, etc.:_
+
+- Please raise a **Missing Docs Issue** in the GitHub repository of that project and
+  thoroughly detail your request. Include references to any existing pages relevant to your
+  request.
+
+_The information I am requesting is explanatory in nature and does not currently exist:_
+
+- Please open a new [Issue](https://github.com/ava-labs/avalanche-docs/issues/new/choose)
+  in this repository and thoroughly detail your request according to the issue template.
+  If urgent, please create a new ticket in the
+  [Dev Docs Improvement Proposals](https://github.com/orgs/ava-labs/projects/15/views/1)
+  dashboard.
+
+_Erroneous or missing information on documentation unrelated to a specific project needs
+editing:_
+
+- If you understand the issue enough to provide a correction, follow the steps
+  [here](https://github.com/ava-labs/avalanche-docs#quick-fixes).
+- If not, please raise an [Issue](https://github.com/ava-labs/avalanche-docs/issues/new/choose).

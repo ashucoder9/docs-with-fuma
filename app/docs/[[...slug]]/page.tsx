@@ -92,7 +92,7 @@ export function generateMetadata({ params }: { params: Param }): Metadata {
   if (!page) notFound();
 
   const description =
-    page.data.description ?? 'Documentation Platform for the Avalanche Ecosystem';
+    page.data.description ?? 'Developer documentation for everything related to the Avalanche ecosystem.';
 
   const imageParams = new URLSearchParams();
   imageParams.set('title', page.data.title);

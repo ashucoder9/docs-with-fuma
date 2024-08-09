@@ -6,6 +6,7 @@ import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
 import type { ReactNode } from 'react';
 import { baseUrl, createMetadata } from '@/utils/metadata';
+import { Analytics } from '@vercel/analytics/react';
 
 export const metadata = createMetadata({
   title: {
@@ -14,7 +15,7 @@ export const metadata = createMetadata({
   },
 
   // area for improvement: add page specific metadata
-  description: 'Documentation Platform for the Avalanche Ecosystem',
+  description: 'Developer documentation for everything related to the Avalanche ecosystem.',
   metadataBase: baseUrl,
 });
 
@@ -30,6 +31,7 @@ export default function Layout({ children }: { children: ReactNode }) {
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`} suppressHydrationWarning>
       <body className="flex min-h-screen flex-col">
         <RootProvider>{children}</RootProvider>
+        <Analytics />
       </body>
     </html>
   );

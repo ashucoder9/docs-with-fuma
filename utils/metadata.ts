@@ -8,7 +8,7 @@ export function createMetadata(override: Metadata): Metadata {
       description: override.description ?? undefined,
       url: 'https://docs.avax.network',
       images: '/banner.png',
-      siteName: 'Avalanche Documentation',
+      siteName: 'Avalanche Docs',
       ...override.openGraph,
     },
     twitter: {

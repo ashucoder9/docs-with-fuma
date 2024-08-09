@@ -20,10 +20,6 @@ export const baseOptions: BaseLayoutProps = {
       text: 'Guides',
       url: 'https://academy.avax.network/guide',
     },
-    {
-      text: 'Contribute',
-      url: '/contribute',
-    },
   ],
 };
 
