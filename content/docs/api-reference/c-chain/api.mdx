@@ -46,7 +46,7 @@ ws://127.0.0.1:9650/ext/bc/C/ws
 ```
 
 <Callout title="Tip" icon = {<BadgeCheck className="size-5 text-card" fill="green" />} >
-On localhost, use `ws://`. When using the [Public API](/docs/tooling/rpc-providers.md) or another
+On localhost, use `ws://`. When using the [Public API](/docs/tooling/rpc-providers) or another
 host that supports encryption, use `wss://`.
 </Callout>
 
@@ -76,7 +76,7 @@ and [Geth's JSON-RPC Documentation](https://geth.ethereum.org/docs/rpc/server)
 for a full description of this API.
 
 <Callout title="info">
-For batched requests on the [public API node](/docs/tooling/rpc-providers.md) , the maximum
+For batched requests on the [public API node](/docs/tooling/rpc-providers) , the maximum
 number of items is 40. We are working on to support a larger batch size.
 </Callout>
 
@@ -884,7 +884,7 @@ curl -X POST --data '{
 ## Admin API
 
 This API can be used for debugging. Note that the Admin API is disabled by default. To run a node
-with the Admin API enabled, use [C-Chain config flag`--coreth-admin-api-enabled:true`](/docs/nodes/configure/chain-configs/C.md#coreth-admin-api-enabled).
+with the Admin API enabled, use [C-Chain config flag`--coreth-admin-api-enabled:true`](/docs/nodes/chain-configs/c-chain#coreth-admin-api-enabled).
 
 ### Endpoint
 
