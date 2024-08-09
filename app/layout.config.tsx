@@ -11,6 +11,20 @@ export const baseOptions: BaseLayoutProps = {
     title: <Title />,
     transparentMode: 'top',
   },
+  links: [
+    {
+      text: 'Academy',
+      url: 'https://academy.avax.network',
+    },
+    {
+      text: 'Guides',
+      url: 'https://academy.avax.network/guide',
+    },
+    {
+      text: 'Contribute',
+      url: '/contribute',
+    },
+  ],
 };
 
 // docs layout configuration

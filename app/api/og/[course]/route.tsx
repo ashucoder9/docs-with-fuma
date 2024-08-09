@@ -2,30 +2,6 @@
 import { ImageResponse } from 'next/og';
 import type { NextRequest } from 'next/server';
 
-interface Course {
-  param: string;
-  name: string;
-}
-
-const courses: Course[] = [
-  {
-    param: 'avalanche-fundamentals',
-    name: 'Avalanche Fundamentals',
-  },
-  {
-    param: 'multi-chain-architecture',
-    name: 'Multi-Chain Architecture',
-  },
-  {
-    param: 'teleporter',
-    name: 'Teleporter',
-  },
-  {
-    param: 'customizing-evm',
-    name: 'Customizing EVM',
-  },
-];
-
 export const runtime = 'edge';
 
 const bold = fetch(new URL('./inter-bold.woff', import.meta.url)).then((res) =>
@@ -34,7 +10,6 @@ const bold = fetch(new URL('./inter-bold.woff', import.meta.url)).then((res) =>
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { course: string } },
 ): Promise<ImageResponse> {
   const { searchParams } = request.nextUrl;
   const title = searchParams.get('title'),
@@ -42,9 +17,8 @@ export async function GET(
 
   return new ImageResponse(
     OG({
-      title: title ?? 'Avalanche Academy',
-      description: description ?? 'The Learning Platform for Avalanche Ecosystem',
-      course: courses.find((course) => course.param === params.course) ?? courses[0],
+      title: title ?? 'Avalanche Docs',
+      description: description ?? 'Developer documentation for everything related to the Avalanche ecosystem.'
     }),
     {
       width: 767,
@@ -56,10 +30,8 @@ export async function GET(
 
 function OG({
   title,
-  description,
-  course,
+  description
 }: {
-  course: Course;
   title: string;
   description: string;
 }): React.ReactElement {
@@ -94,7 +66,7 @@ function OG({
         fontSize: 20,
       }}
     >
-      Academy / {course.name}
+      Documentation 
     </span>
   </div>
   <div
